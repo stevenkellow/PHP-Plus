@@ -8,6 +8,11 @@
 */
 
 /*
+*   CONTENTS
+*
+*   floor_dec
+*/
+/*
 *   floor_dec
 *
 *   Round a decimal down (truncate after certain point) credit to Maikl: http://php.net/manual/en/function.floor.php#114195

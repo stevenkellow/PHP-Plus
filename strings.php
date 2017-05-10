@@ -7,6 +7,15 @@
 *
 */
 
+/*  CONTENTS
+*
+*   rand_string
+*   validate_email
+*   validate_url
+*   slug
+*
+*/
+
 /*
 *   rand_string
 *
@@ -59,4 +68,73 @@ if (version_compare(PHP_VERSION, '7.0.0') >= 0) {
 	return $string;
 		
 }
+}
+
+/*
+*   validate_email
+*
+*   Verify if an email format is valid
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params string $email - email to validate
+*
+*   @return true | false - true if email validates, false otherwise
+*/
+if( ! function_exists( 'validate_email' ) ){
+function validate_email( $email ){
+
+	if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+	  return true;
+	} else {
+	  return false;
+	}
+	
+}
+}
+
+/*
+*   validate_url
+*
+*   Verify if a url format is valid
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params string $email - url to validate
+*
+*   @return true | false - true if url validates, false otherwise
+*/
+if( ! function_exists( 'validate_url' ) ){
+function validate_url( $url ){
+
+	if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
+	  return true;
+	} else {
+	  return false;
+	}
+	
+}
+}
+
+/*
+*   slug
+*
+*   Turn a string into a slug
+*
+*	@author Web Developer Plus
+*	@source http://webdeveloperplus.com/php/21-really-useful-handy-php-code-snippets/
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params string $text - the text to turn into a slug
+*
+*	@return string $slug - the slug text
+*
+*/
+function slug($string){
+	$slug= strtolower( preg_replace('/[^A-Za-z0-9-]+/', '-', $string) );
+	return $slug;
 }
