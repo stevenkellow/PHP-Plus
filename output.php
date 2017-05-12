@@ -26,11 +26,16 @@
 *   @param string	$name - name of script
 *   @param string	$file_location - where the file can be found
 *   @param bool		$inline - whether the file should be included externally or printed inline
+*   @param bool     $async - whether the script should load asynchronously - have this as false if the script has a child dependency
+*   @param bool     $defer - whether the script should load after the DOM is loaded, normally better for speed if this is true
 */
 
 $all_scripts = array();
 
-function script( $name, $file_location, $inline = false ){
+function script( $name, $file_location, $inline = false, $async = false, $defer = true ){
+    
+    // Call in the global
+    global $all_scripts;
 	
 	// Check that script doesn't already exist
 	if( ! in_array( $name, $all_scripts ) ){
@@ -52,7 +57,7 @@ function script( $name, $file_location, $inline = false ){
 			}
 			
 			// Output inline
-			echo '<script type="text/javascript" id="' . $name . '">' . $content . '"</script>';
+			echo '<script type="text/javascript" id="' . $name . '"' . (($async == true)?' async="true"':'') . (($defer == true)?' defer="true"':'') . '>' . $content . '"</script>';
 		
 		}
 
@@ -88,6 +93,9 @@ function script( $name, $file_location, $inline = false ){
 $all_styles = array();
 
 function style( $name, $file_location, $inline = false ){
+    
+    // Call in the global
+    global $all_styles;
 	
 	// Check that style doesn't already exist
 	if( ! in_array( $name, $all_styles ) ){
