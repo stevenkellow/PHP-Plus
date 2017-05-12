@@ -10,6 +10,7 @@
 /*  CONTENTS
 *
 *   is_ssl
+*   protocol
 *   get_user_ip
 *   get_user_lang
 *
@@ -42,6 +43,28 @@ function is_ssl() {
 	}
 	return false;
 }
+}
+
+/*
+*   protocol
+*
+*   Print the site's protocol
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*
+*	@return string https:// | http://
+*
+*/
+function protocol(){
+    
+    if( is_ssl() === true ){
+        echo 'https://';
+    } else {
+        echo 'http://';
+    }
+    
 }
 
 /*
