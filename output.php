@@ -55,6 +55,9 @@ function script( $name, $file_location, $inline = false, $async = false, $defer 
 				// Handle exception
 				return false;
 			}
+            
+            // Add the script name to the array
+            $all_scripts[] = $name;
 			
 			// Output inline
 			echo '<script type="text/javascript" id="' . $name . '"' . (($async == true)?' async="true"':'') . (($defer == true)?' defer="true"':'') . '>' . $content . '"</script>';
@@ -63,6 +66,9 @@ function script( $name, $file_location, $inline = false, $async = false, $defer 
 
 		// If we want to include the file via source
 		if( $inline == false && validate_url( $file_location ) ){
+            
+            // Add the script name to the array
+            $all_scripts[] = $name;
 			
 			echo '<script type="text/javascript" id="' . $name . '" src="' . $file_location . '"></script>';
 			
@@ -115,6 +121,9 @@ function style( $name, $file_location, $inline = false ){
 				// Handle exception
 				return false;
 			}
+            
+            // Add the style name to the array
+            $all_styles[] = $name;
 			
 			// Output inline
 			echo '<style type="text/css" id="' . $name . '">' . $content . '</style>';
@@ -123,6 +132,9 @@ function style( $name, $file_location, $inline = false ){
 
 		// If we want to include the file via source
 		if( $inline == false && validate_url( $file_location ) ){
+            
+            // Add the style name to the array
+            $all_styles[] = $name;
 			
 			echo '<link type="text/css" id="' . $name . '" href="' . $file_location . '" />';
 			
