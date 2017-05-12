@@ -28,3 +28,5 @@ require_once( 'security.php');
 require_once( 'sessions.php' );
 // Variables functions
 require_once( 'variables.php' );
+// Output functions
+require_once( 'output.php' );

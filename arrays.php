@@ -10,7 +10,6 @@
 /*  CONTENTS
 *
 *   shuffle_assoc
-*   print_pre
 *
 */
 
@@ -37,27 +36,5 @@ function shuffle_assoc($list) {
     $random[$key] = $list[$key]; 
   }
   return $random; 
-}
-}
-
-/*
-*   print_pre
-*
-*   Send out a print_r request in a more readable format
-*
-*   @since 0.1
-*   @last_modified 0.1
-*
-*   @param array $data - array you want to output
-*
-*   @output Organised array
-*/
-if( ! function_exists( 'print_pre' ) ){
-function print_pre( $data ){
-		
-		echo '<pre>';
-		print_r( $data );
-		echo '</pre>';
-		
 }
 }
