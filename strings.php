@@ -13,6 +13,8 @@
 *   validate_email
 *   validate_url
 *   slug
+*   trailingslash
+*   untrailingslash
 *
 */
 
@@ -137,4 +139,46 @@ function validate_url( $url ){
 function slug($string){
 	$slug= strtolower( preg_replace('/[^A-Za-z0-9-]+/', '-', $string) );
 	return $slug;
+}
+
+/*
+*   trailingslash
+*
+*   Appends a trailing slash.
+*
+*	@author WordPress
+*	@source https://core.trac.wordpress.org/browser/tags/4.7.3/src/wp-includes/formatting.php
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@param string $string What to add the trailing slash to.
+*	@return string String with trailing slash added.
+*
+*/
+if( ! function_exists( 'trailingslash' ) ){
+function trailingslash( $string ) {
+        return untrailingslash( $string ) . '/';
+}
+}
+
+/*
+*   untrailingslash
+*
+*   Removes trailing forward slashes and backslashes if they exist.
+*
+*	@author WordPress
+*	@source https://core.trac.wordpress.org/browser/tags/4.7.3/src/wp-includes/formatting.php
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@param string $string What to remove the trailing slashes from.
+*	@return string String without the trailing slashes.
+*
+*/
+if( ! function_exists( 'untrailingslash' ) ){
+function untrailingslash( $string ) {
+        return rtrim( $string, '/\\' );
+}
 }

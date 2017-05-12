@@ -31,7 +31,7 @@
 */
 
 $all_scripts = array();
-
+if( ! function_exists( 'script' ) ){
 function script( $name, $file_location, $inline = false, $async = false, $defer = true ){
     
     // Call in the global
@@ -82,6 +82,7 @@ function script( $name, $file_location, $inline = false, $async = false, $defer 
 
 
 }
+}
 
 /*
 *   style
@@ -98,6 +99,7 @@ function script( $name, $file_location, $inline = false, $async = false, $defer 
 
 $all_styles = array();
 
+if( ! function_exists( 'style') ){
 function style( $name, $file_location, $inline = false ){
     
     // Call in the global
@@ -148,6 +150,7 @@ function style( $name, $file_location, $inline = false ){
 	}
 
 
+}
 }
 
 /*
