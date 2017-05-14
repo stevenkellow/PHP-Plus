@@ -32,7 +32,8 @@
 */
 if( ! function_exists( 'is_ssl' ) ){
 function is_ssl() {
-	if ( isset( $_SERVER['HTTPS'] ) ) {
+	
+    if ( isset( $_SERVER['HTTPS'] ) ) {
 		if ( 'on' == strtolower( $_SERVER['HTTPS'] ) ) {
 			return true;
 		}

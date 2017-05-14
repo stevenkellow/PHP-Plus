@@ -54,7 +54,7 @@ function send_mail($to, $subject, $message, $from_email, $from_name){
     $headers[] = 'Content-type: text/html; charset=utf-8';
     
     // Set the from and reply-to addresses
-	if( $from_email && $from_name ){
+	if( is_string( $from_email ) && is_string( $from_name ) ){
 		$headers[] = 'From: ' . $from_name . '<' . $from_email . '>';
 		$headers[] = 'Reply-To: ' . $from_name . '<' . $from_email . '>';
 	}
@@ -172,7 +172,6 @@ function google_analytics( $tracking_code = null ){
 		ob_start();
 		
 		?>
-		
 		<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
@@ -210,21 +209,18 @@ function facebook_pixel( $pixel_id ){
 	// Check the pixel ID is an integer
 	if( is_int( $pixel_id ) ){
 	
-	ob_start();
-	
-	?>
-	
-	<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        ob_start();
 
-	fbq('init', '<?php echo $pixel_id; ?>');
-	fbq('track', 'PageView');
+        ?>
+        <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-	</script>
+        fbq('init', '<?php echo $pixel_id; ?>');
+        fbq('track', 'PageView');
 
-	<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $pixel_id; ?>&ev=PageView&noscript=1"/></noscript>
-
-<?php
-	return ob_get_clean();
+        </script>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $pixel_id; ?>&ev=PageView&noscript=1"/></noscript>
+        <?php
+        return ob_get_clean();
 	
 	} else {
 		

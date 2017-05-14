@@ -64,10 +64,8 @@ function rand_string( $length = 27, $type = 'all' ){
 		$string = bin2hex( $data );
 	}
 
-}
-
 	return $string;
-		
+
 }
 }
 
@@ -159,7 +157,7 @@ function slug($string){
 */
 if( ! function_exists( 'trailingslash' ) ){
 function trailingslash( $string ) {
-        return untrailingslash( $string ) . '/';
+    return untrailingslash( $string ) . '/';
 }
 }
 
@@ -180,7 +178,7 @@ function trailingslash( $string ) {
 */
 if( ! function_exists( 'untrailingslash' ) ){
 function untrailingslash( $string ) {
-        return rtrim( $string, '/\\' );
+    return rtrim( $string, '/\\' );
 }
 }
 

@@ -49,12 +49,14 @@ function script( $name, $file_location, $inline = false, $async = false, $defer 
 			
 			// Check the file can be retrieved
 			try {
-				$content = file_get_contents( $file_location );
+				
+                $content = file_get_contents( $file_location );
 
 				if ($content === false) {
 					// Handle the error
 					return false;
 				}
+                
 			} catch (Exception $e) {
 				// Handle exception
 				return false;
@@ -117,12 +119,14 @@ function style( $name, $file_location, $inline = false ){
 			
 			// Check the file can be retrieved
 			try {
-				$content = file_get_contents( $file_location );
+				
+                $content = file_get_contents( $file_location );
 
 				if ($content === false) {
 					// Handle the error
 					return false;
 				}
+                
 			} catch (Exception $e) {
 				// Handle exception
 				return false;
@@ -251,10 +255,22 @@ function random_color( $type = 'hex'){
 *	@return string - copyright notice like (c) 2012 - 2017
 */
 function copyright($year = false ){
-	if(intval($year) == false ){ $year = date('Y'); } 
-	if(intval($year) == date('Y')){ echo '&copy; ' . intval($year); } 
-	if(intval($year) < date('Y')){ echo '&copy; ' . intval($year) . ' - ' . date('Y'); } 
-	if(intval($year) > date('Y')){ echo '&copy; ' . date('Y'); } 
+	
+    if(intval($year) == false ){
+        $year = date('Y');
+    }
+    
+	if(intval($year) == date('Y')){
+        echo '&copy; ' . intval($year);
+    }
+    
+	if(intval($year) < date('Y')){
+        echo '&copy; ' . intval($year) . ' - ' . date('Y');
+    }
+    
+	if(intval($year) > date('Y')){
+        echo '&copy; ' . date('Y');
+    } 
 }
 
 /*

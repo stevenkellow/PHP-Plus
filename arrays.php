@@ -60,6 +60,7 @@ function shuffle_assoc($list) {
 */
 if( ! function_exists( 'array_remove_empty' ) ){
 function array_remove_empty($arr, $reindex = false){
+    
     $narr = array();
     while(list($key, $val) = each($arr)){
         if (is_array($val)){

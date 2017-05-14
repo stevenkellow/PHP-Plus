@@ -36,8 +36,7 @@ function csrf_token( $name = 'csrf_token', $length = 32 ){
 	// Check PHP session exists and start one if it doesn't
 	session_starter();
 	
-	// Generate a token - credit to Scott Arciszewski http://stackoverflow.com/a/31683058/7956549
-	
+	// Generate a token
 	
 	if (empty($_SESSION[$name])) {
 		
