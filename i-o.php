@@ -161,7 +161,7 @@ function quick_curl($url, $user_auth = null, $rest = 'GET', $input = null, $type
 *
 *	@params string $tracking_code - standard Google Analytics tracking code, e.g. UA-xxxxxxxx-x
 *
-*	@output Analytics tracking code
+*	@return Analytics tracking code
 *
 */
 if( ! function_exists( 'google_analytics' ) ){
@@ -201,7 +201,7 @@ function google_analytics( $tracking_code = null ){
 *
 *	@params string $pixel_id - standard Facebook pixel ID
 *
-*	@output Facebook pixel code
+*	@return Facebook pixel code
 *
 */
 if( ! function_exists( 'facebook_pixel' ) ){

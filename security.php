@@ -19,13 +19,16 @@
 *
 *   Create and output a CSRF token hidden input
 *
+*	@author Scott Arciszewski
+*	@source http://stackoverflow.com/a/31683058/7956549
+*
 *   @since 0.1
 *   @last_modified 0.1
 *
 *	@params string $name - form name that you want to validate (so each form has unique token)
 *	@params int $length - length of the csrf_token in bytes
 *
-*   @output hidden input tag with the value of the hashed_token
+*   @return hidden input tag with the value of the hashed_token
 */
 if( ! function_exists( 'csrf_token' ) ){
 function csrf_token( $name = 'csrf_token', $length = 32 ){
@@ -57,11 +60,11 @@ function csrf_token( $name = 'csrf_token', $length = 32 ){
 *
 *   Verify a given CSRF token
 *
-*   @since 0.1
-*   @last_modified 0.1
-*
 *	@author Scott Arciszewski
 *	@source http://stackoverflow.com/a/31683058/7956549
+*
+*   @since 0.1
+*   @last_modified 0.1
 *
 *	@params string $name - form name that you want to validate (so each form has unique token)
 *

@@ -21,10 +21,11 @@
 *
 *   Check if the site uses SSL or note
 *
+*	@author WordPress
+*   @source https://core.trac.wordpress.org/browser/trunk/src/wp-includes/load.php
+*
 *   @since 0.1
 *   @last_modified 0.1
-*
-*	@author WordPress - https://core.trac.wordpress.org/browser/trunk/src/wp-includes/load.php
 *
 *	@return bool true|false - true if SSL, false otherwise
 *
@@ -83,7 +84,7 @@ function protocol(){
 *	@return string IP Address
 *
 */
-if( ! function_exists( 'get_user_ip' ){
+if( ! function_exists( 'get_user_ip' ) ){
 function get_user_ip(){
 	
 	if( isset( $_SERVER['REMOTE_ADDR'] ) && !empty( $_SERVER['REMOTE_ADDR'] ) ){
@@ -91,7 +92,6 @@ function get_user_ip(){
 		return $_SERVER['REMOTE_ADDR'];
 		
 	} elseif( isset( $_SERVER['HTTP_CLIENT_IP'] ) && !empty( $_SERVER['HTTP_CLIENT_IP'] ) ){
-		
 		
 		return $_SERVER['HTTP_CLIENT_IP'];
 		
@@ -112,11 +112,11 @@ function get_user_ip(){
 *
 *   Get the user's language
 *
-*   @since 0.1
-*   @last_modified 0.1
-*
 *	@author Mohit Modan
 *	@source http://blog.koonk.com/2015/07/46-useful-php-code-snippets-that-can-help-you-with-your-php-projects/
+*
+*   @since 0.1
+*   @last_modified 0.1
 *
 *	@params array $availableLanguages - languages a site can use
 *	@params string $default - the default language of the site

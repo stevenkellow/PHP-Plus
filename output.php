@@ -167,7 +167,7 @@ function style( $name, $file_location, $inline = false ){
 *
 *   @param array $data - array you want to output
 *
-*   @output Organised array
+*   @return organised array
 */
 if( ! function_exists( 'print_pre' ) ){
 function print_pre( $data ){
@@ -243,6 +243,9 @@ function random_color( $type = 'hex'){
 *   @author Chris Coyier
 *   @source https://css-tricks.com/snippets/php/automatic-copyright-year/
 *
+*   @since 0.1
+*   @last_modified 0.1
+*
 *	@params int $year - a start year for copyright
 *
 *	@return string - copyright notice like (c) 2012 - 2017
@@ -262,6 +265,9 @@ function copyright($year = false ){
 *
 *   @author Google
 *   @source https://developers.google.com/chart/infographics/docs/qr_codes
+*
+*   @since 0.1
+*   @last_modified 0.1
 *
 *	@params int $size - value for height and width of image
 *   @params string $data - the info you want to encode
@@ -292,7 +298,7 @@ function qr_url( $size, $data ){
 *
 *	@return string - an image tag for the generated QR code
 */
-if( ! function_exists( 'qr_image' ){
+if( ! function_exists( 'qr_image' ) ){
 function qr_image( $size, $data ){
 	
 	$qr_rul = qr_url( $size, $data );

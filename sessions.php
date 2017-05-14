@@ -100,6 +100,9 @@ function session( $key = null, $value = null ){
 *
 *	Send the user to another location
 *
+*   @since 0.1
+*   @last_modified 0.1
+*
 *	@params string $url - url to send the user to
 *	@params int $response - default response code for the redirect
 *
@@ -109,7 +112,7 @@ if( ! function_exists( 'redirect') ){
 function redirect( $url, $response = 301 ){
 	
 	// Check the the url is valid first
-	if( validate_url( $url ){
+	if( validate_url( $url ) ){
 	
 		header("Location: $url", true, $response);
 		
@@ -132,6 +135,9 @@ function redirect( $url, $response = 301 ){
 *
 *   @author Chris Coyier et. al.
 *   @source https://css-tricks.com/snippets/php/get-current-page-url/
+*
+*   @since 0.1
+*   @last_modified 0.1
 *
 *	@return string $act_url - the current URL
 */
