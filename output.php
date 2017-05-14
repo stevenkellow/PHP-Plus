@@ -142,7 +142,7 @@ function style( $name, $file_location, $inline = false ){
             // Add the style name to the array
             $all_styles[] = $name;
 			
-			echo '<link type="text/css" id="' . $name . '" href="' . $file_location . '" />';
+			echo '<link type="text/css" rel="stylesheet" id="' . $name . '" href="' . $file_location . '" />';
 			
 		}
 	
