@@ -24,6 +24,7 @@
 *   @last_modified 0.1
 *
 */
+if( ! function_exists( 'session_starter') ){
 function session_starter(){
 	
 	// Check if PHP session has started - credit to Meliza Ramos http://stackoverflow.com/a/18542272/7956549
@@ -43,6 +44,7 @@ function session_starter(){
 		
 	}
 	
+}
 }
 
 /*
@@ -102,6 +104,7 @@ function session( $key = null, $value = null ){
 *
 *	@return bool true | false - true if the url is valid, false otherwise
 */
+if( ! function_exists( 'redirect') ){
 function redirect( $url, $response = 301 ){
 	
 	// Check the the url is valid first
@@ -117,4 +120,5 @@ function redirect( $url, $response = 301 ){
 		
 	}
 	
+}
 }

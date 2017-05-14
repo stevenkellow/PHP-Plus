@@ -238,6 +238,7 @@ function facebook_pixel( $pixel_id ){
 *	@return array $csv_array
 *
 */
+if( ! function_exists( 'csv_to_array') ){
 function csv_to_array( $file ){
 	
 	// Turn the file into an array
@@ -254,6 +255,7 @@ function csv_to_array( $file ){
 		
 	}
 	
+}
 }
 
 
@@ -273,6 +275,7 @@ function csv_to_array( $file ){
 *	@return file $contents - CSV to use
 *
 */
+if( ! function_exists( 'array_to_csv') ){
 function array_to_csv( $data, $delimiter = ',', $enclosure = '"') {
    $handle = fopen('php://temp', 'r+');
    foreach ($data as $line) {
@@ -285,7 +288,8 @@ function array_to_csv( $data, $delimiter = ',', $enclosure = '"') {
    fclose($handle);
    return $contents;
 }
-
+}
+    
 /*
 *	get_gravatar
 *
@@ -308,6 +312,7 @@ function array_to_csv( $data, $delimiter = ',', $enclosure = '"') {
 *	@return String containing either just a URL or a complete image tag
 *
 */
+if( ! function_exists( 'get_gravatar') ){
 function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
     $url = 'https://www.gravatar.com/avatar/';
     $url .= md5( strtolower( trim( $email ) ) );
@@ -319,4 +324,5 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
         $url .= ' />';
     }
     return $url;
+}
 }

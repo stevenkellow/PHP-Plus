@@ -136,9 +136,11 @@ function validate_url( $url ){
 *	@return string $slug - the slug text
 *
 */
+if( ! function_exists( 'slug') ){
 function slug($string){
 	$slug= strtolower( preg_replace('/[^A-Za-z0-9-]+/', '-', $string) );
 	return $slug;
+}
 }
 
 /*

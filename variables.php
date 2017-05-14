@@ -57,6 +57,7 @@ function is_ssl() {
 *	@return string https:// | http://
 *
 */
+if( ! function_exists( 'protocol') ){
 function protocol(){
     
     if( is_ssl() === true ){
@@ -65,6 +66,7 @@ function protocol(){
         echo 'http://';
     }
     
+}
 }
 
 /*
@@ -122,6 +124,7 @@ function get_user_ip(){
 *	@return string language
 *
 */
+if( ! function_exists( 'get_user_lang') ){
 function get_user_lang( $availableLanguages, $default = 'en' ){
 	
 	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
@@ -136,5 +139,4 @@ function get_user_lang( $availableLanguages, $default = 'en' ){
 	}
 	return $default;
 }
-	
 }
