@@ -12,6 +12,7 @@
 *   script
 *   style
 *   print_pre
+*   random_color
 *
 */
 
@@ -172,5 +173,60 @@ function print_pre( $data ){
 		print_r( $data );
 		echo '</pre>';
 		
+}
+}
+
+/*
+*   random_color
+*
+*   Generate random color
+*
+*   @author Jonas John
+*   @source http://www.jonasjohn.de/snippets/php/random-color.htm
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*   @param string $type - type of output: rgb or hex
+*
+*   @return string - color as hex, e.g. #ffffff , or rgb, e.g. rgb(0,0,0)
+*/
+if( ! function_exists( 'random_color') ){
+function random_color( $type = 'hex'){
+    
+    if( $type == 'hex' ){
+    
+        $c = '#';
+        while(strlen($c)<7){
+            $c .= dechex( mt_rand( 0, 16 ) );
+        }
+   
+        return $c;
+    
+        
+    } else {
+        
+        $c = 'rgb(';
+        $count = 1;
+        while( $count < 4 ){
+            
+            $c .= mt_rand( 0, 255 );
+            
+            if( $count < 3 ){
+                
+                $c .= ',';
+                
+            }
+            
+            $count++;
+            
+        }
+        
+        $c .= ')';
+        
+        return $c;
+        
+        
+    }
 }
 }
