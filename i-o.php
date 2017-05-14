@@ -80,10 +80,13 @@ function send_mail($to, $subject, $message, $from_email, $from_name){
 *	@params string $input - the data we want to retrieve, update or send
 *	@params string $type - 'XML' | 'JSON' - the type of data we're wanting to send
 *
-*	@return mixed $data - whatever is retrieved or a confirmation of send
+*	@return mixed $data - whatever is retrieved or a confirmation of send, or if curl isn't installed false
 */
 if( ! function_exists( 'quick_curl' ) ){
 function quick_curl($url, $user_auth = null, $rest = 'GET', $input = null, $type = 'JSON'){
+    
+    // Check if cURL is installed
+    if ( function_exists('curl_init') ){
 
 	$ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url); // The URL we're using to get/send data
@@ -123,7 +126,7 @@ function quick_curl($url, $user_auth = null, $rest = 'GET', $input = null, $type
     // Check if there's an error in the header
     $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    // If there's any curl errors
+    // If there's any cURL errors
     if (curl_errno($ch) || ( $httpcode < 200 || $httpcode >= 300 )  ) {
         $data = 'error';
     } else {
@@ -134,8 +137,15 @@ function quick_curl($url, $user_auth = null, $rest = 'GET', $input = null, $type
         
     }
 
-    // Send the data back to the function calling the curl
+    // Send the data back to the function calling the cURL
     return $data;
+        
+    } else {
+        
+        // cURL not installed so leave
+        return false;
+        
+    }
 
 	
 }
