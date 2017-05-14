@@ -20,6 +20,11 @@
 if( ! defined( 'CURRENT_TIME') ){
     define( 'CURRENT_TIME', time() );
 }
+if( ! function_exists( 'current_time') ){
+    function current_time(){
+        return CURRENT_TIME;
+    }
+}
 
 if( ! defined( 'MINUTE_IN_SECONDS') ){
     define( 'MINUTE_IN_SECONDS', 60);
