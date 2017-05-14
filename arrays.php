@@ -102,6 +102,7 @@ function array_remove_empty($arr, $reindex = false){
 *   @return array $array - returns the reindexed array if we've asked for that
 *
 */
+if( ! function_exists( 'unset_key') ){
 function unset_key( $key, $array, $reindex = false ){
 
     if( $key !== false) {
@@ -114,6 +115,7 @@ function unset_key( $key, $array, $reindex = false ){
         
     }
     
+}
 }
 
 /*
@@ -134,11 +136,12 @@ function unset_key( $key, $array, $reindex = false ){
 *   @return array $array - returns the reindexed array if we've asked for that
 *
 */
-
+if( ! function_exists( 'unset_value') ){
 function unset_value( $value, $array, $reindex = false ){
     
     $key = array_search($value, $array);
 
     unset_key( $key, $array, $reindex );
     
+}
 }

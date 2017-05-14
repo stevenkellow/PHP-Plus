@@ -13,6 +13,9 @@
 *   style
 *   print_pre
 *   random_color
+*   copyright
+*   qr_url
+*   qr_image
 *
 */
 
@@ -228,5 +231,73 @@ function random_color( $type = 'hex'){
         
         
     }
+}
+}
+
+/*
+*
+*	copyright
+*
+*	Output an automatic copyright notice
+*
+*   @author Chris Coyier
+*   @source https://css-tricks.com/snippets/php/automatic-copyright-year/
+*
+*	@params int $year - a start year for copyright
+*
+*	@return string - copyright notice like (c) 2012 - 2017
+*/
+function copyright($year = false ){
+	if(intval($year) == false ){ $year = date('Y'); } 
+	if(intval($year) == date('Y')){ echo '&copy; ' . intval($year); } 
+	if(intval($year) < date('Y')){ echo '&copy; ' . intval($year) . ' - ' . date('Y'); } 
+	if(intval($year) > date('Y')){ echo '&copy; ' . date('Y'); } 
+}
+
+/*
+*
+*	qr_url
+*
+*	Generate a QR code URL using Google Charts API
+*
+*   @author Google
+*   @source https://developers.google.com/chart/infographics/docs/qr_codes
+*
+*	@params int $size - value for height and width of image
+*   @params string $data - the info you want to encode
+*
+*	@return string - the URL of the QR code
+*/
+if( ! function_exists( 'qr_url' ) ){
+function qr_url( $size, $data ){
+  
+  $qr_url = 'https://chart.googleapis.com/chart?cht=qr&chs=' . $size . 'x' . $size . '&chl=' . urlencode( $data );
+  
+  return $qr_url;
+  
+}
+}
+
+/*
+*
+*	qr_url
+*
+*	Generate a QR code image tag using Google Charts API
+*
+*   @author Google
+*   @source https://developers.google.com/chart/infographics/docs/qr_codes
+*
+*	@params int $size - value for height and width of image
+*   @params string $data - the info you want to encode
+*
+*	@return string - an image tag for the generated QR code
+*/
+if( ! function_exists( 'qr_image' ){
+function qr_image( $size, $data ){
+	
+	$qr_rul = qr_url( $size, $data );
+	
+	echo '<img src="' . $qr_url . ' height="' . $size . '" width="' . $size . '" />';
+	
 }
 }

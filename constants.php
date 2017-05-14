@@ -84,3 +84,15 @@ if( ! defined( 'PI') ){
 if( ! defined( 'SPEED_OF_LIGHT') ){
     define( 'SPEED_OF_LIGHT', 299792458 );
 }
+
+if( ! defined( 'MILLION') ){
+    define( 'MILLION', 1000000 );
+}
+
+if( ! defined( 'BILLION') ){
+    define( 'BILLION', 1000 * MILLION );
+}
+
+if( ! defined( 'TRILLION') ){
+    define( 'TRILLION', 1000 * BILLION );
+}

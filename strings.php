@@ -15,6 +15,8 @@
 *   slug
 *   trailingslash
 *   untrailingslash
+*   str2hex
+*   hex2str
 *
 */
 
@@ -182,5 +184,55 @@ function trailingslash( $string ) {
 if( ! function_exists( 'untrailingslash' ) ){
 function untrailingslash( $string ) {
         return rtrim( $string, '/\\' );
+}
+}
+
+/*
+*   str2hex
+*
+*   Returns a hex containing a string
+*
+*	@author Alexander Rath
+*	@source http://www.jonasjohn.de/snippets/php/hex-string.htm
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@param string $func_string - string to turn into hex
+*	@return string $func_retVal - returned hex
+*
+*/
+if( ! function_exists( 'str2hex') ){
+function str2hex($func_string) {
+	$func_retVal = '';
+	$func_length = strlen($func_string);
+	for($func_index = 0; $func_index < $func_length; ++$func_index) $func_retVal .= ((($c = dechex(ord($func_string{$func_index}))) && strlen($c) & 2) ? $c : "0{$c}");
+
+	return strtoupper($func_retVal);
+}
+}
+
+/*
+*   hex2str
+*
+*   Returns a string containing a hex
+*
+*	@author Alexander Rath
+*	@source http://www.jonasjohn.de/snippets/php/hex-string.htm
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@param string $func_string - hex to turn into string
+*	@return string $func_retVal - returned string
+*
+*/
+if( ! function_exists( 'hex2str') ){
+function hex2str($func_string) {
+	$func_retVal = '';
+	$func_length = strlen($func_string);
+	for($func_index = 0; $func_index < $func_length; ++$func_index) $func_retVal .= chr(hexdec($func_string{$func_index} . $func_string{++$func_index}));
+
+	return $func_retVal;
 }
 }

@@ -12,6 +12,7 @@
 *   session_starter
 *   session
 *   redirect
+*   current_url
 *
 */
 
@@ -120,5 +121,26 @@ function redirect( $url, $response = 301 ){
 		
 	}
 	
+}
+}
+
+/*
+*
+*	current_url
+*
+*	Get the current URL
+*
+*   @author Chris Coyier et. al.
+*   @source https://css-tricks.com/snippets/php/get-current-page-url/
+*
+*	@return string $act_url - the current URL
+*/
+if( ! function_exists( 'current_url') ){
+function current_url() {
+    $act_url  = ( isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ) ? 'https' : 'http';
+    $act_url .= '://' . $_SERVER['SERVER_NAME'];
+    $act_url .= in_array( $_SERVER['SERVER_PORT'], array( '80', '443' ) ) ? '' : ":" . $_SERVER['SERVER_PORT'];
+    $act_url .= $_SERVER['REQUEST_URI'];
+    return $act_url;
 }
 }
