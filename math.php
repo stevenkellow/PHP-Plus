@@ -169,7 +169,8 @@ function round_up($number, $precision = 2){
 *   @since v. 0.1
 *   @last_modified v 0.1
 *
-*   @param integer $number - number to return absolute
+*   @param integer $number - number to round
+*	@param integer $precision - number of decimal places to round to
 *
 *   @return integer / float - rounded number
 */
@@ -194,16 +195,20 @@ function round_down($number, $precision = 2){
 if( ! function_exists( 'sum' ) ){
 function sum(){
     
-    $numargs = func_num_args();
-  
+    // Get all the arguments
     $arg_list = func_get_args();
     
+    // If an array was passed through
     if( is_array( $arg_list[0]) ){
         
         return array_sum( $arg_list[0] );
         
     } else {
+        
+        // Get number of arguments passed through
+        $numargs = func_num_args();
     
+        // Create an array for each passed element
         $args_array = array();
         for ($i = 0; $i < $numargs; $i++) {
             $args_array[] = $arg_list[$i];
@@ -231,6 +236,7 @@ function sum(){
 *
 *   @return string $roman - integer in Roman numerals
 */
+if( ! function_exists( 'arabic2roman') ){
 function arabic2roman( $integer ){ 
     
     $table = array('M'=>1000, 'CM'=>900, 'D'=>500, 'CD'=>400, 'C'=>100, 'XC'=>90, 'L'=>50, 'XL'=>40, 'X'=>10, 'IX'=>9, 'V'=>5, 'IV'=>4, 'I'=>1); 
@@ -247,6 +253,7 @@ function arabic2roman( $integer ){
     } 
 
     return $roman; 
+}
 }
    
    
@@ -265,10 +272,13 @@ function arabic2roman( $integer ){
 *
 *   @return integer $integer - integer in Arabic numerals
 */
+if( ! function_exists( 'roman2arabic') ){
 function roman2arabic( $roman ){
     $romans = array('M'=>1000, 'CM'=>900, 'D'=>500, 'CD'=>400, 'C'=>100, 'XC'=>90, 'L'=>50, 'XL'=>40, 'X'=>10, 'IX'=>9, 'V'=>5, 'IV'=>4, 'I'=>1); 
 
     $integer = 0;
+    
+    $roman = strtoupper( $roman );
 
     foreach ($romans as $key => $value) {
         while (strpos($roman, $key) === 0) {
@@ -278,4 +288,5 @@ function roman2arabic( $roman ){
     }
     return $integer;
 
+}
 }
