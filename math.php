@@ -104,6 +104,7 @@ function average(){
 *
 *   @return bool - true if it's even, false if it's not
 */
+if( ! function_exists( 'is_even' ) ){
 function is_even( $number ){
 	
 	if( $number & 1 ){
@@ -112,6 +113,7 @@ function is_even( $number ){
 	    return true;
 	}
 	
+}
 }
 
 /*
@@ -129,6 +131,7 @@ function is_even( $number ){
 *
 *   @return bool - true if it's odd, false if it's not
 */
+if( ! function_exists( 'is_odd' ) ){
 function is_odd( $number ){
 	
 	if( $number & 1 ){
@@ -137,6 +140,7 @@ function is_odd( $number ){
 	    return false;
 	}
 	
+}
 }
 
 /*
@@ -155,9 +159,11 @@ function is_odd( $number ){
 *
 *   @return integer / float - rounded number
 */
+if( ! function_exists( 'round_up') ){
 function round_up($number, $precision = 2){
     $fig = (int) str_pad('1', ( $precision + 1 ), '0');
     return (ceil($number * $fig) / $fig);
+}
 }
 
 /*
@@ -176,9 +182,11 @@ function round_up($number, $precision = 2){
 *
 *   @return integer / float - rounded number
 */
+if( ! function_exists( 'round_down') ){
 function round_down($number, $precision = 2){
     $fig = (int) str_pad('1', ( $precision + 1 ), '0');
     return (floor($number * $fig) / $fig);
+}
 }
    
 /*
@@ -332,7 +340,7 @@ function temperature( $number, $from, $to ){
 		
 	}
 	
-	if( $from = 'fahrenheit' ){
+	if( $from == 'fahrenheit' ){
 		
 		if( $to == 'celsius' ){
 			
@@ -400,6 +408,7 @@ function temperature( $number, $from, $to ){
 *
 *   @return int | float - distance between the two points
 */
+if( ! function_exists( 'latlon_distance') ){
 function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 
 	$theta = $lon1 - $lon2;
@@ -417,4 +426,5 @@ function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 	  return $miles;
 	}
 	
+}
 }
