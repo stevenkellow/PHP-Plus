@@ -19,6 +19,7 @@
 *   sum
 *   arabic2roman
 *   roman2arabic
+*   temperature
 */
 
 /*
@@ -288,5 +289,93 @@ function roman2arabic( $roman ){
     }
     return $integer;
 
+}
+}
+
+/*
+*   temperature
+*
+*   Convert a temperature between celsius, fahrenheit and kelvin
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @params int | float $number - value of temperature to convert
+*	@params string $from - temperature to convert from (celsius, fahrenheit or kelvin)
+*	@params string $to - temperature to convert to (celsius, fahrenheit or kelvin)
+*
+*   @return int | float - converted temperature
+*/
+if( ! function_exists( 'temperature') ){
+function temperature( $number, $from, $to ){
+	
+	if( $from == 'celsius' ){
+		
+		if( $to == 'fahrenheit' ){
+			
+			return ($number * 9/5) + 32;
+			
+		}
+		
+		if( $to == 'kelvin' ){
+			
+			return $number + 273.15;
+			
+		}
+		
+		if( $to == 'celsius' ){
+			
+			return $number;
+			
+		}
+		
+	}
+	
+	if( $from = 'fahrenheit' ){
+		
+		if( $to == 'celsius' ){
+			
+			return ($number - 32) / ( 9/5 );
+			
+		}
+		
+		
+		if( $to == 'kelvin' ){
+			
+			return ($number + 459.67 ) * ( 5/9 );
+			
+		}
+		
+		if( $to == 'fahrenheit'){
+			
+			return $number;
+			
+		}
+		
+	}
+	
+	if( $from == 'kelvin' ){
+		
+		if( $to == 'celsius' ){
+			
+			return $number - 273.15;
+			
+		}
+		
+		if( $to == 'fahrenheit' ){
+			
+			return ($number * (9/5)) + 459.67;
+			
+		}
+		
+		if( $to == 'kelvin' ){
+			
+			return $number;
+			
+		}
+		
+		
+	}
+	
 }
 }
