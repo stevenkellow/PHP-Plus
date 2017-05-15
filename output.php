@@ -251,25 +251,29 @@ function random_color( $type = 'hex'){
 *   @last_modified 0.1
 *
 *	@params int $year - a start year for copyright
+*   @params bool $roman - use roman numerals for year
 *
-*	@return string - copyright notice like (c) 2012 - 2017
+*	@return string - copyright notice like (c) 2017, (c) MMVII or (c) 2012 - 2017
 */
-function copyright($year = false ){
+function copyright( $year = false, $roman = false ){
 	
     if(intval($year) == false ){
         $year = date('Y');
     }
     
 	if(intval($year) == date('Y')){
-        echo '&copy; ' . intval($year);
+        // Output the copy symbol and either the year or the year in Roman numerals
+        echo '&copy; ' . ($roman == false ? intval($year) : arabic2roman( intval($year) ));
     }
     
 	if(intval($year) < date('Y')){
-        echo '&copy; ' . intval($year) . ' - ' . date('Y');
+        // Output the copy symbol and either the year range or the year range in Roman numerals
+        echo '&copy; ' . ($roman == false ? (intval($year) . ' - ' . date('Y')) : ( arabic2roman( intval($year) ) . ' - ' . arabic2roman( date('Y') )) );
     }
     
 	if(intval($year) > date('Y')){
-        echo '&copy; ' . date('Y');
+        // Output the copy symbol and the current year or the current year in Roman numerals
+        echo '&copy; ' . ($roman == false ? date('Y') : arabic2roman( date('Y') ));
     } 
 }
 
