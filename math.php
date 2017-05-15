@@ -54,13 +54,35 @@ function absint( $number ) {
 *   @last_modified v 0.1
 *
 *   @param array $array - an array with elements
+*   @param numbers - list of numbers to average
 *
-*   @return float $average - the average of all elements
+*   @return float/int $average - the average of all elements
 */
 if( ! function_exists( 'average') ){
-function average( $array ){
+function average(){
+  
+    // Get all the arguments
+    $arg_list = func_get_args();
     
-    return array_sum( $array ) / count( $array ); 
+    // If an array was passed through
+    if( is_array( $arg_list[0]) ){
+        
+        return array_sum( $arg_list[0] ) / count( $arg_list[0] );
+        
+    } else {
+        
+        // Get number of arguments passed through
+        $numargs = func_num_args();
+    
+        // Create an array for each passed element
+        $args_array = array();
+        for ($i = 0; $i < $numargs; $i++) {
+            $args_array[] = $arg_list[$i];
+        }
+
+        return array_sum( $args_array ) / $numargs;
+    
+    }
     
 }
 }
@@ -164,13 +186,33 @@ function round_down($number, $precision = 2){
 *   @since v. 0.1
 *   @last_modified v 0.1
 *
-*   @param array $array - set of numbers to add up
+*   @param array $array - an array with elements to add up
+*   @param numbers - list of numbers to add
 *
-*   @return integer / float
+*   @return integer / float - sum of all numbers
 */
 if( ! function_exists( 'sum' ) ){
-function sum( $array ){
-    return array_sum( $array );
+function sum(){
+    
+    $numargs = func_num_args();
+  
+    $arg_list = func_get_args();
+    
+    if( is_array( $arg_list[0]) ){
+        
+        return array_sum( $arg_list[0] );
+        
+    } else {
+    
+        $args_array = array();
+        for ($i = 0; $i < $numargs; $i++) {
+            $args_array[] = $arg_list[$i];
+        }
+
+        return array_sum( $args_array );
+    
+    }
+    
 }
 }
    
