@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>arabic2roman - PHP Plus</title>
+<link href="../dillinger.css" rel="stylesheet" id="dillinger-style">
+<link href="../main.css" rel="stylesheet" id="main">
+</head>
+<body>
+<main>
+<h1><a id="arabic2roman_0"></a>arabic2roman</h1>
+<h2><a id="round_upnumber_precision__2_2"></a><em>arabic2roman( $integer )</em></h2>
+<h3><a id="Description_4"></a>Description</h3>
+<p>Convert an Arabic numeral (integer) to Roman numerals</p>
+<h3><a id="Parameters_7"></a>Parameters</h3>
+<ul>
+<li><strong>$integer</strong> <em>[int]</em> - Integer to convert into Roman numerals</li>
+</ul>
+<h3><a id="Returns_10"></a>Returns</h3>
+<ul>
+<li><em>[string]</em> - A string representing the integer in Roman numerals</li>
+</ul>
+<h3><a id="Source_code_13"></a>Source code</h3>
+<p><strong>Author:</strong> <a href="http://stackoverflow.com/a/15023547">user2095686</a></p>
+<pre><code>function arabic2roman( $integer ){ 
+    
+    $table = array('M'=&gt;1000, 'CM'=&gt;900, 'D'=&gt;500, 'CD'=&gt;400, 'C'=&gt;100, 'XC'=&gt;90, 'L'=&gt;50, 'XL'=&gt;40, 'X'=&gt;10, 'IX'=&gt;9, 'V'=&gt;5, 'IV'=&gt;4, 'I'=&gt;1); 
+    $roman = ''; 
+    
+    while($integer &gt; 0){
+        foreach($table as $rom=&gt;$arb){ 
+            if($integer &gt;= $arb){ 
+                $integer -= $arb; 
+                $roman .= $rom; 
+                break; 
+            } 
+        } 
+    } 
+
+    return $roman; 
+}
+</code></pre>
+<h3><a id="History_36"></a>History</h3>
+<h5><a id="01_37"></a>0.1</h5>
+<ul>
+<li>Added</li>
+</ul>
+<h3><a id="Examples_40"></a>Examples</h3>
+<pre><code>arabic2roman( 5 ); // returns V
+arabic2roman( 576 ); // returns DLXXVI
+arabic2roman( 1979 ); // returns MCMLXXIX
+</code></pre>
+
+</main>
+<aside>
+<h3>All Docs</h3>
+<hr>
+<h4>Math functions</h4>
+<ul>
+	<li><a href="absint.html">absint</a></li>
+	<li><a href="average.html">average</li>
+	<li><a href="is_even.html">is_even</li>
+	<li><a href="is_odd.html">is_odd</li>
+	<li><a href="round_up.html">round_up</li>
+	<li><a href="round_down.html">round_down</li>
+	<li><a href="sum.html">sum</li>
+	<li><a href="arabic2roman.html">arabic2roman</li>
+	<li><a href="roman2arabic.html">roman2arabic</li>
+</ul>
+</aside>
+</body></html>

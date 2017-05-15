@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>sum - PHP Plus</title>
+<link href="../dillinger.css" rel="stylesheet" id="dillinger-style">
+<link href="../main.css" rel="stylesheet" id="main">
+</head>
+<body>
+<main>
+<h1><a id="sum_0"></a>sum</h1>
+<h2><a id="sum_array_OR_list_of_numbers__2"></a><em>sum( $array OR $list, $of, $numbers )</em></h2>
+<h3><a id="Description_4"></a>Description</h3>
+<p>Get the sum of an array or a list of numbers</p>
+<h3><a id="Parameters_7"></a>Parameters</h3>
+<ul>
+<li><strong>$array</strong> <em>[array]</em> - Array of numbers to sum</li>
+<li><strong>list of numbers</strong> [float | int] - a comma separeted list of numbers to sum</li>
+</ul>
+<h3><a id="Returns_11"></a>Returns</h3>
+<ul>
+<li><em>[float | int]</em> - A number representing the sum of all passed arguments</li>
+</ul>
+<h3><a id="Source_code_14"></a>Source code</h3>
+<p><strong>Author:</strong> <a href="http://php.net/manual/en/function.array-sum.php" target="_blank">Mucello</a> <em>[Code heavily modified]</em></p>
+<pre><code>function sum(){
+    
+    // Get all the arguments
+    $arg_list = func_get_args();
+    
+    // If an array was passed through
+    if( is_array( $arg_list[0]) ){
+        
+        return array_sum( $arg_list[0] );
+        
+    } else {
+        
+        // Get number of arguments passed through
+        $numargs = func_num_args();
+    
+        // Create an array for each passed element
+        $args_array = array();
+        for ($i = 0; $i &lt; $numargs; $i++) {
+            $args_array[] = $arg_list[$i];
+        }
+
+        return array_sum( $args_array );
+    
+    }
+    
+}
+</code></pre>
+<h3><a id="History_46"></a>History</h3>
+<h5><a id="01_47"></a>0.1</h5>
+<ul>
+<li>Added</li>
+</ul>
+<h3><a id="Examples_50"></a>Examples</h3>
+<pre><code>sum( array( 1, 2, 3, 4 ) ); // returns 10 (int)
+sum( 1, 2, 3, 4 ); // returns 10 (int)
+sum( array( 3, 3.5, 4.2) ); // returns 10.7 (float)
+sum( -9, 9, 100 ); // returns 100 (int)
+</code></pre>
+
+</main>
+<aside>
+<h3>All Docs</h3>
+<hr>
+<h4>Math functions</h4>
+<ul>
+	<li><a href="absint.html">absint</a></li>
+	<li><a href="average.html">average</li>
+	<li><a href="is_even.html">is_even</li>
+	<li><a href="is_odd.html">is_odd</li>
+	<li><a href="round_up.html">round_up</li>
+	<li><a href="round_down.html">round_down</li>
+	<li><a href="sum.html">sum</li>
+	<li><a href="arabic2roman.html">arabic2roman</li>
+	<li><a href="roman2arabic.html">roman2arabic</li>
+</ul>
+</aside>
+</body></html>

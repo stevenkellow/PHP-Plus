@@ -1,0 +1,27 @@
+body{
+	width: 90%;
+	display: block;
+	margin: 0 auto;
+}
+
+main{
+	width: 75%;
+	display: block;
+	float: left;
+}
+
+aside{
+	width: 25%;
+	display: block;
+	float:right;
+}
+
+@media screen and (max-width: 768px){
+	
+	main, aside{
+		width: 100%;
+		float: none;
+	}
+	
+	
+}

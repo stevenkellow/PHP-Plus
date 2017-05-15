@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>is_odd - PHP Plus</title>
+<link href="../dillinger.css" rel="stylesheet" id="dillinger-style">
+<link href="../main.css" rel="stylesheet" id="main">
+</head>
+<body>
+<main>
+<h1><a id="is_odd_0"></a>is_odd</h1>
+<h2><a id="is_odd_number__2"></a><em>is_odd( $number )</em></h2>
+<h3><a id="Description_4"></a>Description</h3>
+<p>Check if a number is odd</p>
+<h3><a id="Parameters_7"></a>Parameters</h3>
+<ul>
+<li><strong>$number</strong> <em>[int]</em> - Number to check</li>
+</ul>
+<h3><a id="Returns_10"></a>Returns</h3>
+<ul>
+<li><em>[bool]</em> - True (number is odd) | False (number is even)</li>
+</ul>
+<h3><a id="Source_code_13"></a>Source code</h3>
+<p><strong>Author:</strong> <a href="http://stackoverflow.com/a/9153969">Pawel Dubiel</a></p>
+<pre><code>function is_odd( $number ){
+    
+    if( $number &amp; 1 ){
+        return true;
+    } else {
+        return false;
+    }
+    
+}
+</code></pre>
+<h3><a id="History_28"></a>History</h3>
+<h5><a id="01_29"></a>0.1</h5>
+<ul>
+<li>Added</li>
+</ul>
+<h3><a id="Examples_32"></a>Examples</h3>
+<pre><code>is_odd( 2 ); // Returns false
+is_odd( 1 ); // Returns true
+is_odd( 0 ); // Returns false
+is_odd( -2 ); // Returns false
+is_odd( -1 ); // Returns true
+</code></pre>
+
+</main>
+<aside>
+<h3>All Docs</h3>
+<hr>
+<h4>Math functions</h4>
+<ul>
+	<li><a href="absint.html">absint</a></li>
+	<li><a href="average.html">average</li>
+	<li><a href="is_even.html">is_even</li>
+	<li><a href="is_odd.html">is_odd</li>
+	<li><a href="round_up.html">round_up</li>
+	<li><a href="round_down.html">round_down</li>
+	<li><a href="sum.html">sum</li>
+	<li><a href="arabic2roman.html">arabic2roman</li>
+	<li><a href="roman2arabic.html">roman2arabic</li>
+</ul>
+</aside>
+</body></html>

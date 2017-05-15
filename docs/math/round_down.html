@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>round_down - PHP Plus</title>
+<link href="../dillinger.css" rel="stylesheet" id="dillinger-style">
+<link href="../main.css" rel="stylesheet" id="main">
+</head>
+<body>
+<main>
+<h1><a id="round_down_0"></a>round_down</h1>
+<h2><a id="round_downnumber_precision__2_2"></a><em>round_down($number, $precision = 2)</em></h2>
+<h3><a id="Description_4"></a>Description</h3>
+<p>Round a number down to the next whole integer</p>
+<p><em>Note: negative numbers round towards infinity</em></p>
+<h3><a id="Parameters_7"></a>Parameters</h3>
+<ul>
+<li><strong>$number</strong> <em>[float]</em> - Float to round down</li>
+<li><strong>$precision</strong> [int] - number of decimal places to round to (default: 0)</li>
+</ul>
+<h3><a id="Returns_11"></a>Returns</h3>
+<ul>
+<li><em>[int]</em> - A whole number</li>
+</ul>
+<h3><a id="Source_code_14"></a>Source code</h3>
+<p><strong>Author:</strong> <a href="http://php.net/manual/en/function.round.php#114573">taking sides</a></p>
+<pre><code>function round_down($number, $precision = 2){
+    $fig = (int) str_pad('1', ( $precision + 1 ), '0');
+    return (floor($number * $fig) / $fig);
+}
+</code></pre>
+<h3><a id="History_24"></a>History</h3>
+<h5><a id="01_25"></a>0.1</h5>
+<ul>
+<li>Added</li>
+</ul>
+<h3><a id="Examples_28"></a>Examples</h3>
+<pre><code>round_down( 3.1 ); // returns 3
+round_down( 3.9 ); // returns 3
+round_down( -1.5 ); // returns -2
+</code></pre>
+
+</main>
+<aside>
+<h3>All Docs</h3>
+<hr>
+<h4>Math functions</h4>
+<ul>
+	<li><a href="absint.html">absint</a></li>
+	<li><a href="average.html">average</li>
+	<li><a href="is_even.html">is_even</li>
+	<li><a href="is_odd.html">is_odd</li>
+	<li><a href="round_down.html">round_down</li>
+	<li><a href="round_down.html">round_down</li>
+	<li><a href="sum.html">sum</li>
+	<li><a href="arabic2roman.html">arabic2roman</li>
+	<li><a href="roman2arabic.html">roman2arabic</li>
+</ul>
+</aside>
+</body></html>
