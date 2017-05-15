@@ -1,0 +1,123 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>temperature - PHP Plus</title>
+<link href="../dillinger.css" rel="stylesheet" id="dillinger-style">
+<link href="../main.css" rel="stylesheet" id="main">
+</head>
+<body>
+<main>
+<h1><a id="temperature_0"></a>temperature</h1>
+<h2><a id="temperature_number_from_to__2"></a><em>temperature( $number, $from, $to )</em></h2>
+<h3><a id="Description_4"></a>Description</h3>
+<p>Convert a temperature between celsius, fahrenheit and kelvin</p>
+<h3><a id="Parameters_7"></a>Parameters</h3>
+<ul>
+<li><strong>$number</strong> <em>[int | float]</em> - Value of temperature to be converted</li>
+<li><strong>$from</strong> <em>[string]</em> - The temperature format to be converted from</li>
+<li><strong>$to</strong> <em>[string]</em> -The temperature format to be converted to</li>
+</ul>
+<h3><a id="Returns_12"></a>Returns</h3>
+<ul>
+<li><em>[int | float]</em> - A temperature value in the desired format</li>
+</ul>
+<h3><a id="Source_code_15"></a>Source code</h3>
+<pre><code>function temperature( $number, $from, $to ){
+    
+    if( $from == 'celsius' ){
+        
+        if( $to == 'fahrenheit' ){
+            
+            return ($number * 9/5) + 32;
+            
+        }
+        
+        if( $to == 'kelvin' ){
+            
+            return $number + 273.15;
+            
+        }
+        
+        if( $to == 'celsius' ){
+            
+            return $number;
+            
+        }
+        
+    }
+    
+    if( $from = 'fahrenheit' ){
+        
+        if( $to == 'celsius' ){
+            
+            return ($number - 32) / ( 9/5 );
+            
+        }
+        
+        
+        if( $to == 'kelvin' ){
+            
+            return ($number + 459.67 ) * ( 5/9 );
+            
+        }
+        
+        if( $to == 'fahrenheit'){
+            
+            return $number;
+            
+        }
+        
+    }
+    
+    if( $from == 'kelvin' ){
+        
+        if( $to == 'celsius' ){
+            
+            return $number - 273.15;
+            
+        }
+        
+        if( $to == 'fahrenheit' ){
+            
+            return ($number * (9/5)) + 459.67;
+            
+        }
+        
+        if( $to == 'kelvin' ){
+            
+            return $number;
+            
+        }
+        
+        
+    }
+    
+}
+</code></pre>
+<h3><a id="History_91"></a>History</h3>
+<h5><a id="01_92"></a>0.1</h5>
+<ul>
+<li>Added</li>
+</ul>
+<h3><a id="Examples_95"></a>Examples</h3>
+<pre><code>temperature( 0, 'celsius', 'fahrenheit'); // returns 32
+temperature( 50, 'fahrenheit', 'kelvin'); // returns 283.15
+temperature( 100, 'kelvin', 'celsius'); // returns 310.92777777778
+</code></pre>
+
+</main>
+<aside>
+<h3>All Docs</h3>
+<hr>
+<h4>Math functions</h4>
+<ul>
+	<li><a href="absint.html">absint</a></li>
+	<li><a href="average.html">average</li>
+	<li><a href="is_even.html">is_even</li>
+	<li><a href="is_odd.html">is_odd</li>
+	<li><a href="round_up.html">round_up</li>
+	<li><a href="round_down.html">round_down</li>
+	<li><a href="sum.html">sum</li>
+	<li><a href="arabic2roman.html">arabic2roman</li>
+	<li><a href="roman2arabic.html">roman2arabic</li>
+</ul>
+</aside>
+</body></html>

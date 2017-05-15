@@ -20,6 +20,7 @@
 *   arabic2roman
 *   roman2arabic
 *   temperature
+*   latlon_distance
 */
 
 /*
@@ -378,4 +379,42 @@ function temperature( $number, $from, $to ){
 	}
 	
 }
+}
+
+/*
+*   latlon_distance
+*
+*   Calculate a distance between two latitude and longitude positions
+*
+*	@author Janith Chinthana
+*	@source http://stackoverflow.com/a/30556851/7956549
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @params int | float $lat1 - first latitude
+*   @params int | float $lon - first longitude
+*   @params int | float $lat1 - second latitude
+*   @params int | float $lon - second longitude
+*   @params string $unit - unit to use (K for Kilometers, N for Nautical Miles or M for miles)
+*
+*   @return int | float - distance between the two points
+*/
+function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
+
+	$theta = $lon1 - $lon2;
+	$dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+	$dist = acos($dist);
+	$dist = rad2deg($dist);
+	$miles = $dist * 60 * 1.1515;
+	$unit = strtoupper($unit);
+
+	if ($unit == "K") {
+	  return ($miles * 1.609344);
+	} else if ($unit == "N") {
+	  return ($miles * 0.8684);
+	} else {
+	  return $miles;
+	}
+	
 }

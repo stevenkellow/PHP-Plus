@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>round_up - PHP Plus</title>
+<link href="../dillinger.css" rel="stylesheet" id="dillinger-style">
+<link href="../main.css" rel="stylesheet" id="main">
+</head>
+<body>
+<main>
+<h1><a id="latlon_distance_0"></a>latlon_distance</h1>
+<h2><a id="latlon_distancelat1_lon1_lat2_lon2_unit__M_2"></a><em>latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = ‘M’)</em></h2>
+<h3><a id="Description_4"></a>Description</h3>
+<p>Calculate a distance between two latitude and longitude positions</p>
+<h3><a id="Parameters_7"></a>Parameters</h3>
+<ul>
+<li><strong>$lat1</strong> <em>[int | float]</em> - Latitude of point 1</li>
+<li><strong>$lat1</strong> <em>[int | float]</em> - Longitude of point 1</li>
+<li><strong>$lat2</strong> <em>[int | float]</em> - Latitude of point 2</li>
+<li><strong>$lat2</strong> <em>[int | float]</em> - Longitude of point 2</li>
+<li><strong>$unit</strong> <em>[string]</em> - The unit used for distance( K for kilometres, N for nautical miles, M for miles (default) )</li>
+</ul>
+<h3><a id="Returns_14"></a>Returns</h3>
+<ul>
+<li><em>[int | float]</em> - The calculated distance between the points</li>
+</ul>
+<h3><a id="Source_code_17"></a>Source code</h3>
+<p><strong>Author:</strong> <a href="http://stackoverflow.com/a/30556851/7956549">Janith Chinthana</a></p>
+<pre><code>function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
+
+    $theta = $lon1 - $lon2;
+    $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+    $dist = acos($dist);
+    $dist = rad2deg($dist);
+    $miles = $dist * 60 * 1.1515;
+    $unit = strtoupper($unit);
+
+    if ($unit == &quot;K&quot;) {
+      return ($miles * 1.609344);
+    } else if ($unit == &quot;N&quot;) {
+      return ($miles * 0.8684);
+    } else {
+      return $miles;
+    }
+    
+}
+</code></pre>
+<h3><a id="History_40"></a>History</h3>
+<h5><a id="01_41"></a>0.1</h5>
+<ul>
+<li>Added</li>
+</ul>
+<h3><a id="Examples_44"></a>Examples</h3>
+<pre><code>latlon_distance(0,0, 135, 135, 'M'); // returns 4145.4
+latlon_distance(0,0, 135, 135); // returns 4145.4
+latlon_distance(50.5,52.6, 56.6, 66.7, 'K'); // returns 1148.6812766098
+latlon_distance(50.5,52.6, 56.6, 66.7, 'N'); // returns 619.8269733556
+</code></pre>
+
+</main>
+<aside>
+<h3>All Docs</h3>
+<hr>
+<h4>Math functions</h4>
+<ul>
+	<li><a href="absint.html">absint</a></li>
+	<li><a href="average.html">average</li>
+	<li><a href="is_even.html">is_even</li>
+	<li><a href="is_odd.html">is_odd</li>
+	<li><a href="round_up.html">round_up</li>
+	<li><a href="round_down.html">round_down</li>
+	<li><a href="sum.html">sum</li>
+	<li><a href="arabic2roman.html">arabic2roman</li>
+	<li><a href="roman2arabic.html">roman2arabic</li>
+</ul>
+</aside>
+</body></html>
