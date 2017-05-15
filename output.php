@@ -16,6 +16,7 @@
 *   copyright
 *   qr_url
 *   qr_image
+*   easter_date_orthodox
 *
 */
 
@@ -325,5 +326,34 @@ function qr_image( $size, $data ){
 	
 	echo '<img src="' . $qr_url . ' height="' . $size . '" width="' . $size . '" />';
 	
+}
+}
+
+/*
+*
+*	easter_date_orthodox
+*
+*	Output the date of Easter for Easter Orthodox churches in the UNIX epoch (1970 to 2037)
+*
+*   @author maxie
+*   @source http://php.net/manual/en/function.easter-date.php#83794
+*
+*	@params int $year - year to calculate easter for (default: current year)
+*
+*	@return int - timestamp of Easter (may want to use date to format)
+*/
+if( ! function_exists( 'easter_date_orthodox') ){
+function easter_date_orthodox( $year = date( 'Y')) { 
+    $a = $year % 4; 
+    $b = $year % 7; 
+    $c = $year % 19; 
+    $d = (19 * $c + 15) % 30; 
+    $e = (2 * $a + 4 * $b - $d + 34) % 7; 
+    $month = floor(($d + $e + 114) / 31); 
+    $day = (($d + $e + 114) % 31) + 1; 
+    
+    $de = mktime(0, 0, 0, $month, $day + 13, $year); 
+    
+    return $de; 
 }
 }
