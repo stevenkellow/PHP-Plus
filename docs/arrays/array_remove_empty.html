@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>array_remove_empty - PHP Plus</title>
+<link href="../dillinger.css" rel="stylesheet" id="dillinger-style">
+<link href="../main.css" rel="stylesheet" id="main">
+</head>
+<body>
+<main>
+<h1><a id="array_remove_empty_0"></a>array_remove_empty</h1>
+<h2><a id="array_remove_emptyarr_reindex__false_2"></a><em>array_remove_empty($arr, $reindex = false)</em></h2>
+<h3><a id="Description_4"></a>Description</h3>
+<p>Remove null or empty elements from an array</p>
+<h3><a id="Parameters_7"></a>Parameters</h3>
+<ul>
+<li><strong>$arr</strong> <em>[array]</em> - Array to check for empty values</li>
+<li><strong>$reindex</strong> <em>[bool]</em> - Optionally reindex array after empty values removed</li>
+</ul>
+<h3><a id="Returns_11"></a>Returns</h3>
+<ul>
+<li><strong>$narr</strong> <em>[array]</em> - Array without empty values</li>
+</ul>
+<h3><a id="Source_code_14"></a>Source code</h3>
+<p><strong>Author:</strong> <a href="http://www.jonasjohn.de/snippets/php/array-remove-empty.htm">Jonas John</a></p>
+<pre><code>function array_remove_empty($arr, $reindex = false){
+    
+    $narr = array();
+    while(list($key, $val) = each($arr)){
+        if (is_array($val)){
+            $val = array_remove_empty($val);
+            // does the result array contain anything?
+            if (count($val)!=0){
+                // yes :-)
+                $narr[$key] = $val;
+            }
+        }
+        else {
+            if (trim($val) != &quot;&quot;){
+                $narr[$key] = $val;
+            }
+        }
+    }
+    unset($arr);
+    
+    if( $reindex == true ){
+        $narr = array_values($narr); // 'reindex' array
+    }
+    
+    return $narr;
+}
+</code></pre>
+<h3><a id="History_45"></a>History</h3>
+<h5><a id="01_46"></a>0.1</h5>
+<ul>
+<li>Added</li>
+</ul>
+<h3><a id="Examples_49"></a>Examples</h3>
+<pre><code>array_remove_empty( array( 0, '', null, 1, 2 ) );
+// returns Array ( [0] =&gt; 0 [3] =&gt; 1 [4] =&gt; 2 )
+array_remove_empty( array( 0, '', null, 1, 2 ), true );
+// returns Array ( [0] =&gt; 0 [1] =&gt; 1 [2] =&gt; 2 )
+</code></pre>
+
+</main>
+<aside>
+<h3>All Docs</h3>
+<hr>
+<h4>Array functions</h4>
+<ul>
+	<li><a href="shuffle_assoc.html">shuffle_assoc</a></li>
+	<li><a href="array_remove_empty.html">array_remove_empty</li>
+	<li><a href="unset_value.html">unset_value</li>
+	<li><a href="unset_key.html">unset_key</li>
+</ul>
+</aside>
+</body></html>

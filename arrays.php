@@ -19,7 +19,10 @@
 /*
 *   shuffle_assoc
 *
-*   Shuffle associative arrays whilst keeping key => value pairs, credit to Korcholis http://stackoverflow.com/q/4102777
+*   Shuffle associative arrays whilst keeping key => value pairs
+*
+*   @author Korcholis
+*   @source http://stackoverflow.com/q/4102777
 *
 *   @since v. 0.1
 *   @last_modified v 0.1
@@ -106,13 +109,17 @@ function array_remove_empty($arr, $reindex = false){
 if( ! function_exists( 'unset_key') ){
 function unset_key( $key, $array, $reindex = false ){
 
-    if( $key !== false) {
+    if( $key ) {
         unset( $array[$key] );
+		
+		echo 'works';
         
         if( $reindex == true ){
-            $narr = array_values($array); // 'reindex' array
-            return $narr;
+            $array = array_values($array); // 'reindex' array
+            return $array;
         }
+		
+		return $array;
         
     }
     
@@ -140,9 +147,15 @@ function unset_key( $key, $array, $reindex = false ){
 if( ! function_exists( 'unset_value') ){
 function unset_value( $value, $array, $reindex = false ){
     
-    $key = array_search($value, $array);
+    $keys = array_keys($array, $value);
+	
+	foreach( $keys as $key ){
+		
+		$array = unset_key( $key, $array, $reindex );
+		
+	}
 
-    unset_key( $key, $array, $reindex );
+    return $array;
     
 }
 }

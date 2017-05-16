@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>unset_key - PHP Plus</title>
+<link href="../dillinger.css" rel="stylesheet" id="dillinger-style">
+<link href="../main.css" rel="stylesheet" id="main">
+</head>
+<body>
+<main>
+<h1><a id="unset_key_0"></a>unset_key</h1>
+<h2><a id="unset_key_key_array_reindex__false__2"></a><em>unset_key( $key, $array, $reindex = false )</em></h2>
+<h3><a id="Description_4"></a>Description</h3>
+<p>Unset an array element by key and optionally reindex</p>
+<h3><a id="Parameters_7"></a>Parameters</h3>
+<ul>
+<li><strong>$key</strong> <em>[string]</em> - Key to check</li>
+<li><strong>$array</strong> <em>[array]</em> - Array to check</li>
+<li><strong>$reindex</strong> <em>[bool]</em> - Optionally reindex array after removing key</li>
+</ul>
+<h3><a id="Returns_12"></a>Returns</h3>
+<ul>
+<li><strong>$narr</strong> <em>[array]</em> - Array without specified key</li>
+</ul>
+<h3><a id="Source_code_15"></a>Source code</h3>
+<pre><code>function unset_key( $key, $array, $reindex = false ){
+
+    if( $key !== false) {
+        unset( $array[$key] );
+        
+        if( $reindex == true ){
+            $narr = array_values($array); // 'reindex' array
+            return $narr;
+        }
+        
+    }
+    
+}
+</code></pre>
+<h3><a id="History_33"></a>History</h3>
+<h5><a id="01_34"></a>0.1</h5>
+<ul>
+<li>Added</li>
+</ul>
+<h3><a id="Examples_37"></a>Examples</h3>
+<pre><code>unset_key( 'b', array( 'a' =&gt; 1, 'b' =&gt; 2, 'c' =&gt; 3 ) );
+// returns Array ( [a] =&gt; 1 [c] =&gt; 3 )
+</code></pre>
+
+</main>
+<aside>
+<h3>All Docs</h3>
+<hr>
+<h4>Array functions</h4>
+<ul>
+	<li><a href="shuffle_assoc.html">shuffle_assoc</a></li>
+	<li><a href="array_remove_empty.html">array_remove_empty</li>
+	<li><a href="unset_value.html">unset_value</li>
+	<li><a href="unset_key.html">unset_key</li>
+</ul>
+</aside>
+</body></html>

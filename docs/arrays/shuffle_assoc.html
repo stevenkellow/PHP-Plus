@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>shuffle_assoc - PHP Plus</title>
+<link href="../dillinger.css" rel="stylesheet" id="dillinger-style">
+<link href="../main.css" rel="stylesheet" id="main">
+</head>
+<body>
+<main>
+<h1><a id="shuffle_assoc_0"></a>shuffle_assoc</h1>
+<h2><a id="shuffle_assoclist_2"></a><em>shuffle_assoc($list)</em></h2>
+<h3><a id="Description_4"></a>Description</h3>
+<p>Shuffle associative arrays whilst keeping key => value pairs</p>
+<h3><a id="Parameters_7"></a>Parameters</h3>
+<ul>
+<li><strong>$list</strong> <em>[array]</em> - Array with key value pairs to shuffle</li>
+</ul>
+<h3><a id="Returns_10"></a>Returns</h3>
+<ul>
+<li><strong>$random</strong> <em>[array]</em> - Array that’s been shuffled</li>
+</ul>
+<h3><a id="Source_code_13"></a>Source code</h3>
+<p><strong>Author:</strong> <a href="http://stackoverflow.com/q/4102777">Korcholis</a></p>
+<pre><code>function shuffle_assoc($list) { 
+  if (!is_array($list)) return $list; 
+
+  $keys = array_keys($list); 
+  shuffle($keys); 
+  $random = array(); 
+  foreach ($keys as $key) { 
+    $random[$key] = $list[$key]; 
+  }
+  return $random; 
+}
+</code></pre>
+<h3><a id="History_29"></a>History</h3>
+<h5><a id="01_30"></a>0.1</h5>
+<ul>
+<li>Added</li>
+</ul>
+<h3><a id="Examples_33"></a>Examples</h3>
+<pre><code>shuffle_assoc( array( 'a' =&gt; 1, 'b' =&gt; 2, 'c' =&gt; 'dd' );
+// returns Array ( [b] =&gt; 2 [c] =&gt; dd [a] =&gt; 1 )
+</code></pre>
+
+</main>
+<aside>
+<h3>All Docs</h3>
+<hr>
+<h4>Array functions</h4>
+<ul>
+	<li><a href="shuffle_assoc.html">shuffle_assoc</a></li>
+	<li><a href="array_remove_empty.html">array_remove_empty</li>
+	<li><a href="unset_value.html">unset_value</li>
+	<li><a href="unset_key.html">unset_key</li>
+</ul>
+</aside>
+</body></html>
