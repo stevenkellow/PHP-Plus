@@ -16,6 +16,7 @@
 *   csv_to_array
 *   array_to_csv
 *   get_gravatar
+*   unzip
 *
 */
 
@@ -330,5 +331,38 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
         $url .= ' />';
     }
     return $url;
+}
+}
+
+/*
+*   unzip
+*
+*   Unzip a file to a specified location
+*
+*   @see http://php.net/manual/en/ziparchive.extractto.php
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params string $file - path to the file that you want to unzip
+*   @params string $extractPath - path to the folder where you want to extract the contents
+*
+*	@return bool - true if it works, false if it doesn't
+*
+*/
+if( ! function_exists( 'unzip') ){
+function unzip( $file, $extractPath ){
+
+	$zip = new ZipArchive;
+	
+	if ($zip->open($file) === true) {
+		$zip->extractTo($extractPath);
+		$zip->close();
+		return true;
+	} else {
+		return false;
+	}
+	
+	
 }
 }
