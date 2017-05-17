@@ -15,6 +15,9 @@
 *   facebook_pixel
 *   csv_to_array
 *   array_to_csv
+*   is_json
+*   csv_to_json
+*   json_to_csv
 *   get_gravatar
 *   unzip
 *
@@ -278,22 +281,141 @@ function csv_to_array( $file ){
 *   @last_modified 0.1
 *
 *	@params array $data - array to turn into CSV
+*   @params file $file - place to save file to
 *
 *	@return file $contents - CSV to use
 *
 */
 if( ! function_exists( 'array_to_csv') ){
-function array_to_csv( $data, $delimiter = ',', $enclosure = '"') {
-   $handle = fopen('php://temp', 'r+');
-   foreach ($data as $line) {
-		   fputcsv($handle, $line, $delimiter, $enclosure);
-   }
-   rewind($handle);
-   while (!feof($handle)) {
-		   $contents .= fread($handle, 8192);
-   }
-   fclose($handle);
-   return $contents;
+function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"') {
+    
+    if( $file == null ){
+        $file = 'php://temp';
+    }
+    
+    $handle = fopen($file, 'r+');
+    foreach ($data as $line) {
+           fputcsv($handle, $line, $delimiter, $enclosure);
+    }
+    rewind($handle);
+    while (!feof($handle)) {
+           $contents .= fread($handle, 8192);
+    }
+    fclose($handle);
+    return $contents;
+}
+}
+
+/*
+*   is_json
+*
+*   Check if data is in JSON format
+*
+*	@author Henrik P. Hessel
+*	@source http://stackoverflow.com/a/6041773/7956549
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params array $data - data to check
+*
+*	@return bool true if it's json, false if not
+*
+*/
+if( ! function_exists( 'is_json') ){
+function is_json($string) {
+    json_decode($string);
+    return (json_last_error() == JSON_ERROR_NONE);
+}
+}
+
+/*
+*   csv_to_json
+*
+*   Turn an uploaded CSV file into a json file
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params file $file - a CSV file uploaded
+*   @params string $location - path to create JSON file or null to return as json_encoded array
+*
+*	@return mixed - either a json file, json array or false
+*
+*/
+if( ! function_exists( 'csv_to_json') ){
+function csv_to_json( $file, $location ){
+    
+    // Turn the file into an array
+    $date_array = csv_to_array( $file );
+	
+    // If data was turned into an array correctly
+    if( $data_array !== false ){
+        
+        // Turn the data into JSON
+        $json_array = json_encode( $data_array );
+        
+        if( $location !== null ){
+            
+            // Send the data to the location
+            file_put_contents( $location, $data_array );
+            
+        } else {
+            
+            // Send out the array
+            return $json_array;
+            
+        }
+        
+    } else {
+        
+        // Couldn't convert the CSV
+        return false;
+        
+    }
+	
+}
+}
+
+/*
+*   json_to_csv
+*
+*   Turn an a JSON file into a CSV
+*
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params array $data - json array or file to turn into CSV
+*   @params file $file - place to save file to
+*
+*	@return file $contents - CSV to create
+*
+*/
+if( ! function_exists( 'json_to_csv') ){
+function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
+    
+    // If we're passed a file then get the data from a file
+    if( is_file( $data ) ){
+        $data = file_get_contents( $data );
+    }
+    
+    // Check the data is in JSON format
+    if( is_json( $data ) ){
+        
+        // Turn the JSON into an array
+        $json_as_array = json_decode( $data );
+        
+        return array_to_csv( $json_as_array, $file, $delimiter, $enclosure );
+        
+    } else {
+        
+        // Not in JSON format
+        return false;
+        
+    }
+    
+    
 }
 }
     
