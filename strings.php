@@ -17,6 +17,9 @@
 *   untrailingslash
 *   str2hex
 *   hex2str
+*   mbstring_binary_safe_encoding
+*   reset_mbstring_encoding
+*   seems_utf8
 *
 */
 
@@ -229,5 +232,101 @@ function hex2str($func_string) {
 	for($func_index = 0; $func_index < $func_length; ++$func_index) $func_retVal .= chr(hexdec($func_string{$func_index} . $func_string{++$func_index}));
 
 	return $func_retVal;
+}
+}
+
+/*
+*   mbstring_binary_safe_encoding
+*
+*   Set the mbstring internal encoding to a binary safe encoding when func_overload is enabled.
+*
+*	@author WordPress
+*	@source https://developer.wordpress.org/reference/functions/mbstring_binary_safe_encoding/
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params bool $reset - Whether to reset the encoding back to a previously-set encoding.
+*
+*/
+if( !function_exists( 'mbstring_binary_safe_encoding' ) ){
+function mbstring_binary_safe_encoding( $reset = false ) {
+  static $encodings = array();
+  static $overloaded = null;
+
+  if ( is_null( $overloaded ) )
+    $overloaded = function_exists( 'mb_internal_encoding' ) && ( ini_get( 'mbstring.func_overload' ) & 2 );
+
+  if ( false === $overloaded )
+    return;
+
+  if ( ! $reset ) {
+    $encoding = mb_internal_encoding();
+    array_push( $encodings, $encoding );
+    mb_internal_encoding( 'ISO-8859-1' );
+  }
+
+  if ( $reset && $encodings ) {
+    $encoding = array_pop( $encodings );
+    mb_internal_encoding( $encoding );
+  }
+}
+}
+
+/*
+*   reset_mbstring_encoding
+*
+*   Reset the mbstring internal encoding to a users previously set encoding.
+*
+*	@author WordPress
+*	@source https://developer.wordpress.org/reference/functions/reset_mbstring_encoding/
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*
+*/
+if( !function_exists( 'reset_mbstring_encoding' ) ){
+function reset_mbstring_encoding() {
+  mbstring_binary_safe_encoding( true );
+}
+}
+
+/*
+*   seems_utf8
+*
+*   Checks to see if a string is utf8 encoded.
+*
+*	@author WordPress
+*	@source https://developer.wordpress.org/reference/functions/seems_utf8/
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params string $str - string to check for UTF8 encoding
+*
+*	@return bool True if $str fits a UTF-8 model, false otherwise.
+*
+*/
+if( !function_exists( 'seems_utf8' ) ){
+function seems_utf8( $str ) {
+    mbstring_binary_safe_encoding();
+    $length = strlen($str);
+    reset_mbstring_encoding();
+    for ($i=0; $i < $length; $i++) {
+        $c = ord($str[$i]);
+        if ($c < 0x80) $n = 0; // 0bbbbbbb
+        elseif (($c & 0xE0) == 0xC0) $n=1; // 110bbbbb
+        elseif (($c & 0xF0) == 0xE0) $n=2; // 1110bbbb
+        elseif (($c & 0xF8) == 0xF0) $n=3; // 11110bbb
+        elseif (($c & 0xFC) == 0xF8) $n=4; // 111110bb
+        elseif (($c & 0xFE) == 0xFC) $n=5; // 1111110b
+        else return false; // Does not match any model
+        for ($j=0; $j<$n; $j++) { // n bytes matching 10bbbbbb follow ?
+            if ((++$i == $length) || ((ord($str[$i]) & 0xC0) != 0x80))
+                return false;
+        }
+    }
+    return true;
 }
 }
