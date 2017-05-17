@@ -11,7 +11,9 @@
 *
 *   rand_string
 *   validate_email
+*       is_email
 *   validate_url
+*       is_url
 *   slug
 *   trailingslash
 *   untrailingslash
@@ -98,6 +100,26 @@ function validate_email( $email ){
 }
 
 /*
+*   is_email
+*
+*   Alias of validate_email
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params string $email - email to validate
+*
+*   @return true | false - true if email validates, false otherwise
+*/
+if( ! function_exists( 'is_email' ) ){
+function is_email( $email ){
+
+	return validate_email( $email );
+	
+}
+}
+
+/*
 *   validate_url
 *
 *   Verify if a url format is valid
@@ -107,7 +129,7 @@ function validate_email( $email ){
 *
 *	@params string $email - url to validate
 *
-*   @return true | false - true if url validates, false otherwise
+*   @return bool - true if url validates, false otherwise
 */
 if( ! function_exists( 'validate_url' ) ){
 function validate_url( $url ){
@@ -117,6 +139,26 @@ function validate_url( $url ){
 	} else {
 	  return false;
 	}
+	
+}
+}
+
+/*
+*   is_url
+*
+*   Alias of validate_url
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params string $url - url to validate
+*
+*   @return bool - true if url validates, false otherwise
+*/
+if( ! function_exists( 'is_email' ) ){
+function is_url( $url ){
+
+	return is_url( $url );
 	
 }
 }
