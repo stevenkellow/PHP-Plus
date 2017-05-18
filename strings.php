@@ -23,6 +23,11 @@
 *   reset_mbstring_encoding
 *   seems_utf8
 *   utf8_uri_encode
+*   map_deep
+*   rawurlencode_deep
+*   urlencode_deep
+*   xml_encode
+*   xml_decode
 *
 */
 
@@ -431,5 +436,166 @@ function utf8_uri_encode( $utf8_string, $length = 0 ) {
 		}
 	}
 	return $unicode;
+}
+}
+
+/**
+*
+*	map_deep
+*
+*	Maps a function to all non-iterable elements of an array or an object.
+*
+*	@author WordPress
+*	@source https://developer.wordpress.org/reference/functions/map_deep/
+*
+*	@param mixed $value The array, object, or scalar.
+*	@param callback $callback The function to map onto $value.
+*	@return mixed $value The value with the callback applied to all non-arrays and non-objects inside it.
+*/
+if( ! function_exists( 'map_deep') ){
+function map_deep( $value, $callback ) {
+    if ( is_array( $value ) ) {
+        foreach ( $value as $index => $item ) {
+            $value[ $index ] = map_deep( $item, $callback );
+        }
+    } elseif ( is_object( $value ) ) {
+        $object_vars = get_object_vars( $value );
+        foreach ( $object_vars as $property_name => $property_value ) {
+            $value->$property_name = map_deep( $property_value, $callback );
+        }
+    } else {
+        $value = call_user_func( $callback, $value );
+    }
+ 
+    return $value;
+}
+}
+
+/**
+*
+*	rawurlencode_deep
+*
+*	Navigates through an array, object, or scalar, and raw-encodes the values to be used in a URL.
+*
+*	@author WordPress
+*	@source https://developer.wordpress.org/reference/functions/rawurlencode_deep/
+*
+*	@param mixed $value The array or string to be encoded.
+*	@return mixed $value The encoded value.
+*/
+if( ! function_exists( 'rawurldecode_deep') ){
+function rawurlencode_deep( $value ) {
+	return map_deep( $value, 'rawurlencode' );
+}
+}
+
+/**
+*
+*	urldecode_deep
+*
+*	Navigates through an array, object, or scalar, and decodes URL-encoded values
+*
+*	@author WordPress
+*	@source https://developer.wordpress.org/reference/functions/urldecode_deep/
+*
+*	@param mixed $value The array or string to be decoded.
+*	@return mixed $value The decoded value.
+*/
+if( ! function_exists( 'urldecode_deep') ){
+function urldecode_deep( $value ) {
+	return map_deep( $value, 'urldecode' );
+}
+}
+
+
+/**
+*
+*	xml_encode
+*
+*	Encode XML using xml_encode(); similar to json_encode().
+*
+*	@author Dark Launch
+*	@source https://www.darklaunch.com/2009/05/23/php-xml-encode-using-domdocument-convert-array-to-xml-json-encode
+*
+*	@param mixed $mixed - data to encode-using-domdocument-convert-array-to-xml-json-encode
+*	@param mixed $domElement -
+*	@param mixed $DOMDocument -
+*
+*	@return mixed XML encoded data
+*/
+if( ! function_exists( 'xml_encode') ){
+function xml_encode($mixed, $domElement=null, $DOMDocument=null) {
+    if (is_null($DOMDocument)) {
+        $DOMDocument =new DOMDocument;
+        $DOMDocument->formatOutput = true;
+        xml_encode($mixed, $DOMDocument, $DOMDocument);
+        return $DOMDocument->saveXML();
+    }
+    else {
+        // To cope with embedded objects 
+        if (is_object($mixed)) {
+          $mixed = get_object_vars($mixed);
+        }
+        if (is_array($mixed)) {
+            foreach ($mixed as $index => $mixedElement) {
+                if (is_int($index)) {
+                    if ($index === 0) {
+                        $node = $domElement;
+                    }
+                    else {
+                        $node = $DOMDocument->createElement($domElement->tagName);
+                        $domElement->parentNode->appendChild($node);
+                    }
+                }
+                else {
+                    $plural = $DOMDocument->createElement($index);
+                    $domElement->appendChild($plural);
+                    $node = $plural;
+                    if (!(rtrim($index, 's') === $index)) {
+                        $singular = $DOMDocument->createElement(rtrim($index, 's'));
+                        $plural->appendChild($singular);
+                        $node = $singular;
+                    }
+                }
+
+                xml_encode($mixedElement, $node, $DOMDocument);
+            }
+        }
+        else {
+            $mixed = is_bool($mixed) ? ($mixed ? 'true' : 'false') : $mixed;
+            $domElement->appendChild($DOMDocument->createTextNode($mixed));
+        }
+    }
+}
+}
+
+/**
+*
+*	xml_decode
+*
+*	Decode XML data to an array
+*
+*	@author user1398287
+*	@source http://stackoverflow.com/questions/6578832/how-to-convert-xml-into-array-in-php
+*
+*	@param string $xmlstring - XML data to convert to array
+*
+*	@return array | bool - $array if successful, false if not
+*/
+if( ! function_exists( 'xml_decode') ){
+function xml_decode( $xmlstring ){
+	
+	if( function_exists( 'simplexml_load_string' ) ){
+		
+		$xml = simplexml_load_string($xmlstring, "SimpleXMLElement", LIBXML_NOCDATA);
+		$json = json_encode($xml);
+		$array = json_decode($json,TRUE);
+
+		return $array;
+	
+	} else {
+		
+		return false;
+	}
 }
 }
