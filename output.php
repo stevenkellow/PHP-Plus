@@ -9,6 +9,7 @@
 
 /*  CONTENTS
 *
+*   test_remote_file
 *   script
 *   style
 *   print_pre
@@ -21,6 +22,52 @@
 */
 
 /*
+*   test_remote_file
+*
+*   Test if a remote file exists
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param string	$file_location - the file to test
+*
+*   @return bool - true if file accessible, false if not
+*/
+if( ! function_exists( 'test_remote_file') ){
+function test_remote_file( $file_location ){
+	
+	// Check URL is valid
+	if( validate_url( $file_location ) === true ){
+	
+		// Check the file can be retrieved
+		try {
+			
+			$content = file_get_contents( $file_location );
+
+			if ($content === false) {
+				// Handle the error
+				return false;
+			} else {
+				
+				return $file_location;
+				
+			}
+			
+		} catch (Exception $e) {
+			// Handle exception
+			return false;
+		}
+		
+	} else {
+		
+		return false;
+		
+	}
+
+}
+}
+
+/*
 *   script
 *
 *   Print a Javascript file into the HTML
@@ -29,7 +76,7 @@
 *   @last_modified v 0.1
 *
 *   @param string	$name - name of script
-*   @param string	$file_location - where the file can be found
+*   @param string | array	$file_location - where the file can be found, or array if there's fallbacks
 *   @param bool		$inline - whether the file should be included externally or printed inline
 *   @param bool     $async - whether the script should load asynchronously - have this as false if the script has a child dependency
 *   @param bool     $defer - whether the script should load after the DOM is loaded, normally better for speed if this is true
@@ -44,42 +91,52 @@ function script( $name, $file_location, $inline = false, $async = false, $defer 
 	
 	// Check that script doesn't already exist
 	if( ! in_array( $name, $all_scripts ) ){
-
-		// If we're wanting to print the script in the HTML and the file exists
-		if( $inline == true && validate_url( $file_location ) ){
-			
-			// Check the file can be retrieved
-			try {
-				
-                $content = file_get_contents( $file_location );
-
-				if ($content === false) {
-					// Handle the error
-					return false;
-				}
-                
-			} catch (Exception $e) {
-				// Handle exception
-				return false;
-			}
-            
-            // Add the script name to the array
-            $all_scripts[] = $name;
-			
-			// Output inline
-			echo '<script type="text/javascript" id="' . $name . '"' . (($async == true)?' async="true"':'') . (($defer == true)?' defer="true"':'') . '>' . $content . '"</script>';
 		
-		}
-
-		// If we want to include the file via source
-		if( $inline == false && validate_url( $file_location ) ){
-            
-            // Add the script name to the array
-            $all_scripts[] = $name;
+		// Check if file location has fallbacks or not
+		if( is_array( $file_location ){
 			
-			echo '<script type="text/javascript" id="' . $name . '" src="' . $file_location . '"></script>';
+			foreach( $file_location as $file ){
+				
+				$test = test_remote_file( $file );
+				
+				if( $test !== false ){
+					
+					break;
+					
+				}
+				
+			}
+		
+		} else {
+			
+			$test = test_remote_file( $file );
 			
 		}
+		
+		if( $test !== false ){
+			
+			// Add the script name to the array
+			$all_scripts[] = $name;
+			
+			// If we're wanting to print the script in the HTML and the file exists
+			if( $inline == true ){
+				
+				// Get the content for output
+				$content = file_get_contents( $test );
+				
+				// Output inline
+				echo '<script type="text/javascript" id="' . $name . '"' . (($async == true)?' async="true"':'') . (($defer == true)?' defer="true"':'') . '>' . $content . '"</script>';
+				
+				
+			} else {
+			
+				// Output the SRC
+				echo '<script type="text/javascript" id="' . $name . '" src="' . $test . '"></script>';
+			
+			}
+			
+		}
+			
 	
 	} else {
 		
@@ -100,7 +157,7 @@ function script( $name, $file_location, $inline = false, $async = false, $defer 
 *   @last_modified v 0.1
 *
 *   @param string	$name - name of style
-*   @param string	$file_location - where the file can be found
+*   @param string | array	$file_location - where the file can be found, or array if there's fallbacks
 *   @param bool		$inline - whether the file should be included externally or printed inline
 */
 
@@ -114,40 +171,55 @@ function style( $name, $file_location, $inline = false ){
 	
 	// Check that style doesn't already exist
 	if( ! in_array( $name, $all_styles ) ){
-
-		// If we're wanting to print the style in the HTML and the file exists
-		if( $inline == true && validate_url( $file_location ) ){
-			
-			// Check the file can be retrieved
-			try {
-				
-                $content = file_get_contents( $file_location );
-
-				if ($content === false) {
-					// Handle the error
-					return false;
-				}
-                
-			} catch (Exception $e) {
-				// Handle exception
-				return false;
-			}
-            
-            // Add the style name to the array
-            $all_styles[] = $name;
-			
-			// Output inline
-			echo '<style type="text/css" id="' . $name . '">' . $content . '</style>';
 		
+		// Check if file location has fallbacks or not
+		if( is_array( $file_location ){
+			
+			foreach( $file_location as $file ){
+				
+				$test = test_remote_file( $file );
+				
+				if( $test !== false ){
+					
+					break;
+					
+				}
+				
+			}
+		
+		} else {
+			
+			$test = test_remote_file( $file );
+			
 		}
-
-		// If we want to include the file via source
-		if( $inline == false && validate_url( $file_location ) ){
-            
-            // Add the style name to the array
+		
+		
+		if( $test !== false ){
+			
+			// Add the style name to the array
             $all_styles[] = $name;
 			
-			echo '<link type="text/css" rel="stylesheet" id="' . $name . '" href="' . $file_location . '" />';
+			if( $inline == true ){
+				
+				// Get the contents fo the file
+				$content = file_get_contents( $test );
+				
+				// Output inline
+				echo '<style type="text/css" id="' . $name . '">' . $content . '</style>';				
+				
+			} else {
+				
+				// Output SRC
+				echo '<link type="text/css" rel="stylesheet" id="' . $name . '" href="' . $test . '" />';
+				
+				
+			}
+			
+			
+			
+		} else {
+			
+			return false;
 			
 		}
 	
