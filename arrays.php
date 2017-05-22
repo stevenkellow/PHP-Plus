@@ -9,12 +9,31 @@
 
 /*  CONTENTS
 *
+*       array_reindex
 *   shuffle_assoc
 *   array_remove_empty
 *   unset_value
 *   unset_key
 *
 */
+
+/*
+*   array_reindex
+*
+*   Reindex arrays (alias of array_values)
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param array $array - array to reindex
+*
+*	@return array - array that's been reindexed
+*/
+if( ! function_exists( 'array_reindex') ){
+function array_reindex( $array ){
+    return array_values( $array );
+}
+}
 
 /*
 *   shuffle_assoc
