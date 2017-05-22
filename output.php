@@ -307,7 +307,7 @@ function qr_url( $size, $data ){
 
 /*
 *
-*	qr_url
+*	qr_image
 *
 *	Generate a QR code image tag using Google Charts API
 *

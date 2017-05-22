@@ -28,6 +28,8 @@
 *   urlencode_deep
 *   xml_encode
 *   xml_decode
+*   xssafe
+*   xecho
 *
 */
 
@@ -597,5 +599,48 @@ function xml_decode( $xmlstring ){
 		
 		return false;
 	}
+}
+}
+
+/*
+*   xssafe
+*
+*   Create a string that's safe from XSS attacks
+*
+*	@author OWASP
+*	@source https://www.owasp.org/index.php/PHP_Security_Cheat_Sheet#No_tags
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*   @param string $data - data to secure
+*	@param string $encoding - how you want to encode the data
+*
+*	@return string - XSS-safe string
+*/
+if( ! function_exists( 'xssafe') ){
+function xssafe($data,$encoding='UTF-8'){
+   return htmlspecialchars($data,ENT_QUOTES | ENT_HTML401,$encoding);
+}
+}
+
+/*
+*   xecho
+*
+*   Echoes an XSS-safe string
+*
+*	@author OWASP
+*	@source https://www.owasp.org/index.php/PHP_Security_Cheat_Sheet#No_tags
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*   @param string $data - data to secure
+*
+*	@return string - XSS-safe string
+*/
+if( ! function_exists( 'xecho') ){
+function xecho($data){
+   echo xssafe($data);
 }
 }
