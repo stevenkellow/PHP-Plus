@@ -18,6 +18,7 @@
 *   is_json
 *   csv_to_json
 *   json_to_csv
+*   json_encode_utf8
 *   get_gravatar
 *   unzip
 *
@@ -416,6 +417,33 @@ function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
     }
     
     
+}
+}
+
+/*
+*   json_encode_utf8
+*
+*   Encode a JSON item in UTF8
+*
+*   @author guilhenfsu
+*   @source http://php.net/manual/en/function.json-encode.php#112020
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@params array $data - array to turn into JSON
+*
+*	@return string $json - JSON string
+*
+*/
+if( ! function_exists( 'json_encode_utf8') ){
+function json_encode_utf8( $data ){
+    
+    $array = array_map( 'htmlentities', $data );
+
+    $json = html_entity_decode( json_encode( $array ) );
+    
+    return $json;
 }
 }
     
