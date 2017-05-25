@@ -21,6 +21,8 @@
 *   json_file_to_array
 *   array_to_json_file
 *   json_encode_utf8
+*   xml_to_json
+*   xml_to_array
 *   get_gravatar
 *   unzip
 *
@@ -529,6 +531,64 @@ function json_encode_utf8( $data ){
     $json = html_entity_decode( json_encode( $array ) );
     
     return $json;
+}
+}
+
+/*
+*	xml_to_json
+*
+*   Turn XML (file or string) into JSON.
+*
+*   @author Antonio Max
+*	@source https://stackoverflow.com/a/19391553
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@param string | file  $xml_input - string or file path in XML format
+*	@param bool       $file - whether a file or string
+*
+*	@return array
+*
+*/
+if( ! function_exists('xml_to_array') ){
+function xml_to_json( $xml_input, $file = true ){
+    
+    if( $file == true ){
+        $xml_string = file_get_contents( $xml_input );
+    } else {
+        $xml_string = $xml_input;
+    }
+    $xml = simplexml_load_string($xml_string);
+    return json_encode($xml);
+    
+}
+}
+
+/*
+*	xml_to_array
+*
+*   Turn XML (file or string) into an array.
+*
+*   @author Antonio Max
+*	@source https://stackoverflow.com/a/19391553
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@param string | file  $xml_input - string or file path in XML format
+*	@param bool       $file - whether a file or string
+*
+*	@return array
+*
+*/
+if( ! function_exists('xml_to_array') ){
+function xml_to_array( $xml_input, $file = true ){
+    
+    $json = xml_to_json( $xml_input, $file );
+    return json_decode($json,TRUE);
+
+    
 }
 }
     
