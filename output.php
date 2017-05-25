@@ -12,7 +12,7 @@
 *   test_remote_file
 *   script
 *   style
-*   print_pre
+*   print_pretty
 *   random_color
 *   copyright
 *   qr_url
@@ -235,7 +235,7 @@ function style( $name, $file_location, $inline = false ){
 }
 
 /*
-*   print_pre
+*   print_pretty
 *
 *   Send out a print_r request in a more readable format
 *
@@ -246,8 +246,8 @@ function style( $name, $file_location, $inline = false ){
 *
 *   @return organised array
 */
-if( ! function_exists( 'print_pre' ) ){
-function print_pre( $data ){
+if( ! function_exists( 'print_pretty' ) ){
+function print_pretty( $data ){
 		
 		echo '<pre>';
 		print_r( $data );
