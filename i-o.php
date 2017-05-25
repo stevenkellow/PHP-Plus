@@ -18,6 +18,8 @@
 *   is_json
 *   csv_to_json
 *   json_to_csv
+*   json_file_to_array
+*   array_to_json_file
 *   json_encode_utf8
 *   get_gravatar
 *   unzip
@@ -418,6 +420,72 @@ function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
     
     
 }
+}
+
+/*
+*   json_file_to_array
+*
+*   Get data from a json file and turn it into an array
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param path $path - string of URL or path to get data from
+*
+*	@return array	- json file in array form
+*/
+function json_file_to_array( $path ){
+	
+	return json_decode( file_get_contents( $path ), true);
+	
+}
+
+/*
+*   array_to_json_file
+*
+*   Create or update a json file with data from an array
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param array 	$array - array of data to put to file
+*   @param string	$path - path of file to create/update
+*   @param bool		$update - whether to update an existing file or replace (default true)
+*
+*	@reutrn bool	true if file was created, false if not
+*/
+
+function array_to_json_file( $array, $path, $update = true ){
+	
+	// Update the file completely, deleting old data
+	if( $update == false ){
+		return file_put_contents( $path, $array );
+	}
+	
+	// We want to update, not entirely replace the file
+	if( $update == true ){
+		
+		// Get the old array at that path
+		$old_array = json_file_to_array( $path );
+		
+		if( is_array( $old_array ) ){
+			
+			// Update the file with new elements
+			$new_array = array_merge( $old_array, $array );
+			
+			// Send to the file
+			return file_put_contents( $path, $new_array );
+			
+		} else {
+			
+			// The file isn't in array format so we can't do anything
+			return false;
+			
+		}
+		
+		
+	}
+	
 }
 
 /*
