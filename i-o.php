@@ -434,10 +434,12 @@ function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
 *
 *	@return array	- json file in array form
 */
+if( ! function_exists( 'json_file_to_array') ){
 function json_file_to_array( $path ){
 	
 	return json_decode( file_get_contents( $path ), true);
 	
+}
 }
 
 /*
@@ -450,28 +452,40 @@ function json_file_to_array( $path ){
 *
 *   @param array 	$array - array of data to put to file
 *   @param string	$path - path of file to create/update
-*   @param bool		$update - whether to update an existing file or replace (default true)
+*   @param bool		$update - whether to update existing values or update them (default true)
+*   @param bool     $delete - whether to replace a file with new data (default false)
 *
 *	@reutrn bool	true if file was created, false if not
 */
-
-function array_to_json_file( $array, $path, $update = true ){
+if( ! function_exists( 'array_to_json_file') ){
+function array_to_json_file( $array, $path, $update = true, $delete = false ){
 	
-	// Update the file completely, deleting old data
-	if( $update == false ){
+	// Change the file completely, deleting old data
+	if( $delete == true ){
+		
 		return file_put_contents( $path, $array );
-	}
-	
-	// We want to update, not entirely replace the file
-	if( $update == true ){
+		
+	} else {
+		
+		// Add new data to the old file
 		
 		// Get the old array at that path
 		$old_array = json_file_to_array( $path );
 		
 		if( is_array( $old_array ) ){
 			
-			// Update the file with new elements
-			$new_array = array_merge( $old_array, $array );
+			// We want to replace old values with new ones, but keep any other data that's unchanged
+			if( $update == true ){
+			
+				// Update the file with new elements
+				$new_array = array_merge( $old_array, $array );
+				
+			} else {
+				
+				// We want to want to preserve any data that was already there, just changing new info
+				$new_array = $old_array + $array;
+				
+			}
 			
 			// Send to the file
 			return file_put_contents( $path, $new_array );
@@ -481,11 +495,14 @@ function array_to_json_file( $array, $path, $update = true ){
 			// The file isn't in array format so we can't do anything
 			return false;
 			
+			
 		}
 		
 		
 	}
 	
+	
+}
 }
 
 /*
