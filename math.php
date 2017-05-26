@@ -220,14 +220,14 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
             // Get the digit that we're wanting to check whether to change
 			$decimal_to_keep = substr( $decimal, ( $precision - 1 ), 1 );
 
-            // Get the digit that affects whether we round up or down
-			$decimal_to_round = substr( $decimal, $precision, 1 );
+            // Get the digits that affects whether we round up or down
+			$decimal_to_round = substr( $decimal, $precision );
 
             // If the digit befre rounding is even
 			if( is_even( $decimal_to_keep ) ){
 				
                 // If the digit to check would normally be rounded up
-				if( $decimal_to_round >= 5 ){
+				if( $decimal_to_round > 0 ){
 					
                     // Round down, so it's closer to the even number
 					return round_down( $number, $precision );
@@ -245,7 +245,7 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
                 // The number before rounding is odd
 				
 				// If the digit to check would normally be rounded up
-				if( $decimal_to_round >= 5 ){
+				if( $decimal_to_round > 0 ){
 					
                     // Round up, so it's closer to the even number
 					return round_up ( $number, $precision );
