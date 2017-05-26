@@ -18,6 +18,7 @@
 *   qr_url
 *   qr_image
 *   easter_date_orthodox
+*   data_uri
 *
 */
 
@@ -428,5 +429,27 @@ function easter_date_orthodox( $year = date( 'Y')) {
     $de = mktime(0, 0, 0, $month, $day + 13, $year); 
     
     return $de; 
+}
+}
+           
+/*
+*
+*	data_uri
+*
+*	Create a data URI for a file for embedding in code
+*
+*   @author Chris Coyier
+*   @source https://css-tricks.com/snippets/php/create-data-uris/
+*
+*	@params string - path or URL of file to encode
+*   @params string - mime type of file
+*
+*	@return string - data uri of the file
+*/
+if(! function_exists( 'data_uri') ){
+function data_uri($file, $mime) {
+  $contents=file_get_contents($file);
+  $base64=base64_encode($contents);
+  return "data:$mime;base64,$base64";
 }
 }
