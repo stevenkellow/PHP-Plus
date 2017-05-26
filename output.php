@@ -364,15 +364,15 @@ function copyright( $year = false, $roman = false ){
 *   @last_modified 0.1
 *
 *   @params string $data - the info you want to encode
-*	@params int $size - value for height and width of image
+*	@params int $size - value for height and width of image in pixels
 *
 *
 *	@return string - the URL of the QR code
 */
 if( ! function_exists( 'qr_url' ) ){
-function qr_url( $data, $size = '300px' ){
+function qr_url( $data, $size = '300' ){
   
-  $qr_url = 'https://chart.googleapis.com/chart?cht=qr&chs=' . $size . 'x' . $size . '&chl=' . urlencode( $data );
+  $qr_url = 'https://chart.googleapis.com/chart?cht=qr&chs=' . $size . 'x' . $size . '&chl=' . rawurlencode( $data );
   
   return $qr_url;
   
@@ -389,16 +389,16 @@ function qr_url( $data, $size = '300px' ){
 *   @source https://developers.google.com/chart/infographics/docs/qr_codes
 *
 *   @params string $data - the info you want to encode
-*	@params int $size - value for height and width of image
+*	@params int $size - value for height and width of image in pixels
 *
 *	@return string - an image tag for the generated QR code
 */
 if( ! function_exists( 'qr_image' ) ){
-function qr_image( $data, $size = '300px' ){
+function qr_image( $data, $size = '300' ){
 	
-	$qr_rul = qr_url( $size, $data );
+	$qr_url = qr_url( $data, $size );
 	
-	echo '<img src="' . $qr_url . ' height="' . $size . '" width="' . $size . '" />';
+	echo '<img src="' . $qr_url . '" height="' . $size . '" width="' . $size . '" />';
 	
 }
 }
