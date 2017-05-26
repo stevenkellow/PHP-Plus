@@ -18,6 +18,7 @@
 *   qr_url
 *   qr_image
 *   easter_date_orthodox
+*   is_image
 *   data_uri
 *
 */
@@ -94,7 +95,7 @@ function script( $name, $file_location, $inline = false, $async = false, $defer 
 	if( ! in_array( $name, $all_scripts ) ){
 		
 		// Check if file location has fallbacks or not
-		if( is_array( $file_location ){
+		if( is_array( $file_location ) ){
 			
 			foreach( $file_location as $file ){
 				
@@ -110,7 +111,7 @@ function script( $name, $file_location, $inline = false, $async = false, $defer 
 		
 		} else {
 			
-			$test = test_remote_file( $file );
+			$test = test_remote_file( $file_location );
 			
 		}
 		
@@ -174,7 +175,7 @@ function style( $name, $file_location, $inline = false ){
 	if( ! in_array( $name, $all_styles ) ){
 		
 		// Check if file location has fallbacks or not
-		if( is_array( $file_location ){
+		if( is_array( $file_location ) ){
 			
 			foreach( $file_location as $file ){
 				
@@ -190,7 +191,7 @@ function style( $name, $file_location, $inline = false ){
 		
 		} else {
 			
-			$test = test_remote_file( $file );
+			$test = test_remote_file( $file_location );
 			
 		}
 		
@@ -431,6 +432,30 @@ function easter_date_orthodox( $year = date( 'Y')) {
     return $de; 
 }
 }
+
+
+/*
+*
+*	is_image
+*
+*	Check if a given resource is a GIF, JPEF, PNG or BMP image
+*
+*   @author Silver Moon
+*   @source http://www.binarytides.com/php-check-if-file-is-an-image/
+*
+*	@params string - path or URL of file to check
+*
+*	@return bool - true if image, false if not
+*/
+function is_image($path){
+    $a = getimagesize($path);
+    $image_type = $a[2];
+     
+    if(in_array($image_type , array(IMAGETYPE_GIF , IMAGETYPE_JPEG ,IMAGETYPE_PNG , IMAGETYPE_BMP))){
+        return true;
+    }
+    return false;
+}
            
 /*
 *
@@ -442,14 +467,26 @@ function easter_date_orthodox( $year = date( 'Y')) {
 *   @source https://css-tricks.com/snippets/php/create-data-uris/
 *
 *	@params string - path or URL of file to encode
-*   @params string - mime type of file
+*   @params string - mime type of file (Maybe need to change that)
 *
 *	@return string - data uri of the file
 */
 if(! function_exists( 'data_uri') ){
-function data_uri($file, $mime) {
-  $contents=file_get_contents($file);
-  $base64=base64_encode($contents);
-  return "data:$mime;base64,$base64";
+function data_uri($file) {
+	
+	if( is_image( $file ) ){
+		
+		  $contents=file_get_contents($file);
+		  
+		  //$mime = mime_content_type( $contents );
+		  $base64=base64_encode($contents);
+		  return "data:';base64,$base64";
+  
+	} else {
+		
+		// Likely a string, so just encode that
+		return $base64_encode( $file );
+		
+	}
 }
 }
