@@ -189,6 +189,102 @@ function round_down($number, $precision = 2){
     return (floor($number * $fig) / $fig);
 }
 }
+
+/*
+*   round_bank
+*
+*   Round to nearest even integer
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param float $number - $number to round
+*   @param int $precision - optionally change the precision
+*   @param string $separator - decimal separator
+*
+*   @return integer / float - rounded number
+*/
+if( ! function_exists( 'round_bank') ){
+function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
+	
+    // Check if we need to do this at all
+	if( is_float( $number ) ){
+		
+        // If we're rounding a decimal
+		if( $precision > 0 ){
+			
+            // Get the decimal part of the number
+			$str_arr = explode($separator, $number);
+			$decimal = $str_arr[1];
+
+            // Get the digit that we're wanting to check whether to change
+			$decimal_to_keep = substr( $decimal, ( $precision - 1 ), 1 );
+
+            // Get the digit that affects whether we round up or down
+			$decimal_to_round = substr( $decimal, $precision, 1 );
+
+            // If the digit befre rounding is even
+			if( is_even( $decimal_to_keep ) ){
+				
+                // If the digit to check would normally be rounded up
+				if( $decimal_to_round >= 5 ){
+					
+                    // Round down, so it's closer to the even number
+					return round_down( $number, $precision );
+					
+					
+				} else {
+					
+                    // Round up, so it's closer to the even number
+					return round_up ( $number, $precision );
+					
+				}
+				
+			} else {
+                
+                // The number before rounding is odd
+				
+				// If the digit to check would normally be rounded up
+				if( $decimal_to_round >= 5 ){
+					
+                    // Round up, so it's closer to the even number
+					return round_up ( $number, $precision );
+					
+				} else {
+					
+                    // Round down, so it's closer to the even number
+					return round_down( $number, $precision );
+				}
+				
+			}
+			
+		} else {
+			
+            // Get the value of the number
+			$absval = absint( $number );
+
+	        // If the number is even, we'll round down - else round up
+            if( is_even( absint( $number ) ) ){
+
+                return round_down( $number, $precision );
+
+            } else {
+
+                return round_up( $number, $precision );
+
+            }
+            
+        }
+		
+	} else {
+		
+		return $number;
+		
+	}
+	
+	
+}
+}
    
 /*
 *   sum

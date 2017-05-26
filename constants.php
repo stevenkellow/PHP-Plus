@@ -125,3 +125,19 @@ if( ! defined( 'BILLION') ){
 if( ! defined( 'TRILLION') ){
     define( 'TRILLION', 1000 * BILLION );
 }
+
+/*
+*   Formatting constants
+*
+*   @since 0.1
+*   @last_modified 0.1
+*/
+$localenvironment = localeconv();
+
+if( ! defined( 'DECIMAL_SEP') ){
+    define( 'DECIMAL_SEP', $localenvironment['decimal_point'] );
+}
+
+if( ! defined( 'THOUSAND_SEP') ){
+    define( 'THOUSAND_SEP', $localenvironment['thousands_sep'] );
+}
