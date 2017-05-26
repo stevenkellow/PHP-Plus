@@ -11,7 +11,10 @@
 *   CONTENTS
 *
 *   absint
-*   average
+*   mean
+*   median
+*   mode
+*       average
 *   is_even
 *   is_odd
 *   round_up
@@ -46,9 +49,9 @@ function absint( $number ) {
 }
 
 /*
-*   average
+*   mean
 *
-*   Get the average of a set of values in an array
+*   Get the mean of a set of values in an array
 *
 *   @author Mucello
 *   @source http://php.net/manual/en/function.array-sum.php
@@ -61,9 +64,9 @@ function absint( $number ) {
 *
 *   @return float/int $average - the average of all elements
 */
-if( ! function_exists( 'average') ){
-function average(){
-  
+if( ! function_exists( 'mean') ){
+function mean(){
+    
     // Get all the arguments
     $arg_list = func_get_args();
     
@@ -86,6 +89,135 @@ function average(){
         return array_sum( $args_array ) / $numargs;
     
     }
+    
+    
+}
+}
+
+/*
+*   median
+*
+*   Get the median of a set of values in an array
+*
+*   @author Mchl
+*   @source https://codereview.stackexchange.com/a/223
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param array $array - an array with elements
+*   @param numbers - list of numbers to average
+*
+*   @return float/int $average - the average of all elements
+*/
+if( ! function_exists( 'median' ) ){
+function median() {
+    
+    // Get all the arguments
+    $arg_list = func_get_args();
+    
+    if( !is_array( $arg_list[0]) ){
+        
+        // Get number of arguments passed through
+        $numargs = func_num_args();
+    
+        // Create an array for each passed element
+        $array = array();
+        for ($i = 0; $i < $numargs; $i++) {
+            $array[] = $arg_list[$i];
+        }
+        
+        
+    } else {
+        
+        $array = $arg_list[0];
+        
+    }
+    
+      // perhaps all non numeric values should filtered out of $array here?
+      $iCount = count($array);
+      // if we're down here it must mean $array
+      // has at least 1 item in the array.
+      $middle_index = floor($iCount / 2);
+      sort($array, SORT_NUMERIC);
+      $median = $array[$middle_index]; // assume an odd # of items
+      // Handle the even case by averaging the middle 2 items
+      if ($iCount % 2 == 0) {
+        $median = ($median + $array[$middle_index - 1]) / 2;
+      }
+      return $median;
+
+}
+}
+
+/*
+*   mode
+*
+*   Get the mode of a set of values in an array
+*
+*   @author White Elephant
+*   @source https://stackoverflow.com/a/12036174/7956549
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param array $array - an array with elements
+*   @param numbers - list of numbers to average
+*
+*   @return int $average - the mode of all elements
+*/
+function mode(){
+	
+	// Get all the arguments
+    $arg_list = func_get_args();
+    
+    // If an array was passed through
+    if( ! is_array( $arg_list[0]) ){
+	
+		// Get number of arguments passed through
+        $numargs = func_num_args();
+    
+        // Create an array for each passed element
+        $array = array();
+        for ($i = 0; $i < $numargs; $i++) {
+            $array[] = $arg_list[$i];
+        }
+		
+		
+	} else {
+		
+		$array = $arg_list[0];
+		
+	}
+		
+	$values = array_count_values($array); 
+		
+	$mode = array_search(max($values), $values);
+	return $mode;
+}
+
+/*
+*   average
+*
+*   Get the average of a set of values in an array (alias for Mean)
+*
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param array $array - an array with elements
+*   @param numbers - list of numbers to average
+*
+*   @return float/int $average - the average of all elements
+*/
+if( ! function_exists( 'average') ){
+function average(){
+  
+    // Get all the arguments
+    $arg_list = func_get_args();
+    
+    // Send the function through mean
+ 	return call_user_func_array('mean',$arg_list);
     
 }
 }
@@ -193,7 +325,7 @@ function round_down($number, $precision = 2){
 /*
 *   round_bank
 *
-*   Round to nearest even integer
+*   Round to nearest even number
 *
 *   @since v. 0.1
 *   @last_modified v 0.1
