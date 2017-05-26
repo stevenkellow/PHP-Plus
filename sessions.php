@@ -13,6 +13,8 @@
 *   session
 *   redirect
 *   current_url
+*   timer_start
+*   timer_end
 *
 */
 
@@ -148,5 +150,47 @@ function current_url() {
     $act_url .= in_array( $_SERVER['SERVER_PORT'], array( '80', '443' ) ) ? '' : ":" . $_SERVER['SERVER_PORT'];
     $act_url .= $_SERVER['REQUEST_URI'];
     return $act_url;
+}
+}
+
+/*
+*   timer_start
+*
+*   Start a timer
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*   @returns time - time in microseconds
+*
+*/
+if( ! function_exists( 'timer_start') ){
+function timer_start(){
+	
+	return microtime(true);	
+	
+}
+}
+
+/*
+*   timer_end
+*
+*   End a timer and get the difference from the time started
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*   @params time $old_time - the time the timer started
+*
+*   @returns time - time between now and the time passed into function
+*
+*/
+if( ! function_exists( 'timer_end') ){
+function timer_end( $old_time ){
+	
+	$now = microtime(true);
+
+	return $now - $old_time;
+	
 }
 }
