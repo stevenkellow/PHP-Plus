@@ -13,6 +13,8 @@
 *   protocol
 *   get_user_ip
 *   get_user_lang
+*   is_windows
+*   is_linux
 *
 */
 
@@ -139,5 +141,58 @@ function get_user_lang( $availableLanguages, $default = 'en' ){
 		}
 	}
 	return $default;
+}
+}
+
+
+/*
+*   is_windows
+*
+*   Checks if PHP is running on a Windows platform
+*
+*	@author Sander Marechal
+*	@source https://stackoverflow.com/posts/5879078/edit
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@return bool - true if windows, false otherwise
+*
+*/
+if( ! function_exists('is_windows') ){
+function is_windows(){
+    
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        return true;
+    } else {
+        return false;
+    }
+    
+}
+}
+
+/*
+*   is_linux
+*
+*   Checks if PHP is running on a Linux platform
+*
+*	@author Sander Marechal
+*	@source https://stackoverflow.com/posts/5879078/edit
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*	@return bool - true if windows, false otherwise
+*
+*/
+if( ! function_exists('is_linux') ){
+function is_linux(){
+    
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'LIN') {
+        return true;
+    } else {
+        return false;
+    }
+    
 }
 }
