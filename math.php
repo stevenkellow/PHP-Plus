@@ -19,6 +19,7 @@
 *   sum
 *   arabic2roman
 *   roman2arabic
+*   ordinal
 *   temperature
 *   latlon_distance
 */
@@ -427,4 +428,27 @@ function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 	}
 	
 }
+}
+
+/*
+*   ordinal
+*
+*   Add the ordinal reference (th, nd etc.) after a number
+*
+*   @author Cats who code
+*   @source http://www.catswhocode.com/blog/10-awesome-php-functions-and-snippets
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @params int $cdnl - normal / cardinal number to add
+*
+*   @return string - ordinal number
+*/
+function ordinal($cdnl){ 
+    $test_c = abs($cdnl) % 10; 
+    $ext = ((abs($cdnl) %100 < 21 && abs($cdnl) %100 > 4) ? 'th' 
+            : (($test_c < 4) ? ($test_c < 3) ? ($test_c < 2) ? ($test_c < 1) 
+            ? 'th' : 'st' : 'nd' : 'rd' : 'th')); 
+    return $cdnl.$ext; 
 }

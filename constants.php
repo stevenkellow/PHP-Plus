@@ -26,29 +26,53 @@ if( ! function_exists( 'current_time') ){
     }
 }
 
+// Minutes
 if( ! defined( 'MINUTE_IN_SECONDS') ){
     define( 'MINUTE_IN_SECONDS', 60);
 }
+    if( ! defined( 'MINUTE') ){
+        define( 'MINUTE', 60 );
+    }
 
+// Hours
 if( ! defined( 'HOUR_IN_SECONDS') ){
-    define( 'HOUR_IN_SECONDS', 60 * MINUTE_IN_SECONDS);
+    define( 'HOUR_IN_SECONDS', 60 * 60);
 }
+    if( ! defined( 'HOUR') ){
+        define( 'HOUR', 60 * 60 );
+    }
 
+// Dasy
 if( ! defined( 'DAY_IN_SECONDS') ){
-    define( 'DAY_IN_SECONDS', 24 * HOUR_IN_SECONDS);
+    define( 'DAY_IN_SECONDS', 24 * 60 * 60);
 }
+    if( ! defined( 'DAY') ){
+        define( 'DAY', 24 * 60 * 60 );
+    }
 
+// Weeks
 if( ! defined( 'WEEK_IN_SECONDS') ){
-    define( 'WEEK_IN_SECONDS', 7 * DAY_IN_SECONDS);
+    define( 'WEEK_IN_SECONDS', 7 * 24 * 60 * 60);
 }
+    if( ! defined( 'WEEK') ){
+        define( 'WEEK', 7 * 24 * 60 * 60 );
+    }
 
+// Months
 if( ! defined( 'MONTH_IN_SECONDS') ){
-    define( 'MONTH_IN_SECONDS', 30 * DAY_IN_SECONDS);
+    define( 'MONTH_IN_SECONDS', 30 * 24 * 60 * 60);
 }
+    if( ! defined( 'MONTH') ){
+        define( 'MONTH', 30 * 24 * 60 * 60 );
+    }
 
+// Years
 if( ! defined( 'YEAR_IN_SECONDS') ){
-    define( 'YEAR_IN_SECONDS', 365 * DAY_IN_SECONDS);
+    define( 'YEAR_IN_SECONDS', 365 * 30 * 24 * 60 * 60);
 }
+    if( ! defined( 'YEAR') ){
+        define( 'YEAR', 365 * 30 * 24 * 60 * 60 );
+    }
 
 /*
 *   Data storage constants

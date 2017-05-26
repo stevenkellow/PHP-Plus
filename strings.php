@@ -30,6 +30,7 @@
 *   xml_decode
 *   xssafe
 *   xecho
+*   zeroise
 *
 */
 
@@ -642,5 +643,27 @@ function xssafe($data,$encoding='UTF-8'){
 if( ! function_exists( 'xecho') ){
 function xecho($data){
    echo xssafe($data);
+}
+}
+
+/*
+*   zeroise
+*
+*   Pad a string with zeros if needed
+*
+*	@author WordPress
+*	@source https://developer.wordpress.org/reference/functions/zeroise/
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*   @param int $number - number to pad
+*   @param int $length - max length of the string
+*
+*	@return string - string with leading zeros
+*/
+if( ! function_exits( 'zeroise') ){
+function zeroise($number, $length){
+    return sprintf( '%0' . $threshold . 's', $number );
 }
 }

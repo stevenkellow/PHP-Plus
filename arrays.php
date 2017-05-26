@@ -10,10 +10,13 @@
 /*  CONTENTS
 *
 *       array_reindex
+*   is_assoc
 *   shuffle_assoc
 *   array_remove_empty
 *   unset_value
 *   unset_key
+*   sort_by_array
+*   array_wrap
 *
 */
 
@@ -32,6 +35,27 @@
 if( ! function_exists( 'array_reindex') ){
 function array_reindex( $array ){
     return array_values( $array );
+}
+}
+
+/*
+*   is_assoc
+*
+*   Check if an array is an associative one
+*
+*   @author JBZoo
+*   @source https://github.com/JBZoo/Utils/blob/master/src/Arr.php
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param array $array - array to check
+*
+*	@return bool - true if associative, false if not
+*/
+if( ! function_exists( 'is_assoc') ){
+function is_assoc($array) {
+    return array_keys($array) !== range(0, count($array) - 1);
 }
 }
 
@@ -176,5 +200,55 @@ function unset_value( $value, $array, $reindex = false ){
 
     return $array;
     
+}
+}
+
+/*
+*   sort_by_array
+*
+*   Sort an array by another array
+*
+*   @author JBZoo
+*   @source https://github.com/JBZoo/Utils/blob/master/src/Arr.php
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param array $array - array to sort
+*   @param array $orderArray - array to sort by
+*
+*   @return array $array - returns the reindexed array if we've asked for that
+*
+*/
+if( ! function_exists( 'sort_by_array') ){
+function sort_by_array(array $array, array $orderArray){
+    return array_merge(array_flip($orderArray), $array);
+}
+}
+
+/*
+*   array_wrap
+*
+*   Wrap an object or other item in an array
+*
+*   @author JBZoo
+*   @source https://github.com/JBZoo/Utils/blob/master/src/Arr.php
+*
+*   @since v. 0.1
+*   @last_modified v 0.1
+*
+*   @param mixed $object - object to turn into array
+*
+*   @return array - object as an array
+*
+*/
+if( ! function_exists( 'array_wrap') ){
+function array_wrap($object){
+    if (is_null($object)) {
+        return array();
+    } elseif (is_array($object) && !is_assoc($object)) {
+        return $object;
+    }
+    return array($object);
 }
 }
