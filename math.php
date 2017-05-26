@@ -218,13 +218,13 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
 			$decimal = $str_arr[1];
 
             // Get the digit that we're wanting to check whether to change
-			$decimal_to_keep = substr( $decimal, ( $precision - 1 ), 1 );
+			$decimal_to_change = substr( $decimal, ( $precision - 1 ), 1 );
 
             // Get the digits that affects whether we round up or down
 			$decimal_to_round = substr( $decimal, $precision );
 
             // If the digit befre rounding is even
-			if( is_even( $decimal_to_keep ) ){
+			if( is_even( $decimal_to_change ) ){
 				
                 // If the digit to check would normally be rounded up
 				if( $decimal_to_round > 0 ){
@@ -259,9 +259,6 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
 			}
 			
 		} else {
-			
-            // Get the value of the number
-			$absval = absint( $number );
 
 	        // If the number is even, we'll round down - else round up
             if( is_even( absint( $number ) ) ){
