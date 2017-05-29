@@ -40,7 +40,7 @@ function csrf_token( $name = 'csrf_token', $length = 32 ){
 	
 	if (empty($_SESSION[$name])) {
 		
-		$_SESSION[$name] = rand_string( 32, 'hex' );
+		$_SESSION[$name] = rand_string( $length, 'hex' );
 	
 		$token = $_SESSION[$name];
 			
