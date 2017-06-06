@@ -673,7 +673,7 @@ function zeroise($number, $length){
 /*
 *   rept
 *
-*   Repeat a string a number of times (like Excel function)
+*   Alias of str_repeat()
 *
 *   @since 0.1
 *   @last_modified 0.1
@@ -686,15 +686,7 @@ function zeroise($number, $length){
 if( ! function_exits( 'rept') ){
 function rept( $string, $number ){
 	
-	$new_string = '';
-	
-	for( $i = 1; $i <= $number; $i++ ){
-		
-		$new_string .= $string;
-		
-	}
-	
-	return $new_string;
+	return str_repeat( $string, $number );
 	
 	
 }
@@ -703,7 +695,7 @@ function rept( $string, $number ){
 /*
 *   repeat_string
 *
-*   Alias of rept()
+*   Alias of str_repeat()
 *
 *   @since 0.1
 *   @last_modified 0.1
@@ -716,7 +708,7 @@ function rept( $string, $number ){
 if( ! function_exits( 'repeat_string') ){
 function repeat_string( $string, $number ){
 	
-	return rept( $string, $number );
+	return str_repeat( $string, $number );
 	
 }
 }
