@@ -31,6 +31,8 @@
 *   xssafe
 *   xecho
 *   zeroise
+*   rept
+*       repeat_string
 *
 */
 
@@ -665,5 +667,56 @@ function xecho($data){
 if( ! function_exits( 'zeroise') ){
 function zeroise($number, $length){
     return sprintf( '%0' . $threshold . 's', $number );
+}
+}
+
+/*
+*   rept
+*
+*   Repeat a string a number of times (like Excel function)
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*   @param string $string - string to repeat
+*   @param int $number - number of times to repeat the string
+*
+*	@return string $new_string - string repeated
+*/
+if( ! function_exits( 'rept') ){
+function rept( $string, $number ){
+	
+	$new_string = '';
+	
+	for( $i = 1; $i <= $number; $i++ ){
+		
+		$new_string .= $string;
+		
+	}
+	
+	return $new_string;
+	
+	
+}
+}
+
+/*
+*   repeat_string
+*
+*   Alias of rept()
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*   @param string $string - string to repeat
+*   @param int $number - number of times to repeat the string
+*
+*	@return string $new_string - string repeated
+*/
+if( ! function_exits( 'repeat_string') ){
+function repeat_string( $string, $number ){
+	
+	return rept( $string, $number );
+	
 }
 }
