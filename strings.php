@@ -33,7 +33,8 @@
 *   zeroise
 *   rept
 *       repeat_string
-*
+*   proper
+*       sentence_case
 */
 
 /*
@@ -662,7 +663,7 @@ function xecho($data){
 *   @param int $number - number to pad
 *   @param int $length - max length of the string
 *
-*	@return string - string with leading zeros
+*   @return string - string with leading zeros
 */
 if( ! function_exits( 'zeroise') ){
 function zeroise($number, $length){
@@ -681,7 +682,7 @@ function zeroise($number, $length){
 *   @param string $string - string to repeat
 *   @param int $number - number of times to repeat the string
 *
-*	@return string $new_string - string repeated
+*   @return string $new_string - string repeated
 */
 if( ! function_exits( 'rept') ){
 function rept( $string, $number ){
@@ -711,4 +712,86 @@ function repeat_string( $string, $number ){
 	return str_repeat( $string, $number );
 	
 }
+
+/*
+*   proper
+*
+*   Makes first character upper case and rest lower case for each word in a string - similar to same function in Excel
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*   @param string $string - string to check
+*   @param array $split_chars - array of characters to use when splitting a string
+*
+*   @return string $string - updaed string
+*/
+if( ! function_exists( 'proper' ) ){
+function proper( $string, $split_chars = array( '-', ' ' ) ){
+
+// Check through for each character we've specified
+foreach( $split_chars as $char ){
+
+	// If the character is found
+	if( strpos( $string, $char ) !== false ){
+
+		// Split the string at this character
+		$arrayed = explode( $char, $string );
+
+		// Get the total number of string parts
+		$array_count = count( $arrayed );
+
+		// Set up a new sting to return
+		$new_string = '';
+
+		// Create a counter to check if we're on the last string part
+		$i = 0;
+
+		// For each part of the string
+		foreach( $arrayed as $part ){
+
+			// Capitalise the first letter but leave the rest lower case
+			$new_string .= ucfirst( strtolower( $part ) );
+
+			// If this is not the last string part
+			if(++$i !== $array_count) {
+
+				// Add the split character back in
+				$new_string .= $char;
+
+			}
+		}
+
+		// Reset the string to the new one
+		$string = $new_string;
+
+
+	}
+
+}
+
+return $string;
+	
+}
+}	
+
+/*
+*   sentence_case
+*
+*   Alias of proper
+*
+*   @since 0.1
+*   @last_modified 0.1
+*
+*   @param string $string - string to check
+*   @param array $split_chars - array of characters to use when splitting a string
+*
+*   @return string $string - updaed string
+*/
+if( ! function_exists( 'sentence_case' ) ){
+	
+function sentence_case( $string, $split_chars = null ){
+	
+	return proper( $string, $split_chars );
+	
 }
