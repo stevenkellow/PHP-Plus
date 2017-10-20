@@ -9,7 +9,7 @@
 
 /*  CONTENTS
 *
-*   send_mail
+*   html_mail
 *   quick_curl
 *   google_analytics
 *   facebook_pixel
@@ -41,8 +41,8 @@
 *   @param string       $message - string of email's message, can also be function to output email contents
 */
 
-if( ! function_exists( 'send_mail' ) ){
-function send_mail($to, $subject, $message, $from_email, $from_name){
+if( ! function_exists( 'html_mail' ) ){
+function html_mail($to, $subject, $message, $from_email, $from_name){
     
     // If we're sending to multiple people, separate them and add to string list
     if( is_array( $to ) ){

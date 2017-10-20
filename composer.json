@@ -1,0 +1,22 @@
+{
+    "name": "stevenkellow/php-plus",
+    "description": "A collection of helpful PHP constants and functions",
+    "version": "1.0.0",
+    "require": {
+        "php": "^5.3.3 || ^7.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "index.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Steven Kellow",
+            "email": "mail@stevenkellow.com",
+            "homepage": "https://www.stevenkellow.com",
+            "role": "Developer"
+        }
+    ]
+}

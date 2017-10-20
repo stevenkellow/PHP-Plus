@@ -17,14 +17,14 @@
 *   @last_modified 0.1
 */
 
-if( ! defined( 'CURRENT_TIME') ){
+/* if( ! defined( 'CURRENT_TIME') ){
     define( 'CURRENT_TIME', time() );
 }
 if( ! function_exists( 'current_time') ){
     function current_time(){
         return CURRENT_TIME;
     }
-}
+}*/
 
 // Minutes
 if( ! defined( 'MINUTE_IN_SECONDS') ){
@@ -132,7 +132,7 @@ if( ! defined( 'TRILLION') ){
 *   @since 0.1
 *   @last_modified 0.1
 */
-$localenvironment = localeconv();
+/* $localenvironment = localeconv();
 
 if( ! defined( 'DECIMAL_SEP') ){
     define( 'DECIMAL_SEP', $localenvironment['decimal_point'] );
@@ -140,4 +140,4 @@ if( ! defined( 'DECIMAL_SEP') ){
 
 if( ! defined( 'THOUSAND_SEP') ){
     define( 'THOUSAND_SEP', $localenvironment['thousands_sep'] );
-}
+}*/
