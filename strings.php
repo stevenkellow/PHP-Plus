@@ -665,7 +665,7 @@ function xecho($data){
 *
 *   @return string - string with leading zeros
 */
-if( ! function_exits( 'zeroise') ){
+if( ! function_exists( 'zeroise') ){
 function zeroise($number, $length){
     return sprintf( '%0' . $threshold . 's', $number );
 }
@@ -684,7 +684,7 @@ function zeroise($number, $length){
 *
 *   @return string $new_string - string repeated
 */
-if( ! function_exits( 'rept') ){
+if( ! function_exists( 'rept') ){
 function rept( $string, $number ){
 	
 	return str_repeat( $string, $number );
@@ -706,11 +706,12 @@ function rept( $string, $number ){
 *
 *	@return string $new_string - string repeated
 */
-if( ! function_exits( 'repeat_string') ){
+if( ! function_exists( 'repeat_string') ){
 function repeat_string( $string, $number ){
 	
 	return str_repeat( $string, $number );
 	
+}
 }
 
 /*
@@ -794,4 +795,5 @@ function sentence_case( $string, $split_chars = null ){
 	
 	return proper( $string, $split_chars );
 	
+}
 }

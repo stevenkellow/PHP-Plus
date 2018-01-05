@@ -70,173 +70,6 @@ function test_remote_file( $file_location ){
 }
 
 /*
-*   script
-*
-*   Print a Javascript file into the HTML
-*
-*   @since v. 0.1
-*   @last_modified v 0.1
-*
-*   @param string	$name - name of script
-*   @param string | array	$file_location - where the file can be found, or array if there's fallbacks
-*   @param bool		$inline - whether the file should be included externally or printed inline
-*   @param bool     $async - whether the script should load asynchronously - have this as false if the script has a child dependency
-*   @param bool     $defer - whether the script should load after the DOM is loaded, normally better for speed if this is true
-*/
-
-$all_scripts = array();
-if( ! function_exists( 'script' ) ){
-function script( $name, $file_location, $inline = false, $async = false, $defer = true ){
-    
-    // Call in the global
-    global $all_scripts;
-	
-	// Check that script doesn't already exist
-	if( ! in_array( $name, $all_scripts ) ){
-		
-		// Check if file location has fallbacks or not
-		if( is_array( $file_location ) ){
-			
-			foreach( $file_location as $file ){
-				
-				$test = test_remote_file( $file );
-				
-				if( $test !== false ){
-					
-					break;
-					
-				}
-				
-			}
-		
-		} else {
-			
-			$test = test_remote_file( $file_location );
-			
-		}
-		
-		if( $test !== false ){
-			
-			// Add the script name to the array
-			$all_scripts[] = $name;
-			
-			// If we're wanting to print the script in the HTML and the file exists
-			if( $inline == true ){
-				
-				// Get the content for output
-				$content = file_get_contents( $test );
-				
-				// Output inline
-				echo '<script type="text/javascript" id="' . $name . '"' . (($async == true)?' async="true"':'') . (($defer == true)?' defer="true"':'') . '>' . $content . '"</script>';
-				
-				
-			} else {
-			
-				// Output the SRC
-				echo '<script type="text/javascript" id="' . $name . '" src="' . $test . '"></script>';
-			
-			}
-			
-		}
-			
-	
-	} else {
-		
-		return false;
-		
-	}
-
-
-}
-}
-
-/*
-*   style
-*
-*   Print a CSS file into the HTML
-*
-*   @since v. 0.1
-*   @last_modified v 0.1
-*
-*   @param string	$name - name of style
-*   @param string | array	$file_location - where the file can be found, or array if there's fallbacks
-*   @param bool		$inline - whether the file should be included externally or printed inline
-*/
-
-$all_styles = array();
-
-if( ! function_exists( 'style') ){
-function style( $name, $file_location, $inline = false ){
-    
-    // Call in the global
-    global $all_styles;
-	
-	// Check that style doesn't already exist
-	if( ! in_array( $name, $all_styles ) ){
-		
-		// Check if file location has fallbacks or not
-		if( is_array( $file_location ) ){
-			
-			foreach( $file_location as $file ){
-				
-				$test = test_remote_file( $file );
-				
-				if( $test !== false ){
-					
-					break;
-					
-				}
-				
-			}
-		
-		} else {
-			
-			$test = test_remote_file( $file_location );
-			
-		}
-		
-		
-		if( $test !== false ){
-			
-			// Add the style name to the array
-            $all_styles[] = $name;
-			
-			if( $inline == true ){
-				
-				// Get the contents fo the file
-				$content = file_get_contents( $test );
-				
-				// Output inline
-				echo '<style type="text/css" id="' . $name . '">' . $content . '</style>';				
-				
-			} else {
-				
-				// Output SRC
-				echo '<link type="text/css" rel="stylesheet" id="' . $name . '" href="' . $test . '" />';
-				
-				
-			}
-			
-			
-			
-		} else {
-			
-			return false;
-			
-		}
-	
-	} else {
-		
-		// File must already exist
-		return false;
-		
-	}
-
-
-}
-}
-
-/*
 *   print_pre
 *
 *   Send out a print_r request in a more readable format
@@ -418,7 +251,12 @@ function qr_image( $data, $size = '300' ){
 *	@return int - timestamp of Easter (may want to use date to format)
 */
 if( ! function_exists( 'easter_date_orthodox') ){
-function easter_date_orthodox( $year = date( 'Y')) { 
+function easter_date_orthodox( $year = false ) { 
+    
+    if( $year === false ){
+        $year = date( 'Y' );
+    }
+    
     $a = $year % 4; 
     $b = $year % 7; 
     $c = $year % 19; 
