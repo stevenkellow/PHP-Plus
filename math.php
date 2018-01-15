@@ -670,10 +670,35 @@ function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 *
 *   @return string - ordinal number
 */
+if( ! function_exists( 'ordinal' ) ){
 function ordinal($cdnl){ 
     $test_c = abs($cdnl) % 10; 
     $ext = ((abs($cdnl) %100 < 21 && abs($cdnl) %100 > 4) ? 'th' 
             : (($test_c < 4) ? ($test_c < 3) ? ($test_c < 2) ? ($test_c < 1) 
             ? 'th' : 'st' : 'nd' : 'rd' : 'th')); 
     return $cdnl.$ext; 
+}
+}
+
+/*
+*	percent
+*
+*	Output a number as a percentage
+*
+*	@since 1.02
+*	@last_modified 1.0.2
+*
+*	@param float | int - a number to pass through
+*	@param int - number of decimal places to include
+*
+*	@return string - percentage
+*/
+if( ! function_exists( 'percent' ) ){
+function percent( $number, $decimals = 2 ){
+	
+	$rounded = round( $number, $decimals );
+	
+	return number_format( $rounded, $decimals );
+
+}
 }
