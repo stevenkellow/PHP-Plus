@@ -110,6 +110,9 @@ if( ! defined( 'PI') ){
 }
 
 // Speed of Light (m/s)
+if( ! defined( 'C' ) ){
+    define( 'C', 299792458 );
+}
 if( ! defined( 'SPEED_OF_LIGHT') ){
     define( 'SPEED_OF_LIGHT', 299792458 );
 }
