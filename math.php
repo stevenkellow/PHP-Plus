@@ -25,6 +25,7 @@
 *   ordinal
 *   temperature
 *   latlon_distance
+*   percent
 */
 
 /*
