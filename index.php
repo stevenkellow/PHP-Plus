@@ -4,7 +4,7 @@
 *	A library of curated PHP helper functions to add life to your PHP install
 *
 *	@author Steven Kellow
-*	@url http://wwww.stevenkellow.com/phpplus/
+*	@url https://wwww.stevenkellow.com/phpplus/
 *
 */
 
