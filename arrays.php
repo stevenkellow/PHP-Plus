@@ -26,8 +26,8 @@
 *
 *   Reindex arrays (alias of array_values)
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array $array - array to reindex
 *
@@ -47,8 +47,8 @@ function array_reindex( $array ){
 *   @author JBZoo
 *   @source https://github.com/JBZoo/Utils/blob/master/src/Arr.php
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array $array - array to check
 *
@@ -68,8 +68,8 @@ function is_assoc($array) {
 *   @author Korcholis
 *   @source http://stackoverflow.com/q/4102777
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array $list - array to shuffle
 *
@@ -97,8 +97,8 @@ function shuffle_assoc($list) {
 *   @author Jonas John
 *   @source http://www.jonasjohn.de/snippets/php/array-remove-empty.htm
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array $arr - array to remove empties from
 *   @param bool $reindex - whether or not to reindex the array so keys don't have a missing number
@@ -140,8 +140,8 @@ function array_remove_empty($arr, $reindex = false){
 *   Unset an array element by key and optionally reindex
 *
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param mixed $value - key to delete from array
 *   @param array $array - array to delete from
@@ -178,8 +178,8 @@ function unset_key( $key, $array, $reindex = false ){
 *   @author Bojangles
 *   @source http://stackoverflow.com/a/7225113
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param mixed $value - value to delete from array
 *   @param array $array - array to delete from
@@ -212,8 +212,8 @@ function unset_value( $value, $array, $reindex = false ){
 *   @author JBZoo
 *   @source https://github.com/JBZoo/Utils/blob/master/src/Arr.php
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array $array - array to sort
 *   @param array $orderArray - array to sort by
@@ -235,8 +235,8 @@ function sort_by_array(array $array, array $orderArray){
 *   @author JBZoo
 *   @source https://github.com/JBZoo/Utils/blob/master/src/Arr.php
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param mixed $object - object to turn into array
 *

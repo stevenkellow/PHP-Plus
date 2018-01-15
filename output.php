@@ -20,6 +20,7 @@
 *   easter_date_orthodox
 *   is_image
 *   data_uri
+*   mime_type
 *
 */
 
@@ -28,8 +29,8 @@
 *
 *   Test if a remote file exists
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param string	$file_location - the file to test
 *
@@ -326,5 +327,36 @@ function data_uri($file) {
 		return $base64_encode( $file );
 		
 	}
+}
+}
+
+/*
+*   mime_type
+*
+*   Returns the mime type of a file given the extension
+*
+*   @param string $ext - the file extension
+*
+*   @return string - the mime type
+*
+*	@since	1.02
+*	@last_modified	1.0.2
+*/
+if( ! function_exists( 'mime_type' ) ){
+function mime_type( $ext ){
+    
+    // Call in the list of mime types
+    require_once( '/data/mime-types.php' );
+    
+    if( array_key_exists( $ext, $mime_types ) ){
+		
+		return $mime_types[$ext];
+		
+	} else {
+		
+		return false;
+		
+	}
+    
 }
 }

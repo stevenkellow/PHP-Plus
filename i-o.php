@@ -42,8 +42,8 @@
 *
 *   Wrap the default PHP mail function to allow for formatted emails and multiple sending
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param string/array $to - string of email to be sent to (if 1) or array if multiple
 *   @param string       $subject - string of email's subject
@@ -438,8 +438,8 @@ function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
 *
 *   Get data from a json file and turn it into an array
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param path $path - string of URL or path to get data from
 *
@@ -458,8 +458,8 @@ function json_file_to_array( $path ){
 *
 *   Create or update a json file with data from an array
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array 	$array - array of data to put to file
 *   @param string	$path - path of file to create/update
@@ -747,7 +747,7 @@ function email_hash( $email ){
 }
 }
 
-				      /*
+/*
 *   comma_explode
 *
 *   Turns a comma separated item into an array
