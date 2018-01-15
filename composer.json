@@ -7,7 +7,7 @@
     },
     "suggest": {
         "paragonie/random_compat" : "Bring PHP <7 up to date",
-        "ircmaxwell/password-compat" : "Bring PHP <5.5 up to date",
+        "ircmaxell/password-compat" : "Bring PHP <5.5 up to date",
         "ramsey/uuid" : "Generates UUIDs"
     },
     "license": "MIT",
