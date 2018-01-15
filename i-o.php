@@ -26,6 +26,8 @@
 *   xml_to_array
 *   get_gravatar
 *   unzip
+*   hash_email
+*       email_hash
 *
 */
 
@@ -687,6 +689,54 @@ function unzip( $file, $extractPath ){
 		return false;
 	}
 	
+	
+}
+}
+
+/*
+*	hash_email
+*
+*	Return the md5 hash of an email
+*
+*	@since 1.0.2
+*	@last_modified 1.0.2
+*
+*	@param string $email - an email to hash
+*
+*	@return string | bool - either the md5 hash or false if it's not an email
+*/
+if( ! function_exists( 'hash_email' ) ){
+function hash_email( $email ){
+	
+	$formatted_email = strtolower( trim( $email );
+
+	if( ! validate_email( $formatted_email ) ){
+		
+		return false;
+			
+	}
+	
+	return md5( $formatted_email );
+	
+}
+}
+
+/*
+*	email_hash
+*
+*	Alias of hash_email
+*
+*	@since 1.0.2
+*	@last_modified 1.0.2
+*
+*	@param string $email - an email to hash
+*
+*	@return string | bool - either the md5 hash or false if it's not an email
+*/
+if( ! function_exists( 'email_hash' ) ){
+function email_hash( $email ){
+	
+	return hash_email( $email );
 	
 }
 }
