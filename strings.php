@@ -634,7 +634,7 @@ function xml_decode( $xmlstring ){
 *	@source https://www.owasp.org/index.php/PHP_Security_Cheat_Sheet#No_tags
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.0.2
 *
 *   @param string $data - data to secure
 *	@param string $encoding - how you want to encode the data
@@ -643,7 +643,10 @@ function xml_decode( $xmlstring ){
 */
 if( ! function_exists( 'xssafe') ){
 function xssafe($data,$encoding='UTF-8'){
-   return htmlspecialchars($data,ENT_QUOTES | ENT_HTML401,$encoding);
+	
+	$data = strip_tags( $data );
+	
+   	return htmlspecialchars($data,ENT_QUOTES | ENT_HTML401,$encoding);
 }
 }
 
