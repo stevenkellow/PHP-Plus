@@ -45,3 +45,29 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# =========================
+# Composer stuff
+# =========================
+/vendor
+*.lock
+
+# =========================
+# Office Files
+# =========================
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.xlsm
+*.ods
+*.odt
+*.pdf
+
+# =========================
+# Zip Files & Databases
+# =========================
+*.zip
+*.gzip
+*.sql
+*.gz
