@@ -38,52 +38,71 @@
 */
 
 /*
-*   rand_string
+*  	rand_string
 *
-*   Create a cryptographically secure random string
+*  	Create a cryptographically secure random string
 *
 *	Note: for passwords please use password_hash (PHP 7 or later)
 *
-*   @since 0.1
-*   @last_modified 0.1
+*  	@since 0.1
+*  	@last_modified 1.0.2
 *
-*   @param int $length - number of bytes for random string (default 27 for 36 character string)
-*	@param string $type - type of string to produce ('hex' will produce a hex string)
+*  	@param int $length - number of characters for random string (default 36 character string)
+*	@param array | bool $symbols - false for no symbols, true for default symbols or array of custom symbols to use
 *
-*	@return string | false - random string made up of encoded number of bytes | false if PHP < 7 and openssl not installed
+*	@return string - random string made up of the specified number of characters
 */
 
 if( ! function_exists( 'rand_string' ) ){
-function rand_string( $length = 27, $type = 'all' ){
+function rand_string( $length = 36, $symbols = true ){
 
-    if (version_compare(PHP_VERSION, '7.0.0') >= 0) {
-
-        // Use random bytes if PHP 7 or above
-        $data = random_bytes ( $length );
-
-    } else {
-
-        // Use openssl random bytes if below PHP 7
-        if( function_exists( 'openssl_random_pseudo_bytes') ){
-            $data = openssl_random_pseudo_bytes( $length );
-        } else {
-            return false;
-        }
-
-    }
-
-	// Use all characters or use just hex
-	if( $type !== 'hex' ){
+	$test = array( 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+				   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+				   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' );
+				   
+	$symbols_array = array( '!', '$', '(', ')', '-', '_', '{', '}', '@', '~' );
+	
+	// If we're using symbols use our default list
+	if( $symbols === true ){
 		
-		$string = base64_encode( $data );
+		$test = array_merge( $test, $symbols_array );
 		
-	} else {
-		$string = bin2hex( $data );
+	}
+	
+	// If we're passing through an array of symbols use this
+	if( is_array( $symbols ) ){
+		
+		$test = array_merge( $test, $symbols );
+		
+	}
+	
+	// Create a default string
+	$string = '';
+	
+	// Count the number of characters we've got available
+	$total_chars = count( $test ) - 1;
+	
+	// For each of the length add a character to the string
+	for( $x = 0; $x <= $length; $x++ ){
+		
+		if ( function_exists( 'random_int' ) ) {
+
+			// Use random int if PHP 7 or random_compat installed
+			$int = random_int( 0, $total_chars );
+
+		} else {
+
+			$int = mt_rand( 0, $total_chars );
+
+		}
+		
+		$string .= $test[$int];
+		
 	}
 
 	return $string;
 
-}
+}	
 }
 
 /*
