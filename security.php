@@ -40,7 +40,7 @@ function csrf_token( $name = 'csrf_token', $length = 32 ){
 	
 	if (empty($_SESSION[$name])) {
 		
-		$_SESSION[$name] = rand_string( $length, 'hex' );
+		$_SESSION[$name] = rand_string( $length, false );
 	
 		$token = $_SESSION[$name];
 			
@@ -81,13 +81,13 @@ function csrf_verify( $name = 'csrf_token' ){
 		// Use hash_equals if we're on greater than 5.6+
 		if (version_compare(PHP_VERSION, '5.6') >= 0) {
 		
-				if (hash_equals($hashed_token, $_POST[$name])) {
-					 // Proceed to process the form data
-					 return true;
-				} else {
-					 // Log this as a warning and keep an eye on these attempts
-					 return false;
-				}
+			if (hash_equals($hashed_token, $_POST[$name])) {
+				 // Proceed to process the form data
+				 return true;
+			} else {
+				 // Log this as a warning and keep an eye on these attempts
+				 return false;
+			}
 			
 		} else {
 			
