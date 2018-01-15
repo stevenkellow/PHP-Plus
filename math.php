@@ -699,9 +699,9 @@ function ordinal($cdnl){
 if( ! function_exists( 'percent' ) ){
 function percent( $number, $decimals = 2 ){
 	
-	$rounded = round( $number, $decimals );
+	$rounded = round( $number * 100, $decimals );
 	
-	return number_format( $rounded, $decimals );
+	return number_format( $rounded, $decimals ) . '%';
 
 }
 }

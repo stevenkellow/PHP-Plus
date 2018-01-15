@@ -346,7 +346,7 @@ if( ! function_exists( 'mime_type' ) ){
 function mime_type( $ext ){
     
     // Call in the list of mime types
-    require_once( '/data/mime-types.php' );
+    require_once( PATH_TO_PHP_PLUS . '/data/mime-types.php' );
     
     if( array_key_exists( $ext, $mime_types ) ){
 		
