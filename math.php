@@ -37,8 +37,8 @@
 *   @author WordPress
 *   @source https://developer.wordpress.org/reference/functions/absint/
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param integer $number - number to return absolute
 *
@@ -58,8 +58,8 @@ function absint( $number ) {
 *   @author Mucello
 *   @source http://php.net/manual/en/function.array-sum.php
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
@@ -104,8 +104,8 @@ function mean(){
 *   @author Mchl
 *   @source https://codereview.stackexchange.com/a/223
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
@@ -160,14 +160,15 @@ function median() {
 *   @author White Elephant
 *   @source https://stackoverflow.com/a/12036174/7956549
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
 *
 *   @return int $average - the mode of all elements
 */
+if( ! function_exists( 'mode' ) ){
 function mode(){
 	
 	// Get all the arguments
@@ -197,15 +198,15 @@ function mode(){
 	$mode = array_search(max($values), $values);
 	return $mode;
 }
+}
 
 /*
 *   average
 *
 *   Get the average of a set of values in an array (alias for Mean)
 *
-*
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
@@ -232,8 +233,8 @@ function average(){
 *   @author Pawel Dubiel
 *   @source http://stackoverflow.com/a/9153969
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param integer $number - number to check
 *
@@ -259,8 +260,8 @@ function is_even( $number ){
 *   @author Pawel Dubiel
 *   @source http://stackoverflow.com/a/9153969
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param integer $number - number to check
 *
@@ -286,8 +287,8 @@ function is_odd( $number ){
 *   @author taking sides
 *   @source http://php.net/manual/en/function.round.php#114573
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param integer $number - number to round
 *	@param integer $precision - number of decimal places to round to
@@ -309,8 +310,8 @@ function round_up($number, $precision = 2){
 *   @author taking sides
 *   @source http://php.net/manual/en/function.round.php#114573
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param integer $number - number to round
 *	@param integer $precision - number of decimal places to round to
@@ -329,8 +330,8 @@ function round_down($number, $precision = 2){
 *
 *   Round to nearest even number
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param float $number - $number to round
 *   @param int $precision - optionally change the precision
@@ -422,8 +423,8 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
 *
 *   Sum of values in an array (alias of array_sum)
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param array $array - an array with elements to add up
 *   @param numbers - list of numbers to add
@@ -467,8 +468,8 @@ function sum(){
 *   @author user2095686
 *   @source http://stackoverflow.com/a/15023547
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param integer $integer - integer in Arabic numerals
 *
@@ -503,8 +504,8 @@ function arabic2roman( $integer ){
 *   @author andyb
 *   @source http://stackoverflow.com/a/6266158
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @param string $roman - integer in Roman numerals
 *
@@ -534,8 +535,8 @@ function roman2arabic( $roman ){
 *
 *   Convert a temperature between celsius, fahrenheit and kelvin
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @params int | float $number - value of temperature to convert
 *	@params string $from - temperature to convert from (celsius, fahrenheit or kelvin)
@@ -625,8 +626,8 @@ function temperature( $number, $from, $to ){
 *	@author Janith Chinthana
 *	@source http://stackoverflow.com/a/30556851/7956549
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @params int | float $lat1 - first latitude
 *   @params int | float $lon - first longitude
@@ -665,8 +666,8 @@ function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 *   @author Cats who code
 *   @source http://www.catswhocode.com/blog/10-awesome-php-functions-and-snippets
 *
-*   @since v. 0.1
-*   @last_modified v 0.1
+*   @since 0.1
+*   @last_modified 0.1
 *
 *   @params int $cdnl - normal / cardinal number to add
 *

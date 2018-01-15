@@ -228,11 +228,11 @@ function date_mysql( $time = false, $date_time = 'datetime' ){
     // If outputting $date_time
     if( $date_time == 'date' ){
     
-   	return date( 'Y-m-d', $time );
+   	    return date( 'Y-m-d', $time );
 	    
     } else {
 	    
-	return date( 'Y-m-d H:i:s', $time );
+	   return date( 'Y-m-d H:i:s', $time );
 	    
     }
     

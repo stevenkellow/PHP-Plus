@@ -60,7 +60,7 @@ function rand_string( $length = 36, $symbols = true ){
 				   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 				   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' );
 				   
-	$symbols_array = array( '!', '$', '(', ')', '-', '_', '{', '}', '@', '~' );
+	$symbols_array = array( '!', '$', '(', ')', '-', '_', '{', '}', '@', '~', '^' );
 	
 	// If we're using symbols use our default list
 	if( $symbols === true ){
@@ -211,7 +211,7 @@ function is_url( $url ){
 */
 if( ! function_exists( 'slug') ){
 function slug($string){
-	$slug= strtolower( preg_replace('/[^A-Za-z0-9-]+/', '-', $string) );
+	$slug = strtolower( preg_replace('/[^A-Za-z0-9-]+/', '-', $string) );
 	return $slug;
 }
 }
@@ -322,7 +322,7 @@ function hex2str($func_string) {
 *	@params bool $reset - Whether to reset the encoding back to a previously-set encoding.
 *
 */
-if( !function_exists( 'mbstring_binary_safe_encoding' ) ){
+if( ! function_exists( 'mbstring_binary_safe_encoding' ) ){
 function mbstring_binary_safe_encoding( $reset = false ) {
   static $encodings = array();
   static $overloaded = null;
@@ -421,7 +421,7 @@ function seems_utf8( $str ) {
 *	@return string $string - String with Unicode encoded for URI.
 *
 */
-if( !function_exists( 'utf8_uri_encode' ) ){
+if( ! function_exists( 'utf8_uri_encode' ) ){
 function utf8_uri_encode( $utf8_string, $length = 0 ) {
 	$unicode = '';
 	$values = array();
@@ -812,7 +812,6 @@ return $string;
 *   @return string $string - updaed string
 */
 if( ! function_exists( 'sentence_case' ) ){
-	
 function sentence_case( $string, $split_chars = null ){
 	
 	return proper( $string, $split_chars );
