@@ -17,6 +17,7 @@
 *   unset_key
 *   sort_by_array
 *   array_wrap
+*   array_flat
 *
 */
 
@@ -250,5 +251,46 @@ function array_wrap($object){
         return $object;
     }
     return array($object);
+}
+}
+
+/*
+*   array_flat
+*
+*   Flatten an array into a single dimension
+*
+*   @param array $array - array to flatten
+*   @param string $prefix - prefix for each key
+*   @param string $concat - the string to concatenate keys with
+*
+*   @return type $return - what comes out
+*
+*   @see https://stackoverflow.com/a/9546302/7956549
+*
+*	@since	0.1
+*	@last_modified	0.1
+*/
+if( ! function_exists( 'array_flat' ) ){
+function array_flat($array, $prefix = '', $concat = '_'){
+    
+    $result = array();
+
+    foreach ($array as $key => $value){
+        
+        $new_key = $prefix . (empty($prefix) ? '' : $concat) . $key;
+
+        if (is_array($value)) {
+            
+            $result = array_merge($result, array_flat($value, $new_key));
+            
+        } else {
+            
+            $result[$new_key] = $value;
+            
+        }
+    }
+
+    return $result;
+    
 }
 }
