@@ -21,6 +21,7 @@
 *   json_file_to_array
 *   array_to_json_file
 *   json_encode_utf8
+*   pretty_json
 *   xml_to_json
 *   xml_to_array
 *   get_gravatar
@@ -320,7 +321,7 @@ function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"') 
 *	@source http://stackoverflow.com/a/6041773/7956549
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.0.2
 *
 *	@params array $data - data to check
 *
@@ -329,7 +330,7 @@ function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"') 
 */
 if( ! function_exists( 'is_json') ){
 function is_json($string) {
-    json_decode($string);
+    @json_decode($string);
     return (json_last_error() == JSON_ERROR_NONE);
 }
 }
@@ -531,6 +532,34 @@ function json_encode_utf8( $data ){
     $json = html_entity_decode( json_encode( $array ) );
     
     return $json;
+}
+}
+
+/*
+*	pretty_json
+*
+*	Output JSON in a formatted way
+*
+*	@since 1.0.2
+*	@last_modified 1.0.2
+*
+*	@param array | object - json element
+*
+*	@return string - pretty json string or false if it isn't JSON
+*/
+if( ! function_exists( 'pretty_json' ) ){
+function pretty_json( $json ){
+	
+	if( is_json( $json ) ){
+	
+		return json_encode( $json, JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK | JSON_UNESCAPED_UNICODE );
+	
+	} else {
+	
+		return false;
+		
+	}
+
 }
 }
 
