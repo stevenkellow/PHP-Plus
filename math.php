@@ -19,6 +19,7 @@
 *   is_odd
 *   round_up
 *   round_down
+*   round_bank
 *   sum
 *   arabic2roman
 *   roman2arabic
