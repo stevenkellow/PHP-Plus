@@ -5,6 +5,11 @@
     "require": {
         "php": "^5.3.3 || ^7.0"
     },
+    "suggest": {
+        "paragonie/random_compat" : "Bring PHP <7 up to date",
+        "ircmaxwell/password-compat" : "Bring PHP <5.5 up to date",
+        "ramsey/uuid" : "Generates UUIDs"
+    },
     "license": "MIT",
     "autoload": {
         "files": [

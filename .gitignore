@@ -49,6 +49,7 @@ Temporary Items
 # =========================
 # Composer stuff
 # =========================
+composer.phar
 /vendor
 *.lock
 
