@@ -714,7 +714,7 @@ function unzip( $file, $extractPath ){
 if( ! function_exists( 'hash_email' ) ){
 function hash_email( $email ){
 	
-	$formatted_email = strtolower( trim( $email );
+	$formatted_email = strtolower( trim( $email ) );
 
 	if( ! validate_email( $formatted_email ) ){
 		
