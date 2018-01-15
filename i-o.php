@@ -28,6 +28,12 @@
 *   unzip
 *   hash_email
 *       email_hash
+*   comma_explode
+*   is_serialized
+*   maybe_unserialize
+*   maybe_serialize
+*   pipe_decode
+*   pipe_encode
 *
 */
 
@@ -737,6 +743,249 @@ if( ! function_exists( 'email_hash' ) ){
 function email_hash( $email ){
 	
 	return hash_email( $email );
+	
+}
+}
+
+				      /*
+*   comma_explode
+*
+*   Turns a comma separated item into an array
+*
+*   @param string $array_string - the comma separated array
+*
+*   @return array $ouptut - the array
+*
+*	@since	0.1
+*	@last_modified	0.1
+*/
+if( ! function_exists( 'comma_explode' ) ){
+function comma_explode( $array_string ){
+	
+    // Turn the string into an array
+	$new_arr = explode( ',', $array_string );
+
+	$output = array();
+
+    // Clean each item
+	foreach( $new_arr as $item ){
+		
+        // Trim whitespace
+		$new_item = trim( $item );
+		
+        // Check the item is not blank
+		if( strlen( $new_item ) > 0 ){
+			
+			$output[] = $new_item;	
+			
+		}
+		
+	}
+	
+    // Return array
+	return $output;
+	
+	
+}
+}
+
+/**
+ * Tests if an input is valid PHP serialized string.
+ *
+ * Checks if a string is serialized using quick string manipulation
+ * to throw out obviously incorrect strings. Unserialize is then run
+ * on the string to perform the final verification.
+ *
+ * Valid serialized forms are the following:
+ * <ul>
+ * <li>boolean: <code>b:1;</code></li>
+ * <li>integer: <code>i:1;</code></li>
+ * <li>double: <code>d:0.2;</code></li>
+ * <li>string: <code>s:4:"test";</code></li>
+ * <li>array: <code>a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}</code></li>
+ * <li>object: <code>O:8:"stdClass":0:{}</code></li>
+ * <li>null: <code>N;</code></li>
+ * </ul>
+ *
+ * @author		Chris Smith <code+php@chris.cs278.org>
+ * @copyright	Copyright (c) 2009 Chris Smith (http://www.cs278.org/)
+ * @license		http://sam.zoy.org/wtfpl/ WTFPL
+ * @param		string	$value	Value to test for serialized form
+ * @param		mixed	$result	Result of unserialize() of the $value
+ * @return		boolean			True if $value is serialized data, otherwise false
+ */
+if( ! function_exists( 'is_serialized' ) ){
+function is_serialized($value, &$result = null){
+	// Bit of a give away this one
+	if (!is_string($value)){
+		return false;
+	}
+
+	// Serialized false, return true. unserialize() returns false on an
+	// invalid string or it could return false if the string is serialized
+	// false, eliminate that possibility.
+	if ($value === 'b:0;')
+	{
+		$result = false;
+		return true;
+	}
+
+	$length	= strlen($value);
+	$end	= '';
+
+	switch ($value[0])	{
+		case 's':
+			if ($value[$length - 2] !== '"'){
+				return false;
+			}
+		case 'b':
+		case 'i':
+		case 'd':
+			// This looks odd but it is quicker than isset()ing
+			$end .= ';';
+		case 'a':
+		case 'O':
+			$end .= '}';
+
+			if ($value[1] !== ':'){
+				return false;
+			}
+
+			switch ($value[2]){
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+				case 7:
+				case 8:
+				case 9:
+				break;
+
+				default:
+					return false;
+			}
+		case 'N':
+			$end .= ';';
+
+			if ($value[$length - 1] !== $end[0]){
+				return false;
+			}
+		break;
+
+		default:
+			return false;
+	}
+
+	if (($result = @unserialize($value)) === false)	{
+		$result = null;
+		return false;
+	}
+	return true;
+}
+}
+
+/*
+*   maybe_unserialize
+*
+*   Return unserialized value of item
+*
+*   @param mixed $item - item to check
+*
+*   @return mixed $mixed - item ( unserialized if array or object )
+*
+*	@since	0.1
+*	@last_modified	0.1
+*/
+if( ! function_exists( 'maybe_unserialize' ) ){
+function maybe_unserialize( $item ){
+    
+    if( is_serialized( $item ) ){
+        return unserialize( $item );
+    } else {
+        return $item;
+    }
+}
+}
+
+/*
+*   maybe_serialize
+*
+*   Return serialized value of array or object, skip others
+*
+*   @param mixed $item - item to check
+*
+*   @return mixed $tiem - item (serialized if array or object )
+*
+*	@since	0.1
+*	@last_modified	0.1
+*/
+if( ! function_exists( 'maybe_serialize' ) ){
+function maybe_serialize( $item ){
+    
+    if( is_array( $item ) || is_object( $item ) ){
+        return serialize( $item );
+    } else {
+        return $item;
+    }
+    
+}
+}
+
+/*
+*   pipe_decode
+*
+*   Create an array from a pipe separated string
+*
+*   @param string $string - pipe separated string
+*
+*   @return array - array
+*
+*	@since	0.1
+*	@last_modified	0.1
+*/
+if( ! function_exists( 'pipe_decode' ) ){
+function pipe_decode( $string ){
+	
+	if( is_string( $string ) && strstr( $string, '|'  ) ){
+		
+		return explode( '|', trim( $string, '|' ) );
+		
+	} else {
+        
+        return $string;
+    }
+	
+}
+}
+
+/*
+*   pipe_encode
+*
+*   Converts an array into a pipe separated string
+*
+*   @param array $array - an array
+*
+*   @return string - pipe separated string
+*
+*	@since	0.1
+*	@last_modified	0.1
+*/
+if( ! function_exists( 'pipe_encode' ) ){
+function pipe_encode( $array ){
+	
+	if( is_array( $array ) ){
+		
+		return '|' . implode( '|', $array ) . '|';	
+		
+	} else {
+        
+        return $array;
+        
+    }
+	
 	
 }
 }
