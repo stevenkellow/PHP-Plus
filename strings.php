@@ -83,7 +83,7 @@ function rand_string( $length = 36, $symbols = true ){
 	$total_chars = count( $test ) - 1;
 	
 	// For each of the length add a character to the string
-	for( $x = 0; $x <= $length; $x++ ){
+	for( $x = 1; $x <= $length; $x++ ){
 		
 		if ( function_exists( 'random_int' ) ) {
 
