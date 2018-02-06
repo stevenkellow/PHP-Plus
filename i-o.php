@@ -29,6 +29,7 @@
 *   hash_email
 *       email_hash
 *   comma_explode
+*	comma_implode
 *   is_serialized
 *   maybe_unserialize
 *   maybe_serialize
@@ -754,7 +755,7 @@ function email_hash( $email ){
 *
 *   @param string $array_string - the comma separated array
 *
-*   @return array $ouptut - the array
+*   @return array $output - the array
 *
 *	@since	0.1
 *	@last_modified	0.1
@@ -784,6 +785,44 @@ function comma_explode( $array_string ){
 	
     // Return array
 	return $output;
+	
+	
+}
+}
+
+/*
+*   comma_implode
+*
+*   Turns an array into a comma separated string
+*
+*   @param array $array - an array
+*
+*   @return string $array - a comma delimited string
+*
+*	@since	1.0.3
+*	@last_modified	1.0.3
+*/
+if( ! function_exists( 'comma_implode' ) ){
+function comma_implode( $array ){
+	
+    // Clean each item
+	$output = array();
+	foreach( $array as $item ){
+		
+        // Trim whitespace
+		$new_item = trim( $item );
+		
+        // Check the item is not blank
+		if( strlen( $new_item ) > 0 ){
+			
+			$output[] = $new_item;	
+			
+		}
+		
+	}
+	
+    // Return string
+	return implode( ',', $output );
 	
 	
 }
