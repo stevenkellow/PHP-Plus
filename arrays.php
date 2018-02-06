@@ -18,6 +18,7 @@
 *   sort_by_array
 *   array_wrap
 *   array_flat
+*	array_deep_sort
 *
 */
 
