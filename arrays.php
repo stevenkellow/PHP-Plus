@@ -294,3 +294,159 @@ function array_flat($array, $prefix = '', $concat = '_'){
     
 }
 }
+
+/*
+*   array_deep_sort
+*
+*   Sort an multi-dimensional array by lower values - combines usort, uasort and uksort into one function
+*
+*   @param array $array - the array to sort
+*	@param string $sort_key - the key  to sort by
+*	@param string $sort_by - either 'key' or 'value'
+*	@param bool $preserve_keys - whether to preserve keys when sorting
+*	@param string $order - the order to sort:
+		- low_to_high
+		- A to Z
+		- alphabetical
+		- high_to_low
+		- Z to A
+*
+*   @return array - the sorted array
+*
+*	@since	1.0.3
+*	@last_modified	1.0.3
+*/
+if( ! function_exists( 'array_deep_sort' ) ){
+function array_deep_sort( $array, $sort_key, $sort_by = 'value', $preserve_keys = true, $order = 'high_to_low' ){
+	
+	// Set the sort key in a global so it can be used by our comparison functions
+	$GLOBALS['sort_key'] = $sort_key;
+
+	// If we're sorting by value
+	if( $sort_by == 'value' ){
+		
+		// Sorting by value
+		
+		// Check whether we're preserving keys
+		if( $preserve_keys == true ){
+			
+			// Preserving keys so use uasort
+			
+			// If we're sorting low to high
+			if( $order == 'low_to_high' || $order == 'A to Z' || $order == 'alphabetical' ){
+			
+				uasort($array, '__low_to_high');
+				
+				return $array;
+			
+			}
+			
+			// If we're sorting high to low
+			if( $order == 'high_to_low' || $order == 'Z to A' ){
+				
+				uasort($array, '__high_to_low');
+				
+				return $array;
+			
+			
+			}
+		
+		
+		} else {
+		
+			// Not reserving keys so use usort
+		
+			// If we're sorting low to high
+			if( $order == 'low_to_high' || $order == 'A to Z' || $order == 'alphabetical' ){
+			
+				usort($array, '__low_to_high');
+				
+				return $array;
+			
+			}
+			
+			// If we're sorting high to low
+			if( $order == 'high_to_low' || $order == 'Z to A' ){
+				
+				usort($array, '__high_to_low');
+				
+				return $array;
+			
+			
+			}
+		
+		
+		}
+
+	} elseif( $sort_by == $sort_key ){
+		
+		// If we're sorting low to high
+		if( $order == 'low_to_high' || $order == 'A to Z' || $order == 'alphabetical' ){
+			
+			uksort($array, '__low_to_high');
+			
+			return $array;
+		
+		}
+		
+		// If we're sorting high to low
+		if( $order == 'high_to_low' || $order == 'Z to A' ){
+			
+			uksort($array, '__high_to_low');
+			
+			return $array;
+		
+		
+		}
+		
+		
+	}
+	
+}
+}
+
+/*
+*   __low_to_high
+*
+*   Compares to items when sorting arrays
+*
+*	@param array $a - an array to compare
+*	@param array $b - an array to compare
+*
+*   @return array - the sorted array
+*
+*	@since	1.0.3
+*	@last_modified	1.0.3
+*/
+if( ! function_exists( '__low_to_high' ) ){
+function __low_to_high( $a, $b ){
+	
+	$sort_key = $GLOBALS['sort_key'];
+		
+	return $a[$sort_key] <=> $b[$sort_key];
+	
+}
+}
+
+/*
+*   __high_to_low
+*
+*	@param array $a - an array to compare
+*	@param array $b - an array to compare
+*
+*   Compares to items when sorting arrays
+*
+*   @return array - the sorted array
+*
+*	@since	1.0.3
+*	@last_modified	1.0.3
+*/
+if( ! function_exists( '__high_to_low' ) ){
+function __high_to_low( $a, $b ){
+	
+	$sort_key = $GLOBALS['sort_key'];
+	
+	return $b[$sort_key] <=> $a[$sort_key];
+	
+}
+}
