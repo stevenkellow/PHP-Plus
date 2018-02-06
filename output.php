@@ -30,7 +30,7 @@
 *   Test if a remote file exists
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.0.3
 *
 *   @param string	$file_location - the file to test
 *
@@ -45,7 +45,7 @@ function test_remote_file( $file_location ){
 		// Check the file can be retrieved
 		try {
 			
-			$content = file_get_contents( $file_location );
+			$content = @file_get_contents( $file_location );
 
 			if ($content === false) {
 				// Handle the error

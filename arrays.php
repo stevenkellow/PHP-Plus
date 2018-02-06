@@ -18,7 +18,7 @@
 *   sort_by_array
 *   array_wrap
 *   array_flat
-*	array_deep_sort
+*	array_sort_deep
 *
 */
 
@@ -297,7 +297,7 @@ function array_flat($array, $prefix = '', $concat = '_'){
 }
 
 /*
-*   array_deep_sort
+*   array_sort_deep
 *
 *   Sort an multi-dimensional array by lower values - combines usort, uasort and uksort into one function
 *
@@ -317,8 +317,8 @@ function array_flat($array, $prefix = '', $concat = '_'){
 *	@since	1.0.3
 *	@last_modified	1.0.3
 */
-if( ! function_exists( 'array_deep_sort' ) ){
-function array_deep_sort( $array, $sort_key, $sort_by = 'value', $preserve_keys = true, $order = 'high_to_low' ){
+if( ! function_exists( 'array_sort_deep' ) ){
+function array_sort_deep( $array, $sort_key, $sort_by = 'value', $preserve_keys = true, $order = 'high_to_low' ){
 	
 	// Set the sort key in a global so it can be used by our comparison functions
 	$GLOBALS['sort_key'] = $sort_key;
