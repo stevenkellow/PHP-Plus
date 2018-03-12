@@ -818,3 +818,33 @@ function sentence_case( $string, $split_chars = null ){
 	
 }
 }
+
+/*
+*   strcheck
+*
+*   Check that passed arguments have a string length of 1 or more
+*
+*   @since 1.0.4
+*   @last_modified 1.0.4
+*
+*   @return bool - true if all arguments are strings of length greater than 1, else false
+*/
+if( ! function_exists( 'strcheck' ) ){
+function strcheck(){
+	
+	$args = func_get_args();
+
+	foreach( $args as $arg ){
+
+		if( strlen( $arg ) < 1 ){
+
+			return false;
+
+		}
+
+	}
+
+	return true;
+	
+}
+}
