@@ -21,6 +21,7 @@
 *   is_past
 *   is_future
 *   copyright
+*   current_time
 */
 
 /**
@@ -398,5 +399,30 @@ function copyright( $year = false, $roman = false ){
         // Output the copy symbol and the current year or the current year in Roman numerals
         echo '&copy; ' . ($roman == false ? date('Y') : arabic2roman( date('Y') ));
     } 
+}
+}
+
+/**
+*   current_time
+*
+*   Get the current time in a variety of formats
+*
+*   @param string $type - either 'mysql' for MySQL format, 'timestamp' for integer, or PHP date format
+*
+*   @return string $return - what comes out
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'current_time' ) ){
+function current_time( $type, $gmt = 0 ) {
+	switch ( $type ) {
+		case 'mysql':
+			return ( $gmt ) ? gmdate( 'Y-m-d H:i:s' ) : gmdate( 'Y-m-d H:i:s', ( time() + ( get_gmt_offset() * HOUR_IN_SECONDS ) ) );
+		case 'timestamp':
+			return ( $gmt ) ? time() : time() + ( get_gmt_offset() * HOUR_IN_SECONDS );
+		default:
+			return ( $gmt ) ? date( $type ) : date( $type, time() + ( get_gmt_offset() * HOUR_IN_SECONDS ) );
+	}
 }
 }
