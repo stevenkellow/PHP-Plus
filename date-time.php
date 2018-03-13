@@ -20,6 +20,9 @@
 *   easter_date_orthodox
 *   is_past
 *   is_future
+*   is_today
+*   is_yesterday
+*   is_tomorrow
 *   copyright
 *   current_time
 */
@@ -359,6 +362,84 @@ function is_future( $date ){
     }
     
 }
+}
+
+/**
+*   is_today
+*
+*   Check if a timestamp is today
+*
+*   @param string - a timestamp
+*
+*   @return bool - true if today, false if not
+*
+*	@since	0.1
+*	@last_modified	0.1
+*/
+function is_today( $timetamp ){
+    
+    if( date('Ymd') == date('Ymd', strtotime($timestamp)) ){
+        
+        return true;
+        
+    } else {
+        
+        return false;
+        
+    }
+    
+}
+
+/**
+*   is_yesterday
+*
+*   Check if a timestamp is yesterday
+*
+*   @param string - a timestamp
+*
+*   @return bool - true if yesterday, false if not
+*
+*	@since	0.1
+*	@last_modified	0.1
+*/
+function is_yesterday( $timetamp ){
+    
+    if( date('Ymd', time() - DAY_IN_SECONDS ) == date('Ymd', strtotime($timestamp)) ){
+        
+        return true;
+        
+    } else {
+        
+        return false;
+        
+    }
+    
+}
+
+/**
+*   is_tomorrow
+*
+*   Check if a timestamp is tomorrow
+*
+*   @param string - a tomorrow
+*
+*   @return bool - true if tomorrow, false if not
+*
+*	@since	0.1
+*	@last_modified	0.1
+*/
+function is_tomorrow( $timetamp ){
+    
+    if( date('Ymd', time() + DAY_IN_SECONDS ) == date('Ymd', strtotime($timestamp)) ){
+        
+        return true;
+        
+    } else {
+        
+        return false;
+        
+    }
+    
 }
 
 /**
