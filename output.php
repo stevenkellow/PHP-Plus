@@ -21,6 +21,7 @@
 *   is_image
 *   data_uri
 *   mime_type
+*   human_time_diff
 *
 */
 
@@ -362,5 +363,77 @@ function mime_type( $ext ){
 		
 	}
     
+}
+}
+
+/**
+ *	human_time_diff
+ *	
+ *  Determines the difference between two timestamps.
+ *
+ *	The difference is returned in a human readable format such as "1 hour", "5 mins", "2 days".
+ *
+ *	@author WordPress
+ *
+ *	@since	1.0.4
+ *	@last_modified	1.0.4
+ *
+ *	@param int $from Unix timestamp from which the difference begins.
+ *	@param int $to   Optional. Unix timestamp to end the time difference. Default becomes time() if not set.
+ *	@return string Human readable time difference.
+ */
+if( ! function_exists( 'human_time_diff' ) ){
+function human_time_diff( $from, $to = '' ) {
+	if ( empty( $to ) ) {
+		$to = time();
+	}
+
+	$diff = (int) abs( $to - $from );
+
+	if ( $diff < HOUR_IN_SECONDS ) {
+		$mins = round( $diff / MINUTE_IN_SECONDS );
+		if ( $mins <= 1 ) {
+			$mins = 1;
+		}
+		/* translators: Time difference between two dates, in minutes (min=minute). %s: Number of minutes */
+		$since = sprintf( _n( '%s min', '%s mins', $mins ), $mins );
+	} elseif ( $diff < DAY_IN_SECONDS && $diff >= HOUR_IN_SECONDS ) {
+		$hours = round( $diff / HOUR_IN_SECONDS );
+		if ( $hours <= 1 ) {
+			$hours = 1;
+		}
+		/* translators: Time difference between two dates, in hours. %s: Number of hours */
+		$since = sprintf( _n( '%s hour', '%s hours', $hours ), $hours );
+	} elseif ( $diff < WEEK_IN_SECONDS && $diff >= DAY_IN_SECONDS ) {
+		$days = round( $diff / DAY_IN_SECONDS );
+		if ( $days <= 1 ) {
+			$days = 1;
+		}
+		/* translators: Time difference between two dates, in days. %s: Number of days */
+		$since = sprintf( _n( '%s day', '%s days', $days ), $days );
+	} elseif ( $diff < MONTH_IN_SECONDS && $diff >= WEEK_IN_SECONDS ) {
+		$weeks = round( $diff / WEEK_IN_SECONDS );
+		if ( $weeks <= 1 ) {
+			$weeks = 1;
+		}
+		/* translators: Time difference between two dates, in weeks. %s: Number of weeks */
+		$since = sprintf( _n( '%s week', '%s weeks', $weeks ), $weeks );
+	} elseif ( $diff < YEAR_IN_SECONDS && $diff >= MONTH_IN_SECONDS ) {
+		$months = round( $diff / MONTH_IN_SECONDS );
+		if ( $months <= 1 ) {
+			$months = 1;
+		}
+		/* translators: Time difference between two dates, in months. %s: Number of months */
+		$since = sprintf( _n( '%s month', '%s months', $months ), $months );
+	} elseif ( $diff >= YEAR_IN_SECONDS ) {
+		$years = round( $diff / YEAR_IN_SECONDS );
+		if ( $years <= 1 ) {
+			$years = 1;
+		}
+		/* translators: Time difference between two dates, in years. %s: Number of years */
+		$since = sprintf( _n( '%s year', '%s years', $years ), $years );
+	}
+	
+	return $since;
 }
 }

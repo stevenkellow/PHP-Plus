@@ -35,6 +35,7 @@
 *       repeat_string
 *   proper
 *       sentence_case
+*   strcheck
 */
 
 /**
