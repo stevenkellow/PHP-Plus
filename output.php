@@ -164,6 +164,7 @@ function random_color( $type = 'hex'){
 *
 *	@return string - copyright notice like (c) 2017, (c) MMVII or (c) 2012 - 2017
 */
+if( ! function_exists( 'copyright' ) ){
 function copyright( $year = false, $roman = false ){
 	
     if(intval($year) == false ){
@@ -184,6 +185,7 @@ function copyright( $year = false, $roman = false ){
         // Output the copy symbol and the current year or the current year in Roman numerals
         echo '&copy; ' . ($roman == false ? date('Y') : arabic2roman( date('Y') ));
     } 
+}
 }
 
 /**
@@ -286,6 +288,7 @@ function easter_date_orthodox( $year = false ) {
 *
 *	@return bool - true if image, false if not
 */
+if( ! function_exists( 'is_image' ) ){
 function is_image($path){
     $a = getimagesize($path);
     $image_type = $a[2];
@@ -294,6 +297,7 @@ function is_image($path){
         return true;
     }
     return false;
+}
 }
            
 /**

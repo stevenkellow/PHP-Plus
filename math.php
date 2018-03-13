@@ -14,7 +14,7 @@
 *   mean
 *   median
 *   mode
-*       average
+*   average
 *   is_even
 *   is_odd
 *   round_up
