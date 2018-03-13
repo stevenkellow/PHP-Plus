@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Output functions
 *
 *	@package PHP Plus!
@@ -24,7 +24,7 @@
 *
 */
 
-/*
+/**
 *   test_remote_file
 *
 *   Test if a remote file exists
@@ -70,7 +70,7 @@ function test_remote_file( $file_location ){
 }
 }
 
-/*
+/**
 *   print_pre
 *
 *   Send out a print_r request in a more readable format
@@ -92,7 +92,7 @@ function print_pre( $data ){
 }
 }
 
-/*
+/**
 *   random_color
 *
 *   Generate random color
@@ -147,7 +147,7 @@ function random_color( $type = 'hex'){
 }
 }
 
-/*
+/**
 *
 *	copyright
 *
@@ -186,7 +186,7 @@ function copyright( $year = false, $roman = false ){
     } 
 }
 
-/*
+/**
 *
 *	qr_url
 *
@@ -214,7 +214,7 @@ function qr_url( $data, $size = '300' ){
 }
 }
 
-/*
+/**
 *
 *	qr_image
 *
@@ -238,7 +238,7 @@ function qr_image( $data, $size = '300' ){
 }
 }
 
-/*
+/**
 *
 *	easter_date_orthodox
 *
@@ -273,7 +273,7 @@ function easter_date_orthodox( $year = false ) {
 }
 
 
-/*
+/**
 *
 *	is_image
 *
@@ -296,7 +296,7 @@ function is_image($path){
     return false;
 }
            
-/*
+/**
 *
 *	data_uri
 *
@@ -330,7 +330,7 @@ function data_uri($file) {
 }
 }
 
-/*
+/**
 *   mime_type
 *
 *   Returns the mime type of a file given the extension

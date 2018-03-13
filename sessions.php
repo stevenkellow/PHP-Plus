@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Sessions functions
 *
 *	@package PHP Plus!
@@ -18,7 +18,7 @@
 *
 */
 
-/*
+/**
 *   session_starter
 *
 *   Start a PHP session if one doesn't exist already
@@ -60,7 +60,7 @@ function session_starter( $name = false, $options = array() ){
 }
 }
 
-/*
+/**
 *   session
 *
 *   Use function to manipulate PHP sessions
@@ -106,7 +106,7 @@ function session( $key = null, $value = null ){
 }
 }
 
-/*
+/**
 *
 *	redirect
 *
@@ -139,7 +139,7 @@ function redirect( $url, $response = 301 ){
 }
 }
 
-/*
+/**
 *
 *	current_url
 *
@@ -163,7 +163,7 @@ function current_url() {
 }
 }
 
-/*
+/**
 *   timer_start
 *
 *   Start a timer
@@ -182,7 +182,7 @@ function timer_start(){
 }
 }
 
-/*
+/**
 *   timer_end
 *
 *   End a timer and get the difference from the time started

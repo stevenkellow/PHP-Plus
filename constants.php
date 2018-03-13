@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Constants
 *
 *	@package PHP Plus!

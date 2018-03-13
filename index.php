@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	PHP Plus!
 *	A library of curated PHP helper functions to add life to your PHP install
 *

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Security functions
 *
 *	@package PHP Plus!
@@ -14,7 +14,7 @@
 *
 */
 
-/*
+/**
 *   csrf_token
 *
 *   Create and output a CSRF token hidden input
@@ -54,7 +54,7 @@ function csrf_token( $name = 'csrf_token', $length = 32 ){
 }
 }
 
-/*
+/**
 *   csrf_verify
 *
 *   Verify a given CSRF token

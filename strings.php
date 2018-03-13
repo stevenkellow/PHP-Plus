@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	String functions
 *
 *	@package PHP Plus!
@@ -37,7 +37,7 @@
 *       sentence_case
 */
 
-/*
+/**
 *  	rand_string
 *
 *  	Create a cryptographically secure random string
@@ -105,7 +105,7 @@ function rand_string( $length = 36, $symbols = true ){
 }	
 }
 
-/*
+/**
 *   validate_email
 *
 *   Verify if an email format is valid
@@ -129,7 +129,7 @@ function validate_email( $email ){
 }
 }
 
-/*
+/**
 *   is_email
 *
 *   Alias of validate_email
@@ -149,7 +149,7 @@ function is_email( $email ){
 }
 }
 
-/*
+/**
 *   validate_url
 *
 *   Verify if a url format is valid
@@ -173,7 +173,7 @@ function validate_url( $url ){
 }
 }
 
-/*
+/**
 *   is_url
 *
 *   Alias of validate_url
@@ -193,7 +193,7 @@ function is_url( $url ){
 }
 }
 
-/*
+/**
 *   slug
 *
 *   Turn a string into a slug
@@ -216,7 +216,7 @@ function slug($string){
 }
 }
 
-/*
+/**
 *   trailingslash
 *
 *   Appends a trailing slash.
@@ -237,7 +237,7 @@ function trailingslash( $string ) {
 }
 }
 
-/*
+/**
 *   untrailingslash
 *
 *   Removes trailing forward slashes and backslashes if they exist.
@@ -258,7 +258,7 @@ function untrailingslash( $string ) {
 }
 }
 
-/*
+/**
 *   str2hex
 *
 *   Returns a hex containing a string
@@ -283,7 +283,7 @@ function str2hex($func_string) {
 }
 }
 
-/*
+/**
 *   hex2str
 *
 *   Returns a string containing a hex
@@ -308,7 +308,7 @@ function hex2str($func_string) {
 }
 }
 
-/*
+/**
 *   mbstring_binary_safe_encoding
 *
 *   Set the mbstring internal encoding to a binary safe encoding when func_overload is enabled.
@@ -346,7 +346,7 @@ function mbstring_binary_safe_encoding( $reset = false ) {
 }
 }
 
-/*
+/**
 *   reset_mbstring_encoding
 *
 *   Reset the mbstring internal encoding to a users previously set encoding.
@@ -365,7 +365,7 @@ function reset_mbstring_encoding() {
 }
 }
 
-/*
+/**
 *   seems_utf8
 *
 *   Checks to see if a string is utf8 encoded.
@@ -404,7 +404,7 @@ function seems_utf8( $str ) {
 }
 }
 
-/*
+/**
 *   utf8_uri_encode
 *
 *   Encode the Unicode values to be used in the URI.
@@ -625,7 +625,7 @@ function xml_decode( $xmlstring ){
 }
 }
 
-/*
+/**
 *   xssafe
 *
 *   Create a string that's safe from XSS attacks
@@ -650,7 +650,7 @@ function xssafe($data,$encoding='UTF-8'){
 }
 }
 
-/*
+/**
 *   xecho
 *
 *   Echoes an XSS-safe string
@@ -671,7 +671,7 @@ function xecho($data){
 }
 }
 
-/*
+/**
 *   zeroise
 *
 *   Pad a string with zeros if needed
@@ -693,7 +693,7 @@ function zeroise($number, $length){
 }
 }
 
-/*
+/**
 *   rept
 *
 *   Alias of str_repeat()
@@ -715,7 +715,7 @@ function rept( $string, $number ){
 }
 }
 
-/*
+/**
 *   repeat_string
 *
 *   Alias of str_repeat()
@@ -736,7 +736,7 @@ function repeat_string( $string, $number ){
 }
 }
 
-/*
+/**
 *   proper
 *
 *   Makes first character upper case and rest lower case for each word in a string - similar to same function in Excel
@@ -798,7 +798,7 @@ return $string;
 }
 }	
 
-/*
+/**
 *   sentence_case
 *
 *   Alias of proper
@@ -819,7 +819,7 @@ function sentence_case( $string, $split_chars = null ){
 }
 }
 
-/*
+/**
 *   strcheck
 *
 *   Check that passed arguments have a string length of 1 or more

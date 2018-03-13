@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Variables functions
 *
 *	@package PHP Plus!
@@ -19,7 +19,7 @@
 *
 */
 
-/*
+/**
 *   is_ssl
 *
 *   Check if the site uses SSL or note
@@ -50,7 +50,7 @@ function is_ssl() {
 }
 }
 
-/*
+/**
 *   protocol
 *
 *   Print the site's protocol
@@ -74,7 +74,7 @@ function protocol(){
 }
 }
 
-/*
+/**
 *   get_user_ip
 *
 *   Get the user's IP address
@@ -111,7 +111,7 @@ function get_user_ip(){
 }
 }
 
-/*
+/**
 *   get_user_lang
 *
 *   Get the user's language
@@ -146,7 +146,7 @@ function get_user_lang( $availableLanguages, $default = 'en' ){
 }
 
 
-/*
+/**
 *   is_windows
 *
 *   Checks if PHP is running on a Windows platform
@@ -172,7 +172,7 @@ function is_windows(){
 }
 }
 
-/*
+/**
 *   is_linux
 *
 *   Checks if PHP is running on a Linux platform
@@ -198,7 +198,7 @@ function is_linux(){
 }
 }
 
-/*
+/**
 *	date_mysql
 *
 *	Output an MySQL friendly date/time stamp
