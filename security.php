@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Security functions
 *
 *	@package PHP Plus!
@@ -11,10 +11,10 @@
 *
 *   csrf_token
 *   csrf_verify
-*
+*   antispambot
 */
 
-/*
+/**
 *   csrf_token
 *
 *   Create and output a CSRF token hidden input
@@ -54,7 +54,7 @@ function csrf_token( $name = 'csrf_token', $length = 32 ){
 }
 }
 
-/*
+/**
 *   csrf_verify
 *
 *   Verify a given CSRF token
@@ -107,5 +107,34 @@ function csrf_verify( $name = 'csrf_token' ){
 		return false;
 		
 	}
+}
+}
+
+/**
+*  antispambot
+*
+*  Converts email addresses characters to HTML entities to block spam bots.
+*
+*  @since 0.71
+*
+*  @param string $email_address Email address.
+*  @param int    $hex_encoding  Optional. Set to 1 to enable hex encoding.
+*  @return string Converted email address.
+*/
+if( ! function_exists( 'antispambot' ) ){
+function antispambot( $email_address, $hex_encoding = 0 ) {
+	$email_no_spam_address = '';
+	for ( $i = 0, $len = strlen( $email_address ); $i < $len; $i++ ) {
+		$j = rand( 0, 1 + $hex_encoding );
+		if ( $j == 0 ) {
+			$email_no_spam_address .= '&#' . ord( $email_address[ $i ] ) . ';';
+		} elseif ( $j == 1 ) {
+			$email_no_spam_address .= $email_address[ $i ];
+		} elseif ( $j == 2 ) {
+			$email_no_spam_address .= '%' . zeroise( dechex( ord( $email_address[ $i ] ) ), 2 );
+		}
+	}
+
+	return str_replace( '@', '&#64;', $email_no_spam_address );
 }
 }

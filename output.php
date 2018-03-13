@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Output functions
 *
 *	@package PHP Plus!
@@ -15,14 +15,15 @@
 *   copyright
 *   qr_url
 *   qr_image
-*   easter_date_orthodox
 *   is_image
 *   data_uri
 *   mime_type
-*
+*   table
+*   dd
+*   e
 */
 
-/*
+/**
 *   test_remote_file
 *
 *   Test if a remote file exists
@@ -68,7 +69,7 @@ function test_remote_file( $file_location ){
 }
 }
 
-/*
+/**
 *   print_pre
 *
 *   Send out a print_r request in a more readable format
@@ -90,7 +91,7 @@ function print_pre( $data ){
 }
 }
 
-/*
+/**
 *   random_color
 *
 *   Generate random color
@@ -145,46 +146,7 @@ function random_color( $type = 'hex'){
 }
 }
 
-/*
-*
-*	copyright
-*
-*	Output an automatic copyright notice
-*
-*   @author Chris Coyier
-*   @source https://css-tricks.com/snippets/php/automatic-copyright-year/
-*
-*   @since 0.1
-*   @last_modified 0.1
-*
-*	@params int $year - a start year for copyright
-*   @params bool $roman - use roman numerals for year
-*
-*	@return string - copyright notice like (c) 2017, (c) MMVII or (c) 2012 - 2017
-*/
-function copyright( $year = false, $roman = false ){
-	
-    if(intval($year) == false ){
-        $year = date('Y');
-    }
-    
-	if(intval($year) == date('Y')){
-        // Output the copy symbol and either the year or the year in Roman numerals
-        echo '&copy; ' . ($roman == false ? intval($year) : arabic2roman( intval($year) ));
-    }
-    
-	if(intval($year) < date('Y')){
-        // Output the copy symbol and either the year range or the year range in Roman numerals
-        echo '&copy; ' . ($roman == false ? (intval($year) . ' - ' . date('Y')) : ( arabic2roman( intval($year) ) . ' - ' . arabic2roman( date('Y') )) );
-    }
-    
-	if(intval($year) > date('Y')){
-        // Output the copy symbol and the current year or the current year in Roman numerals
-        echo '&copy; ' . ($roman == false ? date('Y') : arabic2roman( date('Y') ));
-    } 
-}
-
-/*
+/**
 *
 *	qr_url
 *
@@ -212,7 +174,7 @@ function qr_url( $data, $size = '300' ){
 }
 }
 
-/*
+/**
 *
 *	qr_image
 *
@@ -236,42 +198,7 @@ function qr_image( $data, $size = '300' ){
 }
 }
 
-/*
-*
-*	easter_date_orthodox
-*
-*	Output the date of Easter for Easter Orthodox churches in the UNIX epoch (1970 to 2037)
-*
-*   @author maxie
-*   @source http://php.net/manual/en/function.easter-date.php#83794
-*
-*	@params int $year - year to calculate easter for (default: current year)
-*
-*	@return int - timestamp of Easter (may want to use date to format)
-*/
-if( ! function_exists( 'easter_date_orthodox') ){
-function easter_date_orthodox( $year = false ) { 
-    
-    if( $year === false ){
-        $year = date( 'Y' );
-    }
-    
-    $a = $year % 4; 
-    $b = $year % 7; 
-    $c = $year % 19; 
-    $d = (19 * $c + 15) % 30; 
-    $e = (2 * $a + 4 * $b - $d + 34) % 7; 
-    $month = floor(($d + $e + 114) / 31); 
-    $day = (($d + $e + 114) % 31) + 1; 
-    
-    $de = mktime(0, 0, 0, $month, $day + 13, $year); 
-    
-    return $de; 
-}
-}
-
-
-/*
+/**
 *
 *	is_image
 *
@@ -284,6 +211,7 @@ function easter_date_orthodox( $year = false ) {
 *
 *	@return bool - true if image, false if not
 */
+if( ! function_exists( 'is_image' ) ){
 function is_image($path){
     $a = getimagesize($path);
     $image_type = $a[2];
@@ -293,8 +221,9 @@ function is_image($path){
     }
     return false;
 }
+}
            
-/*
+/**
 *
 *	data_uri
 *
@@ -328,7 +257,7 @@ function data_uri($file) {
 }
 }
 
-/*
+/**
 *   mime_type
 *
 *   Returns the mime type of a file given the extension
@@ -355,6 +284,106 @@ function mime_type( $ext ){
 		return false;
 		
 	}
+    
+}
+}
+
+/**
+*   table
+*
+*   Print a HTML table
+*
+*   @param array $headers - an array where each item is a header title
+*   @param array $data - an array, where each item is an array containing cells
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'table' ) ){
+function table( $headers, $data ){
+	
+	// Create the table
+	$output = '<table>';
+	
+	// If there are header rows then add them here
+	if( ! empty( $headers ) && $headers !== false ){
+		
+		$output .= '<thead><tr>';
+		
+		foreach( $headers as $head ){
+			
+			$output .= '<th>' . $head . '</th>';
+			
+		}
+		
+		$output .= '</tr></thead>';
+		
+	}
+	
+	// Open the body of the table
+	$output .= '<tbody>';
+	
+	// Go through each row
+	foreach( $data as $row ){
+		
+		// Create the row
+		$output .= '<tr>';
+		
+		// Create a cell for each row
+		foreach( $row as $cell ){
+			
+			$output . '<td>' . $cell . '</td>';
+			
+		}
+		
+		$output .= '</tr>';
+		
+	}
+	
+	// Close the table
+	$output .= '</tbody></table>';
+	
+	echo $output;
+	
+	
+}
+}
+
+/**
+*   dd
+*
+*   Dump the variable and end execution of the script
+*
+*   @param mixed $variable - the variable to dump
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'dd' ) ){
+function dd( $variable ){
+    
+    var_dump( $variable );
+    exit();
+    
+}
+}
+
+/**
+*   e
+*
+*   Shorthand to run htmlentities over a string
+*
+*   @param string $string - string to sanitise
+*
+*   @return string - sanitised string
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'e' ) ){
+function e( $string ){
+    
+    return htmlentities( $string );
     
 }
 }

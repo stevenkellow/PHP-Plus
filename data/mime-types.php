@@ -1,5 +1,15 @@
 <?php
-// List of Mime types - courtesy of Rodney Rehm https://gist.github.com/rodneyrehm/1372758
+/**
+*   data/mime-types
+*
+*   A list of file extensions and associated mime-types
+*
+*   @author Rodney Rehm
+*   @see https://gist.github.com/rodneyrehm/1372758
+*
+*	@since	0.1
+*	@last_modified	0.1
+*/
 $mime_types = array(
     'rmi' => 'audio/midi',
     'mp4a' => 'audio/mp4',

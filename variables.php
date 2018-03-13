@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Variables functions
 *
 *	@package PHP Plus!
@@ -15,11 +15,11 @@
 *   get_user_lang
 *   is_windows
 *   is_linux
-*   date_mysql
+*   is_mobile
 *
 */
 
-/*
+/**
 *   is_ssl
 *
 *   Check if the site uses SSL or note
@@ -50,7 +50,7 @@ function is_ssl() {
 }
 }
 
-/*
+/**
 *   protocol
 *
 *   Print the site's protocol
@@ -74,7 +74,7 @@ function protocol(){
 }
 }
 
-/*
+/**
 *   get_user_ip
 *
 *   Get the user's IP address
@@ -111,7 +111,7 @@ function get_user_ip(){
 }
 }
 
-/*
+/**
 *   get_user_lang
 *
 *   Get the user's language
@@ -146,7 +146,7 @@ function get_user_lang( $availableLanguages, $default = 'en' ){
 }
 
 
-/*
+/**
 *   is_windows
 *
 *   Checks if PHP is running on a Windows platform
@@ -172,7 +172,7 @@ function is_windows(){
 }
 }
 
-/*
+/**
 *   is_linux
 *
 *   Checks if PHP is running on a Linux platform
@@ -198,43 +198,32 @@ function is_linux(){
 }
 }
 
-/*
-*	date_mysql
+/**
+*   is_mobile
 *
-*	Output an MySQL friendly date/time stamp
+*   Test if the current browser runs on a mobile device (smart phone, tablet, etc.)
 *
-*	@since 1.0.2
-*	@last_modified 1.0.2
+*   @author WordPress
 *
-*	@param string | int - $time - a time to base the output on
-*	@param string $date_time - whether to output datetime or just date
+*   @since 1.0.4
+*   @last_modified  1.0.4
 *
-*	@return string - MySQL datetime string
-*
+*   @return bool - true if mobile, false if not
 */
-if( ! function_exists( 'date_mysql' ) ){
-function date_mysql( $time = false, $date_time = 'datetime' ){
-    
-    // Use current time if none set
-    if( $time == false ){
-        $time = time();
-    }
-    
-    // Convert a string time to int
-    if( is_string( $time ) ){
-        $time = strtotime( $time );
-    }
-	
-    // If outputting $date_time
-    if( $date_time == 'date' ){
-    
-   	    return date( 'Y-m-d', $time );
-	    
+if( ! function_exists( 'is_mobile') ){
+function is_mobile() {
+    if ( empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
+        $is_mobile = false;
+    } elseif ( strpos( $_SERVER['HTTP_USER_AGENT'], 'Mobile' ) !== false // many mobile devices (all iPhone, iPad, etc.)
+        || strpos( $_SERVER['HTTP_USER_AGENT'], 'Android' ) !== false
+        || strpos( $_SERVER['HTTP_USER_AGENT'], 'Silk/' ) !== false
+        || strpos( $_SERVER['HTTP_USER_AGENT'], 'Kindle' ) !== false
+        || strpos( $_SERVER['HTTP_USER_AGENT'], 'BlackBerry' ) !== false
+        || strpos( $_SERVER['HTTP_USER_AGENT'], 'Opera Mini' ) !== false
+        || strpos( $_SERVER['HTTP_USER_AGENT'], 'Opera Mobi' ) !== false ) {
+            return true;
     } else {
-	    
-	   return date( 'Y-m-d H:i:s', $time );
-	    
+        return false;
     }
-    
 }
 }

@@ -9,7 +9,7 @@
 
 /*  CONTENTS
 *
-*       array_reindex
+*   array_reindex
 *   is_assoc
 *   shuffle_assoc
 *   array_remove_empty
@@ -18,8 +18,10 @@
 *   sort_by_array
 *   array_wrap
 *   array_flat
-*	array_sort_deep
-*
+*   array_sort_deep
+*   array_pluck
+*   array_add
+*   array_only
 */
 
 /*
@@ -302,10 +304,10 @@ function array_flat($array, $prefix = '', $concat = '_'){
 *   Sort an multi-dimensional array by lower values - combines usort, uasort and uksort into one function
 *
 *   @param array $array - the array to sort
-*	@param string $sort_key - the key  to sort by
-*	@param string $sort_by - either 'key' or 'value'
-*	@param bool $preserve_keys - whether to preserve keys when sorting
-*	@param string $order - the order to sort:
+*   @param string $sort_key - the key  to sort by
+*   @param string $sort_by - either 'key' or 'value'
+*   @param bool $preserve_keys - whether to preserve keys when sorting
+*   @param string $order - the order to sort:
 		- low_to_high
 		- A to Z
 		- alphabetical
@@ -449,5 +451,84 @@ function __high_to_low( $a, $b ){
 	
 	return $b[$sort_key] <=> $a[$sort_key];
 	
+}
+}
+
+/**
+*   array_pluck
+*
+*   Pluck an array of values from an array/object. (Only for PHP 5.3+)
+*
+*   @author Ozh / Laravel
+*   @see https://gist.github.com/ozh/82a17c2be636a2b1c58b49f271954071
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*
+*   @param  $array - data
+*   @param  $key - item you want to pluck from array
+*
+*   @return plucked array only with key data
+*/
+if( ! function_exists( 'array_pluck' ) ){
+function array_pluck($array, $key) {
+    return array_map(function($v) use ($key) {
+      return is_object($v) ? $v->$key : $v[$key];
+    }, $array);
+}
+}
+
+/**
+*   array_add
+*
+*   Add a key value pair to an array if it doesn't already exist
+*
+*   @param array $array - the array to add to
+*   @param string $key - the key to add
+*   @param mixed $value - the value to add
+*
+*   @return array $array - the potentially edited array
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'array_add' ) ){
+function array_add( $array, $key, $value ){
+    
+    if( ! isset( $array[$key] ) ){
+        $array[$key] = $value;
+    }
+    
+    return $array;
+    
+}
+}
+
+/**
+*   array_only
+*
+*   Return only the specified keys from an array
+*
+*   @param array $array - the base array to get data from
+*   @param array $keys - the keys to return
+*
+*   @return array $return - the edited array
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'array_only' ) ){
+function array_only( $array, $keys ){
+    
+    $return = array();
+    
+    foreach( $keys as $key ){
+        
+        $return[$key] = $array[$key];
+        
+    }
+    
+    return $return;
+    
 }
 }

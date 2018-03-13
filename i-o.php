@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Input / output functions
 *
 *	@package PHP Plus!
@@ -38,7 +38,7 @@
 *
 */
 
-/*
+/**
 *   send_mail
 *
 *   Wrap the default PHP mail function to allow for formatted emails and multiple sending
@@ -85,7 +85,7 @@ function html_mail($to, $subject, $message, $from_email, $from_name){
 }
 }
 
-/*
+/**
 *   quick_curl
 *
 *   Simplify using REST cURL requests in PHP
@@ -170,7 +170,7 @@ function quick_curl($url, $user_auth = null, $rest = 'GET', $input = null, $type
 }
 }
 
-/*
+/**
 *   google_analytics
 *
 *   Output the Universal Analytics script for Google
@@ -209,7 +209,7 @@ function google_analytics( $tracking_code = null ){
 }
 }
 
-/*
+/***
 *   facebook_pixel
 *
 *   Output the Facebook Pixel
@@ -250,7 +250,7 @@ function facebook_pixel( $pixel_id ){
 }
 }
 
-/*
+/**
 *   csv_to_array
 *
 *   Turn an uploaded CSV file into an array
@@ -284,7 +284,7 @@ function csv_to_array( $file ){
 }
 
 
-/*
+/**
 *   array_to_csv
 *
 *   Turn an an array into a CSV
@@ -321,7 +321,7 @@ function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"') 
 }
 }
 
-/*
+/**
 *   is_json
 *
 *   Check if data is in JSON format
@@ -344,7 +344,7 @@ function is_json($string) {
 }
 }
 
-/*
+/**
 *   csv_to_json
 *
 *   Turn an uploaded CSV file into a json file
@@ -362,7 +362,7 @@ if( ! function_exists( 'csv_to_json') ){
 function csv_to_json( $file, $location ){
     
     // Turn the file into an array
-    $date_array = csv_to_array( $file );
+    $data_array = csv_to_array( $file );
 	
     // If data was turned into an array correctly
     if( $data_array !== false ){
@@ -392,7 +392,7 @@ function csv_to_json( $file, $location ){
 }
 }
 
-/*
+/**
 *   json_to_csv
 *
 *   Turn an a JSON file into a CSV
@@ -434,7 +434,7 @@ function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
 }
 }
 
-/*
+/**
 *   json_file_to_array
 *
 *   Get data from a json file and turn it into an array
@@ -454,7 +454,7 @@ function json_file_to_array( $path ){
 }
 }
 
-/*
+/**
 *   array_to_json_file
 *
 *   Create or update a json file with data from an array
@@ -517,7 +517,7 @@ function array_to_json_file( $array, $path, $update = true, $delete = false ){
 }
 }
 
-/*
+/**
 *   json_encode_utf8
 *
 *   Encode a JSON item in UTF8
@@ -544,7 +544,7 @@ function json_encode_utf8( $data ){
 }
 }
 
-/*
+/**
 *	pretty_json
 *
 *	Output JSON in a formatted way
@@ -572,7 +572,7 @@ function pretty_json( $json ){
 }
 }
 
-/*
+/**
 *	xml_to_json
 *
 *   Turn XML (file or string) into JSON.
@@ -603,7 +603,7 @@ function xml_to_json( $xml_input, $file = true ){
 }
 }
 
-/*
+/**
 *	xml_to_array
 *
 *   Turn XML (file or string) into an array.
@@ -630,7 +630,7 @@ function xml_to_array( $xml_input, $file = true ){
 }
 }
     
-/*
+/**
 *	get_gravatar
 *
 *   Get either a Gravatar URL or complete image tag for a specified email address.
@@ -667,7 +667,7 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
 }
 }
 
-/*
+/**
 *   unzip
 *
 *   Unzip a file to a specified location
@@ -700,7 +700,7 @@ function unzip( $file, $extractPath ){
 }
 }
 
-/*
+/**
 *	hash_email
 *
 *	Return the md5 hash of an email
@@ -728,7 +728,7 @@ function hash_email( $email ){
 }
 }
 
-/*
+/**
 *	email_hash
 *
 *	Alias of hash_email
@@ -748,7 +748,7 @@ function email_hash( $email ){
 }
 }
 
-/*
+/**
 *   comma_explode
 *
 *   Turns a comma separated item into an array
@@ -790,7 +790,7 @@ function comma_explode( $array_string ){
 }
 }
 
-/*
+/**
 *   comma_implode
 *
 *   Turns an array into a comma separated string
@@ -926,7 +926,7 @@ function is_serialized($value, &$result = null){
 }
 }
 
-/*
+/**
 *   maybe_unserialize
 *
 *   Return unserialized value of item
@@ -949,7 +949,7 @@ function maybe_unserialize( $item ){
 }
 }
 
-/*
+/**
 *   maybe_serialize
 *
 *   Return serialized value of array or object, skip others
@@ -973,7 +973,7 @@ function maybe_serialize( $item ){
 }
 }
 
-/*
+/**
 *   pipe_decode
 *
 *   Create an array from a pipe separated string
@@ -1000,7 +1000,7 @@ function pipe_decode( $string ){
 }
 }
 
-/*
+/**
 *   pipe_encode
 *
 *   Converts an array into a pipe separated string

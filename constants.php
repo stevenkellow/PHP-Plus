@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Constants
 *
 *	@package PHP Plus!
@@ -74,7 +74,7 @@ if( ! defined( 'YEAR_IN_SECONDS') ){
         define( 'YEAR', 365 * 30 * 24 * 60 * 60 );
     }
 
-/*
+/**
 *   Data storage constants
 *
 *   @author WordPress
@@ -100,8 +100,11 @@ if( ! defined( 'TB_IN_BYTES') ){
     define( 'TB_IN_BYTES', 1024 * GB_IN_BYTES );
 }
 
-/*
+/**
 *   Math constants
+*
+*   @since 0.1
+*   @last_modified 1.0.3
 */
 
 // PI - as defined by PHP
@@ -128,19 +131,3 @@ if( ! defined( 'BILLION') ){
 if( ! defined( 'TRILLION') ){
     define( 'TRILLION', 1000 * BILLION );
 }
-
-/*
-*   Formatting constants
-*
-*   @since 0.1
-*   @last_modified 0.1
-*/
-/* $localenvironment = localeconv();
-
-if( ! defined( 'DECIMAL_SEP') ){
-    define( 'DECIMAL_SEP', $localenvironment['decimal_point'] );
-}
-
-if( ! defined( 'THOUSAND_SEP') ){
-    define( 'THOUSAND_SEP', $localenvironment['thousands_sep'] );
-}*/

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 *	Math functions
 *
 *	@package PHP Plus!
@@ -14,7 +14,7 @@
 *   mean
 *   median
 *   mode
-*       average
+*   average
 *   is_even
 *   is_odd
 *   round_up
@@ -29,7 +29,7 @@
 *   percent
 */
 
-/*
+/**
 *   absint
 *
 *   Convert a value to non-negative integer
@@ -50,7 +50,7 @@ function absint( $number ) {
 }
 }
 
-/*
+/**
 *   mean
 *
 *   Get the mean of a set of values in an array
@@ -96,7 +96,7 @@ function mean(){
 }
 }
 
-/*
+/**
 *   median
 *
 *   Get the median of a set of values in an array
@@ -152,7 +152,7 @@ function median() {
 }
 }
 
-/*
+/**
 *   mode
 *
 *   Get the mode of a set of values in an array
@@ -200,7 +200,7 @@ function mode(){
 }
 }
 
-/*
+/**
 *   average
 *
 *   Get the average of a set of values in an array (alias for Mean)
@@ -225,7 +225,7 @@ function average(){
 }
 }
 
-/*
+/**
 *   is_even
 *
 *   Check if a number is even
@@ -252,7 +252,7 @@ function is_even( $number ){
 }
 }
 
-/*
+/**
 *   is_odd
 *
 *   Check if a number is odd
@@ -279,7 +279,7 @@ function is_odd( $number ){
 }
 }
 
-/*
+/**
 *   round_up
 *
 *   Round number up to specified precision
@@ -302,7 +302,7 @@ function round_up($number, $precision = 2){
 }
 }
 
-/*
+/**
 *   round_down
 *
 *   Round number up to specified value
@@ -325,7 +325,7 @@ function round_down($number, $precision = 2){
 }
 }
 
-/*
+/**
 *   round_bank
 *
 *   Round to nearest even number
@@ -418,7 +418,7 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
 }
 }
    
-/*
+/**
 *   sum
 *
 *   Sum of values in an array (alias of array_sum)
@@ -460,7 +460,7 @@ function sum(){
 }
 }
    
-/*
+/**
 *   arabic2roman
 *
 *   Convert an integer in Arabic numerals to Roman numerals
@@ -496,7 +496,7 @@ function arabic2roman( $integer ){
 }
    
    
-/*
+/**
 *   roman2arabic
 *
 *   Convert a string from Roman numerals to Arabic numerals
@@ -530,7 +530,7 @@ function roman2arabic( $roman ){
 }
 }
 
-/*
+/**
 *   temperature
 *
 *   Convert a temperature between celsius, fahrenheit and kelvin
@@ -618,7 +618,7 @@ function temperature( $number, $from, $to ){
 }
 }
 
-/*
+/**
 *   latlon_distance
 *
 *   Calculate a distance between two latitude and longitude positions
@@ -658,7 +658,7 @@ function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 }
 }
 
-/*
+/**
 *   ordinal
 *
 *   Add the ordinal reference (th, nd etc.) after a number
@@ -683,7 +683,7 @@ function ordinal($cdnl){
 }
 }
 
-/*
+/**
 *	percent
 *
 *	Output a number as a percentage
