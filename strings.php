@@ -36,6 +36,7 @@
 *   proper
 *       sentence_case
 *   strcheck
+*   sanitize_key
 */
 
 /**
@@ -848,4 +849,24 @@ function strcheck(){
 	return true;
 	
 }
+}
+
+/**
+*   sanitize_key
+*
+*   Keys are used as internal identifiers. Lowercase alphanumeric characters, dashes and underscores are allowed.
+*
+*   @param string $key String key
+*
+*   @return string Sanitized key
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+function sanitize_key( $key ) {
+	$raw_key = $key;
+	$key     = strtolower( $key );
+	$key     = preg_replace( '/[^a-z0-9_\-]/', '', $key );
+
+	return $key;
 }
