@@ -492,6 +492,7 @@ function array_pluck($array, $key) {
 *	@since	1.0.4
 *	@last_modified	1.0.4
 */
+if( ! function_exists( 'array_add' ) ){
 function array_add( $array, $key, $value ){
     
     if( ! isset( $array[$key] ) ){
@@ -500,6 +501,7 @@ function array_add( $array, $key, $value ){
     
     return $array;
     
+}
 }
 
 /**
