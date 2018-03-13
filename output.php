@@ -21,6 +21,8 @@
 *   data_uri
 *   mime_type
 *   table
+*   dd
+*   e
 */
 
 /**
@@ -346,5 +348,44 @@ function table( $headers, $data ){
 	echo $output;
 	
 	
+}
+}
+
+/**
+*   dd
+*
+*   Dump the variable and end execution of the script
+*
+*   @param mixed $variable - the variable to dump
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'dd' ) ){
+function dd( $variable ){
+    
+    var_dump( $variable );
+    exit();
+    
+}
+}
+
+/**
+*   e
+*
+*   Shorthand to run htmlentities over a string
+*
+*   @param string $string - string to sanitise
+*
+*   @return string - sanitised string
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'e' ) ){
+function e( $string ){
+    
+    return htmlentities( $string );
+    
 }
 }
