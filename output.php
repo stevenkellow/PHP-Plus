@@ -20,6 +20,7 @@
 *   is_image
 *   data_uri
 *   mime_type
+*   table
 */
 
 /**
@@ -284,5 +285,66 @@ function mime_type( $ext ){
 		
 	}
     
+}
+}
+
+/**
+*   table
+*
+*   Print a HTML table
+*
+*   @param array $headers - an array where each item is a header title
+*   @param array $data - an array, where each item is an array containing cells
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'table' ) ){
+function table( $headers, $data ){
+	
+	// Create the table
+	$output = '<table>';
+	
+	// If there are header rows then add them here
+	if( ! empty( $headers ) && $headers !== false ){
+		
+		$output .= '<thead><tr>';
+		
+		foreach( $headers as $head ){
+			
+			$output .= '<th>' . $head . '</th>';
+			
+		}
+		
+		$output .= '</tr></thead>';
+		
+	}
+	
+	// Open the body of the table
+	$output .= '<tbody>';
+	
+	// Go through each row
+	foreach( $data as $row ){
+		
+		// Create the row
+		$output .= '<tr>';
+		
+		// Create a cell for each row
+		foreach( $row as $cell ){
+			
+			$output . '<td>' . $cell . '</td>';
+			
+		}
+		
+		$output .= '</tr>';
+		
+	}
+	
+	// Close the table
+	$output .= '</tbody></table>';
+	
+	echo $output;
+	
+	
 }
 }
