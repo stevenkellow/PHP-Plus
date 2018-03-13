@@ -15,7 +15,6 @@
 *   get_user_lang
 *   is_windows
 *   is_linux
-*   date_mysql
 *   is_mobile
 *
 */
@@ -194,47 +193,6 @@ function is_linux(){
         return true;
     } else {
         return false;
-    }
-    
-}
-}
-
-/**
-*	date_mysql
-*
-*	Output an MySQL friendly date/time stamp
-*
-*	@since 1.0.2
-*	@last_modified 1.0.2
-*
-*	@param string | int - $time - a time to base the output on
-*	@param string $date_time - whether to output datetime or just date
-*
-*	@return string - MySQL datetime string
-*
-*/
-if( ! function_exists( 'date_mysql' ) ){
-function date_mysql( $time = false, $date_time = 'datetime' ){
-    
-    // Use current time if none set
-    if( $time == false ){
-        $time = time();
-    }
-    
-    // Convert a string time to int
-    if( is_string( $time ) ){
-        $time = strtotime( $time );
-    }
-	
-    // If outputting $date_time
-    if( $date_time == 'date' ){
-    
-   	    return date( 'Y-m-d', $time );
-	    
-    } else {
-	    
-	   return date( 'Y-m-d H:i:s', $time );
-	    
     }
     
 }

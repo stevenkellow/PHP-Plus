@@ -362,7 +362,7 @@ if( ! function_exists( 'csv_to_json') ){
 function csv_to_json( $file, $location ){
     
     // Turn the file into an array
-    $date_array = csv_to_array( $file );
+    $data_array = csv_to_array( $file );
 	
     // If data was turned into an array correctly
     if( $data_array !== false ){

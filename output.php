@@ -17,12 +17,9 @@
 *   copyright
 *   qr_url
 *   qr_image
-*   easter_date_orthodox
 *   is_image
 *   data_uri
 *   mime_type
-*   human_time_diff
-*
 */
 
 /**
@@ -150,47 +147,6 @@ function random_color( $type = 'hex'){
 
 /**
 *
-*	copyright
-*
-*	Output an automatic copyright notice
-*
-*   @author Chris Coyier
-*   @source https://css-tricks.com/snippets/php/automatic-copyright-year/
-*
-*   @since 0.1
-*   @last_modified 0.1
-*
-*	@params int $year - a start year for copyright
-*   @params bool $roman - use roman numerals for year
-*
-*	@return string - copyright notice like (c) 2017, (c) MMVII or (c) 2012 - 2017
-*/
-if( ! function_exists( 'copyright' ) ){
-function copyright( $year = false, $roman = false ){
-	
-    if(intval($year) == false ){
-        $year = date('Y');
-    }
-    
-	if(intval($year) == date('Y')){
-        // Output the copy symbol and either the year or the year in Roman numerals
-        echo '&copy; ' . ($roman == false ? intval($year) : arabic2roman( intval($year) ));
-    }
-    
-	if(intval($year) < date('Y')){
-        // Output the copy symbol and either the year range or the year range in Roman numerals
-        echo '&copy; ' . ($roman == false ? (intval($year) . ' - ' . date('Y')) : ( arabic2roman( intval($year) ) . ' - ' . arabic2roman( date('Y') )) );
-    }
-    
-	if(intval($year) > date('Y')){
-        // Output the copy symbol and the current year or the current year in Roman numerals
-        echo '&copy; ' . ($roman == false ? date('Y') : arabic2roman( date('Y') ));
-    } 
-}
-}
-
-/**
-*
 *	qr_url
 *
 *	Generate a QR code URL using Google Charts API
@@ -240,41 +196,6 @@ function qr_image( $data, $size = '300' ){
 	
 }
 }
-
-/**
-*
-*	easter_date_orthodox
-*
-*	Output the date of Easter for Easter Orthodox churches in the UNIX epoch (1970 to 2037)
-*
-*   @author maxie
-*   @source http://php.net/manual/en/function.easter-date.php#83794
-*
-*	@params int $year - year to calculate easter for (default: current year)
-*
-*	@return int - timestamp of Easter (may want to use date to format)
-*/
-if( ! function_exists( 'easter_date_orthodox') ){
-function easter_date_orthodox( $year = false ) { 
-    
-    if( $year === false ){
-        $year = date( 'Y' );
-    }
-    
-    $a = $year % 4; 
-    $b = $year % 7; 
-    $c = $year % 19; 
-    $d = (19 * $c + 15) % 30; 
-    $e = (2 * $a + 4 * $b - $d + 34) % 7; 
-    $month = floor(($d + $e + 114) / 31); 
-    $day = (($d + $e + 114) % 31) + 1; 
-    
-    $de = mktime(0, 0, 0, $month, $day + 13, $year); 
-    
-    return $de; 
-}
-}
-
 
 /**
 *
@@ -363,77 +284,5 @@ function mime_type( $ext ){
 		
 	}
     
-}
-}
-
-/**
- *	human_time_diff
- *	
- *  Determines the difference between two timestamps.
- *
- *	The difference is returned in a human readable format such as "1 hour", "5 mins", "2 days".
- *
- *	@author WordPress
- *
- *	@since	1.0.4
- *	@last_modified	1.0.4
- *
- *	@param int $from Unix timestamp from which the difference begins.
- *	@param int $to   Optional. Unix timestamp to end the time difference. Default becomes time() if not set.
- *	@return string Human readable time difference.
- */
-if( ! function_exists( 'human_time_diff' ) ){
-function human_time_diff( $from, $to = '' ) {
-	if ( empty( $to ) ) {
-		$to = time();
-	}
-
-	$diff = (int) abs( $to - $from );
-
-	if ( $diff < HOUR_IN_SECONDS ) {
-		$mins = round( $diff / MINUTE_IN_SECONDS );
-		if ( $mins <= 1 ) {
-			$mins = 1;
-		}
-		/* translators: Time difference between two dates, in minutes (min=minute). %s: Number of minutes */
-		$since = sprintf( _n( '%s min', '%s mins', $mins ), $mins );
-	} elseif ( $diff < DAY_IN_SECONDS && $diff >= HOUR_IN_SECONDS ) {
-		$hours = round( $diff / HOUR_IN_SECONDS );
-		if ( $hours <= 1 ) {
-			$hours = 1;
-		}
-		/* translators: Time difference between two dates, in hours. %s: Number of hours */
-		$since = sprintf( _n( '%s hour', '%s hours', $hours ), $hours );
-	} elseif ( $diff < WEEK_IN_SECONDS && $diff >= DAY_IN_SECONDS ) {
-		$days = round( $diff / DAY_IN_SECONDS );
-		if ( $days <= 1 ) {
-			$days = 1;
-		}
-		/* translators: Time difference between two dates, in days. %s: Number of days */
-		$since = sprintf( _n( '%s day', '%s days', $days ), $days );
-	} elseif ( $diff < MONTH_IN_SECONDS && $diff >= WEEK_IN_SECONDS ) {
-		$weeks = round( $diff / WEEK_IN_SECONDS );
-		if ( $weeks <= 1 ) {
-			$weeks = 1;
-		}
-		/* translators: Time difference between two dates, in weeks. %s: Number of weeks */
-		$since = sprintf( _n( '%s week', '%s weeks', $weeks ), $weeks );
-	} elseif ( $diff < YEAR_IN_SECONDS && $diff >= MONTH_IN_SECONDS ) {
-		$months = round( $diff / MONTH_IN_SECONDS );
-		if ( $months <= 1 ) {
-			$months = 1;
-		}
-		/* translators: Time difference between two dates, in months. %s: Number of months */
-		$since = sprintf( _n( '%s month', '%s months', $months ), $months );
-	} elseif ( $diff >= YEAR_IN_SECONDS ) {
-		$years = round( $diff / YEAR_IN_SECONDS );
-		if ( $years <= 1 ) {
-			$years = 1;
-		}
-		/* translators: Time difference between two dates, in years. %s: Number of years */
-		$since = sprintf( _n( '%s year', '%s years', $years ), $years );
-	}
-	
-	return $since;
 }
 }

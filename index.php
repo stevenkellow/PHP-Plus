@@ -38,3 +38,5 @@ require_once( 'sessions.php' );
 require_once( 'strings.php' );
 // Variables functions
 require_once( 'variables.php' );
+// Date & time functions
+require_once( 'date-time.php' );
