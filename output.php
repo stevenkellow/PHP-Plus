@@ -10,8 +10,6 @@
 /*  CONTENTS
 *
 *   test_remote_file
-*   script
-*   style
 *   print_pre
 *   random_color
 *   copyright
