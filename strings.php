@@ -37,6 +37,7 @@
 *       sentence_case
 *   strcheck
 *   sanitize_key
+*   is_hex
 */
 
 /**
@@ -863,10 +864,34 @@ function strcheck(){
 *	@since	1.0.4
 *	@last_modified	1.0.4
 */
+if( ! function_exists( 'sanitize_key' ) ){
 function sanitize_key( $key ) {
-	$raw_key = $key;
-	$key     = strtolower( $key );
+	
+	$key     = strtolower( $raw_key );
 	$key     = preg_replace( '/[^a-z0-9_\-]/', '', $key );
 
 	return $key;
+}
+}
+
+/**
+*   is_hex
+*
+*   Alias of ctype_xdigit
+*
+*   @see http://php.net/manual/en/function.ctype-xdigit.php
+*
+*   @param string $string - the string to check
+*
+*   @return bool - true if hexadecimal, false if not
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'is_hex' ) ){
+function is_hex( $string ){
+    
+    return ctype_xdigit( $string );
+    
+}
 }
