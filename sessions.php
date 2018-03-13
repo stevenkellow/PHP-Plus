@@ -23,26 +23,36 @@
 *
 *   Start a PHP session if one doesn't exist already
 *
+*   @param string $name - the session name
+*   @param array $options - options when creating the session
+*
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.0.4
 *
 */
 if( ! function_exists( 'session_starter') ){
-function session_starter(){
+function session_starter( $name = false, $options = array() ){
+	
+	// Set the session name if necessary
+	if( $name !== false ){
+	
+		session_name( $name );
+		
+	}
 	
 	// Check if PHP session has started - credit to Meliza Ramos http://stackoverflow.com/a/18542272/7956549
 	if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
 		
 		// If no session exists start one (use session_status after PHP7)
 		if (session_status() == PHP_SESSION_NONE) {
-			session_start();
+			session_start( $options );
 		}
 		
 	} else {
 		
 		// If no session exists start one
 		if(session_id() == '') {
-			session_start();
+			session_start( $options );
 		}
 		
 	}
