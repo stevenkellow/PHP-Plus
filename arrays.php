@@ -9,7 +9,7 @@
 
 /*  CONTENTS
 *
-*       array_reindex
+*   array_reindex
 *   is_assoc
 *   shuffle_assoc
 *   array_remove_empty
@@ -18,7 +18,7 @@
 *   sort_by_array
 *   array_wrap
 *   array_flat
-*	array_sort_deep
+*   array_sort_deep
 *
 */
 
@@ -302,10 +302,10 @@ function array_flat($array, $prefix = '', $concat = '_'){
 *   Sort an multi-dimensional array by lower values - combines usort, uasort and uksort into one function
 *
 *   @param array $array - the array to sort
-*	@param string $sort_key - the key  to sort by
-*	@param string $sort_by - either 'key' or 'value'
-*	@param bool $preserve_keys - whether to preserve keys when sorting
-*	@param string $order - the order to sort:
+*   @param string $sort_key - the key  to sort by
+*   @param string $sort_by - either 'key' or 'value'
+*   @param bool $preserve_keys - whether to preserve keys when sorting
+*   @param string $order - the order to sort:
 		- low_to_high
 		- A to Z
 		- alphabetical
