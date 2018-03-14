@@ -38,6 +38,8 @@
 *   strcheck
 *   sanitize_key
 *   is_hex
+*   starts_with
+*   ends_with
 */
 
 /**
@@ -894,4 +896,49 @@ function is_hex( $string ){
     return ctype_xdigit( $string );
     
 }
+}
+
+/**
+*   starts_with
+*
+*   Check if a string starts with a given value
+*
+*   @author MrHus
+*   @see https://stackoverflow.com/a/4312630/7956549
+*
+*   @param string $haystack - string to search in
+*   @param string $needle - string to search for
+*
+*   @return bool - true if it does, false if it doesn't
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+function starts_with( $haystack, $needle ){
+    
+    $length = strlen($needle);
+    return (substr($haystack, 0, $length) === $needle);
+    
+}
+
+/**
+*   ends_with
+*
+*   Check if a string ends with a given value
+*
+*   @author MrHus
+*   @see https://stackoverflow.com/a/4312630/7956549
+*
+*   @param string $haystack - string to search in
+*   @param string $needle - string to search for
+*
+*   @return bool - true if it does, false if it doesn't
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+function starts_with( $haystack, $needle ){
+    
+   return substr($haystack, -strlen($needle))===$needle;
+    
 }

@@ -22,6 +22,8 @@
 *   array_pluck
 *   array_add
 *   array_only
+*   array_last
+*   array_first
 */
 
 /*
@@ -534,5 +536,42 @@ function array_only( $array, $keys ){
     
     return $return;
     
+}
+}
+
+/**
+*   array_last
+*
+*   Alias of array_pop, returns the last element of the array but preserves original array structure
+*
+*   @param array $array - array to use
+*
+*   @return mixed - the last element of the array
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'array_last' ) ){
+function array_last( $array ){
+    return array_pop( $array );
+}
+}
+
+/**
+*   array_first
+*
+*   Alias of array_shift, returns the first element of the array but preserves original array structure
+*
+*   @param array $array - array to use
+*
+*   @return mixed - the first element of the array
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'array_first' ) ){
+function array_first( $array ){
+    $array = array_reverse( $array );
+    return array_pop( $array );
 }
 }
