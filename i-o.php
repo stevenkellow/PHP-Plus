@@ -35,7 +35,7 @@
 *   maybe_serialize
 *   pipe_decode
 *   pipe_encode
-*
+*   delete_file
 */
 
 /**
@@ -1026,5 +1026,25 @@ function pipe_encode( $array ){
     }
 	
 	
+}
+}
+
+/**
+*   delete_file
+*
+*   Alias of unlink
+*
+*   @param string $file - path to the file to delete
+*
+*   @return type $return - what comes out
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'delete_file' ) ){
+function delete_file( $file ){
+    
+    return unlink( $file );
+    
 }
 }

@@ -15,7 +15,7 @@
 *   current_url
 *   timer_start
 *   timer_end
-*
+*   set_content_type
 */
 
 /**
@@ -202,5 +202,30 @@ function timer_end( $old_time ){
 
 	return $now - $old_time;
 	
+}
+}
+
+/**
+*   set_content_type
+*
+*   Set content type of the output
+*
+*   @param string $type - the file type
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'set_content_type' ) ){
+function set_content_type( $type ){
+    
+    // Call in our mime type files
+    include_once( PATH_TO_PHP_PLUS . '/data/mime-types.php' );
+    
+    // Get the key from the mime types array
+    $mime_type = $mime_types[$type];
+    
+    // Set the header
+    header( 'Content-type: ' . $mime_type );
+    
 }
 }

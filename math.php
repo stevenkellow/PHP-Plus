@@ -27,6 +27,7 @@
 *   temperature
 *   latlon_distance
 *   percent
+*   calc
 */
 
 /**
@@ -703,5 +704,60 @@ function percent( $number, $decimals = 2 ){
 	
 	return number_format( $rounded, $decimals ) . '%';
 
+}
+}
+
+/**
+*   calc
+*
+*   Perform a calculation and make sure the value has a minimum and maximum
+*
+*   @param float $number - the number to evaluate
+*   @param float $min - the minimum value for the calculation
+*   @param float $max - the maximum value for the calculation
+*   @param bool $fail - whether the function should fail if the number is outside the min and max
+*
+*   @return type $return - what comes out
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'calc' ) ){
+function calc( $number, $min = false, $max = false, $fail = false ){
+    
+    // Check if the number is less than the min
+    if( $min !== false && $number < $min ){
+        
+        // If we want to throw a fail, then return false
+        if( $fail == true ){
+            
+            return false;
+            
+        } else {
+            
+            // Return the minimum value
+            return $min;
+            
+        }
+        
+    } elseif( $max !== false && $number > $max ){
+        
+        // If the number is greater than the max - and we want to return fail, then false
+        if( $fail == true ){
+            
+            return false;
+            
+        } else {
+            
+            // Return the maximum value
+            return $max;
+            
+        }
+        
+    }
+    
+    // If it's within the two values then just return that
+    return $number;
+    
 }
 }
