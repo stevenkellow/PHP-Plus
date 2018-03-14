@@ -25,6 +25,7 @@
 *   is_tomorrow
 *   copyright
 *   current_time
+*   create_date_range
 */
 
 /**
@@ -524,5 +525,49 @@ function current_time( $type, $gmt = 0 ) {
 		default:
 			return ( $gmt ) ? date( $type ) : date( $type, time() + ( get_gmt_offset() * HOUR_IN_SECONDS ) );
 	}
+}
+}
+
+/**
+*   create_date_range
+*
+*   Create an array of dates between two given dates (includes the start and excludes the end)
+*
+*   @author ViNce
+*   @see https://stackoverflow.com/a/4312630/7956549
+*
+*   @param string $start - the first date to include
+*   @param string $end - the last date in the range
+*
+*   @return array $dates - an array of dates, formatted as requested
+*
+*	@since	1.0.4
+*	@last_modified    1.0.4
+*/
+if( ! function_exists( 'create_date_range' ) ){
+function create_date_range( $start, $end, $format = 'Y-m-d' ){
+	
+	// Make sure the dates are formatted correctly, and that we use the last day
+	$start = date( 'Y-m-d', strtotime( $start ) );
+	$end = date( 'Y-m-d', strtotime( $end ) + DAY_IN_SECONDS );
+	
+    // Create a DatePeriod object
+	$period = new DatePeriod(
+		 new DateTime( $start ),
+		 new DateInterval('P1D'),
+		 new DateTime( $end )
+	);
+	
+    // Open the array of dates
+	$dates = array();
+	
+    // Add each date to the array
+	foreach ($period as $key => $value) {
+		$dates[] = $value->format( $format );  
+	}
+	
+    // Return the answer
+	return $dates;
+	
 }
 }
