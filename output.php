@@ -12,13 +12,12 @@
 *   test_remote_file
 *   print_pre
 *   random_color
-*   copyright
 *   qr_url
 *   qr_image
 *   is_image
 *   data_uri
 *   mime_type
-*   table
+*   create_table
 *   dd
 *   e
 *	size_format

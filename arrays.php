@@ -13,12 +13,14 @@
 *   is_assoc
 *   shuffle_assoc
 *   array_remove_empty
-*   unset_value
 *   unset_key
+*   unset_value
 *   sort_by_array
 *   array_wrap
 *   array_flat
 *   array_sort_deep
+        _low_to_high
+        _high_to_low
 *   array_pluck
 *   array_add
 *   array_only

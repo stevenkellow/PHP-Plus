@@ -40,7 +40,7 @@
 */
 
 /**
-*   send_mail
+*   html_mail
 *
 *   Wrap the default PHP mail function to allow for formatted emails and multiple sending
 *
@@ -131,12 +131,7 @@ function quick_curl($url, $user_auth = null, $rest = 'GET', $input = null, $type
     
     if( $rest !== 'GET' ){
 		
-		// Change to XML if need be
-		if( $type == 'XML' || $type == 'xml' ){
-			$type = 'xml';
-		}
-		
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/' . $type, 'Content-Length: ' . strlen( $input ) ) ); // Tell server to expect the right application type and the content length
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Content-Type: ' . mime_type( $type ), 'Content-Length: ' . strlen( $input ) ) ); // Tell server to expect the right application type and the content length
         curl_setopt($ch, CURLOPT_POSTFIELDS, $input); // Send the actual data
     }
 

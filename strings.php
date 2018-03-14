@@ -757,48 +757,48 @@ function repeat_string( $string, $number ){
 if( ! function_exists( 'proper' ) ){
 function proper( $string, $split_chars = array( '-', ' ' ) ){
 
-// Check through for each character we've specified
-foreach( $split_chars as $char ){
+    // Check through for each character we've specified
+    foreach( $split_chars as $char ){
 
-	// If the character is found
-	if( strpos( $string, $char ) !== false ){
+        // If the character is found
+        if( strpos( $string, $char ) !== false ){
 
-		// Split the string at this character
-		$arrayed = explode( $char, $string );
+            // Split the string at this character
+            $arrayed = explode( $char, $string );
 
-		// Get the total number of string parts
-		$array_count = count( $arrayed );
+            // Get the total number of string parts
+            $array_count = count( $arrayed );
 
-		// Set up a new sting to return
-		$new_string = '';
+            // Set up a new sting to return
+            $new_string = '';
 
-		// Create a counter to check if we're on the last string part
-		$i = 0;
+            // Create a counter to check if we're on the last string part
+            $i = 0;
 
-		// For each part of the string
-		foreach( $arrayed as $part ){
+            // For each part of the string
+            foreach( $arrayed as $part ){
 
-			// Capitalise the first letter but leave the rest lower case
-			$new_string .= ucfirst( strtolower( $part ) );
+                // Capitalise the first letter but leave the rest lower case
+                $new_string .= ucfirst( strtolower( $part ) );
 
-			// If this is not the last string part
-			if(++$i !== $array_count) {
+                // If this is not the last string part
+                if(++$i !== $array_count) {
 
-				// Add the split character back in
-				$new_string .= $char;
+                    // Add the split character back in
+                    $new_string .= $char;
 
-			}
-		}
+                }
+            }
 
-		// Reset the string to the new one
-		$string = $new_string;
+            // Reset the string to the new one
+            $string = $new_string;
 
 
-	}
+        }
 
-}
+    }
 
-return $string;
+    return $string;
 	
 }
 }	

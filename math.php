@@ -23,9 +23,9 @@
 *   sum
 *   arabic2roman
 *   roman2arabic
-*   ordinal
 *   temperature
 *   latlon_distance
+*   ordinal
 *   percent
 *   calc
 *   is_zero
