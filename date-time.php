@@ -26,6 +26,8 @@
 *   copyright
 *   current_time
 *   create_date_range
+*   working_date_range
+*   days_between
 */
 
 /**
@@ -538,6 +540,7 @@ function current_time( $type, $gmt = 0 ) {
 *
 *   @param string $start - the first date to include
 *   @param string $end - the last date in the range
+*   @param string $format - the date format to use
 *
 *   @return array $dates - an array of dates, formatted as requested
 *
@@ -569,5 +572,80 @@ function create_date_range( $start, $end, $format = 'Y-m-d' ){
     // Return the answer
 	return $dates;
 	
+}
+}
+
+/**
+*   working_date_range
+*
+*   Get a list of working days between two dates
+*
+*   @param string $start - the first date to include
+*   @param string $end - the last date in the range
+*   @param string $format - the date format to use
+*   @param array $working_days - an array of day digits that are "working" days
+*
+*   @return array $dates - an array of dates, formatted as requested
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'working_date_range' ) ){
+function working_date_range( $start, $end, $format = 'Y-m-d', $working_days = array( 1, 2, 3, 4, 5 ) ){
+    
+    // Create the date range
+    $date_range = create_date_range( $start, $end, $format );
+    
+    // Create the working date range
+    $working_date_range = array();
+    
+    // Go through each day
+    foreach( $date_range as $day ){
+        
+        // If it's a working day then add to the array
+        if( in_array( $working_days, date( 'N', strtotime( $day ) ) ) ){
+            
+            $working_date_range[] = $day;
+            
+        }
+        
+        
+    }
+    
+    // Return the dates
+    return $working_date_range;
+    
+}
+}
+
+/**
+*   days_between
+*
+*   Count the days between two dates
+*
+*   @param string $start - the first date to include
+*   @param string $end - the last date in the range
+*   @param array $working_days - if only counting certain days, an array of day digits that are "working" days
+*
+*   @return int - the number of days
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'days_between' ) ){
+function days_between( $start, $end, $working_days = array() ){
+    
+    if( empty( $working_days ) ){
+        
+        return count( create_date_range( $start, $end ) ) - 1;
+        
+    } else {
+        
+        return count( working_date_range( $start, $end, 'Y-m-d', $working_days ) ) - 1;
+        
+    }
+    
+    
+    
 }
 }
