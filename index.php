@@ -31,7 +31,7 @@ require_once( 'math.php' );
 // Output functions
 require_once( 'output.php' );
 // Security functions
-//require_once( 'security.php');
+require_once( 'security.php');
 // Session functions
 require_once( 'sessions.php' );
 // String functions

@@ -142,24 +142,21 @@ function array_remove_empty($arr, $reindex = false){
 *
 *   Unset an array element by key and optionally reindex
 *
-*
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.0.4
 *
-*   @param mixed $value - key to delete from array
 *   @param array $array - array to delete from
+*   @param mixed $key - key to delete from array
 *   @param bool $reindex - whether to reindex the array after deleting
 *
 *   @return array $array - returns the reindexed array if we've asked for that
 *
 */
 if( ! function_exists( 'unset_key') ){
-function unset_key( $key, $array, $reindex = false ){
+function unset_key( $array, $key, $reindex = false ){
 
     if( $key ) {
         unset( $array[$key] );
-		
-		echo 'works';
         
         if( $reindex == true ){
             $array = array_values($array); // 'reindex' array
@@ -182,23 +179,27 @@ function unset_key( $key, $array, $reindex = false ){
 *   @source http://stackoverflow.com/a/7225113
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.0.4
 *
-*   @param mixed $value - value to delete from array
 *   @param array $array - array to delete from
+*   @param mixed $value - value to delete from array
 *   @param bool $reindex - whether to reindex the array after deleting
 *
 *   @return array $array - returns the reindexed array if we've asked for that
 *
 */
 if( ! function_exists( 'unset_value') ){
-function unset_value( $value, $array, $reindex = false ){
+function unset_value( $array, $value, $reindex = false ){
     
-    $keys = array_keys($array, $value);
+    $counter = 0;
 	
-	foreach( $keys as $key ){
+	foreach( $array as $key => $item_value ){
 		
-		$array = unset_key( $key, $array, $reindex );
+		if( $item_value == $value ){
+			
+			unset( $array[$key] );
+			
+		}
 		
 	}
 
@@ -521,6 +522,9 @@ if( ! function_exists( 'array_only' ) ){
 function array_only( $array, $keys ){
     
     $return = array();
+	
+	// Check if the keys is a string
+	$keys = array_wrap( $keys );
     
     foreach( $keys as $key ){
         

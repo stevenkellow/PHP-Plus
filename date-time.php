@@ -68,7 +68,12 @@ function get_timezone_offset($remote_tz, $origin_tz = null) {
 *	@return int;
 */
 if(! function_exists( 'get_gmt_offset' ) ){
-function get_gmt_offset( $timezone ){
+function get_gmt_offset( $timezone = false ){
+	
+	// If there is no timezone provided, use the system default
+	if( $timezone == false ){
+		$timezone = date_default_timezone_get();
+	}
 	
 	return get_timezone_offset( $timezone, 'UTC' );
 	
@@ -180,7 +185,15 @@ function human_time_diff( $from, $to = '' ) {
 	if ( empty( $to ) ) {
 		$to = time();
 	}
-
+	
+	// Allow to use text in the from/to inputs
+	if( is_string( $from ) ){
+		$from = strtotime( $from );
+	}
+	if( is_string( $to ) ){
+		$to = strtotime( $to );
+	}
+	
 	$diff = (int) abs( $to - $from );
 
 	if ( $diff < HOUR_IN_SECONDS ) {
@@ -189,42 +202,42 @@ function human_time_diff( $from, $to = '' ) {
 			$mins = 1;
 		}
 		/* translators: Time difference between two dates, in minutes (min=minute). %s: Number of minutes */
-		$since = sprintf( _n( '%s min', '%s mins', $mins ), $mins );
+		$since = sprintf( ngettext( '%s min', '%s mins', $mins ), $mins );
 	} elseif ( $diff < DAY_IN_SECONDS && $diff >= HOUR_IN_SECONDS ) {
 		$hours = round( $diff / HOUR_IN_SECONDS );
 		if ( $hours <= 1 ) {
 			$hours = 1;
 		}
 		/* translators: Time difference between two dates, in hours. %s: Number of hours */
-		$since = sprintf( _n( '%s hour', '%s hours', $hours ), $hours );
+		$since = sprintf( ngettext( '%s hour', '%s hours', $hours ), $hours );
 	} elseif ( $diff < WEEK_IN_SECONDS && $diff >= DAY_IN_SECONDS ) {
 		$days = round( $diff / DAY_IN_SECONDS );
 		if ( $days <= 1 ) {
 			$days = 1;
 		}
 		/* translators: Time difference between two dates, in days. %s: Number of days */
-		$since = sprintf( _n( '%s day', '%s days', $days ), $days );
+		$since = sprintf( ngettext( '%s day', '%s days', $days ), $days );
 	} elseif ( $diff < MONTH_IN_SECONDS && $diff >= WEEK_IN_SECONDS ) {
 		$weeks = round( $diff / WEEK_IN_SECONDS );
 		if ( $weeks <= 1 ) {
 			$weeks = 1;
 		}
 		/* translators: Time difference between two dates, in weeks. %s: Number of weeks */
-		$since = sprintf( _n( '%s week', '%s weeks', $weeks ), $weeks );
+		$since = sprintf( ngettext( '%s week', '%s weeks', $weeks ), $weeks );
 	} elseif ( $diff < YEAR_IN_SECONDS && $diff >= MONTH_IN_SECONDS ) {
 		$months = round( $diff / MONTH_IN_SECONDS );
 		if ( $months <= 1 ) {
 			$months = 1;
 		}
 		/* translators: Time difference between two dates, in months. %s: Number of months */
-		$since = sprintf( _n( '%s month', '%s months', $months ), $months );
+		$since = sprintf( ngettext( '%s month', '%s months', $months ), $months );
 	} elseif ( $diff >= YEAR_IN_SECONDS ) {
 		$years = round( $diff / YEAR_IN_SECONDS );
 		if ( $years <= 1 ) {
 			$years = 1;
 		}
 		/* translators: Time difference between two dates, in years. %s: Number of years */
-		$since = sprintf( _n( '%s year', '%s years', $years ), $years );
+		$since = sprintf( ngettext( '%s year', '%s years', $years ), $years );
 	}
 	
 	return $since;
@@ -281,14 +294,15 @@ function date_mysql( $time = false, $date_time = 'datetime' ){
 *   @source http://php.net/manual/en/function.easter-date.php#83794
 *
 *   @since  1.0
-*   @last_modified  1.0
+*   @last_modified  1.0.4
 *
-*	@params int $year - year to calculate easter for (default: current year)
+*	@param int $year - year to calculate easter for (default: current year)
+*	@param string $date_format - the format to format the date in
 *
 *	@return int - timestamp of Easter (may want to use date to format)
 */
 if( ! function_exists( 'easter_date_orthodox') ){
-function easter_date_orthodox( $year = false ) { 
+function easter_date_orthodox( $year = false, $date_format = false ) { 
     
     if( $year === false ){
         $year = date( 'Y' );
@@ -302,7 +316,10 @@ function easter_date_orthodox( $year = false ) {
     $month = floor(($d + $e + 114) / 31); 
     $day = (($d + $e + 114) % 31) + 1; 
     
-    $de = mktime(0, 0, 0, $month, $day + 13, $year); 
+    $de = mktime(0, 0, 0, $month, $day + 13, $year);
+	
+	// If we want to format the date then do that
+	$de = date( $date_format, $de );
     
     return $de; 
 }
@@ -317,8 +334,8 @@ function easter_date_orthodox( $year = false ) {
 *
 *   @return bool - true if in past, false if not
 *
-*	@since	0.1
-*	@last_modified	0.1
+*	@since	1.0.4
+*	@last_modified	1.0.4
 */
 if( ! function_exists( 'is_past' ) ){
 function is_past( $date ){
@@ -345,13 +362,13 @@ function is_past( $date ){
 *
 *   @return bool - true if in future, false if not
 *
-*	@since	0.1
-*	@last_modified	0.1
+*	@since	1.0.4
+*	@last_modified	1.0.4
 */
 if( ! function_exists( 'is_future' ) ){
 function is_future( $date ){
     
-    if( strtotime( $date ) < time() ){
+    if( strtotime( $date ) > time() ){
         
         return true;
         
@@ -373,8 +390,8 @@ function is_future( $date ){
 *
 *   @return bool - true if today, false if not
 *
-*	@since	0.1
-*	@last_modified	0.1
+*	@since	1.0.4
+*	@last_modified	1.0.4
 */
 function is_today( $timetamp ){
     
@@ -399,8 +416,8 @@ function is_today( $timetamp ){
 *
 *   @return bool - true if yesterday, false if not
 *
-*	@since	0.1
-*	@last_modified	0.1
+*	@since	1.0.4
+*	@last_modified	1.0.4
 */
 function is_yesterday( $timetamp ){
     
@@ -425,8 +442,8 @@ function is_yesterday( $timetamp ){
 *
 *   @return bool - true if tomorrow, false if not
 *
-*	@since	0.1
-*	@last_modified	0.1
+*	@since	1.0.4
+*	@last_modified	1.0.4
 */
 function is_tomorrow( $timetamp ){
     

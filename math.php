@@ -777,7 +777,7 @@ function calc( $number, $min = false, $max = false, $fail = false ){
 *	@since	1.0.4
 *	@last_modified	1.0.4
 */
-public static function is_zero( $value ){
+function is_zero( $value ){
 
     if( $value == 0 ){
         return true;
@@ -799,7 +799,7 @@ public static function is_zero( $value ){
 *	@since	1.0.4
 *	@last_modified	1.0.4
 */
-public static function is_positive( $value ){
+function is_positive( $value ){
 
     if( $value >= 0 ){
         return true;
@@ -821,7 +821,7 @@ public static function is_positive( $value ){
 *	@since	1.0.4
 *	@last_modified	1.0.4
 */
-public static function is_negative( $value ){
+function is_negative( $value ){
 
     if( $value < 0 ){
         return true;
