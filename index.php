@@ -10,11 +10,6 @@
 */
 
 /*
-*   Define this directory
-*/
-define( 'PATH_TO_PHP_PLUS', __DIR__ );
-
-/*
 *
 *	Call in the files
 *
