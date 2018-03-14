@@ -333,7 +333,7 @@ function table( $headers, $data ){
 		// Create a cell for each row
 		foreach( $row as $cell ){
 			
-			$output . '<td>' . $cell . '</td>';
+			$output .= '<td>' . $cell . '</td>';
 			
 		}
 		
