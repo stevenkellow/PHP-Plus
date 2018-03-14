@@ -595,7 +595,7 @@ function array_first( $array ){
 *	@last_modified	1.1
 */
 if( ! function_exists( 'cartesian' ) ){
-function cartesian($input) {
+function array_cartesian($input) {
     // filter out empty values
     $input = array_filter($input);
 
