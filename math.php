@@ -837,6 +837,9 @@ function is_negative( $value ){
 *
 *   Check if two floats are approximately equal, given a specified tolerance
 *
+*   @author Joey
+*   @see https://stackoverflow.com/a/3148991/7956549
+*
 *   @param float $float_one - the first float to compare
 *   @param float $float_two - the second float to compare
 *   @param float $tolerance - the tolerance of difference

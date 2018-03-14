@@ -26,6 +26,7 @@
 *   array_only
 *   array_last
 *   array_first
+*   array_cartesian
 */
 
 /*
@@ -575,5 +576,44 @@ if( ! function_exists( 'array_first' ) ){
 function array_first( $array ){
     $array = array_reverse( $array );
     return array_pop( $array );
+}
+}
+
+/**
+*   array_cartesian
+*
+*   Returns the cartesian product of an array
+*
+*   @author Serg
+*   @see https://stackoverflow.com/a/15973172/7956549
+*
+*   @param array $array - the inital arrray, containing arrays of attributes
+*
+*   @return array $result - the resulting cartesian product
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'cartesian' ) ){
+function cartesian($input) {
+    // filter out empty values
+    $input = array_filter($input);
+
+    $result = array(array());
+
+    foreach ($input as $key => $values) {
+        $append = array();
+
+        foreach($result as $product) {
+            foreach($values as $item) {
+                $product[$key] = $item;
+                $append[] = $product;
+            }
+        }
+
+        $result = $append;
+    }
+
+    return $result;
 }
 }

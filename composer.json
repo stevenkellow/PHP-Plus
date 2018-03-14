@@ -9,7 +9,8 @@
         "paragonie/random_compat" : "Bring PHP <7 up to date",
         "ircmaxell/password-compat" : "Bring PHP <5.5 up to date",
         "ramsey/uuid" : "Generates UUIDs",
-        "joshcam/mysqli-database-class": "Database ORM with prepared statements"
+        "joshcam/mysqli-database-class": "Database ORM with prepared statements",
+        "phpmailer/phpmailer": "Reliable SMTP alternative to PHP mail()"
     },
     "license": "MIT",
     "autoload": {
