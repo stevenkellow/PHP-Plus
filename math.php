@@ -31,6 +31,7 @@
 *   is_zero
 *   is_positive
 *   is_negative
+*   approximate_equal
 */
 
 /**
@@ -829,4 +830,30 @@ function is_negative( $value ){
         return false;
     }
 
+}
+
+/**
+*   approximate_equal
+*
+*   Check if two floats are approximately equal, given a specified tolerance
+*
+*   @param float $float_one - the first float to compare
+*   @param float $float_two - the second float to compare
+*   @param float $tolerance - the tolerance of difference
+*
+*   @return bool - true if equal or approximately equal, false if not
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'approximate_equal' ) ){
+function approximate_equal( $float_one, $float_two, $tolerance ){
+    
+    if ( abs( ($float_one - $float_two) / $float_two ) < $tolerance ) {
+        return true;
+    } else {
+        return false;
+    }
+    
+}
 }
