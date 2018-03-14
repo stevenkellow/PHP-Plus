@@ -6,8 +6,8 @@
 *
 *   @package PHP Plus
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 
 /**
@@ -15,8 +15,8 @@
 *
 *   List of provinces of Canada
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $canada = array(
 	'AB' => 'Alberta',
@@ -39,8 +39,8 @@ $canada = array(
 *
 *   List of states in the United States of America
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $usa = array(
 	'AL' => 'Alabama',
@@ -112,8 +112,8 @@ $usa = array(
 *
 *   List of counties in the Republic of ireland
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $ireland = array(
     'Carlow' => 'Carlow',
@@ -154,8 +154,8 @@ $ireland = array(
 *
 *   List of counties of England
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $england = array(
     'Bedfordshire' => 'Bedfordshire',
@@ -213,8 +213,8 @@ $england = array(
 *
 *   List of local authorities in Scotland
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $scotland = array(
     'Aberdeen' => 'Aberdeen',
@@ -256,8 +256,8 @@ $scotland = array(
 *
 *   List of local authorities in Wales
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $wales = array(
     'Blaenau Gwent' => 'Blaenau Gwent',
@@ -289,8 +289,8 @@ $wales = array(
 *
 *   List of counties in Northern Ireland
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $northern_ireland = array(
     'Antrim and Newtownabbey' => 'Antrim and Newtownabbey',
@@ -312,8 +312,8 @@ $northern_ireland = array(
 *
 *   List of sub-divisions of the United Kingdom
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $united_kingdom = asort( array_merge( $england, $scotland, $wales, $northern_ireland ) );
 
@@ -322,8 +322,8 @@ $united_kingdom = asort( array_merge( $england, $scotland, $wales, $northern_ire
 *
 *   List of states and territories of Australia
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $australia = array(
     'ACT' => 'Australian Capital Territory',
@@ -341,8 +341,8 @@ $australia = array(
 *
 *   List of provinces of South Africa
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $south_africa = array(
     'Eastern Cape' => 'Eastern Cape',
@@ -361,8 +361,8 @@ $south_africa = array(
 *
 *   List of states of Argentina
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $argentina = array(
     'Buenos Aires (Ciudad)' => 'Buenos Aires (Ciudad)',
@@ -396,8 +396,8 @@ $argentina = array(
 *
 *   List of states of Brazil
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $brazil = array(
     'AC' => 'Acre',
@@ -434,8 +434,8 @@ $brazil = array(
 *
 *   List of states of Mexico
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $mexico = array(
     'AGS' => 'Aguascalientes',
@@ -477,8 +477,8 @@ $mexico = array(
 *
 *   List of states of Italy
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $italy = array(
     'AG' => 'Agrigento',
@@ -598,8 +598,8 @@ $italy = array(
 *
 *   List of prefectures of Japan
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $japan = array(
     'AICHI-KEN' => 'Aichi',

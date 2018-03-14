@@ -297,8 +297,8 @@ function mime_type( $ext ){
 *   @param array $headers - an array where each item is a header title
 *   @param array $data - an array, where each item is an array containing cells
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'create_table' ) ){
 function create_table( $headers, $data ){
@@ -357,8 +357,8 @@ function create_table( $headers, $data ){
 *
 *   @param mixed $variable - the variable to dump
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'dd' ) ){
 function dd( $variable ){
@@ -378,8 +378,8 @@ function dd( $variable ){
 *
 *   @return string - sanitised string
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'e' ) ){
 function e( $string ){
@@ -407,7 +407,7 @@ function e( $string ){
 *
 *   @author WordPress
 *
-*   @since 1.0.4
+*   @since 1.1
 *
 *   @param int|string $bytes    Number of bytes. Note max integer size for integers.
 *   @param int        $decimals Optional. Precision of number of decimal places. Default 0.

@@ -6,7 +6,7 @@
 *
 *   @package PHP Plus!
 *
-*   @since  1.0.4
+*   @since  1.1
 */
 
 /*  CONTENTS
@@ -33,8 +33,8 @@
 *
 *	Returns the offset from the origin timezone to the remote timezone, in seconds.
 *
-*	@since 1.0.4
-*	@last_modified	1.0.4
+*	@since 1.1
+*	@last_modified	1.1
 *
 *	@param $remote_tz;
 *	@param $origin_tz; If null the servers current timezone is used as the origin.
@@ -61,8 +61,8 @@ function get_timezone_offset($remote_tz, $origin_tz = null) {
 *
 *	Returns the offset from the origin timezone to the GMT, in seconds.
 *
-*	@since 1.0.4
-*	@last_modified	1.0.4
+*	@since 1.1
+*	@last_modified	1.1
 *
 *	@param $timezone;
 *
@@ -93,8 +93,8 @@ function get_gmt_offset( $timezone = false ){
 *
 *	@author WordPress
 *
-*	@since 1.0.4
-*	@last_modified	1.0.4
+*	@since 1.1
+*	@last_modified	1.1
 *
 *	@param string $string The date to be converted.
 *	@param string $format The format string for the returned date (default is Y-m-d H:i:s)
@@ -137,8 +137,8 @@ function get_gmt_from_date( $string, $format = 'Y-m-d H:i:s' ) {
 *
 *	@author WordPress
 *
-*	@since 1.0.4
-*	@last_modified	1.0.4
+*	@since 1.1
+*	@last_modified	1.1
 *
 *	@param string $string The date to be converted.
 *	@param string $format The format string for the returned date (default is Y-m-d H:i:s)
@@ -174,8 +174,8 @@ function get_date_from_gmt( $string, $format = 'Y-m-d H:i:s' ) {
  *
  *	@author WordPress
  *
- *	@since	1.0.4
- *	@last_modified	1.0.4
+ *	@since	1.1
+ *	@last_modified	1.1
  *
  *	@param int $from Unix timestamp from which the difference begins.
  *	@param int $to   Optional. Unix timestamp to end the time difference. Default becomes time() if not set.
@@ -295,7 +295,7 @@ function date_mysql( $time = false, $date_time = 'datetime' ){
 *   @source http://php.net/manual/en/function.easter-date.php#83794
 *
 *   @since  1.0
-*   @last_modified  1.0.4
+*   @last_modified  1.1
 *
 *	@param int $year - year to calculate easter for (default: current year)
 *	@param string $date_format - the format to format the date in
@@ -335,8 +335,8 @@ function easter_date_orthodox( $year = false, $date_format = false ) {
 *
 *   @return bool - true if in past, false if not
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'is_past' ) ){
 function is_past( $date ){
@@ -363,8 +363,8 @@ function is_past( $date ){
 *
 *   @return bool - true if in future, false if not
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'is_future' ) ){
 function is_future( $date ){
@@ -391,8 +391,8 @@ function is_future( $date ){
 *
 *   @return bool - true if today, false if not
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 function is_today( $timetamp ){
     
@@ -417,8 +417,8 @@ function is_today( $timetamp ){
 *
 *   @return bool - true if yesterday, false if not
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 function is_yesterday( $timetamp ){
     
@@ -443,8 +443,8 @@ function is_yesterday( $timetamp ){
 *
 *   @return bool - true if tomorrow, false if not
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 function is_tomorrow( $timetamp ){
     
@@ -512,8 +512,8 @@ function copyright( $year = false, $roman = false ){
 *
 *   @return string $return - what comes out
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'current_time' ) ){
 function current_time( $type, $gmt = 0 ) {
@@ -541,8 +541,8 @@ function current_time( $type, $gmt = 0 ) {
 *
 *   @return array $dates - an array of dates, formatted as requested
 *
-*	@since	1.0.4
-*	@last_modified    1.0.4
+*	@since	1.1
+*	@last_modified    1.1
 */
 if( ! function_exists( 'create_date_range' ) ){
 function create_date_range( $start, $end, $format = 'Y-m-d' ){

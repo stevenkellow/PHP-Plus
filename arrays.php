@@ -145,7 +145,7 @@ function array_remove_empty($arr, $reindex = false){
 *   Unset an array element by key and optionally reindex
 *
 *   @since 0.1
-*   @last_modified 1.0.4
+*   @last_modified 1.1
 *
 *   @param array $array - array to delete from
 *   @param mixed $key - key to delete from array
@@ -181,7 +181,7 @@ function unset_key( $array, $key, $reindex = false ){
 *   @source http://stackoverflow.com/a/7225113
 *
 *   @since 0.1
-*   @last_modified 1.0.4
+*   @last_modified 1.1
 *
 *   @param array $array - array to delete from
 *   @param mixed $value - value to delete from array
@@ -465,8 +465,8 @@ function __high_to_low( $a, $b ){
 *   @author Ozh / Laravel
 *   @see https://gist.github.com/ozh/82a17c2be636a2b1c58b49f271954071
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 *
 *   @param  $array - data
 *   @param  $key - item you want to pluck from array
@@ -492,8 +492,8 @@ function array_pluck($array, $key) {
 *
 *   @return array $array - the potentially edited array
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'array_add' ) ){
 function array_add( $array, $key, $value ){
@@ -517,8 +517,8 @@ function array_add( $array, $key, $value ){
 *
 *   @return array $return - the edited array
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'array_only' ) ){
 function array_only( $array, $keys ){
@@ -548,8 +548,8 @@ function array_only( $array, $keys ){
 *
 *   @return mixed - the last element of the array
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'array_last' ) ){
 function array_last( $array ){
@@ -566,8 +566,8 @@ function array_last( $array ){
 *
 *   @return mixed - the first element of the array
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'array_first' ) ){
 function array_first( $array ){

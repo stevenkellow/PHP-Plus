@@ -6,7 +6,7 @@
 *	@author Steven Kellow
 *	@url https://wwww.stevenkellow.com/phpplus/
 *
-*   @version 1.0.4
+*   @version 1.1
 */
 
 /*

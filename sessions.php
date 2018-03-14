@@ -27,7 +27,7 @@
 *   @param array $options - options when creating the session
 *
 *   @since 0.1
-*   @last_modified 1.0.4
+*   @last_modified 1.1
 *
 */
 if( ! function_exists( 'session_starter') ){
@@ -212,8 +212,8 @@ function timer_end( $old_time ){
 *
 *   @param string $type - the file type
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'set_content_type' ) ){
 function set_content_type( $type ){

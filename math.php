@@ -722,8 +722,8 @@ function percent( $number, $decimals = 2 ){
 *
 *   @return type $return - what comes out
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'calc' ) ){
 function calc( $number, $min = false, $max = false, $fail = false ){
@@ -774,8 +774,8 @@ function calc( $number, $min = false, $max = false, $fail = false ){
 *
 *   @return bool true if it's zero, false if it's not
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 function is_zero( $value ){
 
@@ -796,8 +796,8 @@ function is_zero( $value ){
 *
 *   @return bool true if it's positive, false if it's not
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 function is_positive( $value ){
 
@@ -818,8 +818,8 @@ function is_positive( $value ){
 *
 *   @return bool true if it's negative, false if it's not
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 function is_negative( $value ){
 

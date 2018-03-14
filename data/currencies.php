@@ -4,8 +4,8 @@
 *
 *   Holds and returns an ISO_4217 list of currencies + Bitcoin
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 $currencies = array(
     'AED' => array( 'name' => 'United Arab Emirates dirham', 'units' => 2, 'symbol' => 'د.إ' ),

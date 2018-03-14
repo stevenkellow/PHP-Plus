@@ -829,8 +829,8 @@ function sentence_case( $string, $split_chars = null ){
 *
 *   Check that passed arguments have a string length of 1 or more
 *
-*   @since 1.0.4
-*   @last_modified 1.0.4
+*   @since 1.1
+*   @last_modified 1.1
 *
 *   @return bool - true if all arguments are strings of length greater than 1, else false
 */
@@ -863,8 +863,8 @@ function strcheck(){
 *
 *   @return string Sanitized key
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'sanitize_key' ) ){
 function sanitize_key( $key ) {
@@ -887,8 +887,8 @@ function sanitize_key( $key ) {
 *
 *   @return bool - true if hexadecimal, false if not
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'is_hex' ) ){
 function is_hex( $string ){
@@ -911,8 +911,8 @@ function is_hex( $string ){
 *
 *   @return bool - true if it does, false if it doesn't
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 function starts_with( $haystack, $needle ){
     
@@ -934,8 +934,8 @@ function starts_with( $haystack, $needle ){
 *
 *   @return bool - true if it does, false if it doesn't
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 function starts_with( $haystack, $needle ){
     

@@ -204,8 +204,8 @@ function is_linux(){
 *
 *   @author WordPress
 *
-*   @since 1.0.4
-*   @last_modified  1.0.4
+*   @since 1.1
+*   @last_modified  1.1
 *
 *   @return bool - true if mobile, false if not
 */

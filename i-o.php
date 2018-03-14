@@ -681,8 +681,8 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
 *
 *   @return string $destination_path - where to find the zip file
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'zip' ) ){
 function zip( $folder, $destination_path ){
@@ -1094,8 +1094,8 @@ function pipe_encode( $array ){
 *
 *   @return type $return - what comes out
 *
-*	@since	1.0.4
-*	@last_modified	1.0.4
+*	@since	1.1
+*	@last_modified	1.1
 */
 if( ! function_exists( 'delete_file' ) ){
 function delete_file( $file ){
