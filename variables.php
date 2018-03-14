@@ -16,7 +16,6 @@
 *   is_windows
 *   is_linux
 *   is_mobile
-*
 */
 
 /**

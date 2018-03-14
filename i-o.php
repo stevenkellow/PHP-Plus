@@ -25,6 +25,7 @@
 *   xml_to_json
 *   xml_to_array
 *   get_gravatar
+*   zip
 *   unzip
 *   hash_email
 *       email_hash
@@ -664,6 +665,58 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
         $url .= ' />';
     }
     return $url;
+}
+}
+
+/**
+*   zip
+*
+*   Zip a folder contents to a compressed file
+*
+*   @param string $folder - the path to the folder you want to zip
+*   @param string $destination_path - where you want to save the zip file
+*
+*   @return string $destination_path - where to find the zip file
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+if( ! function_exists( 'zip' ) ){
+function zip( $folder, $destination_path ){
+    
+    // Get real path for our folder
+    $rootPath = realpath($folder);
+
+    // Initialize archive object
+    $zip = new ZipArchive();
+    $zip->open($destination_path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+    // Create recursive directory iterator
+    /** @var SplFileInfo[] $files */
+    $files = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($rootPath),
+        RecursiveIteratorIterator::LEAVES_ONLY
+    );
+
+    foreach ($files as $name => $file){
+        
+        // Skip directories (they would be added automatically)
+        
+        if (!$file->isDir()){
+            // Get real and relative path for current file
+            $filePath = $file->getRealPath();
+            $relativePath = substr($filePath, strlen($rootPath) + 1);
+
+            // Add current file to archive
+            $zip->addFile($filePath, $relativePath);
+        }
+    }
+
+    // Zip archive will be created only after closing object
+    $zip->close();
+	
+	// Return the location of the file
+	return $destination_path;
 }
 }
 

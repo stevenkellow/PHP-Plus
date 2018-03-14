@@ -1,14 +1,15 @@
 {
     "name": "stevenkellow/php-plus",
     "description": "A collection of helpful PHP constants and functions",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "require": {
         "php": "^5.3.3 || ^7.0"
     },
     "suggest": {
         "paragonie/random_compat" : "Bring PHP <7 up to date",
         "ircmaxell/password-compat" : "Bring PHP <5.5 up to date",
-        "ramsey/uuid" : "Generates UUIDs"
+        "ramsey/uuid" : "Generates UUIDs",
+        "joshcam/mysqli-database-class": "Database ORM with prepared statements"
     },
     "license": "MIT",
     "autoload": {
