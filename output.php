@@ -290,7 +290,7 @@ function mime_type( $ext ){
 }
 
 /**
-*   table
+*   create_table
 *
 *   Print a HTML table
 *
@@ -300,8 +300,8 @@ function mime_type( $ext ){
 *	@since	1.0.4
 *	@last_modified	1.0.4
 */
-if( ! function_exists( 'table' ) ){
-function table( $headers, $data ){
+if( ! function_exists( 'create_table' ) ){
+function create_table( $headers, $data ){
 	
 	// Create the table
 	$output = '<table>';
