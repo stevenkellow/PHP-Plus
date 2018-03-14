@@ -488,6 +488,8 @@ function copyright( $year = false, $roman = false ){
 *
 *   Get the current time in a variety of formats
 *
+*   @author WordPress
+*
 *   @param string $type - either 'mysql' for MySQL format, 'timestamp' for integer, or PHP date format
 *
 *   @return string $return - what comes out
