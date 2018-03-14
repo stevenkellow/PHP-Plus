@@ -28,6 +28,9 @@
 *   latlon_distance
 *   percent
 *   calc
+*   is_zero
+*   is_positive
+*   is_negative
 */
 
 /**
@@ -760,4 +763,70 @@ function calc( $number, $min = false, $max = false, $fail = false ){
     return $number;
     
 }
+}
+
+/**
+*   is_zero
+*
+*   Checks whether the value is zero
+*
+*   @param object $value - the value to check
+*
+*   @return bool true if it's zero, false if it's not
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+public static function is_zero( $value ){
+
+    if( $value == 0 ){
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+/**
+*   is_positive
+*
+*   Checks whether the value is positive (greater than or equal to zero)
+*
+*   @param object $value - the value to check
+*
+*   @return bool true if it's positive, false if it's not
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+public static function is_positive( $value ){
+
+    if( $value >= 0 ){
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+/**
+*   is_negative
+*
+*   Checks whether the value is negative (less than zero)
+*
+*   @param object $value - the value to check
+*
+*   @return bool true if it's negative, false if it's not
+*
+*	@since	1.0.4
+*	@last_modified	1.0.4
+*/
+public static function is_negative( $value ){
+
+    if( $value < 0 ){
+        return true;
+    } else {
+        return false;
+    }
+
 }
