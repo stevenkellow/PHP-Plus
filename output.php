@@ -159,8 +159,8 @@ function random_color( $type = 'hex'){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*   @params string $data - the info you want to encode
-*	@params int $size - value for height and width of image in pixels
+*   @param string $data - the info you want to encode
+*	@param int $size - value for height and width of image in pixels
 *
 *
 *	@return string - the URL of the QR code
@@ -184,8 +184,8 @@ function qr_url( $data, $size = '300' ){
 *   @author Google
 *   @source https://developers.google.com/chart/infographics/docs/qr_codes
 *
-*   @params string $data - the info you want to encode
-*	@params int $size - value for height and width of image in pixels
+*   @param string $data - the info you want to encode
+*	@param int $size - value for height and width of image in pixels
 *
 *	@return string - an image tag for the generated QR code
 */
@@ -208,7 +208,7 @@ function qr_image( $data, $size = '300' ){
 *   @author Silver Moon
 *   @source http://www.binarytides.com/php-check-if-file-is-an-image/
 *
-*	@params string - path or URL of file to check
+*	@param string - path or URL of file to check
 *
 *	@return bool - true if image, false if not
 */
@@ -233,8 +233,8 @@ function is_image($path){
 *   @author Chris Coyier
 *   @source https://css-tricks.com/snippets/php/create-data-uris/
 *
-*	@params string - path or URL of file to encode
-*   @params string - mime type of file (Maybe need to change that)
+*	@param string - path or URL of file to encode
+*   @param string - mime type of file (Maybe need to change that)
 *
 *	@return string - data uri of the file
 */

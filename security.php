@@ -25,8 +25,8 @@
 *   @since 0.1
 *   @last_modified 1.0.2
 *
-*	@params string $name - form name that you want to validate (so each form has unique token)
-*	@params int $length - length of the csrf_token in bytes
+*	@param string $name - form name that you want to validate (so each form has unique token)
+*	@param int $length - length of the csrf_token in bytes
 *
 *   @return hidden input tag with the value of the hashed_token
 */
@@ -65,7 +65,7 @@ function csrf_token( $name = 'csrf_token', $length = 32 ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $name - form name that you want to validate (so each form has unique token)
+*	@param string $name - form name that you want to validate (so each form has unique token)
 *
 *   @return true | false - true if csrf validates, false otherwise
 */

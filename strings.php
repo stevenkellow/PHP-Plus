@@ -116,7 +116,7 @@ function rand_string( $length = 36, $symbols = true ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $email - email to validate
+*	@param string $email - email to validate
 *
 *   @return true | false - true if email validates, false otherwise
 */
@@ -140,7 +140,7 @@ function validate_email( $email ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $email - email to validate
+*	@param string $email - email to validate
 *
 *   @return true | false - true if email validates, false otherwise
 */
@@ -160,7 +160,7 @@ function is_email( $email ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $email - url to validate
+*	@param string $email - url to validate
 *
 *   @return bool - true if url validates, false otherwise
 */
@@ -184,7 +184,7 @@ function validate_url( $url ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $url - url to validate
+*	@param string $url - url to validate
 *
 *   @return bool - true if url validates, false otherwise
 */
@@ -207,7 +207,7 @@ function is_url( $url ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $text - the text to turn into a slug
+*	@param string $text - the text to turn into a slug
 *
 *	@return string $slug - the slug text
 *
@@ -322,7 +322,7 @@ function hex2str($func_string) {
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params bool $reset - Whether to reset the encoding back to a previously-set encoding.
+*	@param bool $reset - Whether to reset the encoding back to a previously-set encoding.
 *
 */
 if( ! function_exists( 'mbstring_binary_safe_encoding' ) ){
@@ -379,7 +379,7 @@ function reset_mbstring_encoding() {
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $str - string to check for UTF8 encoding
+*	@param string $str - string to check for UTF8 encoding
 *
 *	@return bool True if $str fits a UTF-8 model, false otherwise.
 *
@@ -418,8 +418,8 @@ function seems_utf8( $str ) {
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $utf8_string - String to check.
-*	@params int $length - max length of the string
+*	@param string $utf8_string - String to check.
+*	@param int $length - max length of the string
 *
 *	@return string $string - String with Unicode encoded for URI.
 *

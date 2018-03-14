@@ -68,8 +68,8 @@ function session_starter( $name = false, $options = array() ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $key - session key to get/set
-*	@params string $value - session value to set
+*	@param string $key - session key to get/set
+*	@param string $value - session value to set
 *
 *	@return mixed boolean or mixed - returns true if set successful, value if get successful
 */
@@ -115,8 +115,8 @@ function session( $key = null, $value = null ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $url - url to send the user to
-*	@params int $response - default response code for the redirect
+*	@param string $url - url to send the user to
+*	@param int $response - default response code for the redirect
 *
 *	@return bool true | false - true if the url is valid, false otherwise
 */
@@ -190,7 +190,7 @@ function timer_start(){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*   @params time $old_time - the time the timer started
+*   @param time $old_time - the time the timer started
 *
 *   @returns time - time between now and the time passed into function
 *

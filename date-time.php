@@ -471,8 +471,8 @@ function is_tomorrow( $timetamp ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params int $year - a start year for copyright
-*   @params bool $roman - use roman numerals for year
+*	@param int $year - a start year for copyright
+*   @param bool $roman - use roman numerals for year
 *
 *	@return string - copyright notice like (c) 2017, (c) MMVII or (c) 2012 - 2017
 */

@@ -542,9 +542,9 @@ function roman2arabic( $roman ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*   @params int | float $number - value of temperature to convert
-*	@params string $from - temperature to convert from (celsius, fahrenheit or kelvin)
-*	@params string $to - temperature to convert to (celsius, fahrenheit or kelvin)
+*   @param int | float $number - value of temperature to convert
+*	@param string $from - temperature to convert from (celsius, fahrenheit or kelvin)
+*	@param string $to - temperature to convert to (celsius, fahrenheit or kelvin)
 *
 *   @return int | float - converted temperature
 */
@@ -633,11 +633,11 @@ function temperature( $number, $from, $to ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*   @params int | float $lat1 - first latitude
-*   @params int | float $lon - first longitude
-*   @params int | float $lat1 - second latitude
-*   @params int | float $lon - second longitude
-*   @params string $unit - unit to use (K for Kilometers, N for Nautical Miles or M for miles)
+*   @param int | float $lat1 - first latitude
+*   @param int | float $lon - first longitude
+*   @param int | float $lat1 - second latitude
+*   @param int | float $lon - second longitude
+*   @param string $unit - unit to use (K for Kilometers, N for Nautical Miles or M for miles)
 *
 *   @return int | float - distance between the two points
 */
@@ -673,7 +673,7 @@ function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 *   @since 0.1
 *   @last_modified 0.1
 *
-*   @params int $cdnl - normal / cardinal number to add
+*   @param int $cdnl - normal / cardinal number to add
 *
 *   @return string - ordinal number
 */

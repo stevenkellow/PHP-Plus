@@ -121,8 +121,8 @@ function get_user_ip(){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params array $availableLanguages - languages a site can use
-*	@params string $default - the default language of the site
+*	@param array $availableLanguages - languages a site can use
+*	@param string $default - the default language of the site
 *
 *	@return string language
 *

@@ -94,11 +94,11 @@ function html_mail($to, $subject, $message, $from_email, $from_name){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $url - url to contact about the data
-*	@params string $user_auth - user authorisation if needed
-*	@params string $rest - 'GET' | 'PUT' | 'PATCH' | 'POST' - the REST verb for the data
-*	@params string $input - the data we want to retrieve, update or send
-*	@params string $type - 'XML' | 'JSON' - the type of data we're wanting to send
+*	@param string $url - url to contact about the data
+*	@param string $user_auth - user authorisation if needed
+*	@param string $rest - 'GET' | 'PUT' | 'PATCH' | 'POST' - the REST verb for the data
+*	@param string $input - the data we want to retrieve, update or send
+*	@param string $type - 'XML' | 'JSON' - the type of data we're wanting to send
 *
 *	@return mixed $data - whatever is retrieved or a confirmation of send, or if curl isn't installed false
 */
@@ -179,7 +179,7 @@ function quick_curl($url, $user_auth = null, $rest = 'GET', $input = null, $type
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $tracking_code - standard Google Analytics tracking code, e.g. UA-xxxxxxxx-x
+*	@param string $tracking_code - standard Google Analytics tracking code, e.g. UA-xxxxxxxx-x
 *
 *	@return Analytics tracking code
 *
@@ -218,7 +218,7 @@ function google_analytics( $tracking_code = null ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $pixel_id - standard Facebook pixel ID
+*	@param string $pixel_id - standard Facebook pixel ID
 *
 *	@return Facebook pixel code
 *
@@ -259,7 +259,7 @@ function facebook_pixel( $pixel_id ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params file $file - a CSV file uploaded
+*	@param file $file - a CSV file uploaded
 *
 *	@return array $csv_array
 *
@@ -296,8 +296,8 @@ function csv_to_array( $file ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params array $data - array to turn into CSV
-*   @params file $file - place to save file to
+*	@param array $data - array to turn into CSV
+*   @param file $file - place to save file to
 *
 *	@return file $contents - CSV to use
 *
@@ -333,7 +333,7 @@ function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"') 
 *   @since 0.1
 *   @last_modified 1.0.2
 *
-*	@params array $data - data to check
+*	@param array $data - data to check
 *
 *	@return bool true if it's json, false if not
 *
@@ -353,8 +353,8 @@ function is_json($string) {
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params file $file - a CSV file uploaded
-*   @params string $location - path to create JSON file or null to return as json_encoded array
+*	@param file $file - a CSV file uploaded
+*   @param string $location - path to create JSON file or null to return as json_encoded array
 *
 *	@return mixed - either a json file, json array or false
 *
@@ -402,8 +402,8 @@ function csv_to_json( $file, $location ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params array $data - json array or file to turn into CSV
-*   @params file $file - place to save file to
+*	@param array $data - json array or file to turn into CSV
+*   @param file $file - place to save file to
 *
 *	@return file $contents - CSV to create
 *
@@ -529,7 +529,7 @@ function array_to_json_file( $array, $path, $update = true, $delete = false ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params array $data - array to turn into JSON
+*	@param array $data - array to turn into JSON
 *
 *	@return string $json - JSON string
 *
@@ -638,7 +638,7 @@ function xml_to_array( $xml_input, $file = true ){
 *
 *   Turn a string into a slug
 *
-*	@source https://gravatar.com/site/implement/images/php/
+*	@see https://gravatar.com/site/implement/images/php/
 *
 *   @since 0.1
 *   @last_modified 0.1
@@ -672,6 +672,9 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
 *   zip
 *
 *   Zip a folder contents to a compressed file
+*
+*   @author Dador
+*   @see https://stackoverflow.com/a/4914807/7956549
 *
 *   @param string $folder - the path to the folder you want to zip
 *   @param string $destination_path - where you want to save the zip file
@@ -730,8 +733,8 @@ function zip( $folder, $destination_path ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*	@params string $file - path to the file that you want to unzip
-*   @params string $extractPath - path to the folder where you want to extract the contents
+*	@param string $file - path to the file that you want to unzip
+*   @param string $extractPath - path to the folder where you want to extract the contents
 *
 *	@return bool - true if it works, false if it doesn't
 *
