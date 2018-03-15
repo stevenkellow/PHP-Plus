@@ -398,9 +398,14 @@ function is_future( $date ){
 *	@last_modified	1.1
 */
 if( ! function_exists( 'is_today' ) ){
-function is_today( $timetamp ){
+function is_today( $timestamp ){
     
-    if( date('Ymd') == date('Ymd', strtotime($timestamp)) ){
+    // Convert a string timestamp to integer
+    if( is_string( $timestamp ) ){
+        $timestamp = strtotime( $timestamp );
+    }
+    
+    if( date('Ymd') == date('Ymd', $timestamp ) ){
         
         return true;
         
@@ -426,9 +431,14 @@ function is_today( $timetamp ){
 *	@last_modified	1.1
 */
 if( ! function_exists( 'is_yesterday' ) ){
-function is_yesterday( $timetamp ){
+function is_yesterday( $timestamp ){
     
-    if( date('Ymd', time() - DAY_IN_SECONDS ) == date('Ymd', strtotime($timestamp)) ){
+    // Convert a string timestamp to integer
+    if( is_string( $timestamp ) ){
+        $timestamp = strtotime( $timestamp );
+    }
+    
+    if( date('Ymd', time() - DAY_IN_SECONDS ) == date('Ymd', $timestamp) ){
         
         return true;
         
@@ -454,9 +464,14 @@ function is_yesterday( $timetamp ){
 *	@last_modified	1.1
 */
 if( ! function_exists( 'is_tomorrow' ) ){
-function is_tomorrow( $timetamp ){
+function is_tomorrow( $timestamp ){
     
-    if( date('Ymd', time() + DAY_IN_SECONDS ) == date('Ymd', strtotime($timestamp)) ){
+    // Convert a string timestamp to integer
+    if( is_string( $timestamp ) ){
+        $timestamp = strtotime( $timestamp );
+    }
+    
+    if( date('Ymd', time() + DAY_IN_SECONDS ) == date('Ymd', $timestamp) ){
         
         return true;
         
