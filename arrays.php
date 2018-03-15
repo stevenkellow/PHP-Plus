@@ -668,6 +668,7 @@ function array_rand_weighted(array $weightedValues) {
 *   Makes sure an array only includes numeric values
 *
 *   @param array $array - the array to check
+*   @param bool | string $cast - whether to cast the element as an int or float
 *
 *   @return array $new_array - the updated array
 *
@@ -675,7 +676,7 @@ function array_rand_weighted(array $weightedValues) {
 *	@last_modified	1.1
 */
 if( ! function_exists( 'array_numeric' ) ){
-function array_numeric( $array ){
+function array_numeric( $array, $cast = false ){
     
     $new_array = array();
     
@@ -685,7 +686,23 @@ function array_numeric( $array ){
         // Save it if it's a numeric element
         if( is_numeric( $element ) ){
             
-            $new_array[$key] = $element;
+            // Determine whether to cast the value as an int or float
+            switch( $cast ){
+                
+                case 'int':
+                    
+                    $new_array[$key] = (int) $element;
+                    break;
+                    
+                case 'float':
+                    
+                    $new_array[$key] = (float) $element;
+                    break;
+                
+                default:
+                    
+                    $new_array[$key] = $element;
+            }
             
         }
         
