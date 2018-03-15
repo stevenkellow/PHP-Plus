@@ -16,6 +16,7 @@
 *   timer_start
 *   timer_end
 *   set_content_type
+*   delete_all_cookies
 */
 
 /**
@@ -223,6 +224,34 @@ function set_content_type( $type ){
     
     // Set the header
     header( 'Content-type: ' . $mime_type );
+    
+}
+}
+
+/**
+*   delete_all_cookies
+*
+*   Delete all cookies belonging to this domain
+*
+*   @author jasonbar
+*   @see https://stackoverflow.com/a/2310591/7956549
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'delete_all_cookies' ) ){
+function delete_all_cookies(){
+    
+    // unset cookies
+    if (isset($_SERVER['HTTP_COOKIE'])) {
+        $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+        foreach($cookies as $cookie) {
+            $parts = explode('=', $cookie);
+            $name = trim($parts[0]);
+            setcookie($name, '', time()-1000);
+            setcookie($name, '', time()-1000, '/');
+        }
+    }
     
 }
 }

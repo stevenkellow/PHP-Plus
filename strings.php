@@ -61,7 +61,7 @@
 if( ! function_exists( 'rand_string' ) ){
 function rand_string( $length = 36, $symbols = true ){
 
-	$test = array( 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+	$characters = array( 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 				   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 				   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' );
 				   
@@ -70,14 +70,14 @@ function rand_string( $length = 36, $symbols = true ){
 	// If we're using symbols use our default list
 	if( $symbols === true ){
 		
-		$test = array_merge( $test, $symbols_array );
+		$characters = array_merge( $characters, $symbols_array );
 		
 	}
 	
 	// If we're passing through an array of symbols use this
 	if( is_array( $symbols ) ){
 		
-		$test = array_merge( $test, $symbols );
+		$characters = array_merge( $characters, $symbols );
 		
 	}
 	
@@ -85,7 +85,7 @@ function rand_string( $length = 36, $symbols = true ){
 	$string = '';
 	
 	// Count the number of characters we've got available
-	$total_chars = count( $test ) - 1;
+	$total_chars = count( $characters ) - 1;
 	
 	// For each of the length add a character to the string
 	for( $x = 1; $x <= $length; $x++ ){
@@ -101,7 +101,7 @@ function rand_string( $length = 36, $symbols = true ){
 
 		}
 		
-		$string .= $test[$int];
+		$string .= $characters[$int];
 		
 	}
 
