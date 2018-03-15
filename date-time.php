@@ -253,7 +253,7 @@ function human_time_diff( $from, $to = '' ) {
 *	Output an MySQL friendly date/time stamp
 *
 *	@since 1.0.2
-*	@last_modified 1.0.2
+*	@last_modified 1.1
 *
 *	@param string | int - $time - a time to base the output on
 *	@param string $date_time - whether to output datetime or just date
@@ -266,11 +266,12 @@ function date_mysql( $time = false, $date_time = 'datetime' ){
     
     // Use current time if none set
     if( $time == false ){
+        
         $time = time();
-    }
-    
-    // Convert a string time to int
-    if( is_string( $time ) ){
+        
+    } elseif( is_string( $time ) ){
+        
+        // Convert a string time to int
         $time = strtotime( $time );
     }
 	
@@ -396,6 +397,7 @@ function is_future( $date ){
 *	@since	1.1
 *	@last_modified	1.1
 */
+if( ! function_exists( 'is_today' ) ){
 function is_today( $timetamp ){
     
     if( date('Ymd') == date('Ymd', strtotime($timestamp)) ){
@@ -408,6 +410,7 @@ function is_today( $timetamp ){
         
     }
     
+}
 }
 
 /**
@@ -422,6 +425,7 @@ function is_today( $timetamp ){
 *	@since	1.1
 *	@last_modified	1.1
 */
+if( ! function_exists( 'is_yesterday' ) ){
 function is_yesterday( $timetamp ){
     
     if( date('Ymd', time() - DAY_IN_SECONDS ) == date('Ymd', strtotime($timestamp)) ){
@@ -434,6 +438,7 @@ function is_yesterday( $timetamp ){
         
     }
     
+}
 }
 
 /**
@@ -448,6 +453,7 @@ function is_yesterday( $timetamp ){
 *	@since	1.1
 *	@last_modified	1.1
 */
+if( ! function_exists( 'is_tomorrow' ) ){
 function is_tomorrow( $timetamp ){
     
     if( date('Ymd', time() + DAY_IN_SECONDS ) == date('Ymd', strtotime($timestamp)) ){
@@ -460,6 +466,7 @@ function is_tomorrow( $timetamp ){
         
     }
     
+}
 }
 
 /**
