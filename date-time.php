@@ -16,6 +16,7 @@
 *   get_gmt_from_date
 *   get_date_from_gmt
 *   human_time_diff
+*   time_ago
 *   date_mysql
 *   easter_date_orthodox
 *   is_past
@@ -246,6 +247,27 @@ function human_time_diff( $from, $to = '' ) {
 	return $since;
 }
 }
+
+/**
+*   time_ago
+*
+*   Return the human readable difference between a given time and now
+*
+*	@param int $from Unix timestamp from which the difference begins.
+*
+*   @return string - Human readable time difference.
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'time_ago' ) ){
+function time_ago( $time ){
+    
+    return human_time_diff( $time, time() );
+    
+}
+}
+
 
 /**
 *	date_mysql

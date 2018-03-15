@@ -38,7 +38,7 @@ if( ! defined( 'HOUR_IN_SECONDS') ){
         define( 'HOUR', 60 * 60 );
     }
 
-// Dasy
+// Days
 if( ! defined( 'DAY_IN_SECONDS') ){
     define( 'DAY_IN_SECONDS', 24 * 60 * 60);
 }
