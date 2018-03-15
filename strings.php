@@ -908,13 +908,21 @@ function is_hex( $string ){
 *
 *   @param string $haystack - string to search in
 *   @param string $needle - string to search for
+*   @param bool $insensitive - whether to make the comparison case insensitive
 *
 *   @return bool - true if it does, false if it doesn't
 *
 *	@since	1.1
 *	@last_modified	1.1
 */
-function starts_with( $haystack, $needle ){
+function starts_with( $haystack, $needle, $insensitive = false ){
+    
+    if( $insensitive == true ){
+        
+        $haystack = strtolower( $haystack );
+        $needle = strtolower( $needle );
+        
+    }
     
     $length = strlen($needle);
     return (substr($haystack, 0, $length) === $needle);
@@ -931,14 +939,22 @@ function starts_with( $haystack, $needle ){
 *
 *   @param string $haystack - string to search in
 *   @param string $needle - string to search for
+*   @param bool $insensitive - whether to make the comparison case insensitive
 *
 *   @return bool - true if it does, false if it doesn't
 *
 *	@since	1.1
 *	@last_modified	1.1
 */
-function starts_with( $haystack, $needle ){
+function ends_with( $haystack, $needle, $insensitive = false ){
     
-   return substr($haystack, -strlen($needle))===$needle;
+    if( $insensitive == true ){
+        
+        $haystack = strtolower( $haystack );
+        $needle = strtolower( $needle );
+        
+    }
+    
+    return substr($haystack, -strlen($needle))===$needle;
     
 }
