@@ -28,6 +28,7 @@
 *   array_first
 *   array_cartesian
 *   array_rand_weighted
+*   array_numeric
 */
 
 /*
@@ -658,5 +659,39 @@ function array_rand_weighted(array $weightedValues) {
         return $key;
       }
     }
+}
+}
+
+/**
+*   array_numeric
+*
+*   Makes sure an array only includes numeric values
+*
+*   @param array $array - the array to check
+*
+*   @return array $new_array - the updated array
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'array_numeric' ) ){
+function array_numeric( $array ){
+    
+    $new_array = array();
+    
+    // Go through each element of the array
+    foreach( $array as $key => $element ){
+        
+        // Save it if it's a numeric element
+        if( is_numeric( $element ) ){
+            
+            $new_array[$key] = $element;
+            
+        }
+        
+    }
+    
+    return $new_array;
+    
 }
 }
