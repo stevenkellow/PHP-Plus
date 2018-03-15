@@ -255,20 +255,57 @@ function facebook_pixel( $pixel_id ){
 *   @last_modified 0.1
 *
 *	@param file $file - a CSV file uploaded
+*   @param bool $header_key - whether the first line is a header that can be used as a key
 *
 *	@return array $csv_array
 *
 */
 if( ! function_exists( 'csv_to_array') ){
-function csv_to_array( $file ){
+function csv_to_array( $file, $header_key = true ){
 	
 	// Turn the file into an array
     $file_array = array_map( 'str_getcsv', file( $file ) );
     
     // Check that the CSV mapping worked
     if( is_array( $file_array ) ){
-		
-		return $file_array;
+        
+        // Check if we want to use the header row as a key
+        if( $header_key == true ){
+            
+            // Create return and headers array
+            $return_array = array();
+            $headers = array();
+            
+            $row_count = 1;
+            
+            foreach( $file_array as $row ){
+                
+                // If it's the first row, then use this as the keys
+                if( $row_count == 1 ){
+                    
+                    $headers = $row;
+                    
+                } else {
+                    
+                    // Go through each cell and use the key
+                    $new_row = array_combine( $headers, $row );
+                    
+                    $return_array[] = $new_row;
+                    
+                }
+                
+                // Increment the row count
+                $row_count++;
+                
+            }
+            
+            return $return_array;
+            
+        } else {
+            
+            return $file_array;
+            
+        }
 		
 	} else {
 		
@@ -346,7 +383,7 @@ function is_json($string) {
 *   Turn an uploaded CSV file into a json file
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.1
 *
 *	@param file $file - a CSV file uploaded
 *   @param string $location - path to create JSON file or null to return as json_encoded array
@@ -355,7 +392,7 @@ function is_json($string) {
 *
 */
 if( ! function_exists( 'csv_to_json') ){
-function csv_to_json( $file, $location ){
+function csv_to_json( $file, $location = null ){
     
     // Turn the file into an array
     $data_array = csv_to_array( $file );
