@@ -603,7 +603,7 @@ function working_date_range( $start, $end, $format = 'Y-m-d', $working_days = ar
     foreach( $date_range as $day ){
         
         // If it's a working day then add to the array
-        if( in_array( $working_days, date( 'N', strtotime( $day ) ) ) ){
+        if( in_array( date( 'N', strtotime( $day ) ), $working_days ) ){
             
             $working_date_range[] = $day;
             

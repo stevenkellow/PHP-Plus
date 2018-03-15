@@ -85,15 +85,18 @@ function is_assoc($array) {
 */
 if( ! function_exists( 'shuffle_assoc' ) ){
 function shuffle_assoc($list) { 
-  if (!is_array($list)) return $list; 
+    if (!is_array($list)) return $list; 
 
-  $keys = array_keys($list); 
-  shuffle($keys); 
-  $random = array(); 
-  foreach ($keys as $key) { 
-    $random[$key] = $list[$key]; 
-  }
-  return $random; 
+    $keys = array_keys($list); 
+    
+    shuffle($keys); 
+    $random = array();
+    
+    foreach ($keys as $key) { 
+        $random[$key] = $list[$key]; 
+    }
+    
+    return $random; 
 }
 }
 
@@ -594,7 +597,7 @@ function array_first( $array ){
 *	@since	1.1
 *	@last_modified	1.1
 */
-if( ! function_exists( 'cartesian' ) ){
+if( ! function_exists( 'array_cartesian' ) ){
 function array_cartesian($input) {
     // filter out empty values
     $input = array_filter($input);

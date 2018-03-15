@@ -778,6 +778,7 @@ function calc( $number, $min = false, $max = false, $fail = false ){
 *	@since	1.1
 *	@last_modified	1.1
 */
+if( ! function_exists( 'is_zero' ) ){
 function is_zero( $value ){
 
     if( $value == 0 ){
@@ -786,6 +787,7 @@ function is_zero( $value ){
         return false;
     }
 
+}
 }
 
 /**
@@ -800,6 +802,7 @@ function is_zero( $value ){
 *	@since	1.1
 *	@last_modified	1.1
 */
+if( ! function_exists( 'is_positive' ) ){
 function is_positive( $value ){
 
     if( $value >= 0 ){
@@ -808,6 +811,7 @@ function is_positive( $value ){
         return false;
     }
 
+}
 }
 
 /**
@@ -822,6 +826,7 @@ function is_positive( $value ){
 *	@since	1.1
 *	@last_modified	1.1
 */
+if( ! function_exists( 'is_negative' ) ){
 function is_negative( $value ){
 
     if( $value < 0 ){
@@ -830,6 +835,7 @@ function is_negative( $value ){
         return false;
     }
 
+}
 }
 
 /**
@@ -843,6 +849,7 @@ function is_negative( $value ){
 *   @param float $float_one - the first float to compare
 *   @param float $float_two - the second float to compare
 *   @param float $tolerance - the tolerance of difference
+*   @param string $tolerance_type - whether it's a percentage or integer
 *
 *   @return bool - true if equal or approximately equal, false if not
 *
@@ -850,13 +857,66 @@ function is_negative( $value ){
 *	@last_modified	1.1
 */
 if( ! function_exists( 'approximate_equal' ) ){
-function approximate_equal( $float_one, $float_two, $tolerance ){
+function approximate_equal( $float_one, $float_two, $tolerance, $tolerance_type = 'int' ){
     
-    if ( abs( ($float_one - $float_two) / $float_two ) < $tolerance ) {
-        return true;
-    } else {
-        return false;
+    if( $tolerance_type == 'int' ){
+    
+        if ( abs( $float_one - $float_two ) <= $tolerance ) {
+            return true;
+        } else {
+            return false;
+        }
+    
     }
     
+    if( $tolerance_type == 'percent' ){
+        
+        if ( abs( ($float_one - $float_two) / $float_two ) <= $tolerance ) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+}
+}
+
+/**
+*   array_rand_weighted()
+*
+*   Utility function for getting random values with weighting.
+*   Pass in an associative array, such as array('A'=>5, 'B'=>45, 'C'=>50)
+*   An array like this means that "A" has a 5% chance of being selected, "B" 45%, and "C" 50%.
+*   The return value is the array key, A, B, or C in this case.  Note that the values assigned
+    do not have to be percentages.  The values are simply relative to each other.  If one value
+    weight was 2, and the other weight of 1, the value with the weight of 2 has about a 66%
+    chance of being selected.  Also note that weights should be integers.
+*
+*   @author Brad
+*   @see https://stackoverflow.com/a/11872928/7956549
+* 
+*   @param array $weightedValues
+*
+*   @return string $key
+*
+*   @since  1.1
+*   @last_modified  1.1
+*/
+if( ! function_exists( 'array_rand_weighted' ) ){
+function array_rand_weighted(array $weightedValues) {
+    
+    if( function_exists( 'random_int' ) ){
+        $rand = random_int(1, (int) array_sum($weightedValues));
+    } else {
+        $rand = mt_rand(1, (int) array_sum($weightedValues));
+    }    
+
+    foreach ($weightedValues as $key => $value) {
+      $rand -= $value;
+      if ($rand <= 0) {
+        return $key;
+      }
+    }
 }
 }

@@ -329,25 +329,25 @@ function hex2str($func_string) {
 */
 if( ! function_exists( 'mbstring_binary_safe_encoding' ) ){
 function mbstring_binary_safe_encoding( $reset = false ) {
-  static $encodings = array();
-  static $overloaded = null;
+    static $encodings = array();
+    static $overloaded = null;
 
-  if ( is_null( $overloaded ) )
+    if ( is_null( $overloaded ) )
     $overloaded = function_exists( 'mb_internal_encoding' ) && ( ini_get( 'mbstring.func_overload' ) & 2 );
 
-  if ( false === $overloaded )
+    if ( false === $overloaded )
     return;
 
-  if ( ! $reset ) {
-    $encoding = mb_internal_encoding();
-    array_push( $encodings, $encoding );
-    mb_internal_encoding( 'ISO-8859-1' );
-  }
+    if ( ! $reset ) {
+        $encoding = mb_internal_encoding();
+        array_push( $encodings, $encoding );
+        mb_internal_encoding( 'ISO-8859-1' );
+    }
 
-  if ( $reset && $encodings ) {
-    $encoding = array_pop( $encodings );
-    mb_internal_encoding( $encoding );
-  }
+    if ( $reset && $encodings ) {
+        $encoding = array_pop( $encodings );
+        mb_internal_encoding( $encoding );
+    }
 }
 }
 
@@ -366,7 +366,7 @@ function mbstring_binary_safe_encoding( $reset = false ) {
 */
 if( !function_exists( 'reset_mbstring_encoding' ) ){
 function reset_mbstring_encoding() {
-  mbstring_binary_safe_encoding( true );
+    mbstring_binary_safe_encoding( true );
 }
 }
 
@@ -915,6 +915,7 @@ function is_hex( $string ){
 *	@since	1.1
 *	@last_modified	1.1
 */
+if( ! function_exists( 'starts_with' ) ){
 function starts_with( $haystack, $needle, $insensitive = false ){
     
     if( $insensitive == true ){
@@ -927,6 +928,7 @@ function starts_with( $haystack, $needle, $insensitive = false ){
     $length = strlen($needle);
     return (substr($haystack, 0, $length) === $needle);
     
+}
 }
 
 /**
@@ -946,6 +948,7 @@ function starts_with( $haystack, $needle, $insensitive = false ){
 *	@since	1.1
 *	@last_modified	1.1
 */
+if( ! function_exists( 'ends_with' ) ){
 function ends_with( $haystack, $needle, $insensitive = false ){
     
     if( $insensitive == true ){
@@ -957,4 +960,5 @@ function ends_with( $haystack, $needle, $insensitive = false ){
     
     return substr($haystack, -strlen($needle))===$needle;
     
+}
 }
