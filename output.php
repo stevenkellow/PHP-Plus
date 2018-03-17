@@ -84,9 +84,9 @@ function test_remote_file( $file_location ){
 if( ! function_exists( 'print_pre' ) ){
 function print_pre( $data ){
 		
-		echo '<pre>';
-		print_r( $data );
-		echo '</pre>';
+    echo '<pre>';
+    print_r( $data );
+    echo '</pre>';
 		
 }
 }
@@ -141,7 +141,6 @@ function random_color( $type = 'hex'){
         
         return $c;
         
-        
     }
 }
 }
@@ -161,15 +160,14 @@ function random_color( $type = 'hex'){
 *   @param string $data - the info you want to encode
 *	@param int $size - value for height and width of image in pixels
 *
-*
 *	@return string - the URL of the QR code
 */
 if( ! function_exists( 'qr_url' ) ){
 function qr_url( $data, $size = '300' ){
   
-  $qr_url = 'https://chart.googleapis.com/chart?cht=qr&chs=' . $size . 'x' . $size . '&chl=' . rawurlencode( $data );
+    $qr_url = 'https://chart.googleapis.com/chart?cht=qr&chs=' . $size . 'x' . $size . '&chl=' . rawurlencode( $data );
   
-  return $qr_url;
+    return $qr_url;
   
 }
 }
@@ -187,11 +185,14 @@ function qr_url( $data, $size = '300' ){
 *	@param int $size - value for height and width of image in pixels
 *
 *	@return string - an image tag for the generated QR code
+*
+*   @since  0.1
+*   @last_modified  0.1
 */
 if( ! function_exists( 'qr_image' ) ){
 function qr_image( $data, $size = '300' ){
 	
-	$qr_url = qr_url( $data, $size );
+    $qr_url = qr_url( $data, $size );
 	
 	echo '<img src="' . $qr_url . '" height="' . $size . '" width="' . $size . '" />';
 	
@@ -206,6 +207,9 @@ function qr_image( $data, $size = '300' ){
 *
 *   @author Silver Moon
 *   @source http://www.binarytides.com/php-check-if-file-is-an-image/
+*
+*	@since	0.1
+*	@last_modified	0.1
 *
 *	@param string - path or URL of file to check
 *
@@ -232,6 +236,9 @@ function is_image($path){
 *   @author Chris Coyier
 *   @source https://css-tricks.com/snippets/php/create-data-uris/
 *
+*	@since	0.1
+*	@last_modified	1.1
+*
 *	@param string - path or URL of file to encode
 *   @param string - mime type of file (Maybe need to change that)
 *
@@ -242,16 +249,16 @@ function data_uri($file) {
 	
 	if( is_image( $file ) ){
 		
-		  $contents=file_get_contents($file);
+        $contents=file_get_contents($file);
 		  
-		  //$mime = mime_content_type( $contents );
-		  $base64=base64_encode($contents);
-		  return "data:';base64,$base64";
+        //$mime = mime_content_type( $contents );
+        $base64=base64_encode($contents);
+        return "data:';base64,$base64";
   
 	} else {
 		
 		// Likely a string, so just encode that
-		return $base64_encode( $file );
+		return base64_encode( $file );
 		
 	}
 }
@@ -262,12 +269,12 @@ function data_uri($file) {
 *
 *   Returns the mime type of a file given the extension
 *
+*	@since	1.0.2
+*	@last_modified	1.0.2
+*
 *   @param string $ext - the file extension
 *
 *   @return string - the mime type
-*
-*	@since	1.02
-*	@last_modified	1.0.2
 */
 if( ! function_exists( 'mime_type' ) ){
 function mime_type( $ext ){
@@ -293,11 +300,11 @@ function mime_type( $ext ){
 *
 *   Print a HTML table
 *
-*   @param array $headers - an array where each item is a header title
-*   @param array $data - an array, where each item is an array containing cells
-*
 *	@since	1.1
 *	@last_modified	1.1
+*
+*   @param array $headers - an array where each item is a header title
+*   @param array $data - an array, where each item is an array containing cells
 */
 if( ! function_exists( 'create_table' ) ){
 function create_table( $headers, $data ){
@@ -354,10 +361,10 @@ function create_table( $headers, $data ){
 *
 *   Dump the variable and end execution of the script
 *
-*   @param mixed $variable - the variable to dump
-*
 *	@since	1.1
 *	@last_modified	1.1
+*
+*   @param mixed $variable - the variable to dump
 */
 if( ! function_exists( 'dd' ) ){
 function dd( $variable ){
@@ -373,12 +380,12 @@ function dd( $variable ){
 *
 *   Shorthand to run htmlentities over a string
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $string - string to sanitise
 *
 *   @return string - sanitised string
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'e' ) ){
 function e( $string ){
@@ -405,6 +412,7 @@ function e( $string ){
 *   Technically the correct unit names for powers of 1024 are KiB, MiB etc.
 *
 *   @author WordPress
+*   @see https://developer.wordpress.org/reference/functions/size_format/
 *
 *   @since 1.1
 *

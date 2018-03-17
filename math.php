@@ -298,7 +298,7 @@ function is_odd( $number ){
 *   @param integer $number - number to round
 *	@param integer $precision - number of decimal places to round to
 *
-*   @return integer / float - rounded number
+*   @return integer | float - rounded number
 */
 if( ! function_exists( 'round_up') ){
 function round_up($number, $precision = 2){
@@ -321,7 +321,7 @@ function round_up($number, $precision = 2){
 *   @param integer $number - number to round
 *	@param integer $precision - number of decimal places to round to
 *
-*   @return integer / float - rounded number
+*   @return integer | float - rounded number
 */
 if( ! function_exists( 'round_down') ){
 function round_down($number, $precision = 2){
@@ -716,15 +716,15 @@ function percent( $number, $decimals = 2 ){
 *
 *   Perform a calculation and make sure the value has a minimum and maximum
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param float $number - the number to evaluate
 *   @param float $min - the minimum value for the calculation
 *   @param float $max - the maximum value for the calculation
 *   @param bool $fail - whether the function should fail if the number is outside the min and max
 *
 *   @return type $return - what comes out
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'calc' ) ){
 function calc( $number, $min = false, $max = false, $fail = false ){
@@ -771,12 +771,12 @@ function calc( $number, $min = false, $max = false, $fail = false ){
 *
 *   Checks whether the value is zero
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param object $value - the value to check
 *
 *   @return bool true if it's zero, false if it's not
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'is_zero' ) ){
 function is_zero( $value ){
@@ -795,12 +795,12 @@ function is_zero( $value ){
 *
 *   Checks whether the value is positive (greater than or equal to zero)
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param object $value - the value to check
 *
 *   @return bool true if it's positive, false if it's not
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'is_positive' ) ){
 function is_positive( $value ){
@@ -819,12 +819,12 @@ function is_positive( $value ){
 *
 *   Checks whether the value is negative (less than zero)
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param object $value - the value to check
 *
 *   @return bool true if it's negative, false if it's not
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'is_negative' ) ){
 function is_negative( $value ){
@@ -846,15 +846,15 @@ function is_negative( $value ){
 *   @author Joey
 *   @see https://stackoverflow.com/a/3148991/7956549
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param float $float_one - the first float to compare
 *   @param float $float_two - the second float to compare
 *   @param float $tolerance - the tolerance of difference
 *   @param string $tolerance_type - whether it's a percentage or integer
 *
 *   @return bool - true if equal or approximately equal, false if not
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'approximate_equal' ) ){
 function approximate_equal( $float_one, $float_two, $tolerance, $tolerance_type = 'int' ){

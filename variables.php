@@ -24,7 +24,7 @@
 *   Check if the site uses SSL or note
 *
 *	@author WordPress
-*   @source https://core.trac.wordpress.org/browser/trunk/src/wp-includes/load.php
+*   @source https://developer.wordpress.org/reference/functions/is_ssl/
 *
 *   @since 0.1
 *   @last_modified 0.1
@@ -56,7 +56,6 @@ function is_ssl() {
 *
 *   @since 0.1
 *   @last_modified 0.1
-*
 *
 *	@return string https:// | http://
 *

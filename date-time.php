@@ -95,6 +95,7 @@ function get_gmt_offset( $timezone = false ){
 *	format can be overridden using the $format parameter.
 *
 *	@author WordPress
+*   @see https://developer.wordpress.org/reference/functions/get_gmt_from_date/
 *
 *	@since 1.1
 *	@last_modified	1.1
@@ -139,6 +140,7 @@ function get_gmt_from_date( $string, $format = 'Y-m-d H:i:s' ) {
 *	using the $format parameter
 *
 *	@author WordPress
+*   @see https://developer.wordpress.org/reference/functions/get_date_from_gmt/
 *
 *	@since 1.1
 *	@last_modified	1.1
@@ -169,21 +171,22 @@ function get_date_from_gmt( $string, $format = 'Y-m-d H:i:s' ) {
 }
 
 /**
- *	human_time_diff
- *	
- *  Determines the difference between two timestamps.
- *
- *	The difference is returned in a human readable format such as "1 hour", "5 mins", "2 days".
- *
- *	@author WordPress
- *
- *	@since	1.1
- *	@last_modified	1.1
- *
- *	@param int $from Unix timestamp from which the difference begins.
- *	@param int $to   Optional. Unix timestamp to end the time difference. Default becomes time() if not set.
- *	@return string Human readable time difference.
- */
+*	human_time_diff
+*	
+*   Determines the difference between two timestamps.
+*
+*	The difference is returned in a human readable format such as "1 hour", "5 mins", "2 days".
+*
+*	@author WordPress
+*   @see https://developer.wordpress.org/reference/functions/human_time_diff/
+*
+*	@since	1.1
+*	@last_modified	1.1
+*
+*	@param int $from Unix timestamp from which the difference begins.
+*	@param int $to   Optional. Unix timestamp to end the time difference. Default becomes time() if not set.
+*	@return string Human readable time difference.
+*/
 if( ! function_exists( 'human_time_diff' ) ){
 function human_time_diff( $from, $to = '' ) {
 	if ( empty( $to ) ) {
@@ -253,12 +256,12 @@ function human_time_diff( $from, $to = '' ) {
 *
 *   Return the human readable difference between a given time and now
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *	@param int $from Unix timestamp from which the difference begins.
 *
 *   @return string - Human readable time difference.
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'time_ago' ) ){
 function time_ago( $time ){
@@ -356,12 +359,12 @@ function easter_date_orthodox( $year = false, $date_format = false ) {
 *
 *   Check if a date is in the past
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $date - the date to check
 *
 *   @return bool - true if in past, false if not
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'is_past' ) ){
 function is_past( $date ){
@@ -384,12 +387,12 @@ function is_past( $date ){
 *
 *   Check if a date is in the future
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $date - the date to check
 *
 *   @return bool - true if in future, false if not
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'is_future' ) ){
 function is_future( $date ){
@@ -412,12 +415,12 @@ function is_future( $date ){
 *
 *   Check if a timestamp is today
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string - a timestamp
 *
 *   @return bool - true if today, false if not
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'is_today' ) ){
 function is_today( $timestamp ){
@@ -445,12 +448,12 @@ function is_today( $timestamp ){
 *
 *   Check if a timestamp is yesterday
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string - a timestamp
 *
 *   @return bool - true if yesterday, false if not
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'is_yesterday' ) ){
 function is_yesterday( $timestamp ){
@@ -478,12 +481,12 @@ function is_yesterday( $timestamp ){
 *
 *   Check if a timestamp is tomorrow
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string - a tomorrow
 *
 *   @return bool - true if tomorrow, false if not
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'is_tomorrow' ) ){
 function is_tomorrow( $timestamp ){
@@ -553,13 +556,14 @@ function copyright( $year = false, $roman = false ){
 *   Get the current time in a variety of formats
 *
 *   @author WordPress
+*   @see https://developer.wordpress.org/reference/functions/current_time/
+*
+*	@since	1.1
+*	@last_modified	1.1
 *
 *   @param string $type - either 'mysql' for MySQL format, 'timestamp' for integer, or PHP date format
 *
 *   @return string $return - what comes out
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'current_time' ) ){
 function current_time( $type, $gmt = 0 ) {
@@ -582,14 +586,14 @@ function current_time( $type, $gmt = 0 ) {
 *   @author ViNce
 *   @see https://stackoverflow.com/a/4312630/7956549
 *
+*	@since	1.1
+*	@last_modified    1.1
+*
 *   @param string $start - the first date to include
 *   @param string $end - the last date in the range
 *   @param string $format - the date format to use
 *
 *   @return array $dates - an array of dates, formatted as requested
-*
-*	@since	1.1
-*	@last_modified    1.1
 */
 if( ! function_exists( 'create_date_range' ) ){
 function create_date_range( $start, $end, $format = 'Y-m-d' ){
@@ -624,15 +628,15 @@ function create_date_range( $start, $end, $format = 'Y-m-d' ){
 *
 *   Get a list of working days between two dates
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $start - the first date to include
 *   @param string $end - the last date in the range
 *   @param string $format - the date format to use
 *   @param array $working_days - an array of day digits that are "working" days
 *
 *   @return array $dates - an array of dates, formatted as requested
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'working_date_range' ) ){
 function working_date_range( $start, $end, $format = 'Y-m-d', $working_days = array( 1, 2, 3, 4, 5 ) ){
@@ -667,14 +671,14 @@ function working_date_range( $start, $end, $format = 'Y-m-d', $working_days = ar
 *
 *   Count the days between two dates
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $start - the first date to include
 *   @param string $end - the last date in the range
 *   @param array $working_days - if only counting certain days, an array of day digits that are "working" days
 *
 *   @return int - the number of days
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'days_between' ) ){
 function days_between( $start, $end, $working_days = array() ){

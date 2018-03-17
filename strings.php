@@ -229,7 +229,7 @@ function slug($string){
 *   Appends a trailing slash.
 *
 *	@author WordPress
-*	@source https://core.trac.wordpress.org/browser/tags/4.7.3/src/wp-includes/formatting.php
+*	@source https://developer.wordpress.org/reference/functions/trailingslashit/
 *
 *   @since 0.1
 *   @last_modified 0.1
@@ -250,7 +250,7 @@ function trailingslash( $string ) {
 *   Removes trailing forward slashes and backslashes if they exist.
 *
 *	@author WordPress
-*	@source https://core.trac.wordpress.org/browser/tags/4.7.3/src/wp-includes/formatting.php
+*	@source https://developer.wordpress.org/reference/functions/untrailingslashit/
 *
 *   @since 0.1
 *   @last_modified 0.1
@@ -363,7 +363,6 @@ function mbstring_binary_safe_encoding( $reset = false ) {
 *
 *   @since 0.1
 *   @last_modified 0.1
-*
 *
 */
 if( !function_exists( 'reset_mbstring_encoding' ) ){
@@ -480,6 +479,9 @@ function utf8_uri_encode( $utf8_string, $length = 0 ) {
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/map_deep/
 *
+*	@since	0.1
+*	@last_modified	0.1
+*
 *	@param mixed $value The array, object, or scalar.
 *	@param callback $callback The function to map onto $value.
 *	@return mixed $value The value with the callback applied to all non-arrays and non-objects inside it.
@@ -512,6 +514,9 @@ function map_deep( $value, $callback ) {
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/rawurlencode_deep/
 *
+*	@since	0.1
+*	@last_modified	0.1
+*
 *	@param mixed $value The array or string to be encoded.
 *	@return mixed $value The encoded value.
 */
@@ -529,6 +534,9 @@ function rawurlencode_deep( $value ) {
 *
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/urldecode_deep/
+*
+*	@since	0.1
+*	@last_modified	0.1
 *
 *	@param mixed $value The array or string to be decoded.
 *	@return mixed $value The decoded value.
@@ -548,6 +556,9 @@ function urldecode_deep( $value ) {
 *
 *	@author Dark Launch
 *	@source https://www.darklaunch.com/2009/05/23/php-xml-encode-using-domdocument-convert-array-to-xml-json-encode
+*
+*	@since	0.1
+*	@last_modified	0.1
 *
 *	@param mixed $mixed - data to encode-using-domdocument-convert-array-to-xml-json-encode
 *	@param mixed $domElement -
@@ -609,6 +620,9 @@ function xml_encode($mixed, $domElement=null, $DOMDocument=null) {
 *
 *	@author user1398287
 *	@source http://stackoverflow.com/questions/6578832/how-to-convert-xml-into-array-in-php
+*
+*	@since	0.1
+*	@last_modified	0.1
 *
 *	@param string $xmlstring - XML data to convert to array
 *
@@ -861,17 +875,20 @@ function strcheck(){
 *
 *   Keys are used as internal identifiers. Lowercase alphanumeric characters, dashes and underscores are allowed.
 *
-*   @param string $key String key
-*
-*   @return string Sanitized key
+*   @author WordPress
+*   @see https://developer.wordpress.org/reference/functions/sanitize_key/
 *
 *	@since	1.1
 *	@last_modified	1.1
+*
+*   @param string $key String key
+*
+*   @return string Sanitized key
 */
 if( ! function_exists( 'sanitize_key' ) ){
 function sanitize_key( $key ) {
 	
-	$key     = strtolower( $raw_key );
+	$key     = strtolower( $key );
 	$key     = preg_replace( '/[^a-z0-9_\-]/', '', $key );
 
 	return $key;
@@ -885,12 +902,12 @@ function sanitize_key( $key ) {
 *
 *   @see http://php.net/manual/en/function.ctype-xdigit.php
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $string - the string to check
 *
 *   @return bool - true if hexadecimal, false if not
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'is_hex' ) ){
 function is_hex( $string ){
@@ -908,14 +925,14 @@ function is_hex( $string ){
 *   @author MrHus
 *   @see https://stackoverflow.com/a/4312630/7956549
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $haystack - string to search in
 *   @param string $needle - string to search for
 *   @param bool $insensitive - whether to make the comparison case insensitive
 *
 *   @return bool - true if it does, false if it doesn't
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'starts_with' ) ){
 function starts_with( $haystack, $needle, $insensitive = false ){
@@ -941,14 +958,14 @@ function starts_with( $haystack, $needle, $insensitive = false ){
 *   @author MrHus
 *   @see https://stackoverflow.com/a/4312630/7956549
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $haystack - string to search in
 *   @param string $needle - string to search for
 *   @param bool $insensitive - whether to make the comparison case insensitive
 *
 *   @return bool - true if it does, false if it doesn't
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'ends_with' ) ){
 function ends_with( $haystack, $needle, $insensitive = false ){
@@ -975,13 +992,13 @@ function ends_with( $haystack, $needle, $insensitive = false ){
 *   @author brandonwamboldt
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param  string $string  The string to convert to boolean
 *   @param  bool   $default The value to return if we can't match any
 *                          yes/no words
 *   @return boolean
-*
-*   @since  1.1
-*   @last_modified  1.1
 */
 if( ! function_exists( 'str_to_bool' ) ){
 function str_to_bool($string, $default = false){
@@ -1004,13 +1021,13 @@ function str_to_bool($string, $default = false){
 *   @author brandonwamboldt
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param  string $haystack - string to check
 *   @param  string $needle - string to find
 *
 *   @return boolean
-*
-*   @since  1.1
-*   @last_modified  1.1
 */
 if( ! function_exists( 'str_contains' ) ){
 function str_contains($haystack, $needle, $insensitive = false ){

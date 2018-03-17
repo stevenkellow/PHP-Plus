@@ -432,7 +432,6 @@ function csv_to_json( $file, $location = null ){
 *
 *   Turn an a JSON file into a CSV
 *
-*
 *   @since 0.1
 *   @last_modified 0.1
 *
@@ -710,13 +709,13 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
 *   @author Dador
 *   @see https://stackoverflow.com/a/4914807/7956549
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $folder - the path to the folder you want to zip
 *   @param string $destination_path - where you want to save the zip file
 *
 *   @return string $destination_path - where to find the zip file
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'zip' ) ){
 function zip( $folder, $destination_path ){
@@ -843,12 +842,12 @@ function email_hash( $email ){
 *
 *   Turns a comma separated item into an array
 *
+*	@since	0.1
+*	@last_modified	0.1
+*
 *   @param string $array_string - the comma separated array
 *
 *   @return array $output - the array
-*
-*	@since	0.1
-*	@last_modified	0.1
 */
 if( ! function_exists( 'comma_explode' ) ){
 function comma_explode( $array_string ){
@@ -885,12 +884,12 @@ function comma_explode( $array_string ){
 *
 *   Turns an array into a comma separated string
 *
+*	@since	1.0.3
+*	@last_modified	1.0.3
+*
 *   @param array $array - an array
 *
 *   @return string $array - a comma delimited string
-*
-*	@since	1.0.3
-*	@last_modified	1.0.3
 */
 if( ! function_exists( 'comma_implode' ) ){
 function comma_implode( $array ){
@@ -919,30 +918,36 @@ function comma_implode( $array ){
 }
 
 /**
- * Tests if an input is valid PHP serialized string.
- *
- * Checks if a string is serialized using quick string manipulation
- * to throw out obviously incorrect strings. Unserialize is then run
- * on the string to perform the final verification.
- *
- * Valid serialized forms are the following:
- * <ul>
- * <li>boolean: <code>b:1;</code></li>
- * <li>integer: <code>i:1;</code></li>
- * <li>double: <code>d:0.2;</code></li>
- * <li>string: <code>s:4:"test";</code></li>
- * <li>array: <code>a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}</code></li>
- * <li>object: <code>O:8:"stdClass":0:{}</code></li>
- * <li>null: <code>N;</code></li>
- * </ul>
- *
- * @author		Chris Smith <code+php@chris.cs278.org>
- * @copyright	Copyright (c) 2009 Chris Smith (http://www.cs278.org/)
- * @license		http://sam.zoy.org/wtfpl/ WTFPL
- * @param		string	$value	Value to test for serialized form
- * @param		mixed	$result	Result of unserialize() of the $value
- * @return		boolean			True if $value is serialized data, otherwise false
- */
+*   is_serialized
+*
+*   Tests if an input is valid PHP serialized string.
+*
+*   Checks if a string is serialized using quick string manipulation
+*   to throw out obviously incorrect strings. Unserialize is then run
+*   on the string to perform the final verification.
+*
+*   Valid serialized forms are the following:
+*   <ul>
+*   <li>boolean: <code>b:1;</code></li>
+*   <li>integer: <code>i:1;</code></li>
+*   <li>double: <code>d:0.2;</code></li>
+*   <li>string: <code>s:4:"test";</code></li>
+*   <li>array: <code>a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}</code></li>
+*   <li>object: <code>O:8:"stdClass":0:{}</code></li>
+*   <li>null: <code>N;</code></li>
+*   </ul>
+*
+*   @author		Chris Smith <code+php@chris.cs278.org>
+*   @copyright	Copyright (c) 2009 Chris Smith (http://www.cs278.org/)
+*   @license		http://sam.zoy.org/wtfpl/ WTFPL
+*
+*   @since 0.1
+*   @last_modified  0.1
+*
+*   @param		string	$value	Value to test for serialized form
+*   @param		mixed	$result	Result of unserialize() of the $value
+*   @return		boolean			True if $value is serialized data, otherwise false
+*/
 if( ! function_exists( 'is_serialized' ) ){
 function is_serialized($value, &$result = null){
 	// Bit of a give away this one
@@ -1021,12 +1026,12 @@ function is_serialized($value, &$result = null){
 *
 *   Return unserialized value of item
 *
+*	@since	0.1
+*	@last_modified	0.1
+*
 *   @param mixed $item - item to check
 *
 *   @return mixed $mixed - item ( unserialized if array or object )
-*
-*	@since	0.1
-*	@last_modified	0.1
 */
 if( ! function_exists( 'maybe_unserialize' ) ){
 function maybe_unserialize( $item ){
@@ -1044,12 +1049,12 @@ function maybe_unserialize( $item ){
 *
 *   Return serialized value of array or object, skip others
 *
+*	@since	0.1
+*	@last_modified	0.1
+*
 *   @param mixed $item - item to check
 *
 *   @return mixed $tiem - item (serialized if array or object )
-*
-*	@since	0.1
-*	@last_modified	0.1
 */
 if( ! function_exists( 'maybe_serialize' ) ){
 function maybe_serialize( $item ){
@@ -1075,12 +1080,12 @@ function maybe_serialize( $item ){
 *   @author Theodore R. Smith of PHP Experts, Inc. <http://www.phpexperts.pro/>
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $brokenSerializedData - serialized string to fix
 *
 *   @return string $fixdSerializedData - fixed serialized string
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'serialize_fix' ) ){
 function serialize_fix($brokenSerializedData){
@@ -1097,12 +1102,12 @@ function serialize_fix($brokenSerializedData){
 *
 *   Create an array from a pipe separated string
 *
+*	@since	0.1
+*	@last_modified	0.1
+*
 *   @param string $string - pipe separated string
 *
 *   @return array - array
-*
-*	@since	0.1
-*	@last_modified	0.1
 */
 if( ! function_exists( 'pipe_decode' ) ){
 function pipe_decode( $string ){
@@ -1124,12 +1129,12 @@ function pipe_decode( $string ){
 *
 *   Converts an array into a pipe separated string
 *
+*	@since	0.1
+*	@last_modified	0.1
+*
 *   @param array $array - an array
 *
 *   @return string - pipe separated string
-*
-*	@since	0.1
-*	@last_modified	0.1
 */
 if( ! function_exists( 'pipe_encode' ) ){
 function pipe_encode( $array ){
@@ -1153,12 +1158,12 @@ function pipe_encode( $array ){
 *
 *   Alias of unlink
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $file - path to the file to delete
 *
 *   @return type $return - what comes out
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'delete_file' ) ){
 function delete_file( $file ){
@@ -1176,13 +1181,13 @@ function delete_file( $file ){
 *   @author brandonwamboldt
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $dir - the directory to check
 *   @param string $format - whether to return the bytes as integer or formatted
 *
 *   @return integer | string - the size of the directory
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'directory_size' ) ){
 function directory_size($dir, $format = 'int' ){
