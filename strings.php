@@ -40,6 +40,8 @@
 *   is_hex
 *   starts_with
 *   ends_with
+*   str_to_bool
+*   str_contains
 */
 
 /**
@@ -960,5 +962,63 @@ function ends_with( $haystack, $needle, $insensitive = false ){
     
     return substr($haystack, -strlen($needle))===$needle;
     
+}
+}
+
+/**
+*   str_to_bool
+*
+*   Converts many english words that equate to true or false to boolean.
+*
+*   Supports 'y', 'n', 'yes', 'no' and a few other variations.
+*
+*   @author brandonwamboldt
+*   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
+*
+*   @param  string $string  The string to convert to boolean
+*   @param  bool   $default The value to return if we can't match any
+*                          yes/no words
+*   @return boolean
+*
+*   @since  1.1
+*   @last_modified  1.1
+*/
+if( ! function_exists( 'str_to_bool' ) ){
+function str_to_bool($string, $default = false){
+    $yes_words = 'affirmative|all right|aye|indubitably|most assuredly|ok|of course|okay|sure thing|y|yes+|yea|yep|sure|yeah|true|t|on|1|oui|vrai|tha';
+    $no_words = 'no*|no way|nope|nah|na|never|absolutely not|by no means|negative|never ever|false|f|off|0|non|faux|chan eil';
+    if (preg_match('/^(' . $yes_words . ')$/i', $string)) {
+        return true;
+    } elseif (preg_match('/^(' . $no_words . ')$/i', $string)) {
+        return false;
+    }
+    return $default;
+}
+}
+
+/**
+*   str_contains
+*
+*   Check if a string contains another string.
+*
+*   @author brandonwamboldt
+*   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
+*
+*   @param  string $haystack - string to check
+*   @param  string $needle - string to find
+*
+*   @return boolean
+*
+*   @since  1.1
+*   @last_modified  1.1
+*/
+if( ! function_exists( 'str_contains' ) ){
+function str_contains($haystack, $needle, $insensitive = false ){
+    
+    if( $insensitive == false ){
+        return strpos($haystack, $needle) !== false;
+    } else {
+        return stripos($haystack, $needle) !== false;
+    }
 }
 }

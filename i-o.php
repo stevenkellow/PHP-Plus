@@ -34,9 +34,11 @@
 *   is_serialized
 *   maybe_unserialize
 *   maybe_serialize
+*   serialize_fix
 *   pipe_decode
 *   pipe_encode
 *   delete_file
+*   directory_size
 */
 
 /**
@@ -1062,6 +1064,35 @@ function maybe_serialize( $item ){
 }
 
 /**
+*   serialize_fix
+*
+*   Unserializes partially-corrupted arrays that occur sometimes. Addresses
+*   specifically the `unserialize(): Error at offset xxx of yyy bytes` error.
+*
+*   NOTE: This error can *frequently* occur with mismatched character sets
+*   and higher-than-ASCII characters.
+*
+*   @author Theodore R. Smith of PHP Experts, Inc. <http://www.phpexperts.pro/>
+*   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
+*
+*   @param string $brokenSerializedData - serialized string to fix
+*
+*   @return string $fixdSerializedData - fixed serialized string
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'serialize_fix' ) ){
+function serialize_fix($brokenSerializedData){
+    $fixdSerializedData = preg_replace_callback('!s:(\d+):"(.*?)";!', function ($matches) {
+        $snip = $matches[2];
+        return 's:' . strlen($snip) . ':"' . $snip . '";';
+    }, $brokenSerializedData);
+    return $fixdSerializedData;
+}
+}
+
+/**
 *   pipe_decode
 *
 *   Create an array from a pipe separated string
@@ -1134,5 +1165,39 @@ function delete_file( $file ){
     
     return unlink( $file );
     
+}
+}
+
+/**
+*   directory_size
+*
+*   Returns size of a given directory in bytes.
+*
+*   @author brandonwamboldt
+*   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
+*
+*   @param string $dir - the directory to check
+*   @param string $format - whether to return the bytes as integer or formatted
+*
+*   @return integer | string - the size of the directory
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'directory_size' ) ){
+function directory_size($dir, $format = 'int' ){
+    $size = 0;
+    foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir, \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS)) as $file => $key) {
+        if ($key->isFile()) {
+            $size += $key->getSize();
+        }
+    }
+    
+    // Check how to format the size
+    if( $format == 'int' || $format == 'integer' ){
+        return $size;
+    } else {
+        return size_format( $size );
+    }
 }
 }

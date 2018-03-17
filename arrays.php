@@ -12,6 +12,7 @@
 *   array_reindex
 *   is_assoc
 *   shuffle_assoc
+*   is_numeric_array
 *   array_remove_empty
 *   unset_key
 *   unset_value
@@ -99,6 +100,38 @@ function shuffle_assoc($list) {
     }
     
     return $random; 
+}
+}
+
+/**
+*   is_numeric_array
+*
+*   Returns boolean if a function is flat/sequential numeric array
+*
+*   @author brandonwamboldt
+*   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
+*
+*   @param array $array - array to test
+*
+*   @return bool - true if numeric, false if not
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'is_numeric_array' ) ){
+function is_numeric_array($array){
+    if (!is_array($array)){
+        return false;
+    }
+    
+    $current = 0;
+    foreach (array_keys($array) as $key) {
+        if ($key !== $current) {
+            return false;
+        }
+        $current++;
+    }
+    return true;
 }
 }
 

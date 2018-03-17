@@ -17,6 +17,9 @@
 *   timer_end
 *   set_content_type
 *   delete_all_cookies
+*   utf8_headers
+*   force_download
+*   nocache_headers
 */
 
 /**
@@ -213,17 +216,29 @@ function timer_end( $old_time ){
 *
 *   @param string $type - the file type
 *
+*   @return bool - true if set, false if not
+*
 *	@since	1.1
 *	@last_modified	1.1
 */
 if( ! function_exists( 'set_content_type' ) ){
 function set_content_type( $type ){
     
-    // Call in our mime type files
-    $mime_type = mime_type( $type );
+    if( ! headers_sent() ){
     
-    // Set the header
-    header( 'Content-type: ' . $mime_type );
+        // Call in our mime type files
+        $mime_type = mime_type( $type );
+
+        // Set the header
+        header( 'Content-type: ' . $mime_type );
+        
+        return true;
+        
+    } else {
+        
+        return false;
+        
+    }
     
 }
 }
@@ -253,5 +268,117 @@ function delete_all_cookies(){
         }
     }
     
+}
+}
+
+/**
+*   utf8_headers
+*
+*   Transmit UTF-8 content headers if the headers haven't already been sent.
+*
+*   @author brandonwamboldt
+*   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
+*
+*   @param  string  $content_type The content type to send out
+*
+*   @return bool - true if set, false if not
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'utf8_headers' ) ){
+function utf8_headers($content_type = 'text/html'){
+    
+    // @codeCoverageIgnoreStart
+    if (!headers_sent()) {
+        header('Content-type: ' . $content_type . '; charset=utf-8');
+        return true;
+    }
+    return false;
+    // @codeCoverageIgnoreEnd
+}
+}
+
+/**
+*   force_download
+*
+*   Transmit headers that force a browser to display the download file
+*   dialog. Cross browser compatible. Only fires if headers have not
+*   already been sent.
+*
+*   @author brandonwamboldt
+*   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
+*
+*   @param string $filename The name of the filename to display to browsers
+*
+*   @param string $content  The content to output for the download.
+*   If you don't specify this, just the headers will be sent
+*
+*   @return bool - true if set, false if not
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'force_download' ) ){
+function force_download($filename, $content = false){
+    // @codeCoverageIgnoreStart
+    if (!headers_sent()) {
+        // Required for some browsers
+        if (ini_get('zlib.output_compression')) {
+            @ini_set('zlib.output_compression', 'Off');
+        }
+        header('Pragma: public');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        // Required for certain browsers
+        header('Cache-Control: private', false);
+        header('Content-Disposition: attachment; filename="' . basename(str_replace('"', '', $filename)) . '";');
+        header('Content-Type: application/force-download');
+        header('Content-Transfer-Encoding: binary');
+        if ($content) {
+            header('Content-Length: ' . strlen($content));
+        }
+        ob_clean();
+        flush();
+        if ($content) {
+            echo $content;
+        }
+        return true;
+    }
+    return false;
+    // @codeCoverageIgnoreEnd
+}
+}
+
+/**
+*   nocache_headers
+*
+*   Sets the headers to prevent caching for the different browsers.
+*
+*   Different browsers support different nocache headers, so several
+*   headers must be sent so that all of them get the point that no
+*   caching should occur
+*
+*   @author brandonwamboldt
+*   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
+*
+*   @return bool - true if set, false if not
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'nocache_headers' ) ){
+function nocache_headers(){
+    
+    // @codeCoverageIgnoreStart
+    if (!headers_sent()) {
+        header('Expires: Wed, 11 Jan 1984 05:00:00 GMT');
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+        header('Cache-Control: no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
+        return true;
+    }
+    return false;
+    // @codeCoverageIgnoreEnd
 }
 }
