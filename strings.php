@@ -1046,13 +1046,13 @@ function str_contains($haystack, $needle, $insensitive = false ){
 *
 *   Get information from an email address
 *
+*	@since	1.1
+*	@last_modified	1.1
+*
 *   @param string $email - the email address to parse
 *   @param array $delimiters - additional delimiters to use when parsing names
 *
 *   @return array $output - details of the email
-*
-*	@since	1.1
-*	@last_modified	1.1
 */
 if( ! function_exists( 'parse_email' ) ){
 function parse_email( $email, $delimiters = array() ){

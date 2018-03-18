@@ -270,7 +270,7 @@ function data_uri($file) {
 *   Returns the mime type of a file given the extension
 *
 *	@since	1.0.2
-*	@last_modified	1.0.2
+*	@last_modified	1.1
 *
 *   @param string $ext - the file extension
 *
@@ -280,7 +280,7 @@ if( ! function_exists( 'mime_type' ) ){
 function mime_type( $ext ){
     
     // Call in the list of mime types
-    require_once( PATH_TO_PHP_PLUS . '/data/mime-types.php' );
+    include_once( PATH_TO_PHP_PLUS . '/data/mime-types.php' );
     
     if( array_key_exists( $ext, $mime_types ) ){
 		
@@ -305,12 +305,25 @@ function mime_type( $ext ){
 *
 *   @param array $headers - an array where each item is a header title
 *   @param array $data - an array, where each item is an array containing cells
+*   @param array $atts - an array of attributes to add to the table
 */
 if( ! function_exists( 'create_table' ) ){
-function create_table( $headers, $data ){
+function create_table( $headers, $data, $atts = array() ){
 	
 	// Create the table
-	$output = '<table>';
+    if( empty( $atts ) ){
+	   
+        $output = '<table>';
+        
+    } else {
+        $output = '<table ';
+        
+        foreach( $atts as $type => $value ){
+            $output .= $type . '="' . $value . '" ';
+        }
+        
+        $output .= '>';
+    }
 	
 	// If there are header rows then add them here
 	if( ! empty( $headers ) && $headers !== false ){

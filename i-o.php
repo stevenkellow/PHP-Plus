@@ -482,7 +482,7 @@ function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
 *	@return array	- json file in array form
 */
 if( ! function_exists( 'json_file_to_array') ){
-function json_file_to_array( $path, $pretty = false ){
+function json_file_to_array( $path ){
 	
 	return json_decode( file_get_contents( $path ), true);
 	
