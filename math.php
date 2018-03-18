@@ -541,7 +541,7 @@ function roman2arabic( $roman ){
 *   Convert a temperature between celsius, fahrenheit and kelvin
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.1
 *
 *   @param int | float $number - value of temperature to convert
 *	@param string $from - temperature to convert from (celsius, fahrenheit or kelvin)
@@ -551,6 +551,30 @@ function roman2arabic( $roman ){
 */
 if( ! function_exists( 'temperature') ){
 function temperature( $number, $from, $to ){
+    
+    // Create aliases for temperature
+    if( strlen( $from ) == 1 ){
+        if( $from == 'C' || $from == 'c' ){
+            $from = 'celsius';
+        }
+        if( $from == 'F' || $from == 'f' ){
+            $from = 'fahrenheit';
+        }
+        if( $from == 'K' || $from == 'k' ){
+            $from = 'kelvin';
+        }
+    }
+    if( strlen( $to ) == 1 ){
+        if( $to == 'C' || $to == 'c' ){
+            $to = 'celsius';
+        }
+        if( $to == 'F' || $to == 'f' ){
+            $to = 'fahrenheit';
+        }
+        if( $to == 'K' || $to == 'k' ){
+            $to = 'kelvin';
+        }
+    }
 	
 	if( $from == 'celsius' ){
 		
@@ -632,13 +656,13 @@ function temperature( $number, $from, $to ){
 *	@source http://stackoverflow.com/a/30556851/7956549
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.1
 *
 *   @param int | float $lat1 - first latitude
 *   @param int | float $lon - first longitude
 *   @param int | float $lat1 - second latitude
 *   @param int | float $lon - second longitude
-*   @param string $unit - unit to use (K for Kilometers, N for Nautical Miles or M for miles)
+*   @param string $unit - unit to use (K/km for Kilometers, N for Nautical Miles or M for miles)
 *
 *   @return int | float - distance between the two points
 */
@@ -652,7 +676,7 @@ function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 	$miles = $dist * 60 * 1.1515;
 	$unit = strtoupper($unit);
 
-	if ($unit == "K") {
+	if ($unit == "K" || $unit == 'km') {
 	  return ($miles * 1.609344);
 	} else if ($unit == "N") {
 	  return ($miles * 0.8684);
@@ -781,7 +805,7 @@ function calc( $number, $min = false, $max = false, $fail = false ){
 if( ! function_exists( 'is_zero' ) ){
 function is_zero( $value ){
 
-    if( $value == 0 ){
+    if( $value === 0 ){
         return true;
     } else {
         return false;

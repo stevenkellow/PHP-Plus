@@ -16,7 +16,7 @@ define( 'PATH_TO_PHP_PLUS', __DIR__ );
 *   Time constants
 *
 *   @author WordPress
-*   @source https://core.trac.wordpress.org/browser/tags/4.7.3/src/wp-includes/default-constants.php#L0
+*   @see https://codex.wordpress.org/Easier_Expression_of_Time_Constants
 *
 *   @since 0.1
 *   @last_modified 0.1

@@ -202,6 +202,7 @@ function is_linux(){
 *   Test if the current browser runs on a mobile device (smart phone, tablet, etc.)
 *
 *   @author WordPress
+*   @see https://developer.wordpress.org/reference/functions/wp_is_mobile/
 *
 *   @since 1.1
 *   @last_modified  1.1

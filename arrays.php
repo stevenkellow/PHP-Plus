@@ -626,7 +626,6 @@ function array_first( $array ){
 *   @author Serg
 *   @see https://stackoverflow.com/a/15973172/7956549
 *
-*
 *	@since	1.1
 *	@last_modified	1.1
 *

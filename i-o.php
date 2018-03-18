@@ -482,7 +482,7 @@ function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
 *	@return array	- json file in array form
 */
 if( ! function_exists( 'json_file_to_array') ){
-function json_file_to_array( $path ){
+function json_file_to_array( $path, $pretty = false ){
 	
 	return json_decode( file_get_contents( $path ), true);
 	
@@ -585,24 +585,37 @@ function json_encode_utf8( $data ){
 *	Output JSON in a formatted way
 *
 *	@since 1.0.2
-*	@last_modified 1.0.2
+*	@last_modified 1.1
 *
 *	@param array | object - json element
+*   @param string $file - a file to send the output to
 *
 *	@return string - pretty json string or false if it isn't JSON
 */
 if( ! function_exists( 'pretty_json' ) ){
-function pretty_json( $json ){
+function pretty_json( $json, $file = null ){
+    
+    // Check incase a JSON string is supplied
+    if( is_string( $json ) && is_json( $json ) ){
 	
-	if( is_json( $json ) ){
-	
-		return json_encode( $json, JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK | JSON_UNESCAPED_UNICODE );
-	
-	} else {
-	
-		return false;
+		$json = json_decode( $json );
 		
-	}
+	} elseif( ! is_array( $json ) || ! is_object( $json ) ){
+        
+        // If it's not a JSON string, or an array/object then return false
+        return false;
+        
+    }
+    
+    // Create the output
+    $output = json_encode( $json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK | JSON_UNESCAPED_UNICODE );
+
+    // Check whether to send to a file
+    if( $output !== null ){
+        return file_put_contents( $file, $output );
+    } else {
+        return $output;
+    }
 
 }
 }
