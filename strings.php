@@ -42,6 +42,7 @@
 *   ends_with
 *   str_to_bool
 *   str_contains
+*   parse_email
 */
 
 /**
@@ -195,7 +196,7 @@ function validate_url( $url ){
 if( ! function_exists( 'is_email' ) ){
 function is_url( $url ){
 
-	return is_url( $url );
+	return validate_url( $url );
 	
 }
 }
@@ -1037,5 +1038,56 @@ function str_contains($haystack, $needle, $insensitive = false ){
     } else {
         return stripos($haystack, $needle) !== false;
     }
+}
+}
+
+/**
+*   parse_email
+*
+*   Get information from an email address
+*
+*   @param string $email - the email address to parse
+*   @param array $delimiters - additional delimiters to use when parsing names
+*
+*   @return array $output - details of the email
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'parse_email' ) ){
+function parse_email( $email, $delimiters = array() ){
+    
+    // Check that the email is valid
+    if( ! validate_email( $email ) ){
+        return false;
+    }
+    
+    // Create an output array
+    $output = array();
+    
+    $parts = explode('@',$email); // Splits the email at the @ symbol
+    $username = $parts[0]; // Can be used as a username if you'd like, but we'll use it to find names anyway
+    
+    // Add the items to the array
+    $output['username'] = $username;
+    $output['domain'] = $parts[1];
+
+    $delimiters = array_merge( $delimiters, array('.', '-', '_') ); // List of common email name delimiters, feel free to add to it
+
+    foreach ($delimiters as $delimiter){ // Checks all the delimiters
+        if ( strpos($username, $delimiter) ){ // If the delimiter is found in the string
+          $parts_name = preg_replace("/\d+$/","", $username); // Remove numbers from string
+          $parts_name = explode( $delimiter, $parts_name); // Split the username at the delimiter
+          break; // If we've found a delimiter we can move on
+        }
+    }
+
+    if ( $parts_name ){ // If we've found a delimiter we can use it
+        $output['first_name'] = ucfirst( strtolower( $parts_name[0] ) ); // Lets tidy up the names so the first letter is a capital and rest lower case
+        $output['last_name'] = ucfirst( strtolower( $parts_name[1] ) );
+    }
+    
+    return $output;
+    
 }
 }
