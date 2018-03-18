@@ -39,6 +39,7 @@
 *   pipe_encode
 *   delete_file
 *   directory_size
+*   get_file_extension
 */
 
 /**
@@ -1204,5 +1205,26 @@ function directory_size($dir, $format = 'int' ){
     } else {
         return size_format( $size );
     }
+}
+}
+
+/**
+*   get_file_extension
+*
+*   Get the file type
+*
+*   @author Paulund
+*   @see https://paulund.co.uk/get-the-file-extension-in-php
+*
+*	@since	1.1
+*	@last_modified	1.1
+*
+*   @param string $file - the file path
+*
+*   @return string - the file extension
+*/
+if( ! function_exists( 'get_file_extension' ) ){
+function get_file_extension( $file ){
+    return pathinfo($file, PATHINFO_EXTENSION);
 }
 }
