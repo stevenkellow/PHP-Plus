@@ -43,6 +43,8 @@
 *   str_to_bool
 *   str_contains
 *   parse_email
+*   html_atts_string
+*   make_clickable
 */
 
 /**
@@ -1111,5 +1113,140 @@ function parse_email( $email, $delimiters = array() ){
     
     return $output;
     
+}
+}
+
+/**
+*   html_atts_string
+*
+*   Create a string of attributes that can be used for a HTML element
+*
+*	@since	1.1
+*	@last_modified 1.1
+*
+*   @param array $atts - the element attributes
+*
+*   @return string $atts_string - the string of HTMl attributes
+*/
+if( ! function_exists( 'html_atts_string' ) ){
+function html_atts_string( $atts ){
+    
+    $atts_string = '';
+
+    foreach( $atts as $key => $value ){
+        
+        // Check for an array (might be used for classes)
+        if( is_array( $value ) ){
+            $atts_string .= $key . '="' . implode( $value, ' ') . '" ';
+        } else {
+            $atts_string .= $key . '="' . $value . '" ';
+        }
+
+    }
+    
+    return( trim( $atts_string ) );
+}
+}
+
+/**
+*   make_clickable
+*
+*   Parse a string and format anything that looks like a link as a link
+*
+*   @author WordPress
+*   @see https://developer.wordpress.org/reference/functions/make_clickable/
+*
+*	@since	1.1
+*	@last_modified	1.1
+*
+*   @param string $ret - the original string
+*   @param array $atts - any attributes to add to the final link
+*
+*   @return string - the string with new links
+*/
+if( ! function_exists( 'make_clickable' ) ){
+function make_clickable($ret, $atts = array() ) {
+    $ret = ' ' . $ret;
+    // in testing, using arrays here was found to be faster
+    
+    // For normal links
+	$ret = preg_replace_callback('#([\s>])([\w]+?://[\w\\x80-\\xff\#$%&~/.\-;:=,?@\[\]+]*)#is', function( $matches ) use ( $atts ){
+		
+		$ret = '';
+		$url = $matches[2];
+
+		if ( empty($url) )
+			return $matches[0];
+		// removed trailing [.,;:] from URL
+		if ( in_array(substr($url, -1), array('.', ',', ';', ':')) === true ) {
+			$ret = substr($url, -1);
+			$url = substr($url, 0, strlen($url)-1);
+		}
+		
+		if( empty( $atts ) ){
+			return $matches[1] . "<a href=\"$url\">$url</a>" . $ret;
+		} else {
+			
+			$atts_string = html_atts_string( $atts );
+			
+			return $matches[1] . "<a href=\"$url\" $atts_string >$url</a>" . $ret;
+		}
+		
+		
+		
+	}, $ret);
+	
+    // For FTP links
+    $ret = preg_replace_callback('#([\s>])((www|ftp)\.[\w\\x80-\\xff\#$%&~/.\-;:=,?@\[\]+]*)#is', function( $matches ) use ( $atts ){
+		
+		$ret = '';
+		$dest = $matches[2];
+		$dest = 'http://' . $dest;
+
+		if ( empty($dest) )
+			return $matches[0];
+		// removed trailing [,;:] from URL
+		if ( in_array(substr($dest, -1), array('.', ',', ';', ':')) === true ) {
+			$ret = substr($dest, -1);
+			$dest = substr($dest, 0, strlen($dest)-1);
+		}
+		
+		if( empty( $atts ) ){
+			
+			return $matches[1] . "<a href=\"$dest\">$dest</a>" . $ret;
+			
+		} else {
+			
+			$atts_string = html_atts_string( $atts );
+			
+			return $matches[1] . "<a href=\"$dest\" $atts_string >$dest</a>" . $ret;
+			
+		}
+		
+		
+		
+	}, $ret);
+   
+    // For email links
+   $ret = preg_replace_callback('#([\s>])([.0-9a-z_+-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,})#i', function( $matches ) use ( $atts ){
+	   
+	   $email = $matches[2] . '@' . $matches[3];
+	   
+	   if( empty( $atts ) ){ 
+		return $matches[1] . "<a href=\"mailto:$email\">$email</a>";
+	   } else {
+		   
+		   $atts_string = html_atts_string( $atts );
+		   
+		   return $matches[1] . "<a href=\"mailto:$email\" $atts_string >$email</a>";
+	   }
+	   
+	   
+   }, $ret);
+
+    // this one is not in an array because we need it to run last, for cleanup of accidental links within links
+    $ret = preg_replace("#(<a( [^>]+?>|>))<a [^>]+?>([^>]+?)</a></a>#i", "$1$3</a>", $ret);
+    $ret = trim($ret);
+    return $ret;
 }
 }

@@ -316,13 +316,9 @@ function create_table( $headers, $data, $atts = array() ){
         $output = '<table>';
         
     } else {
-        $output = '<table ';
         
-        foreach( $atts as $type => $value ){
-            $output .= $type . '="' . $value . '" ';
-        }
+        $output = '<table ' . html_atts_string( $atts ) . '>';
         
-        $output .= '>';
     }
 	
 	// If there are header rows then add them here
