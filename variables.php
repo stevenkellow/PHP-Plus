@@ -10,6 +10,7 @@
 /*  CONTENTS
 *
 *   is_ssl
+*       is_https
 *   protocol
 *   get_user_ip
 *   get_user_lang
@@ -46,6 +47,20 @@ function is_ssl() {
 		return true;
 	}
 	return false;
+}
+}
+
+/**
+*   is_https
+*
+*   Alias of is_ssl
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'is_https' ) ){
+function is_https(){
+    return is_ssl();
 }
 }
 

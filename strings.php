@@ -163,17 +163,38 @@ function is_email( $email ){
 *   Verify if a url format is valid
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.1
 *
 *	@param string $email - url to validate
+*   @param bool $ssl - whether to validate that the URL is HTTPS or not
 *
 *   @return bool - true if url validates, false otherwise
 */
 if( ! function_exists( 'validate_url' ) ){
-function validate_url( $url ){
+function validate_url( $url, $ssl = false ){
 
 	if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
-	  return true;
+	  
+        if( $ssl == false ){
+            return true;
+        } else {
+            
+            // Check that the URL is HTTPS
+            $parsed_url = parse_url( $url );
+
+            if( $parsed_url['scheme'] !== 'https' ){
+
+                // URL isn't HTTPS
+                return false;
+
+            } else {
+                
+                return true;
+                
+            }
+            
+        }
+        
 	} else {
 	  return false;
 	}
@@ -187,16 +208,17 @@ function validate_url( $url ){
 *   Alias of validate_url
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.1
 *
 *	@param string $url - url to validate
+*   @param bool $ssl - whether to validate that the URL is HTTPS or not
 *
 *   @return bool - true if url validates, false otherwise
 */
 if( ! function_exists( 'is_email' ) ){
-function is_url( $url ){
+function is_url( $url, $ssl = false ){
 
-	return validate_url( $url );
+	return validate_url( $url, $ssl );
 	
 }
 }

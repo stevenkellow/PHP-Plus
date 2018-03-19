@@ -40,6 +40,7 @@
 *   delete_file
 *   directory_size
 *   get_file_extension
+*   file_get_contents_secure
 */
 
 /**
@@ -1239,5 +1240,42 @@ function directory_size($dir, $format = 'int' ){
 if( ! function_exists( 'get_file_extension' ) ){
 function get_file_extension( $file ){
     return pathinfo($file, PATHINFO_EXTENSION);
+}
+}
+
+/**
+*   file_get_contents_secure
+*
+*   Use file get contents but verify the location where data is coming from
+*
+*   @author Padraic
+*   @see http://phpsecurity.readthedocs.io/en/latest/Input-Validation.html#validation-of-input-sources
+*
+*	@since	1.1
+*	@last_modified	1.1
+*
+*   @param string $location - the URL whose contents we want
+*   @param bool $validate_url - whether to validate the location as a url
+*
+*   @return string | bool - string of file contents if true, else false
+*/
+if( ! function_exists( 'file_get_contents_secure' ) ){
+function file_get_contents_secure( $location, $validate_url = true ){
+    
+    // If we need to validate the URL
+    if( $validate_url == true ){
+    
+        // Check that the URL is valid and is HTTPS
+        if( ! validate_url( $location, true ) ){
+
+            return false;
+
+        }
+        
+    }
+    
+    $context = stream_context_create(array('ssl' => array('verify_peer' => TRUE)));
+    return file_get_contents($location, false, $context);
+    
 }
 }
