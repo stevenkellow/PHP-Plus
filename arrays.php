@@ -245,8 +245,17 @@ function unset_value( $array, $value, $reindex = false ){
 		}
 		
 	}
+    
+    // If we want to reindex the array
+    if( $reindex == true ){
+        
+        return array_values( $array );
+        
+    } else {
 
-    return $array;
+        return $array;
+        
+    }
     
 }
 }
