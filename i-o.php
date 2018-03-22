@@ -40,6 +40,7 @@
 *   directory_size
 *   get_file_extension
 *   file_get_contents_secure
+*   file_create
 */
 
 /**
@@ -1301,5 +1302,38 @@ function file_get_contents_secure( $location, $validate_url = true ){
         
     }
     
+}
+}
+
+/**
+*   file_create
+*
+*   Uses file put contents and creates a directory if it doesn't exist
+*
+*   @author TrentTompkins
+*   @see http://php.net/manual/en/function.file-put-contents.php#84180
+*
+*	@since	1.1
+*	@last_modified	1.1
+*
+*   @param string $dir - the directory where the file should go
+*   @param string $contents - the contents of the file
+*
+*   @return bool - true if file created, false if not
+*/
+if( ! function_exists( 'file_create' ) ){
+function file_force_contents($dir, $contents){
+    $parts = explode('/', $dir);
+    $file = array_pop($parts);
+    $dir = '';
+    foreach($parts as $part)
+        if(!is_dir($dir .= "/$part")) mkdir($dir);
+    
+    // Incase there's some system error
+    try{
+        return file_put_contents("$dir/$file", $contents);
+    } catch( Exception $e ){
+        return false;
+    }
 }
 }
