@@ -369,7 +369,12 @@ function easter_date_orthodox( $year = false, $date_format = false ) {
 if( ! function_exists( 'is_past' ) ){
 function is_past( $date ){
     
-    if( strtotime( $date ) < time() ){
+    // Convert a string timestamp to integer
+    if( is_string( $date ) ){
+        $date = strtotime( $timestamp );
+    }
+    
+    if( $date < time() ){
         
         return true;
         
@@ -397,7 +402,12 @@ function is_past( $date ){
 if( ! function_exists( 'is_future' ) ){
 function is_future( $date ){
     
-    if( strtotime( $date ) > time() ){
+    // Convert a string timestamp to integer
+    if( is_string( $date ) ){
+        $date = strtotime( $timestamp );
+    }
+    
+    if( $date > time() ){
         
         return true;
         
@@ -563,7 +573,7 @@ function copyright( $year = false, $roman = false ){
 *
 *   @param string $type - either 'mysql' for MySQL format, 'timestamp' for integer, or PHP date format
 *
-*   @return string $return - what comes out
+*   @return string - the date
 */
 if( ! function_exists( 'current_time' ) ){
 function current_time( $type, $gmt = 0 ) {

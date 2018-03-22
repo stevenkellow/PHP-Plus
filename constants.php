@@ -4,7 +4,6 @@
 *
 *	@package PHP Plus!
 *
-*
 */
 
 /*

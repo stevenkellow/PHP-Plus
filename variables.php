@@ -4,7 +4,6 @@
 *
 *	@package PHP Plus!
 *
-*
 */
 
 /*  CONTENTS
@@ -79,9 +78,9 @@ if( ! function_exists( 'protocol') ){
 function protocol(){
     
     if( is_ssl() === true ){
-        echo 'https://';
+        return 'https://';
     } else {
-        echo 'http://';
+        return 'http://';
     }
     
 }

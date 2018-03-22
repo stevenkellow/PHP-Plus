@@ -4,7 +4,6 @@
 *
 *	@package PHP Plus!
 *
-*
 */
 
 /*  CONTENTS
@@ -194,7 +193,7 @@ function qr_image( $data, $size = '300' ){
 	
     $qr_url = qr_url( $data, $size );
 	
-	echo '<img src="' . $qr_url . '" height="' . $size . '" width="' . $size . '" />';
+	return '<img src="' . $qr_url . '" height="' . $size . '" width="' . $size . '" />';
 	
 }
 }

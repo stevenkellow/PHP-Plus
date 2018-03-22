@@ -4,7 +4,6 @@
 *
 *	@package PHP Plus!
 *
-*
 */
 
 /*  CONTENTS
@@ -54,6 +53,8 @@
 *   @param string/array $to - string of email to be sent to (if 1) or array if multiple
 *   @param string       $subject - string of email's subject
 *   @param string       $message - string of email's message, can also be function to output email contents
+*
+*   @return bool - true if the mail is sent, false if not
 */
 
 if( ! function_exists( 'html_mail' ) ){
@@ -84,7 +85,7 @@ function html_mail($to, $subject, $message, $from_email, $from_name){
 	}
     
     // Send the email
-    mail($to, $subject, $message, implode("\r\n", $headers));
+    return mail($to, $subject, $message, implode("\r\n", $headers));
     
  
 }
@@ -410,7 +411,7 @@ function csv_to_json( $file, $location = null ){
         if( $location !== null ){
             
             // Send the data to the location
-            file_put_contents( $location, $data_array );
+            return file_put_contents( $location, $data_array );
             
         } else {
             
@@ -1178,7 +1179,7 @@ function pipe_encode( $array ){
 *
 *   @param string $file - path to the file to delete
 *
-*   @return type $return - what comes out
+*   @return bool - true if the file is deleted, false if not
 */
 if( ! function_exists( 'delete_file' ) ){
 function delete_file( $file ){
@@ -1217,7 +1218,7 @@ function directory_size($dir, $format = 'int' ){
     if( $format == 'int' || $format == 'integer' ){
         return $size;
     } else {
-        return size_format( $size );
+        return size_format( $size, 2 );
     }
 }
 }
@@ -1262,6 +1263,9 @@ function get_file_extension( $file ){
 if( ! function_exists( 'file_get_contents_secure' ) ){
 function file_get_contents_secure( $location, $validate_url = true ){
     
+    // URL encode location just incase, as that could make it fail - see http://php.net/manual/en/function.file-get-contents.php
+    $location = urlencode( $location );
+    
     // If we need to validate the URL
     if( $validate_url == true ){
     
@@ -1274,8 +1278,28 @@ function file_get_contents_secure( $location, $validate_url = true ){
         
     }
     
-    $context = stream_context_create(array('ssl' => array('verify_peer' => TRUE)));
-    return file_get_contents($location, false, $context);
+    // Incase the file doesn't exist and an exception is thrown - courtesy of http://php.net/manual/en/function.file-get-contents.php#120366
+    try{
+    
+        $context = stream_context_create(array('ssl' => array('verify_peer' => TRUE)));
+        $contents = file_get_contents($location, false, $context);
+        
+        if( $contents !== false ){
+            
+            return $contents;
+            
+        } else {
+            
+            return false;
+            
+        }
+        
+    } catch( Exception $e ){
+        
+        // File didn't exist, so return false
+        return false;
+        
+    }
     
 }
 }

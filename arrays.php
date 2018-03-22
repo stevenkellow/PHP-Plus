@@ -4,7 +4,6 @@
 *
 *	@package PHP Plus!
 *
-*
 */
 
 /*  CONTENTS
@@ -325,7 +324,7 @@ function array_wrap($object){
 *	@since	0.1
 *	@last_modified	0.1
 *
-*   @return type $return - what comes out
+*   @return array $result - the flattened array
 */
 if( ! function_exists( 'array_flat' ) ){
 function array_flat($array, $prefix = '', $concat = '_'){

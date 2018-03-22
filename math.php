@@ -4,7 +4,6 @@
 *
 *	@package PHP Plus!
 *
-*
 */
 
 /*
@@ -748,7 +747,7 @@ function percent( $number, $decimals = 2 ){
 *   @param float $max - the maximum value for the calculation
 *   @param bool $fail - whether the function should fail if the number is outside the min and max
 *
-*   @return type $return - what comes out
+*   @return int | float $number - either the calculated number, or max, or min
 */
 if( ! function_exists( 'calc' ) ){
 function calc( $number, $min = false, $max = false, $fail = false ){
