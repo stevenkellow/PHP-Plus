@@ -1322,7 +1322,7 @@ function file_get_contents_secure( $location, $validate_url = true ){
 *   @return bool - true if file created, false if not
 */
 if( ! function_exists( 'file_create' ) ){
-function file_force_contents($dir, $contents){
+function file_create($dir, $contents){
     $parts = explode('/', $dir);
     $file = array_pop($parts);
     $dir = '';

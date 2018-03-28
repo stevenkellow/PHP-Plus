@@ -545,17 +545,17 @@ function copyright( $year = false, $roman = false ){
     
 	if(intval($year) == date('Y')){
         // Output the copy symbol and either the year or the year in Roman numerals
-        echo '&copy; ' . ($roman == false ? intval($year) : arabic2roman( intval($year) ));
+        return '&copy; ' . ($roman == false ? intval($year) : arabic2roman( intval($year) ));
     }
     
 	if(intval($year) < date('Y')){
         // Output the copy symbol and either the year range or the year range in Roman numerals
-        echo '&copy; ' . ($roman == false ? (intval($year) . ' - ' . date('Y')) : ( arabic2roman( intval($year) ) . ' - ' . arabic2roman( date('Y') )) );
+        return '&copy; ' . ($roman == false ? (intval($year) . ' - ' . date('Y')) : ( arabic2roman( intval($year) ) . ' - ' . arabic2roman( date('Y') )) );
     }
     
 	if(intval($year) > date('Y')){
         // Output the copy symbol and the current year or the current year in Roman numerals
-        echo '&copy; ' . ($roman == false ? date('Y') : arabic2roman( date('Y') ));
+        return '&copy; ' . ($roman == false ? date('Y') : arabic2roman( date('Y') ));
     } 
 }
 }
@@ -572,6 +572,7 @@ function copyright( $year = false, $roman = false ){
 *	@last_modified	1.1
 *
 *   @param string $type - either 'mysql' for MySQL format, 'timestamp' for integer, or PHP date format
+*   @param int | bool $gmt - whether to use GMT time
 *
 *   @return string - the date
 */
