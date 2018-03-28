@@ -44,6 +44,7 @@
 *   parse_email
 *   html_atts_string
 *   make_clickable
+*   http_build_url
 */
 
 /**
@@ -1247,5 +1248,38 @@ function make_clickable($ret, $atts = array() ) {
     $ret = preg_replace("#(<a( [^>]+?>|>))<a [^>]+?>([^>]+?)</a></a>#i", "$1$3</a>", $ret);
     $ret = trim($ret);
     return $ret;
+}
+}
+
+/**
+*   http_build_url
+*
+*   Reverses parse_url
+*
+*   @author Thomas Gielfeldt
+*   @see http://php.net/manual/en/function.parse-url.php#106731
+*
+*   @param array $parsed_url - a parsed url
+*
+*   @return string - the url
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'http_build_url' ) ){
+function http_build_url( $parsed_url ){
+    
+    $scheme   = isset($parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : ''; 
+	$host     = isset($parsed_url['host']) ? $parsed_url['host'] : ''; 
+	$port     = isset($parsed_url['port']) ? ':' . $parsed_url['port'] : ''; 
+	$user     = isset($parsed_url['user']) ? $parsed_url['user'] : ''; 
+	$pass     = isset($parsed_url['pass']) ? ':' . $parsed_url['pass']  : ''; 
+	$pass     = ($user || $pass) ? "$pass@" : ''; 
+	$path     = isset($parsed_url['path']) ? $parsed_url['path'] : ''; 
+	$query    = isset($parsed_url['query']) ? '?' . $parsed_url['query'] : ''; 
+	$fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : ''; 
+	
+	return "$scheme$user$pass$host$port$path$query$fragment";
+    
 }
 }
