@@ -687,7 +687,7 @@ function array_cartesian($input) {
 *   @return string $key
 */
 if( ! function_exists( 'array_rand_weighted' ) ){
-function array_rand_weighted(array $weightedValues) {
+function array_rand_weighted($weightedValues) {
     
     if( function_exists( 'random_int' ) ){
         $rand = random_int(1, (int) array_sum($weightedValues));

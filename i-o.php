@@ -457,7 +457,7 @@ function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
     if( is_json( $data ) ){
         
         // Turn the JSON into an array
-        $json_as_array = json_decode( $data );
+        $json_as_array = json_decode( $data, true );
         
         return array_to_csv( $json_as_array, $file, $delimiter, $enclosure );
         

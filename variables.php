@@ -240,3 +240,117 @@ function is_mobile() {
     }
 }
 }
+
+/**
+*   __return_true
+*
+*   A callback function that simply returns true
+*
+*   @author WordPress
+*   @see https://codex.wordpress.org/Function_Reference/_return_true
+*
+*   @return bool true
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( '__return_true' ) ){
+function __return_true(){
+    return true;
+}
+}
+
+/**
+*   __return_false
+*
+*   A callback function that simply returns false
+*
+*   @author WordPress
+*   @see https://codex.wordpress.org/Function_Reference/_return_false
+*
+*   @return bool false
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( '__return_false' ) ){
+function __return_false(){
+    return false;
+}
+}
+
+/**
+*   __return_zero
+*
+*   A callback function that simply returns zero
+*
+*   @author WordPress
+*   @see https://codex.wordpress.org/Function_Reference/_return_zero
+*
+*   @return int 0
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( '__return_zero' ) ){
+function __return_zero(){
+    return 0;
+}
+}
+
+/**
+*   __return_null
+*
+*   A callback function that simply returns null
+*
+*   @author WordPress
+*   @see https://codex.wordpress.org/Function_Reference/_return_null
+*
+*   @return null
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( '__return_null' ) ){
+function __return_null(){
+    return null;
+}
+}
+
+/**
+*   __return_empty_string
+*
+*   A callback function that simply returns an empty string
+*
+*   @author WordPress
+*   @see https://codex.wordpress.org/Function_Reference/_return_empty_string
+*
+*   @return string ''
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( '__return_empty_string' ) ){
+function __return_empty_string(){
+    return '';
+}
+}
+
+/**
+*   __return_empty_array
+*
+*   A callback function that simply returns an empty array
+*
+*   @author WordPress
+*   @see https://codex.wordpress.org/Function_Reference/_return_empty_array
+*
+*   @return array
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( '__return_empty_array' ) ){
+function __return_empty_array(){
+    return array();
+}
+}
