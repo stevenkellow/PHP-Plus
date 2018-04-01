@@ -15,7 +15,15 @@
 *   get_user_lang
 *   is_windows
 *   is_linux
+*   is_iis
+*   is_apache
+*   is_nginx
 *   is_mobile
+*   __return_true
+*   __return_false
+*   __return_zero
+*   __return_empty_string
+*   __return_empty_array
 */
 
 /**
@@ -205,6 +213,104 @@ function is_linux(){
         return true;
     } else {
         return false;
+    }
+    
+}
+}
+
+/**
+*   is_iis
+*
+*   Checks if running on an iis server
+*
+*   @author Gabriel Ryan Nahmias
+*   @see https://stackoverflow.com/questions/9486261/check-if-php-is-installed-on-apache-or-iis-server
+*
+*   @return bool - true if apache, false if not
+*   @return null - if server software variable not set
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'is_iss' ) ){
+function is_iss(){
+    
+    if( isset( $_SERVER['SERVER_SOFTWARE'] ) ){
+    
+        if( stripos( $_SERVER['SERVER_SOFTWARE'], 'microsoft-iss' ) ){
+            return true;
+        } else {
+            return false;
+        }
+        
+    } else {
+        
+        return null;
+        
+    }
+}
+}
+
+/**
+*   is_apache
+*
+*   Checks if running on an apache server
+*
+*   @author untill
+*   @see https://stackoverflow.com/questions/9486261/check-if-php-is-installed-on-apache-or-iis-server
+*
+*   @return bool - true if apache, false if not
+*   @return null - if server software variable not set
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'is_apache' ) ){
+function is_apache(){
+    
+    if( isset( $_SERVER['SERVER_SOFTWARE'] ) ){
+        
+        if( stripos( $_SERVER['SERVER_SOFTWARE'], 'microsoft-apache' ) ){
+        return true;
+        } else {
+            return false;
+        }
+        
+    } else {
+        
+        return null;
+        
+    }
+    
+}
+}
+
+/**
+*   is_nginx
+*
+*   Checks if running on an nginx server
+*
+*   @return bool - true if nginx, false if not
+*   @return null - if server software variable not set
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'is_nginx' ) ){
+function is_nginx(){
+    
+    if( isset( $_SERVER['SERVER_SOFTWARE'] ) ){
+        
+        if( stripos( $_SERVER['SERVER_SOFTWARE'], 'nginx' ) ){
+        return true;
+        } else {
+            return false;
+        }
+        
+    } else {
+        
+        return null;
+        
     }
     
 }
