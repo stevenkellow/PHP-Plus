@@ -375,7 +375,7 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
 				} else {
 					
                     // Round up, so it's closer to the even number
-					return round_up ( $number, $precision );
+					return round_up( $number, $precision );
 					
 				}
 				
@@ -387,7 +387,7 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
 				if( $decimal_to_round > 0 ){
 					
                     // Round up, so it's closer to the even number
-					return round_up ( $number, $precision );
+					return round_up( $number, $precision );
 					
 				} else {
 					

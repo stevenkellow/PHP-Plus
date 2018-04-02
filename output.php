@@ -76,7 +76,7 @@ function test_remote_file( $file_location ){
 *   @since 0.1
 *   @last_modified 0.1
 *
-*   @param array $data - array you want to output
+*   @param array | object $data - array you want to output
 *
 *   @return organised array
 */
@@ -245,21 +245,20 @@ function is_image($path){
 */
 if(! function_exists( 'data_uri') ){
 function data_uri($file) {
+    
+    try{
 	
-	if( is_image( $file ) ){
-		
         $contents=file_get_contents($file);
-		  
+
         //$mime = mime_content_type( $contents );
         $base64=base64_encode($contents);
         return "data:';base64,$base64";
-  
-	} else {
-		
-		// Likely a string, so just encode that
-		return base64_encode( $file );
-		
-	}
+        
+    } catch( Exception $e ){
+        
+        return false;
+        
+    }
 }
 }
 

@@ -19,10 +19,13 @@ class PHP_Plus_Test {
     
     public static function call( $function, $args, $expected ){
         
+        // Catch exceptions
         try{
             
+            // Call the function with the supplied arguments
             $result = call_user_func_array( $function, $args );
             
+            // If the result matches what expected then it worked, else it didn't
             if( $result === $expected ){
                 
                 return true;
@@ -35,6 +38,7 @@ class PHP_Plus_Test {
             
         } catch( Exception $e ){
             
+            // If there was an exception thrown then it failed
             return false;
             
         }
