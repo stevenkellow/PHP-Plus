@@ -393,12 +393,13 @@ function is_json($string) {
 *
 *	@param file $file - a CSV file uploaded
 *   @param string $location - path to create JSON file or null to return as json_encoded array
+*   @param bool $force - force the creation of the directory if it doesn't exist
 *
 *	@return mixed - either a json file, json array or false
 *
 */
 if( ! function_exists( 'csv_to_json') ){
-function csv_to_json( $file, $location = null ){
+function csv_to_json( $file, $location = null, $force = false ){
     
     // Turn the file into an array
     $data_array = csv_to_array( $file );
@@ -412,7 +413,13 @@ function csv_to_json( $file, $location = null ){
         if( $location !== null ){
             
             // Send the data to the location
-            return file_put_contents( $location, $data_array );
+            
+            // If we want to make sure the file is created if directory doesn't exist yet
+            if( $force == true ){
+                return file_create( $location, $data_array );
+            } else {
+                return file_put_contents( $location, $data_array );
+            }
             
         } else {
             
@@ -498,22 +505,28 @@ function json_file_to_array( $path ){
 *   Create or update a json file with data from an array
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.1
 *
 *   @param array 	$array - array of data to put to file
 *   @param string	$path - path of file to create/update
 *   @param bool		$update - whether to update existing values or update them (default true)
 *   @param bool     $delete - whether to replace a file with new data (default false)
+*   @param bool     $force - force the creation of the directory if it doesn't exist
 *
 *	@reutrn bool	true if file was created, false if not
 */
 if( ! function_exists( 'array_to_json_file') ){
-function array_to_json_file( $array, $path, $update = true, $delete = false ){
+function array_to_json_file( $array, $path, $update = true, $delete = false, $force = false ){
 	
 	// Change the file completely, deleting old data
 	if( $delete == true ){
-		
-		return file_put_contents( $path, $array );
+        
+        // If we want to make sure the file is created if directory doesn't exist yet
+        if( $force == true ){
+            return file_create( $path, $array );
+        } else {
+            return file_put_contents( $path, $array );
+        }
 		
 	} else {
 		
@@ -538,7 +551,13 @@ function array_to_json_file( $array, $path, $update = true, $delete = false ){
 			}
 			
 			// Send to the file
-			return file_put_contents( $path, $new_array );
+            
+			// If we want to make sure the file is created if directory doesn't exist yet
+            if( $force == true ){
+                return file_create( $path, $new_array );
+            } else {
+                return file_put_contents( $path, $new_array );
+            }
 			
 		} else {
 			
@@ -592,11 +611,12 @@ function json_encode_utf8( $data ){
 *
 *	@param array | object - json element
 *   @param string $file - a file to send the output to
+*   @param bool $force - force the creation of the directory if it doesn't exist
 *
 *	@return string - pretty json string or false if it isn't JSON
 */
 if( ! function_exists( 'pretty_json' ) ){
-function pretty_json( $json, $file = null ){
+function pretty_json( $json, $file = null, $force = false ){
     
     // Check incase a JSON string is supplied
     if( is_string( $json ) && is_json( $json ) ){
@@ -615,7 +635,14 @@ function pretty_json( $json, $file = null ){
 
     // Check whether to send to a file
     if( $output !== null ){
-        return file_put_contents( $file, $output );
+        
+        // If we want to make sure the file is created if directory doesn't exist yet
+        if( $force == true ){
+            return file_create( $file, $output );
+        } else {
+            return file_put_contents( $file, $output );
+        }
+        
     } else {
         return $output;
     }
