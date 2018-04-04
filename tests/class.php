@@ -23,7 +23,16 @@ class PHP_Plus_Test {
         try{
             
             // Call the function with the supplied arguments
-            $result = call_user_func_array( $function, $args );
+            if( is_array( $args ) ){
+                
+                $result = call_user_func_array( $function, $args );
+                
+            } else {
+                
+                $result = call_user_func( $function, $args );
+                
+            }
+            
             
             // If the result matches what expected then it worked, else it didn't
             if( $result === $expected ){

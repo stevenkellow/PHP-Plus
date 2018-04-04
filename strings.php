@@ -45,6 +45,7 @@
 *   html_atts_string
 *   make_clickable
 *   http_build_url
+*   proper_parse_str
 */
 
 /**
@@ -1281,5 +1282,56 @@ function http_build_url( $parsed_url ){
 	
 	return "$scheme$user$pass$host$port$path$query$fragment";
     
+}
+}
+
+/**
+*   proper_parse_str
+*
+*   Parse a query string avoiding a PHP bug when the same paramater is set multiple times
+*   Also has the benefit of returning an array rather than a void, which is more predictable behaviour
+*
+*   @author Evan K
+*   @see http://php.net/manual/en/function.parse-str.php#76792
+*
+*   @param string $str - the string to parse (normally query string)
+*
+*   @return array $arr - the returned array
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'proper_parse_str' ) ){
+function proper_parse_str( $str ){
+ 
+    # result array
+    $arr = array();
+
+    # split on outer delimiter
+    $pairs = explode('&', $str);
+
+    # loop through each pair
+    foreach ($pairs as $i) {
+    # split into name and value
+    list($name,$value) = explode('=', $i, 2);
+
+    # if name already exists
+    if( isset($arr[$name]) ) {
+      # stick multiple values into an array
+      if( is_array($arr[$name]) ) {
+        $arr[$name][] = $value;
+      }
+      else {
+        $arr[$name] = array($arr[$name], $value);
+      }
+    }
+    # otherwise, simply stick it in a scalar
+    else {
+      $arr[$name] = $value;
+    }
+    }
+
+    # return result array
+    return $arr;
 }
 }
