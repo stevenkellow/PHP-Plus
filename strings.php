@@ -46,6 +46,7 @@
 *   make_clickable
 *   http_build_url
 *   proper_parse_str
+*   mb_strcasecmp
 */
 
 /**
@@ -1333,5 +1334,29 @@ function proper_parse_str( $str ){
 
     # return result array
     return $arr;
+}
+}
+
+/**
+*   mb_strcasecmp
+*
+*   A multibyte safe case-insensitive string comparison function
+*
+*   @author Chris Buckley
+*   @see http://php.net/manual/en/function.strcasecmp.php#107016
+*
+*   @param string $str1 - the first string to consider
+*   @param string $str2 - the second string to consider
+*   @param bool $encoding - whether the strings have been encoded
+*
+*   @return int - Returns < 0 if str1 is less than str2; > 0 if str1 is greater than str2, and 0 if they are equal.
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'mb_strcasecmp' ) ){
+function mb_strcasecmp($str1, $str2, $encoding = null) {
+    if (null === $encoding) { $encoding = mb_internal_encoding(); }
+    return strcmp(mb_strtoupper($str1, $encoding), mb_strtoupper($str2, $encoding));
 }
 }
