@@ -47,6 +47,7 @@
 *   http_build_url
 *   proper_parse_str
 *   mb_strcasecmp
+*   ucnames
 */
 
 /**
@@ -1358,5 +1359,53 @@ if( ! function_exists( 'mb_strcasecmp' ) ){
 function mb_strcasecmp($str1, $str2, $encoding = null) {
     if (null === $encoding) { $encoding = mb_internal_encoding(); }
     return strcmp(mb_strtoupper($str1, $encoding), mb_strtoupper($str2, $encoding));
+}
+}
+
+/**
+*   ucnames
+*
+*   Put a string into name case
+*
+*   @author Antonio Max
+*   @see http://php.net/manual/en/function.ucwords.php#112795
+*
+*   @param string $string - the string to normalize
+*   @param array $delimiters - items where a capital letter would come after
+*   @param array $exceptions - strings that aren't to be capitalised
+*
+*   @return string $string - the fixed string
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'ucnames' ) ){
+function ucnames($string, $delimiters = array(" ", "-", ".", "'", "O'", "Mc"), $exceptions = array("de", "da", "dos", "das", "do", "I", "II", "III", "IV", "V", "VI", "van")){
+	/*
+	 * Exceptions in lower case are words you don't want converted
+	 * Exceptions all in upper case are any words you don't want converted to title case
+	 *   but should be converted to upper case, e.g.:
+	 *   king henry viii or king henry Viii should be King Henry VIII
+	 */
+	$string = mb_convert_case($string, MB_CASE_TITLE, "UTF-8");
+	foreach ($delimiters as $dlnr => $delimiter) {
+		$words = explode($delimiter, $string);
+		$newwords = array();
+		foreach ($words as $wordnr => $word) {
+			if (in_array(mb_strtoupper($word, "UTF-8"), $exceptions)) {
+				// check exceptions list for any words that should be in upper case
+				$word = mb_strtoupper($word, "UTF-8");
+			} elseif (in_array(mb_strtolower($word, "UTF-8"), $exceptions)) {
+				// check exceptions list for any words that should be in upper case
+				$word = mb_strtolower($word, "UTF-8");
+			} elseif (!in_array($word, $exceptions)) {
+				// convert to uppercase (non-utf8 only)
+				$word = ucfirst($word);
+			}
+			array_push($newwords, $word);
+		}
+		$string = join($delimiter, $newwords);
+   }//foreach
+   return $string;
 }
 }
