@@ -20,7 +20,7 @@
 *   json_file_to_array
 *   array_to_json_file
 *   json_encode_utf8
-*   pretty_json
+*   json_encode_pretty
 *   xml_to_json
 *   xml_to_array
 *   get_gravatar
@@ -607,7 +607,7 @@ function json_encode_utf8( $data ){
 }
 
 /**
-*	pretty_json
+*	json_encode_pretty
 *
 *	Output JSON in a formatted way
 *
@@ -620,8 +620,8 @@ function json_encode_utf8( $data ){
 *
 *	@return string - pretty json string or false if it isn't JSON
 */
-if( ! function_exists( 'pretty_json' ) ){
-function pretty_json( $json, $file = null, $force = false ){
+if( ! function_exists( 'json_encode_pretty' ) ){
+function json_encode_pretty( $json, $file = null, $force = false ){
     
     // Check incase a JSON string is supplied
     if( is_string( $json ) && is_json( $json ) ){
