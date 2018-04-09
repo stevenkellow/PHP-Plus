@@ -258,7 +258,7 @@ function facebook_pixel( $pixel_id ){
 *   Turn an uploaded CSV file into an array
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.1
 *
 *	@param file $file - a CSV file uploaded
 *   @param bool $header_key - whether the first line is a header that can be used as a key
@@ -289,7 +289,12 @@ function csv_to_array( $file, $header_key = true ){
                 // If it's the first row, then use this as the keys
                 if( $row_count == 1 ){
                     
-                    $headers = $row;
+                    // Replace any spaces in the header with underscores to validate the array key
+                    foreach( $row as $header ){
+						
+						$headers[] = sanitize_key( $header );
+						
+					}
                     
                 } else {
                     

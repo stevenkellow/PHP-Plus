@@ -917,7 +917,7 @@ if( ! function_exists( 'sanitize_key' ) ){
 function sanitize_key( $key ) {
 	
 	$key     = strtolower( $key );
-	$key     = preg_replace( '/[^a-z0-9_\-]/', '', $key );
+	$key     = preg_replace( '/[^a-z0-9_\-]/', '_', $key );
 
 	return $key;
 }
