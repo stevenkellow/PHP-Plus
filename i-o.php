@@ -41,7 +41,6 @@
 *   get_file_extension
 *   file_get_contents_secure
 *   file_create
-*   in_array_quick
 */
 
 /**
@@ -1368,40 +1367,5 @@ function file_create($dir, $contents){
     } catch( Exception $e ){
         return false;
     }
-}
-}
-
-/**
-*   in_array_quick
-*
-*   A quick check if an element is in an array
-*   Useful for large arrays
-*
-*   @author JV
-*   @see http://php.net/manual/en/function.in-array.php#96198
-*
-*   @param mixed $needle - what to look for
-*   @param array $haystack - the array to search in
-*
-*   @return bool - true if found, false if not
-*
-*	@since	1.1
-*	@last_modified	1.1
-*/
-if( ! function_exists( 'in_array_quick' ) ){
-function in_array_quick( $needle, $haystack ){
-    
-    $flipped_haystack = array_flip($haystack); 
-
-    if ( isset($flipped_haystack[$needle]) ) {
-        
-        return true;
-        
-    } else {
-        
-        return false;
-        
-    }
-    
 }
 }
