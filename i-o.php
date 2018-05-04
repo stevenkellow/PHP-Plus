@@ -670,6 +670,7 @@ function json_encode_pretty( $json, $file = null, $force = false ){
 *	@since	1.1
 *	@last_modified	1.1
 */
+if( ! function_exists( 'maybe_json_encode' ) ){
 function maybe_json_encode( $item ){
     
     if( is_array( $item ) || is_object( $item ) ){
@@ -678,6 +679,7 @@ function maybe_json_encode( $item ){
         return $item;
     }
     
+}
 }
 
 /**
@@ -693,6 +695,7 @@ function maybe_json_encode( $item ){
 *	@since	1.1
 *	@last_modified	1.1
 */
+if( ! function_exists( 'maybe_json_decode' ) ){
 function maybe_json_decode( $item, $array = false ){
     
     if( is_json( $item ) ){
@@ -701,6 +704,7 @@ function maybe_json_decode( $item, $array = false ){
         return $item;
     }
     
+}
 }
 
 /**
