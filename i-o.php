@@ -21,6 +21,8 @@
 *   array_to_json_file
 *   json_encode_utf8
 *   json_encode_pretty
+*   maybe_json_encode
+*   maybe_json_decode
 *   xml_to_json
 *   xml_to_array
 *   get_gravatar
@@ -41,6 +43,7 @@
 *   get_file_extension
 *   file_get_contents_secure
 *   file_create
+*   download_file
 */
 
 /**
@@ -653,6 +656,51 @@ function json_encode_pretty( $json, $file = null, $force = false ){
     }
 
 }
+}
+
+/**
+*   maybe_json_encode
+*
+*   JSON encode if it's an array or object
+*
+*   @param mixed $item - whatever needs to be checked
+*
+*   @return mixed - string if array or object is entered, otherwise same initial type
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+function maybe_json_encode( $item ){
+    
+    if( is_array( $item ) || is_object( $item ) ){
+        return json_encode( $item );
+    } else {
+        return $item;
+    }
+    
+}
+
+/**
+*   maybe_json_decode
+*
+*   JSON decode if it's an JSON string
+*
+*   @param string $item - the item to test
+*   @param bool $array - whether to output as array or object, defaults to object (false) to be in line with json_decode docs
+*
+*   @return mixed - whatever needs to be returned
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+function maybe_json_decode( $item, $array = false ){
+    
+    if( is_json( $item ) ){
+        return json_decode( $item, $array );
+    } else {
+        return $item;
+    }
+    
 }
 
 /**
@@ -1367,5 +1415,52 @@ function file_create($dir, $contents){
     } catch( Exception $e ){
         return false;
     }
+}
+}
+
+/**
+*   download_file
+*
+*   Download a file to a given location
+*
+*   @author Taha Paksu
+*   @see https://stackoverflow.com/a/10522873/7956549
+*
+*   @param string $file - the file to get
+*   @param string $new_file - the file to put to
+*
+*   @return string $success - where the file was downloaded to
+*   @reuurn bool false - if failed
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'download_file' ) ){
+function download_file( $file, $new_file ){
+    
+    $out = fopen($new_file, 'wb'); 
+    if ($out == false){ 
+      return false; 
+    } 
+
+    $ch = curl_init(); 
+
+    curl_setopt($ch, CURLOPT_FILE, $out); 
+    curl_setopt($ch, CURLOPT_HEADER, 0); 
+    curl_setopt($ch, CURLOPT_URL, $file);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false );
+
+    curl_exec($ch); 
+    
+    if( ! curl_errno($ch) || curl_errno( $ch ) !== 0 ){
+        $success = false;
+    } else {
+        $success = $new_file;
+    }
+
+    curl_close($ch);
+    
+    return $success;
+    
 }
 }
