@@ -112,15 +112,15 @@ function protocol(){
 if( ! function_exists( 'get_user_ip' ) ){
 function get_user_ip(){
 	
-	if( isset( $_SERVER['REMOTE_ADDR'] ) && !empty( $_SERVER['REMOTE_ADDR'] ) ){
+	if( ! empty( $_SERVER['REMOTE_ADDR'] ) ){
 		
 		return $_SERVER['REMOTE_ADDR'];
 		
-	} elseif( isset( $_SERVER['HTTP_CLIENT_IP'] ) && !empty( $_SERVER['HTTP_CLIENT_IP'] ) ){
+	} elseif( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ){
 		
 		return $_SERVER['HTTP_CLIENT_IP'];
 		
-	} elseif( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ){
+	} elseif( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ){
 		
 		return $_SERVER['HTTP_X_FORWARDED_FOR'];
 		
@@ -233,8 +233,8 @@ function is_linux(){
 *	@since	1.1
 *	@last_modified	1.1
 */
-if( ! function_exists( 'is_iss' ) ){
-function is_iss(){
+if( ! function_exists( 'is_iis' ) ){
+function is_iis(){
     
     if( isset( $_SERVER['SERVER_SOFTWARE'] ) ){
     
@@ -272,7 +272,7 @@ function is_apache(){
     if( isset( $_SERVER['SERVER_SOFTWARE'] ) ){
         
         if( stripos( $_SERVER['SERVER_SOFTWARE'], 'microsoft-apache' ) ){
-        return true;
+            return true;
         } else {
             return false;
         }
@@ -303,7 +303,7 @@ function is_nginx(){
     if( isset( $_SERVER['SERVER_SOFTWARE'] ) ){
         
         if( stripos( $_SERVER['SERVER_SOFTWARE'], 'nginx' ) ){
-        return true;
+            return true;
         } else {
             return false;
         }
