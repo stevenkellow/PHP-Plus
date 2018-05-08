@@ -19,6 +19,7 @@
 *   is_apache
 *   is_nginx
 *   is_mobile
+*   spaceship
 *   __return_true
 *   __return_false
 *   __return_zero
@@ -458,5 +459,49 @@ function __return_empty_string(){
 if( ! function_exists( '__return_empty_array' ) ){
 function __return_empty_array(){
     return array();
+}
+}
+
+/**
+*   spaceship
+*
+*   Mimics the native spaceship operator in PHP7+ ( <=> )
+*
+*   @param mixed $one - item one
+*   @param mixed $two - item two
+*
+*   @return return int - the result of the comparison
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'spaceship' ) ){
+function spaceship( $one, $two ){
+    
+    // Use native PHP7 if available
+    if( version_compare( PHP_VERSION, '7.0', '>=' ) ){
+        
+        return $one <=> $two;
+        
+    } else {
+        
+        // If less than PHP 7 then mimic it
+    
+        if( $one > $two ){
+
+            return 1;
+
+        } elseif( $one == $two ){
+
+            return 0;
+
+        } elseif( $one < $two ){
+
+            return -1;
+
+        }
+        
+    }
+    
 }
 }
