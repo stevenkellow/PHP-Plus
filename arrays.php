@@ -480,7 +480,7 @@ function __low_to_high( $a, $b ){
 	
 	$sort_key = $GLOBALS['sort_key'];
 		
-	return $a[$sort_key] <=> $b[$sort_key];
+	return spaceship( $a[$sort_key], $b[$sort_key] );
 	
 }
 }
@@ -503,7 +503,7 @@ function __high_to_low( $a, $b ){
 	
 	$sort_key = $GLOBALS['sort_key'];
 	
-	return $b[$sort_key] <=> $a[$sort_key];
+	return spaceship( $b[$sort_key], $a[$sort_key] );
 	
 }
 }
