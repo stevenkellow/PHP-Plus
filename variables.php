@@ -408,7 +408,7 @@ function spaceship( $one, $two ){
 *	@last_modified	1.1
 */
 if( ! function_exists( 'is_countable' ) ){
-function is_countable( $var ){
+function is_countable( $foo ){
     if (is_array($foo) || $foo instanceof Countable) {
         // $foo is countable
         return true;
