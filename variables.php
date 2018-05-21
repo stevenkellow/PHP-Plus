@@ -31,7 +31,7 @@
 /**
 *   get_browser_info
 *
-*   Get details of the user's browser
+*   Get details of the user's browser (works for major browsers and OS)
 *
 *   @see http://php.net/manual/en/function.get-browser.php#101125
 *   @see https://stackoverflow.com/a/15497878/7956549
@@ -46,16 +46,17 @@
 if( ! function_exists( 'get_browser_info' ) ){
 function get_browser_info( $u_agent = false ){
     
-    // Get user agent
     if( $u_agent == false ){
         $u_agent = $_SERVER['HTTP_USER_AGENT'];
     }
     
     // Set blank defaults
-    $bname = 'Unknown';
-    $platform = 'Unknown';
-    $version= 'Unknown';
-    
+	$os_name = 'Unknown';
+	$os_version = 'Unknown';
+	
+    $browser_name = 'Unknown';
+    $browser_version = 'Unknown';
+	
     // Set some defaults
     $os_array = array(
         '/windows nt 10/i'      =>  'Windows 10',
@@ -86,50 +87,60 @@ function get_browser_info( $u_agent = false ){
     foreach ($os_array as $regex => $value) { 
 
         if (preg_match($regex, $u_agent)) {
-            $platform = $value;
+            $os_name = $value;
         }
 
     }
+	
+	// Get the OS version
+	$os_pattern = '#(?<browser>' . $os_name . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+    if (!preg_match_all($os_pattern, $u_agent, $os_matches)) {
+        // we have no matching number just continue
+    }
+	// Set version if it exists
+	if( isset( $os_matches['version'][0] ) ){
+		$os_version = $os_matches['version'][0];
+	}
     
     // Next get the name of the useragent yes seperately and for good reason
-    if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)) 
+    if(strpos($u_agent,'MSIE') && !strpos($u_agent,'Opera')) 
     { 
-        $bname = 'Internet Explorer'; 
+        $browser_name = 'Internet Explorer'; 
         $ub = 'MSIE'; 
     }
-	elseif(preg_match('/IE/i',$u_agent)) 
+	elseif(strpos($u_agent,'IE')) 
     { 
-        $bname = 'Internet Explorer'; 
+        $browser_name = 'Internet Explorer'; 
         $ub = 'IE'; 
     } 
-	elseif(preg_match('/Edge/i',$u_agent)) 
+	elseif(strpos($u_agent,'Edge')) 
     { 
-        $bname = 'Edge'; 
+        $browser_name = 'Edge'; 
         $ub = 'Edge'; 
     } 
-    elseif(preg_match('/Firefox/i',$u_agent)) 
+    elseif(strpos($u_agent,'Firefox')) 
     { 
-        $bname = 'Mozilla Firefox'; 
+        $browser_name = 'Mozilla Firefox'; 
         $ub = 'Firefox'; 
     } 
-    elseif(preg_match('/Chrome/i',$u_agent)) 
+    elseif(strpos($u_agent,'Chrome')) 
     { 
-        $bname = 'Google Chrome'; 
+        $browser_name = 'Google Chrome'; 
         $ub = 'Chrome'; 
     } 
-    elseif(preg_match('/Safari/i',$u_agent)) 
+    elseif(strpos($u_agent, 'Safari')) 
     { 
-        $bname = 'Apple Safari'; 
+        $browser_name = 'Apple Safari'; 
         $ub = 'Safari'; 
     } 
-    elseif(preg_match('/Opera/i',$u_agent)|| preg_match('/OPR/i',$u_agent)) 
+    elseif(strpos($u_agent,'Opera')|| strpos($u_agent,'OPR')) 
     { 
-        $bname = 'Opera'; 
+        $browser_name = 'Opera'; 
         $ub = 'Opera'; 
     } 
-    elseif(preg_match('/Netscape/i',$u_agent)) 
+    elseif(strpos($u_agent,'Netscape')) 
     { 
-        $bname = 'Netscape'; 
+        $browser_name = 'Netscape'; 
         $ub = 'Netscape'; 
     }
      
@@ -137,45 +148,44 @@ function get_browser_info( $u_agent = false ){
     // finally get the correct version number
 	if( $ub !== 'IE' ){
 		$known = array('Version', $ub, 'other');
-		$pattern = '#(?<browser>' . join('|', $known) .
-		')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
-	} else { // IE11 specific fix
+		$pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+	} else {
 		$pattern = '/(?<browser>IE)+(?<version>[\d]*)/';
 	}
-    
-    // Get matches
     if (!preg_match_all($pattern, $u_agent, $matches)) {
-        
-        $i = count($matches['browser']);
-    } else {
         // we have no matching number just continue
-        $i = false;
     }
     
     // see how many we have
-    
+    $i = count($matches['browser']);
     if ($i != 1) {
         //we will have two since we are not using 'other' argument yet
         //see if version is before or after the name
         if (strripos($u_agent,'Version') < strripos($u_agent,$ub)){
-            $version = $matches['version'][0];
+            $browser_version = $matches['version'][0];
         }
         else {
-            $version = $matches['version'][1];
+            $browser_version = $matches['version'][1];
         }
-    } elseif( $i !== false ) {
-        $version = $matches['version'][0];
+    }
+    else {
+        $browser_version = $matches['version'][0];
     }
     
     // check if we have a number
-    if ($version == null || $version == ''){
-        $version = 'Unknown';
-    }
+    if ($browser_version == null || $browser_version == ''){
+		$browser_version = 'Unknown';
+	}
     
     return array(
-        'name'      => $bname,
-        'version'   => $version,
-        'platform'  => $platform,
+		'browser' => array(
+			'name' => $browser_name,
+			'version' => $browser_version
+		),
+		'OS' => array(
+			'name' => $os_name,
+			'version' => $os_version
+		),
         'pattern'   => $pattern,
         'userAgent' => $u_agent
     );
