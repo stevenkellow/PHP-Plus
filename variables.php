@@ -8,6 +8,7 @@
 
 /*  CONTENTS
 *
+*   get_browser_info
 *   is_ssl
 *       is_https
 *   protocol
@@ -26,6 +27,160 @@
 *   __return_empty_string
 *   __return_empty_array
 */
+
+/**
+*   get_browser_info
+*
+*   Get details of the user's browser
+*
+*   @see http://php.net/manual/en/function.get-browser.php#101125
+*   @see https://stackoverflow.com/a/15497878/7956549
+*
+*   @param string $agent - a user agent to decode
+*
+*   @return array $user_agent - an array of user agenet info
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'get_browser_info' ) ){
+function get_browser_info( $u_agent = false ){
+    
+    // Get user agent
+    if( $u_agent == false ){
+        $u_agent = $_SERVER['HTTP_USER_AGENT'];
+    }
+    
+    // Set blank defaults
+    $bname = 'Unknown';
+    $platform = 'Unknown';
+    $version= 'Unknown';
+    
+    // Set some defaults
+    $os_array = array(
+        '/windows nt 10/i'      =>  'Windows 10',
+        '/windows nt 6.2/i'     =>  'Windows 8',
+        '/windows nt 6.1/i'     =>  'Windows 7',
+        '/windows nt 6.0/i'     =>  'Windows Vista',
+        '/windows nt 5.2/i'     =>  'Windows Server 2003/XP x64',
+        '/windows nt 5.1/i'     =>  'Windows XP',
+        '/windows xp/i'         =>  'Windows XP',
+        '/windows nt 5.0/i'     =>  'Windows 2000',
+        '/windows me/i'         =>  'Windows ME',
+        '/win98/i'              =>  'Windows 98',
+        '/win95/i'              =>  'Windows 95',
+        '/win16/i'              =>  'Windows 3.11',
+        '/macintosh|mac os x/i' =>  'Mac OS X',
+        '/mac_powerpc/i'        =>  'Mac OS 9',
+        '/linux/i'              =>  'Linux',
+        '/ubuntu/i'             =>  'Ubuntu',
+        '/iphone/i'             =>  'iPhone',
+        '/ipod/i'               =>  'iPod',
+        '/ipad/i'               =>  'iPad',
+        '/android/i'            =>  'Android',
+        '/blackberry/i'         =>  'BlackBerry',
+        '/webos/i'              =>  'Mobile'
+    );
+
+	// Search for the current platform
+    foreach ($os_array as $regex => $value) { 
+
+        if (preg_match($regex, $u_agent)) {
+            $platform = $value;
+        }
+
+    }
+    
+    // Next get the name of the useragent yes seperately and for good reason
+    if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)) 
+    { 
+        $bname = 'Internet Explorer'; 
+        $ub = 'MSIE'; 
+    }
+	elseif(preg_match('/IE/i',$u_agent)) 
+    { 
+        $bname = 'Internet Explorer'; 
+        $ub = 'IE'; 
+    } 
+	elseif(preg_match('/Edge/i',$u_agent)) 
+    { 
+        $bname = 'Edge'; 
+        $ub = 'Edge'; 
+    } 
+    elseif(preg_match('/Firefox/i',$u_agent)) 
+    { 
+        $bname = 'Mozilla Firefox'; 
+        $ub = 'Firefox'; 
+    } 
+    elseif(preg_match('/Chrome/i',$u_agent)) 
+    { 
+        $bname = 'Google Chrome'; 
+        $ub = 'Chrome'; 
+    } 
+    elseif(preg_match('/Safari/i',$u_agent)) 
+    { 
+        $bname = 'Apple Safari'; 
+        $ub = 'Safari'; 
+    } 
+    elseif(preg_match('/Opera/i',$u_agent)|| preg_match('/OPR/i',$u_agent)) 
+    { 
+        $bname = 'Opera'; 
+        $ub = 'Opera'; 
+    } 
+    elseif(preg_match('/Netscape/i',$u_agent)) 
+    { 
+        $bname = 'Netscape'; 
+        $ub = 'Netscape'; 
+    }
+     
+    
+    // finally get the correct version number
+	if( $ub !== 'IE' ){
+		$known = array('Version', $ub, 'other');
+		$pattern = '#(?<browser>' . join('|', $known) .
+		')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+	} else { // IE11 specific fix
+		$pattern = '/(?<browser>IE)+(?<version>[\d]*)/';
+	}
+    
+    // Get matches
+    if (!preg_match_all($pattern, $u_agent, $matches)) {
+        
+        $i = count($matches['browser']);
+    } else {
+        // we have no matching number just continue
+        $i = false;
+    }
+    
+    // see how many we have
+    
+    if ($i != 1) {
+        //we will have two since we are not using 'other' argument yet
+        //see if version is before or after the name
+        if (strripos($u_agent,'Version') < strripos($u_agent,$ub)){
+            $version = $matches['version'][0];
+        }
+        else {
+            $version = $matches['version'][1];
+        }
+    } elseif( $i !== false ) {
+        $version = $matches['version'][0];
+    }
+    
+    // check if we have a number
+    if ($version == null || $version == ''){
+        $version = 'Unknown';
+    }
+    
+    return array(
+        'name'      => $bname,
+        'version'   => $version,
+        'platform'  => $platform,
+        'pattern'   => $pattern,
+        'userAgent' => $u_agent
+    );
+}
+}
 
 /**
 *   is_ssl
