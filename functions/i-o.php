@@ -62,7 +62,7 @@
 */
 
 if( ! function_exists( 'html_mail' ) ){
-function html_mail($to, $subject, $message, $from_email, $from_name){
+function html_mail( $to, $subject, $message, $from_email, $from_name ){
     
     // If we're sending to multiple people, separate them and add to string list
     if( is_array( $to ) ){
@@ -76,7 +76,7 @@ function html_mail($to, $subject, $message, $from_email, $from_name){
     $message = str_replace( '<p>', '<p style="color:#000;>"', $message );
     
     // In case any of our lines are larger than 70 characters, we should use wordwrap()
-    $message = wordwrap($message, 70, "\r\n");
+    $message = wordwrap( $message, 70, "\r\n");
     
     // To send HTML mail, the Content-type header must be set
     $headers[] = 'MIME-Version: 1.0';
@@ -89,7 +89,7 @@ function html_mail($to, $subject, $message, $from_email, $from_name){
 	}
     
     // Send the email
-    return mail($to, $subject, $message, implode("\r\n", $headers));
+    return mail( $to, $subject, $message, implode("\r\n", $headers ) );
     
  
 }
@@ -112,52 +112,52 @@ function html_mail($to, $subject, $message, $from_email, $from_name){
 *	@return mixed $data - whatever is retrieved or a confirmation of send, or if curl isn't installed false
 */
 if( ! function_exists( 'quick_curl' ) ){
-function quick_curl($url, $user_auth = null, $rest = 'GET', $input = null, $type = 'JSON'){
+function quick_curl( $url, $user_auth = null, $rest = 'GET', $input = null, $type = 'JSON'){
     
     // Check if cURL is installed
-    if ( function_exists('curl_init') ){
+    if( function_exists('curl_init') ){
 
 	$ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url); // The URL we're using to get/send data
+    curl_setopt( $ch, CURLOPT_URL, $url ); // The URL we're using to get/send data
     
 	if( $user_auth ){
-		curl_setopt($ch, CURLOPT_USERPWD, $user_auth); // Add the authentication
+		curl_setopt( $ch, CURLOPT_USERPWD, $user_auth ); // Add the authentication
 	}
     
     if( $rest == 'POST' ){
-        curl_setopt($ch, CURLOPT_POST, true); // Send a post request to the server
-    } elseif ( $rest == 'PATCH' ){
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH'); // Send a patch request to the server to update the listing
-    } elseif ( $rest == 'PUT'){
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT'); // Send a put request to the server to update the listing
+        curl_setopt( $ch, CURLOPT_POST, true ); // Send a post request to the server
+    } elseif( $rest == 'PATCH' ){
+        curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'PATCH'); // Send a patch request to the server to update the listing
+    } elseif( $rest == 'PUT'){
+        curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'PUT'); // Send a put request to the server to update the listing
     } // If POST or PATCH isn't set then we're using a GET request, which is the default
     
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15); // Timeout when connecting to the server
-    curl_setopt($ch, CURLOPT_TIMEOUT, 30); // Timeout when retrieving from the server
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // We want to capture the data returned, so set this to true
-    //curl_setopt($ch, CURLOPT_HEADER, true);  // Get the HTTP headers sent with the data
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // We don't want to force SSL incase a site doesn't use it
+	curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 15 ); // Timeout when connecting to the server
+    curl_setopt( $ch, CURLOPT_TIMEOUT, 30 ); // Timeout when retrieving from the server
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true ); // We want to capture the data returned, so set this to true
+    //curl_setopt( $ch, CURLOPT_HEADER, true );  // Get the HTTP headers sent with the data
+    curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false ); // We don't want to force SSL incase a site doesn't use it
     
     if( $rest !== 'GET' ){
 		
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Content-Type: ' . mime_type( $type ), 'Content-Length: ' . strlen( $input ) ) ); // Tell server to expect the right application type and the content length
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $input); // Send the actual data
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Content-Type: ' . mime_type( $type ), 'Content-Length: ' . strlen( $input ) ) ); // Tell server to expect the right application type and the content length
+        curl_setopt( $ch, CURLOPT_POSTFIELDS, $input ); // Send the actual data
     }
 
     // Get the response
-    $response = curl_exec($ch);
+    $response = curl_exec( $ch );
     
     // Check if there's an error in the header
-    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $httpcode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
 
     // If there's any cURL errors
-    if (curl_errno($ch) || ( $httpcode < 200 || $httpcode >= 300 )  ) {
+    if( curl_errno( $ch ) || ( $httpcode < 200 || $httpcode >= 300 )  ){
         $data = 'error';
     } else {
 		// Turn response into stuff we can use
         $data = json_decode( $response, true );
 		
-        curl_close($ch);
+        curl_close( $ch );
         
     }
 
@@ -236,7 +236,7 @@ function facebook_pixel( $pixel_id ){
         ob_start();
 
         ?>
-        <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if( !f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
         fbq('init', '<?php echo $pixel_id; ?>');
         fbq('track', 'PageView');
@@ -349,21 +349,21 @@ function csv_to_array( $file, $header_key = true ){
 *
 */
 if( ! function_exists( 'array_to_csv') ){
-function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"') {
+function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"'){
     
     if( $file == null ){
         $file = 'php://temp';
     }
     
-    $handle = fopen($file, 'r+');
-    foreach ($data as $line) {
-           fputcsv($handle, $line, $delimiter, $enclosure);
+    $handle = fopen( $file, 'r+');
+    foreach( $data as $line ){
+           fputcsv( $handle, $line, $delimiter, $enclosure );
     }
-    rewind($handle);
-    while (!feof($handle)) {
-           $contents .= fread($handle, 8192);
+    rewind( $handle );
+    while (!feof( $handle ) ){
+           $contents .= fread( $handle, 8192 );
     }
-    fclose($handle);
+    fclose( $handle );
     return $contents;
 }
 }
@@ -385,9 +385,9 @@ function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"') 
 *
 */
 if( ! function_exists( 'is_json') ){
-function is_json($string) {
-    @json_decode($string);
-    return (json_last_error() == JSON_ERROR_NONE);
+function is_json( $string ){
+    @json_decode( $string );
+    return ( json_last_error() == JSON_ERROR_NONE );
 }
 }
 
@@ -461,7 +461,7 @@ function csv_to_json( $file, $location = null, $force = false ){
 *
 */
 if( ! function_exists( 'json_to_csv') ){
-function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
+function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"'){
     
     // If we're passed a file then get the data from a file
     if( is_file( $data ) ){
@@ -502,7 +502,7 @@ function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"') {
 if( ! function_exists( 'json_file_to_array') ){
 function json_file_to_array( $path ){
 	
-	return json_decode( file_get_contents( $path ), true);
+	return json_decode( file_get_contents( $path ), true );
 	
 }
 }
@@ -732,8 +732,8 @@ function xml_to_json( $xml_input, $file = true ){
     } else {
         $xml_string = $xml_input;
     }
-    $xml = simplexml_load_string($xml_string);
-    return json_encode($xml);
+    $xml = simplexml_load_string( $xml_string );
+    return json_encode( $xml );
     
 }
 }
@@ -759,7 +759,7 @@ if( ! function_exists('xml_to_array') ){
 function xml_to_array( $xml_input, $file = true ){
     
     $json = xml_to_json( $xml_input, $file );
-    return json_decode($json,TRUE);
+    return json_decode( $json,TRUE );
 
     
 }
@@ -788,13 +788,13 @@ function xml_to_array( $xml_input, $file = true ){
 *
 */
 if( ! function_exists( 'get_gravatar') ){
-function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ){
     $url = 'https://www.gravatar.com/avatar/';
     $url .= md5( strtolower( trim( $email ) ) );
     $url .= "?s=$s&d=$d&r=$r";
-    if ( $img ) {
+    if( $img ){
         $url = '<img src="' . $url . '"';
-        foreach ( $atts as $key => $val )
+        foreach( $atts as $key => $val )
             $url .= ' ' . $key . '="' . $val . '"';
         $url .= ' />';
     }
@@ -822,30 +822,30 @@ if( ! function_exists( 'zip' ) ){
 function zip( $folder, $destination_path ){
     
     // Get real path for our folder
-    $rootPath = realpath($folder);
+    $rootPath = realpath( $folder );
 
     // Initialize archive object
     $zip = new ZipArchive();
-    $zip->open($destination_path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+    $zip->open( $destination_path, ZipArchive::CREATE | ZipArchive::OVERWRITE );
 
     // Create recursive directory iterator
     /** @var SplFileInfo[] $files */
     $files = new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($rootPath),
+        new RecursiveDirectoryIterator( $rootPath ),
         RecursiveIteratorIterator::LEAVES_ONLY
     );
 
-    foreach ($files as $name => $file){
+    foreach( $files as $name => $file ){
         
         // Skip directories (they would be added automatically)
         
-        if (!$file->isDir()){
+        if( !$file->isDir() ){
             // Get real and relative path for current file
             $filePath = $file->getRealPath();
-            $relativePath = substr($filePath, strlen($rootPath) + 1);
+            $relativePath = substr( $filePath, strlen( $rootPath ) + 1 );
 
             // Add current file to archive
-            $zip->addFile($filePath, $relativePath);
+            $zip->addFile( $filePath, $relativePath );
         }
     }
 
@@ -878,8 +878,8 @@ function unzip( $file, $extractPath ){
 
 	$zip = new ZipArchive;
 	
-	if ($zip->open($file) === true) {
-		$zip->extractTo($extractPath);
+	if( $zip->open( $file ) === true ){
+		$zip->extractTo( $extractPath );
 		$zip->close();
 		return true;
 	} else {
@@ -1050,27 +1050,27 @@ function comma_implode( $array ){
 *   @return		boolean			True if $value is serialized data, otherwise false
 */
 if( ! function_exists( 'is_serialized' ) ){
-function is_serialized($value, &$result = null){
+function is_serialized( $value, &$result = null ){
 	// Bit of a give away this one
-	if (!is_string($value)){
+	if( !is_string( $value ) ){
 		return false;
 	}
 
 	// Serialized false, return true. unserialize() returns false on an
 	// invalid string or it could return false if the string is serialized
 	// false, eliminate that possibility.
-	if ($value === 'b:0;')
+	if( $value === 'b:0;')
 	{
 		$result = false;
 		return true;
 	}
 
-	$length	= strlen($value);
+	$length	= strlen( $value );
 	$end	= '';
 
-	switch ($value[0])	{
+	switch ( $value[0])	{
 		case 's':
-			if ($value[$length - 2] !== '"'){
+			if( $value[$length - 2] !== '"'){
 				return false;
 			}
 		case 'b':
@@ -1082,11 +1082,11 @@ function is_serialized($value, &$result = null){
 		case 'O':
 			$end .= '}';
 
-			if ($value[1] !== ':'){
+			if( $value[1] !== ':'){
 				return false;
 			}
 
-			switch ($value[2]){
+			switch ( $value[2]){
 				case 0:
 				case 1:
 				case 2:
@@ -1105,7 +1105,7 @@ function is_serialized($value, &$result = null){
 		case 'N':
 			$end .= ';';
 
-			if ($value[$length - 1] !== $end[0]){
+			if( $value[$length - 1] !== $end[0]){
 				return false;
 			}
 		break;
@@ -1114,7 +1114,7 @@ function is_serialized($value, &$result = null){
 			return false;
 	}
 
-	if (($result = @unserialize($value)) === false)	{
+	if(( $result = @unserialize( $value ) ) === false )	{
 		$result = null;
 		return false;
 	}
@@ -1189,11 +1189,11 @@ function maybe_serialize( $item ){
 *   @return string $fixdSerializedData - fixed serialized string
 */
 if( ! function_exists( 'serialize_fix' ) ){
-function serialize_fix($brokenSerializedData){
-    $fixdSerializedData = preg_replace_callback('!s:(\d+):"(.*?)";!', function ($matches) {
+function serialize_fix( $brokenSerializedData ){
+    $fixdSerializedData = preg_replace_callback('!s:(\d+):"(.*?)";!', function ( $matches ){
         $snip = $matches[2];
-        return 's:' . strlen($snip) . ':"' . $snip . '";';
-    }, $brokenSerializedData);
+        return 's:' . strlen( $snip ) . ':"' . $snip . '";';
+    }, $brokenSerializedData );
     return $fixdSerializedData;
 }
 }
@@ -1291,10 +1291,10 @@ function delete_file( $file ){
 *   @return integer | string - the size of the directory
 */
 if( ! function_exists( 'directory_size' ) ){
-function directory_size($dir, $format = 'int' ){
+function directory_size( $dir, $format = 'int' ){
     $size = 0;
-    foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir, \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS)) as $file => $key) {
-        if ($key->isFile()) {
+    foreach( new \RecursiveIteratorIterator( new \RecursiveDirectoryIterator( $dir, \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS ) ) as $file => $key ){
+        if( $key->isFile() ){
             $size += $key->getSize();
         }
     }
@@ -1325,7 +1325,7 @@ function directory_size($dir, $format = 'int' ){
 */
 if( ! function_exists( 'get_file_extension' ) ){
 function get_file_extension( $file ){
-    return pathinfo($file, PATHINFO_EXTENSION);
+    return pathinfo( $file, PATHINFO_EXTENSION );
 }
 }
 
@@ -1366,8 +1366,8 @@ function file_get_contents_secure( $location, $validate_url = true ){
     // Incase the file doesn't exist and an exception is thrown - courtesy of http://php.net/manual/en/function.file-get-contents.php#120366
     try{
     
-        $context = stream_context_create(array('ssl' => array('verify_peer' => TRUE)));
-        $contents = file_get_contents($location, false, $context);
+        $context = stream_context_create( array('ssl' => array('verify_peer' => TRUE ) ));
+        $contents = file_get_contents( $location, false, $context );
         
         if( $contents !== false ){
             
@@ -1406,16 +1406,16 @@ function file_get_contents_secure( $location, $validate_url = true ){
 *   @return bool - true if file created, false if not
 */
 if( ! function_exists( 'file_create' ) ){
-function file_create($dir, $contents){
-    $parts = explode('/', $dir);
-    $file = array_pop($parts);
+function file_create( $dir, $contents ){
+    $parts = explode('/', $dir );
+    $file = array_pop( $parts );
     $dir = '';
-    foreach($parts as $part)
-        if(!is_dir($dir .= "/$part")) mkdir($dir);
+    foreach( $parts as $part )
+        if( !is_dir( $dir .= "/$part") ) mkdir( $dir );
     
     // Incase there's some system error
     try{
-        return file_put_contents("$dir/$file", $contents);
+        return file_put_contents("$dir/$file", $contents );
     } catch( Exception $e ){
         return false;
     }
@@ -1442,27 +1442,27 @@ function file_create($dir, $contents){
 if( ! function_exists( 'download_file' ) ){
 function download_file( $file, $new_file ){
     
-    $out = fopen($new_file, 'wb'); 
-    if ($out == false){ 
+    $out = fopen( $new_file, 'wb'); 
+    if( $out == false ){ 
       return false; 
     } 
 
     $ch = curl_init(); 
 
-    curl_setopt($ch, CURLOPT_FILE, $out); 
-    curl_setopt($ch, CURLOPT_HEADER, 0); 
-    curl_setopt($ch, CURLOPT_URL, $file);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false );
+    curl_setopt( $ch, CURLOPT_FILE, $out ); 
+    curl_setopt( $ch, CURLOPT_HEADER, 0 ); 
+    curl_setopt( $ch, CURLOPT_URL, $file );
+	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
 
-    curl_exec($ch); 
+    curl_exec( $ch ); 
     
-    if( ! curl_errno($ch) || curl_errno( $ch ) !== 0 ){
+    if( ! curl_errno( $ch ) || curl_errno( $ch ) !== 0 ){
         $success = false;
     } else {
         $success = $new_file;
     }
 
-    curl_close($ch);
+    curl_close( $ch );
     
     return $success;
     

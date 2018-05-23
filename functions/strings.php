@@ -98,7 +98,7 @@ function rand_string( $length = 36, $symbols = true ){
 	// For each of the length add a character to the string
 	for( $x = 1; $x <= $length; $x++ ){
 		
-		if ( function_exists( 'random_int' ) ) {
+		if( function_exists( 'random_int' ) ){
 
 			// Use random int if PHP 7 or random_compat installed
 			$int = random_int( 0, $total_chars );
@@ -133,7 +133,7 @@ function rand_string( $length = 36, $symbols = true ){
 if( ! function_exists( 'validate_email' ) ){
 function validate_email( $email ){
 
-	if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+	if( !filter_var( $email, FILTER_VALIDATE_EMAIL ) === false ){
 	  return true;
 	} else {
 	  return false;
@@ -178,7 +178,7 @@ function is_email( $email ){
 if( ! function_exists( 'validate_url' ) ){
 function validate_url( $url, $ssl = false ){
 
-	if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
+	if( !filter_var( $url, FILTER_VALIDATE_URL ) === false ){
 	  
         if( $ssl == false ){
             return true;
@@ -245,8 +245,8 @@ function is_url( $url, $ssl = false ){
 *
 */
 if( ! function_exists( 'slug') ){
-function slug($string){
-	$slug = strtolower( preg_replace('/[^A-Za-z0-9-]+/', '-', $string) );
+function slug( $string ){
+	$slug = strtolower( preg_replace('/[^A-Za-z0-9-]+/', '-', $string ) );
 	return $slug;
 }
 }
@@ -267,7 +267,7 @@ function slug($string){
 *
 */
 if( ! function_exists( 'trailingslash' ) ){
-function trailingslash( $string ) {
+function trailingslash( $string ){
     return untrailingslash( $string ) . '/';
 }
 }
@@ -288,7 +288,7 @@ function trailingslash( $string ) {
 *
 */
 if( ! function_exists( 'untrailingslash' ) ){
-function untrailingslash( $string ) {
+function untrailingslash( $string ){
     return rtrim( $string, '/\\' );
 }
 }
@@ -309,12 +309,12 @@ function untrailingslash( $string ) {
 *
 */
 if( ! function_exists( 'str2hex') ){
-function str2hex($func_string) {
+function str2hex( $func_string ){
 	$func_retVal = '';
-	$func_length = strlen($func_string);
-	for($func_index = 0; $func_index < $func_length; ++$func_index) $func_retVal .= ((($c = dechex(ord($func_string{$func_index}))) && strlen($c) & 2) ? $c : "0{$c}");
+	$func_length = strlen( $func_string );
+	for( $func_index = 0; $func_index < $func_length; ++$func_index ) $func_retVal .= ((( $c = dechex( ord( $func_string{$func_index}) )) && strlen( $c ) & 2 ) ? $c : "0{$c}");
 
-	return strtoupper($func_retVal);
+	return strtoupper( $func_retVal );
 }
 }
 
@@ -334,10 +334,10 @@ function str2hex($func_string) {
 *
 */
 if( ! function_exists( 'hex2str') ){
-function hex2str($func_string) {
+function hex2str( $func_string ){
 	$func_retVal = '';
-	$func_length = strlen($func_string);
-	for($func_index = 0; $func_index < $func_length; ++$func_index) $func_retVal .= chr(hexdec($func_string{$func_index} . $func_string{++$func_index}));
+	$func_length = strlen( $func_string );
+	for( $func_index = 0; $func_index < $func_length; ++$func_index ) $func_retVal .= chr( hexdec( $func_string{$func_index} . $func_string{++$func_index}) );
 
 	return $func_retVal;
 }
@@ -358,23 +358,23 @@ function hex2str($func_string) {
 *
 */
 if( ! function_exists( 'mbstring_binary_safe_encoding' ) ){
-function mbstring_binary_safe_encoding( $reset = false ) {
+function mbstring_binary_safe_encoding( $reset = false ){
     static $encodings = array();
     static $overloaded = null;
 
-    if ( is_null( $overloaded ) )
+    if( is_null( $overloaded ) )
     $overloaded = function_exists( 'mb_internal_encoding' ) && ( ini_get( 'mbstring.func_overload' ) & 2 );
 
-    if ( false === $overloaded )
+    if( false === $overloaded )
     return;
 
-    if ( ! $reset ) {
+    if( ! $reset ){
         $encoding = mb_internal_encoding();
         array_push( $encodings, $encoding );
         mb_internal_encoding( 'ISO-8859-1' );
     }
 
-    if ( $reset && $encodings ) {
+    if( $reset && $encodings ){
         $encoding = array_pop( $encodings );
         mb_internal_encoding( $encoding );
     }
@@ -394,7 +394,7 @@ function mbstring_binary_safe_encoding( $reset = false ) {
 *
 */
 if( !function_exists( 'reset_mbstring_encoding' ) ){
-function reset_mbstring_encoding() {
+function reset_mbstring_encoding(){
     mbstring_binary_safe_encoding( true );
 }
 }
@@ -416,21 +416,21 @@ function reset_mbstring_encoding() {
 *
 */
 if( !function_exists( 'seems_utf8' ) ){
-function seems_utf8( $str ) {
+function seems_utf8( $str ){
     mbstring_binary_safe_encoding();
-    $length = strlen($str);
+    $length = strlen( $str );
     reset_mbstring_encoding();
-    for ($i=0; $i < $length; $i++) {
-        $c = ord($str[$i]);
-        if ($c < 0x80) $n = 0; // 0bbbbbbb
-        elseif (($c & 0xE0) == 0xC0) $n=1; // 110bbbbb
-        elseif (($c & 0xF0) == 0xE0) $n=2; // 1110bbbb
-        elseif (($c & 0xF8) == 0xF0) $n=3; // 11110bbb
-        elseif (($c & 0xFC) == 0xF8) $n=4; // 111110bb
-        elseif (($c & 0xFE) == 0xFC) $n=5; // 1111110b
+    for ( $i=0; $i < $length; $i++){
+        $c = ord( $str[$i]);
+        if( $c < 0x80 ) $n = 0; // 0bbbbbbb
+        elseif(( $c & 0xE0 ) == 0xC0 ) $n=1; // 110bbbbb
+        elseif(( $c & 0xF0 ) == 0xE0 ) $n=2; // 1110bbbb
+        elseif(( $c & 0xF8 ) == 0xF0 ) $n=3; // 11110bbb
+        elseif(( $c & 0xFC ) == 0xF8 ) $n=4; // 111110bb
+        elseif(( $c & 0xFE ) == 0xFC ) $n=5; // 1111110b
         else return false; // Does not match any model
-        for ($j=0; $j<$n; $j++) { // n bytes matching 10bbbbbb follow ?
-            if ((++$i == $length) || ((ord($str[$i]) & 0xC0) != 0x80))
+        for ( $j=0; $j<$n; $j++){ // n bytes matching 10bbbbbb follow ?
+            if((++$i == $length ) || (( ord( $str[$i]) & 0xC0 ) != 0x80 ) )
                 return false;
         }
     }
@@ -456,7 +456,7 @@ function seems_utf8( $str ) {
 *
 */
 if( ! function_exists( 'utf8_uri_encode' ) ){
-function utf8_uri_encode( $utf8_string, $length = 0 ) {
+function utf8_uri_encode( $utf8_string, $length = 0 ){
 	$unicode = '';
 	$values = array();
 	$num_octets = 1;
@@ -464,28 +464,28 @@ function utf8_uri_encode( $utf8_string, $length = 0 ) {
 	mbstring_binary_safe_encoding();
 	$string_length = strlen( $utf8_string );
 	reset_mbstring_encoding();
-	for ($i = 0; $i < $string_length; $i++ ) {
+	for ( $i = 0; $i < $string_length; $i++ ){
 		$value = ord( $utf8_string[ $i ] );
-		if ( $value < 128 ) {
-			if ( $length && ( $unicode_length >= $length ) )
+		if( $value < 128 ){
+			if( $length && ( $unicode_length >= $length ) )
 				break;
-			$unicode .= chr($value);
+			$unicode .= chr( $value );
 			$unicode_length++;
 		} else {
-			if ( count( $values ) == 0 ) {
-				if ( $value < 224 ) {
+			if( count( $values ) == 0 ){
+				if( $value < 224 ){
 					$num_octets = 2;
-				} elseif ( $value < 240 ) {
+				} elseif( $value < 240 ){
 					$num_octets = 3;
 				} else {
 					$num_octets = 4;
 				}
 			}
 			$values[] = $value;
-			if ( $length && ( $unicode_length + ($num_octets * 3) ) > $length )
+			if( $length && ( $unicode_length + ( $num_octets * 3 ) ) > $length )
 				break;
-			if ( count( $values ) == $num_octets ) {
-				for ( $j = 0; $j < $num_octets; $j++ ) {
+			if( count( $values ) == $num_octets ){
+				for ( $j = 0; $j < $num_octets; $j++ ){
 					$unicode .= '%' . dechex( $values[ $j ] );
 				}
 				$unicode_length += $num_octets * 3;
@@ -515,14 +515,14 @@ function utf8_uri_encode( $utf8_string, $length = 0 ) {
 *	@return mixed $value The value with the callback applied to all non-arrays and non-objects inside it.
 */
 if( ! function_exists( 'map_deep') ){
-function map_deep( $value, $callback ) {
-    if ( is_array( $value ) ) {
-        foreach ( $value as $index => $item ) {
+function map_deep( $value, $callback ){
+    if( is_array( $value ) ){
+        foreach( $value as $index => $item ){
             $value[ $index ] = map_deep( $item, $callback );
         }
-    } elseif ( is_object( $value ) ) {
+    } elseif( is_object( $value ) ){
         $object_vars = get_object_vars( $value );
-        foreach ( $object_vars as $property_name => $property_value ) {
+        foreach( $object_vars as $property_name => $property_value ){
             $value->$property_name = map_deep( $property_value, $callback );
         }
     } else {
@@ -549,7 +549,7 @@ function map_deep( $value, $callback ) {
 *	@return mixed $value The encoded value.
 */
 if( ! function_exists( 'rawurldecode_deep') ){
-function rawurlencode_deep( $value ) {
+function rawurlencode_deep( $value ){
 	return map_deep( $value, 'rawurlencode' );
 }
 }
@@ -570,7 +570,7 @@ function rawurlencode_deep( $value ) {
 *	@return mixed $value The decoded value.
 */
 if( ! function_exists( 'urldecode_deep') ){
-function urldecode_deep( $value ) {
+function urldecode_deep( $value ){
 	return map_deep( $value, 'urldecode' );
 }
 }
@@ -595,46 +595,46 @@ function urldecode_deep( $value ) {
 *	@return mixed XML encoded data
 */
 if( ! function_exists( 'xml_encode') ){
-function xml_encode($mixed, $domElement=null, $DOMDocument=null) {
-    if (is_null($DOMDocument)) {
+function xml_encode( $mixed, $domElement=null, $DOMDocument=null ){
+    if( is_null( $DOMDocument ) ){
         $DOMDocument =new DOMDocument;
         $DOMDocument->formatOutput = true;
-        xml_encode($mixed, $DOMDocument, $DOMDocument);
+        xml_encode( $mixed, $DOMDocument, $DOMDocument );
         return $DOMDocument->saveXML();
     }
     else {
         // To cope with embedded objects 
-        if (is_object($mixed)) {
-          $mixed = get_object_vars($mixed);
+        if( is_object( $mixed ) ){
+          $mixed = get_object_vars( $mixed );
         }
-        if (is_array($mixed)) {
-            foreach ($mixed as $index => $mixedElement) {
-                if (is_int($index)) {
-                    if ($index === 0) {
+        if( is_array( $mixed ) ){
+            foreach( $mixed as $index => $mixedElement ){
+                if( is_int( $index ) ){
+                    if( $index === 0 ){
                         $node = $domElement;
                     }
                     else {
-                        $node = $DOMDocument->createElement($domElement->tagName);
-                        $domElement->parentNode->appendChild($node);
+                        $node = $DOMDocument->createElement( $domElement->tagName );
+                        $domElement->parentNode->appendChild( $node );
                     }
                 }
                 else {
-                    $plural = $DOMDocument->createElement($index);
-                    $domElement->appendChild($plural);
+                    $plural = $DOMDocument->createElement( $index );
+                    $domElement->appendChild( $plural );
                     $node = $plural;
-                    if (!(rtrim($index, 's') === $index)) {
-                        $singular = $DOMDocument->createElement(rtrim($index, 's'));
-                        $plural->appendChild($singular);
+                    if( !( rtrim( $index, 's') === $index ) ){
+                        $singular = $DOMDocument->createElement( rtrim( $index, 's') );
+                        $plural->appendChild( $singular );
                         $node = $singular;
                     }
                 }
 
-                xml_encode($mixedElement, $node, $DOMDocument);
+                xml_encode( $mixedElement, $node, $DOMDocument );
             }
         }
         else {
-            $mixed = is_bool($mixed) ? ($mixed ? 'true' : 'false') : $mixed;
-            $domElement->appendChild($DOMDocument->createTextNode($mixed));
+            $mixed = is_bool( $mixed ) ? ( $mixed ? 'true' : 'false') : $mixed;
+            $domElement->appendChild( $DOMDocument->createTextNode( $mixed ) );
         }
     }
 }
@@ -661,9 +661,9 @@ function xml_decode( $xmlstring ){
 	
 	if( function_exists( 'simplexml_load_string' ) ){
 		
-		$xml = simplexml_load_string($xmlstring, "SimpleXMLElement", LIBXML_NOCDATA);
-		$json = json_encode($xml);
-		$array = json_decode($json,TRUE);
+		$xml = simplexml_load_string( $xmlstring, "SimpleXMLElement", LIBXML_NOCDATA );
+		$json = json_encode( $xml );
+		$array = json_decode( $json,TRUE );
 
 		return $array;
 	
@@ -691,11 +691,11 @@ function xml_decode( $xmlstring ){
 *	@return string - XSS-safe string
 */
 if( ! function_exists( 'xssafe') ){
-function xssafe($data,$encoding='UTF-8'){
+function xssafe( $data, $encoding='UTF-8'){
 	
 	$data = strip_tags( $data );
 	
-   	return htmlspecialchars($data,ENT_QUOTES | ENT_HTML401,$encoding);
+   	return htmlspecialchars( $data,ENT_QUOTES | ENT_HTML401, $encoding );
 }
 }
 
@@ -715,8 +715,8 @@ function xssafe($data,$encoding='UTF-8'){
 *	@return string - XSS-safe string
 */
 if( ! function_exists( 'xecho') ){
-function xecho($data){
-   echo xssafe($data);
+function xecho( $data ){
+   echo xssafe( $data );
 }
 }
 
@@ -737,7 +737,7 @@ function xecho($data){
 *   @return string - string with leading zeros
 */
 if( ! function_exists( 'zeroise') ){
-function zeroise($number, $length){
+function zeroise( $number, $length ){
     return sprintf( '%0' . $threshold . 's', $number );
 }
 }
@@ -826,7 +826,7 @@ function proper( $string, $split_chars = array( '-', ' ' ) ){
                 $new_string .= ucfirst( strtolower( $part ) );
 
                 // If this is not the last string part
-                if(++$i !== $array_count) {
+                if(++$i !== $array_count ){
 
                     // Add the split character back in
                     $new_string .= $char;
@@ -914,7 +914,7 @@ function strcheck(){
 *   @return string Sanitized key
 */
 if( ! function_exists( 'sanitize_key' ) ){
-function sanitize_key( $key ) {
+function sanitize_key( $key ){
 	
 	$key     = strtolower( $key );
 	$key     = preg_replace( '/[^a-z0-9_\-]/', '_', $key );
@@ -972,8 +972,8 @@ function starts_with( $haystack, $needle, $insensitive = false ){
         
     }
     
-    $length = strlen($needle);
-    return (substr($haystack, 0, $length) === $needle);
+    $length = strlen( $needle );
+    return ( substr( $haystack, 0, $length ) === $needle );
     
 }
 }
@@ -1005,7 +1005,7 @@ function ends_with( $haystack, $needle, $insensitive = false ){
         
     }
     
-    return substr($haystack, -strlen($needle))===$needle;
+    return substr( $haystack, -strlen( $needle ) )===$needle;
     
 }
 }
@@ -1029,12 +1029,12 @@ function ends_with( $haystack, $needle, $insensitive = false ){
 *   @return boolean
 */
 if( ! function_exists( 'str_to_bool' ) ){
-function str_to_bool($string, $default = false){
+function str_to_bool( $string, $default = false ){
     $yes_words = 'affirmative|all right|aye|indubitably|most assuredly|ok|of course|okay|sure thing|y|yes+|yea|yep|sure|yeah|true|t|on|1|oui|vrai|tha';
     $no_words = 'no*|no way|nope|nah|na|never|absolutely not|by no means|negative|never ever|false|f|off|0|non|faux|chan eil';
-    if (preg_match('/^(' . $yes_words . ')$/i', $string)) {
+    if( preg_match('/^(' . $yes_words . ')$/i', $string ) ){
         return true;
-    } elseif (preg_match('/^(' . $no_words . ')$/i', $string)) {
+    } elseif( preg_match('/^(' . $no_words . ')$/i', $string ) ){
         return false;
     }
     return $default;
@@ -1058,12 +1058,12 @@ function str_to_bool($string, $default = false){
 *   @return boolean
 */
 if( ! function_exists( 'str_contains' ) ){
-function str_contains($haystack, $needle, $insensitive = false ){
+function str_contains( $haystack, $needle, $insensitive = false ){
     
     if( $insensitive == false ){
-        return strpos($haystack, $needle) !== false;
+        return strpos( $haystack, $needle ) !== false;
     } else {
-        return stripos($haystack, $needle) !== false;
+        return stripos( $haystack, $needle ) !== false;
     }
 }
 }
@@ -1092,7 +1092,7 @@ function parse_email( $email, $delimiters = array() ){
     // Create an output array
     $output = array();
     
-    $parts = explode('@',$email); // Splits the email at the @ symbol
+    $parts = explode('@', $email ); // Splits the email at the @ symbol
     $username = $parts[0]; // Can be used as a username if you'd like, but we'll use it to find names anyway
     
     // Add the items to the array
@@ -1101,15 +1101,15 @@ function parse_email( $email, $delimiters = array() ){
 
     $delimiters = array_merge( $delimiters, array('.', '-', '_') ); // List of common email name delimiters, feel free to add to it
 
-    foreach ($delimiters as $delimiter){ // Checks all the delimiters
-        if ( strpos($username, $delimiter) ){ // If the delimiter is found in the string
-          $parts_name = preg_replace("/\d+$/","", $username); // Remove numbers from string
-          $parts_name = explode( $delimiter, $parts_name); // Split the username at the delimiter
+    foreach( $delimiters as $delimiter ){ // Checks all the delimiters
+        if( strpos( $username, $delimiter ) ){ // If the delimiter is found in the string
+          $parts_name = preg_replace("/\d+$/","", $username ); // Remove numbers from string
+          $parts_name = explode( $delimiter, $parts_name ); // Split the username at the delimiter
           break; // If we've found a delimiter we can move on
         }
     }
 
-    if ( $parts_name ){ // If we've found a delimiter we can use it
+    if( $parts_name ){ // If we've found a delimiter we can use it
         $output['first_name'] = ucfirst( strtolower( $parts_name[0] ) ); // Lets tidy up the names so the first letter is a capital and rest lower case
         $output['last_name'] = ucfirst( strtolower( $parts_name[1] ) );
     }
@@ -1138,7 +1138,7 @@ function html_atts_string( $atts ){
 
     foreach( $atts as $key => $value ){
         
-        // Check for an array (might be used for classes)
+        // Check for an array (might be used for classes )
         if( is_array( $value ) ){
             $atts_string .= $key . '="' . implode( $value, ' ') . '" ';
         } else {
@@ -1168,7 +1168,8 @@ function html_atts_string( $atts ){
 *   @return string - the string with new links
 */
 if( ! function_exists( 'make_clickable' ) ){
-function make_clickable($ret, $atts = array() ) {
+function make_clickable( $ret, $atts = array() ){
+    
     $ret = ' ' . $ret;
     // in testing, using arrays here was found to be faster
     
@@ -1178,12 +1179,12 @@ function make_clickable($ret, $atts = array() ) {
 		$ret = '';
 		$url = $matches[2];
 
-		if ( empty($url) )
+		if( empty( $url ) )
 			return $matches[0];
 		// removed trailing [.,;:] from URL
-		if ( in_array(substr($url, -1), array('.', ',', ';', ':')) === true ) {
-			$ret = substr($url, -1);
-			$url = substr($url, 0, strlen($url)-1);
+		if( in_array( substr( $url, -1 ), array('.', ',', ';', ':') ) === true ){
+			$ret = substr( $url, -1 );
+			$url = substr( $url, 0, strlen( $url )-1 );
 		}
 		
 		if( empty( $atts ) ){
@@ -1193,25 +1194,23 @@ function make_clickable($ret, $atts = array() ) {
 			$atts_string = html_atts_string( $atts );
 			
 			return $matches[1] . "<a href=\"$url\" $atts_string >$url</a>" . $ret;
-		}
+		}		
 		
-		
-		
-	}, $ret);
+	}, $ret );
 	
     // For FTP links
-    $ret = preg_replace_callback('#([\s>])((www|ftp)\.[\w\\x80-\\xff\#$%&~/.\-;:=,?@\[\]+]*)#is', function( $matches ) use ( $atts ){
+    $ret = preg_replace_callback('#([\s>])((www|ftp )\.[\w\\x80-\\xff\#$%&~/.\-;:=,?@\[\]+]*)#is', function( $matches ) use ( $atts ){
 		
 		$ret = '';
 		$dest = $matches[2];
 		$dest = 'http://' . $dest;
 
-		if ( empty($dest) )
+		if( empty( $dest ) )
 			return $matches[0];
 		// removed trailing [,;:] from URL
-		if ( in_array(substr($dest, -1), array('.', ',', ';', ':')) === true ) {
-			$ret = substr($dest, -1);
-			$dest = substr($dest, 0, strlen($dest)-1);
+		if( in_array( substr( $dest, -1 ), array('.', ',', ';', ':') ) === true ){
+			$ret = substr( $dest, -1 );
+			$dest = substr( $dest, 0, strlen( $dest )-1 );
 		}
 		
 		if( empty( $atts ) ){
@@ -1228,28 +1227,30 @@ function make_clickable($ret, $atts = array() ) {
 		
 		
 		
-	}, $ret);
+	}, $ret );
    
     // For email links
-   $ret = preg_replace_callback('#([\s>])([.0-9a-z_+-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,})#i', function( $matches ) use ( $atts ){
-	   
-	   $email = $matches[2] . '@' . $matches[3];
-	   
-	   if( empty( $atts ) ){ 
-		return $matches[1] . "<a href=\"mailto:$email\">$email</a>";
-	   } else {
-		   
-		   $atts_string = html_atts_string( $atts );
-		   
-		   return $matches[1] . "<a href=\"mailto:$email\" $atts_string >$email</a>";
-	   }
-	   
-	   
-   }, $ret);
+    $ret = preg_replace_callback('#([\s>])([.0-9a-z_+-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,})#i', function( $matches ) use ( $atts ){
+
+       $email = $matches[2] . '@' . $matches[3];
+
+       if( empty( $atts ) ){
+
+           return $matches[1] . "<a href=\"mailto:$email\">$email</a>";
+
+       } else {
+
+           $atts_string = html_atts_string( $atts );
+
+           return $matches[1] . "<a href=\"mailto:$email\" $atts_string >$email</a>";
+       }
+
+
+    }, $ret );
 
     // this one is not in an array because we need it to run last, for cleanup of accidental links within links
-    $ret = preg_replace("#(<a( [^>]+?>|>))<a [^>]+?>([^>]+?)</a></a>#i", "$1$3</a>", $ret);
-    $ret = trim($ret);
+    $ret = preg_replace("#(<a( [^>]+?>|>) )<a [^>]+?>([^>]+?)</a></a>#i", "$1$3</a>", $ret );
+    $ret = trim( $ret );
     return $ret;
 }
 }
@@ -1272,15 +1273,15 @@ function make_clickable($ret, $atts = array() ) {
 if( ! function_exists( 'http_build_url' ) ){
 function http_build_url( $parsed_url ){
     
-    $scheme   = isset($parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : ''; 
-	$host     = isset($parsed_url['host']) ? $parsed_url['host'] : ''; 
-	$port     = isset($parsed_url['port']) ? ':' . $parsed_url['port'] : ''; 
-	$user     = isset($parsed_url['user']) ? $parsed_url['user'] : ''; 
-	$pass     = isset($parsed_url['pass']) ? ':' . $parsed_url['pass']  : ''; 
-	$pass     = ($user || $pass) ? "$pass@" : ''; 
-	$path     = isset($parsed_url['path']) ? $parsed_url['path'] : ''; 
-	$query    = isset($parsed_url['query']) ? '?' . $parsed_url['query'] : ''; 
-	$fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : ''; 
+    $scheme   = isset( $parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : ''; 
+	$host     = isset( $parsed_url['host']) ? $parsed_url['host'] : ''; 
+	$port     = isset( $parsed_url['port']) ? ':' . $parsed_url['port'] : ''; 
+	$user     = isset( $parsed_url['user']) ? $parsed_url['user'] : ''; 
+	$pass     = isset( $parsed_url['pass']) ? ':' . $parsed_url['pass']  : ''; 
+	$pass     = ( $user || $pass ) ? "$pass@" : ''; 
+	$path     = isset( $parsed_url['path']) ? $parsed_url['path'] : ''; 
+	$query    = isset( $parsed_url['query']) ? '?' . $parsed_url['query'] : ''; 
+	$fragment = isset( $parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : ''; 
 	
 	return "$scheme$user$pass$host$port$path$query$fragment";
     
@@ -1296,7 +1297,7 @@ function http_build_url( $parsed_url ){
 *   @author Evan K
 *   @see http://php.net/manual/en/function.parse-str.php#76792
 *
-*   @param string $str - the string to parse (normally query string)
+*   @param string $str - the string to parse (normally query string )
 *
 *   @return array $arr - the returned array
 *
@@ -1306,31 +1307,33 @@ function http_build_url( $parsed_url ){
 if( ! function_exists( 'proper_parse_str' ) ){
 function proper_parse_str( $str ){
  
-    # result array
+    // result array
     $arr = array();
 
-    # split on outer delimiter
-    $pairs = explode('&', $str);
+    // split on outer delimiter
+    $pairs = explode('&', $str );
 
-    # loop through each pair
-    foreach ($pairs as $i) {
-    # split into name and value
-    list($name,$value) = explode('=', $i, 2);
+    // loop through each pair
+    foreach( $pairs as $i ){
+        
+        // split into name and value
+        list( $name, $value ) = explode('=', $i, 2 );
 
-    # if name already exists
-    if( isset($arr[$name]) ) {
-      # stick multiple values into an array
-      if( is_array($arr[$name]) ) {
-        $arr[$name][] = $value;
-      }
-      else {
-        $arr[$name] = array($arr[$name], $value);
-      }
-    }
-    # otherwise, simply stick it in a scalar
-    else {
-      $arr[$name] = $value;
-    }
+        // if name already exists
+        if( isset( $arr[$name]) ){
+            
+            // stick multiple values into an array
+            if( is_array( $arr[$name]) ){
+                $arr[$name][] = $value;
+            } else {
+                $arr[$name] = array( $arr[$name], $value );
+            }
+        }
+        // otherwise, simply stick it in a scalar
+        else {
+            $arr[$name] = $value;
+        }
+        
     }
 
     # return result array
@@ -1356,9 +1359,13 @@ function proper_parse_str( $str ){
 *	@last_modified	1.1
 */
 if( ! function_exists( 'mb_strcasecmp' ) ){
-function mb_strcasecmp($str1, $str2, $encoding = null) {
-    if (null === $encoding) { $encoding = mb_internal_encoding(); }
-    return strcmp(mb_strtoupper($str1, $encoding), mb_strtoupper($str2, $encoding));
+function mb_strcasecmp( $str1, $str2, $encoding = null ){
+    
+    if( null === $encoding ){
+        $encoding = mb_internal_encoding();
+    }
+    
+    return strcmp( mb_strtoupper( $str1, $encoding ), mb_strtoupper( $str2, $encoding ) );
 }
 }
 
@@ -1380,31 +1387,31 @@ function mb_strcasecmp($str1, $str2, $encoding = null) {
 *	@last_modified	1.1
 */
 if( ! function_exists( 'ucnames' ) ){
-function ucnames($string, $delimiters = array(" ", "-", ".", "'", "O'", "Mc"), $exceptions = array("de", "da", "dos", "das", "do", "I", "II", "III", "IV", "V", "VI", "van")){
+function ucnames( $string, $delimiters = array(" ", "-", ".", "'", "O'", "Mc"), $exceptions = array("de", "da", "dos", "das", "do", "I", "II", "III", "IV", "V", "VI", "van") ){
 	/*
 	 * Exceptions in lower case are words you don't want converted
 	 * Exceptions all in upper case are any words you don't want converted to title case
 	 *   but should be converted to upper case, e.g.:
 	 *   king henry viii or king henry Viii should be King Henry VIII
 	 */
-	$string = mb_convert_case($string, MB_CASE_TITLE, "UTF-8");
-	foreach ($delimiters as $dlnr => $delimiter) {
-		$words = explode($delimiter, $string);
+	$string = mb_convert_case( $string, MB_CASE_TITLE, "UTF-8");
+	foreach( $delimiters as $dlnr => $delimiter ){
+		$words = explode( $delimiter, $string );
 		$newwords = array();
-		foreach ($words as $wordnr => $word) {
-			if (in_array(mb_strtoupper($word, "UTF-8"), $exceptions)) {
+		foreach( $words as $wordnr => $word ){
+			if( in_array( mb_strtoupper( $word, "UTF-8"), $exceptions ) ){
 				// check exceptions list for any words that should be in upper case
-				$word = mb_strtoupper($word, "UTF-8");
-			} elseif (in_array(mb_strtolower($word, "UTF-8"), $exceptions)) {
+				$word = mb_strtoupper( $word, "UTF-8");
+			} elseif( in_array( mb_strtolower( $word, "UTF-8"), $exceptions ) ){
 				// check exceptions list for any words that should be in upper case
-				$word = mb_strtolower($word, "UTF-8");
-			} elseif (!in_array($word, $exceptions)) {
-				// convert to uppercase (non-utf8 only)
-				$word = ucfirst($word);
+				$word = mb_strtolower( $word, "UTF-8");
+			} elseif( !in_array( $word, $exceptions ) ){
+				// convert to uppercase (non-utf8 only )
+				$word = ucfirst( $word );
 			}
-			array_push($newwords, $word);
+			array_push( $newwords, $word );
 		}
-		$string = join($delimiter, $newwords);
+		$string = join( $delimiter, $newwords );
    }//foreach
    return $string;
 }

@@ -84,9 +84,9 @@ function get_browser_info( $u_agent = false ){
     );
 
 	// Search for the current platform
-    foreach ($os_array as $regex => $value) { 
+    foreach( $os_array as $regex => $value ){ 
 
-        if (preg_match($regex, $u_agent)) {
+        if( preg_match( $regex, $u_agent ) ){
             $os_name = $value;
         }
 
@@ -94,7 +94,7 @@ function get_browser_info( $u_agent = false ){
 	
 	// Get the OS version
 	$os_pattern = '#(?<browser>' . $os_name . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
-    if (!preg_match_all($os_pattern, $u_agent, $os_matches)) {
+    if( !preg_match_all( $os_pattern, $u_agent, $os_matches ) ){
         // we have no matching number just continue
     }
 	// Set version if it exists
@@ -103,42 +103,42 @@ function get_browser_info( $u_agent = false ){
 	}
     
     // Next get the name of the useragent yes seperately and for good reason
-    if(strpos($u_agent,'MSIE') && !strpos($u_agent,'Opera')) 
+    if( strpos( $u_agent,'MSIE') && !strpos( $u_agent,'Opera') ) 
     { 
         $browser_name = 'Internet Explorer'; 
         $ub = 'MSIE'; 
     }
-	elseif(strpos($u_agent,'IE')) 
+	elseif( strpos( $u_agent,'IE') ) 
     { 
         $browser_name = 'Internet Explorer'; 
         $ub = 'IE'; 
     } 
-	elseif(strpos($u_agent,'Edge')) 
+	elseif( strpos( $u_agent,'Edge') ) 
     { 
         $browser_name = 'Edge'; 
         $ub = 'Edge'; 
     } 
-    elseif(strpos($u_agent,'Firefox')) 
+    elseif( strpos( $u_agent,'Firefox') ) 
     { 
         $browser_name = 'Mozilla Firefox'; 
         $ub = 'Firefox'; 
     } 
-    elseif(strpos($u_agent,'Chrome')) 
+    elseif( strpos( $u_agent,'Chrome') ) 
     { 
         $browser_name = 'Google Chrome'; 
         $ub = 'Chrome'; 
     } 
-    elseif(strpos($u_agent, 'Safari')) 
+    elseif( strpos( $u_agent, 'Safari') ) 
     { 
         $browser_name = 'Apple Safari'; 
         $ub = 'Safari'; 
     } 
-    elseif(strpos($u_agent,'Opera')|| strpos($u_agent,'OPR')) 
+    elseif( strpos( $u_agent,'Opera')|| strpos( $u_agent,'OPR') ) 
     { 
         $browser_name = 'Opera'; 
         $ub = 'Opera'; 
     } 
-    elseif(strpos($u_agent,'Netscape')) 
+    elseif( strpos( $u_agent,'Netscape') ) 
     { 
         $browser_name = 'Netscape'; 
         $ub = 'Netscape'; 
@@ -148,20 +148,20 @@ function get_browser_info( $u_agent = false ){
     // finally get the correct version number
 	if( $ub !== 'IE' ){
 		$known = array('Version', $ub, 'other');
-		$pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+		$pattern = '#(?<browser>' . join('|', $known ) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
 	} else {
-		$pattern = '/(?<browser>IE)+(?<version>[\d]*)/';
+		$pattern = '/(?<browser>IE )+(?<version>[\d]*)/';
 	}
-    if (!preg_match_all($pattern, $u_agent, $matches)) {
+    if( !preg_match_all( $pattern, $u_agent, $matches ) ){
         // we have no matching number just continue
     }
     
     // see how many we have
-    $i = count($matches['browser']);
-    if ($i != 1) {
+    $i = count( $matches['browser']);
+    if( $i != 1 ){
         //we will have two since we are not using 'other' argument yet
         //see if version is before or after the name
-        if (strripos($u_agent,'Version') < strripos($u_agent,$ub)){
+        if( strripos( $u_agent,'Version') < strripos( $u_agent, $ub ) ){
             $browser_version = $matches['version'][0];
         }
         else {
@@ -173,7 +173,7 @@ function get_browser_info( $u_agent = false ){
     }
     
     // check if we have a number
-    if ($browser_version == null || $browser_version == ''){
+    if( $browser_version == null || $browser_version == ''){
 		$browser_version = 'Unknown';
 	}
     
@@ -207,16 +207,16 @@ function get_browser_info( $u_agent = false ){
 *
 */
 if( ! function_exists( 'is_ssl' ) ){
-function is_ssl() {
+function is_ssl(){
 	
-    if ( isset( $_SERVER['HTTPS'] ) ) {
-		if ( 'on' == strtolower( $_SERVER['HTTPS'] ) ) {
+    if( isset( $_SERVER['HTTPS'] ) ){
+		if( 'on' == strtolower( $_SERVER['HTTPS'] ) ){
 			return true;
 		}
-		if ( '1' == $_SERVER['HTTPS'] ) {
+		if( '1' == $_SERVER['HTTPS'] ){
 			return true;
 		}
-	} elseif ( isset($_SERVER['SERVER_PORT'] ) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
+	} elseif( isset( $_SERVER['SERVER_PORT'] ) && ( '443' == $_SERVER['SERVER_PORT'] ) ){
 		return true;
 	}
 	return false;
@@ -317,12 +317,12 @@ function get_user_ip(){
 if( ! function_exists( 'get_user_lang') ){
 function get_user_lang( $availableLanguages, $default = 'en' ){
 	
-	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-		$langs=explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	if( isset( $_SERVER['HTTP_ACCEPT_LANGUAGE']) ){
+		$langs=explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 
-		foreach ($langs as $value){
-			$choice=substr($value,0,2);
-			if(in_array($choice, $availableLanguages)){
+		foreach( $langs as $value ){
+			$choice=substr( $value,0,2 );
+			if( in_array( $choice, $availableLanguages ) ){
 				return $choice;
 			}
 		}
@@ -349,7 +349,7 @@ function get_user_lang( $availableLanguages, $default = 'en' ){
 if( ! function_exists('is_windows') ){
 function is_windows(){
     
-    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+    if( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN'){
         return true;
     } else {
         return false;
@@ -375,7 +375,7 @@ function is_windows(){
 if( ! function_exists('is_linux') ){
 function is_linux(){
     
-    if (strtoupper(substr(PHP_OS, 0, 3)) === 'LIN') {
+    if( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'LIN'){
         return true;
     } else {
         return false;
@@ -496,16 +496,16 @@ function is_nginx(){
 *   @return bool - true if mobile, false if not
 */
 if( ! function_exists( 'is_mobile') ){
-function is_mobile() {
-    if ( empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
+function is_mobile(){
+    if( empty( $_SERVER['HTTP_USER_AGENT'] ) ){
         $is_mobile = false;
-    } elseif ( strpos( $_SERVER['HTTP_USER_AGENT'], 'Mobile' ) !== false // many mobile devices (all iPhone, iPad, etc.)
+    } elseif( strpos( $_SERVER['HTTP_USER_AGENT'], 'Mobile' ) !== false // many mobile devices (all iPhone, iPad, etc.)
         || strpos( $_SERVER['HTTP_USER_AGENT'], 'Android' ) !== false
         || strpos( $_SERVER['HTTP_USER_AGENT'], 'Silk/' ) !== false
         || strpos( $_SERVER['HTTP_USER_AGENT'], 'Kindle' ) !== false
         || strpos( $_SERVER['HTTP_USER_AGENT'], 'BlackBerry' ) !== false
         || strpos( $_SERVER['HTTP_USER_AGENT'], 'Opera Mini' ) !== false
-        || strpos( $_SERVER['HTTP_USER_AGENT'], 'Opera Mobi' ) !== false ) {
+        || strpos( $_SERVER['HTTP_USER_AGENT'], 'Opera Mobi' ) !== false ){
             return true;
     } else {
         return false;
@@ -574,7 +574,7 @@ function spaceship( $one, $two ){
 */
 if( ! function_exists( 'is_countable' ) ){
 function is_countable( $foo ){
-    if (is_array($foo) || $foo instanceof Countable) {
+    if( is_array( $foo ) || $foo instanceof Countable ){
         // $foo is countable
         return true;
     } else {

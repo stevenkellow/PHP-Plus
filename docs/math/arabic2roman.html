@@ -8,7 +8,7 @@
 <h1><a id="arabic2roman_0"></a>arabic2roman</h1>
 <h2><a id="round_upnumber_precision__2_2"></a><em>arabic2roman( $integer )</em></h2>
 <h3><a id="Description_4"></a>Description</h3>
-<p>Convert an Arabic numeral (integer) to Roman numerals</p>
+<p>Convert an Arabic numeral ( integer ) to Roman numerals</p>
 <h3><a id="Parameters_7"></a>Parameters</h3>
 <ul>
 <li><strong>$integer</strong> <em>[int]</em> - Integer to convert into Roman numerals</li>
@@ -21,12 +21,12 @@
 <p><strong>Author:</strong> <a href="http://stackoverflow.com/a/15023547">user2095686</a></p>
 <pre><code>function arabic2roman( $integer ){ 
     
-    $table = array('M'=&gt;1000, 'CM'=&gt;900, 'D'=&gt;500, 'CD'=&gt;400, 'C'=&gt;100, 'XC'=&gt;90, 'L'=&gt;50, 'XL'=&gt;40, 'X'=&gt;10, 'IX'=&gt;9, 'V'=&gt;5, 'IV'=&gt;4, 'I'=&gt;1); 
+    $table = array('M'=&gt;1000, 'CM'=&gt;900, 'D'=&gt;500, 'CD'=&gt;400, 'C'=&gt;100, 'XC'=&gt;90, 'L'=&gt;50, 'XL'=&gt;40, 'X'=&gt;10, 'IX'=&gt;9, 'V'=&gt;5, 'IV'=&gt;4, 'I'=&gt;1 ); 
     $roman = ''; 
     
-    while($integer &gt; 0){
-        foreach($table as $rom=&gt;$arb){ 
-            if($integer &gt;= $arb){ 
+    while( $integer &gt; 0 ){
+        foreach( $table as $rom=&gt;$arb ){ 
+            if( $integer &gt;= $arb ){ 
                 $integer -= $arb; 
                 $roman .= $rom; 
                 break; 

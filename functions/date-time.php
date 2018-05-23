@@ -44,17 +44,17 @@
 *	@return int;
 */
 if( ! function_exists( 'get_timezone_offset' ) ){
-function get_timezone_offset($remote_tz, $origin_tz = null) {
-    if($origin_tz === null) {
-        if(!is_string($origin_tz = date_default_timezone_get())) {
+function get_timezone_offset( $remote_tz, $origin_tz = null ){
+    if( $origin_tz === null ){
+        if( !is_string( $origin_tz = date_default_timezone_get() )){
             return false; // A UTC timestamp was returned -- bail out!
         }
     }
-    $origin_dtz = new DateTimeZone($origin_tz);
-    $remote_dtz = new DateTimeZone($remote_tz);
-    $origin_dt = new DateTime("now", $origin_dtz);
-    $remote_dt = new DateTime("now", $remote_dtz);
-    $offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
+    $origin_dtz = new DateTimeZone( $origin_tz );
+    $remote_dtz = new DateTimeZone( $remote_tz );
+    $origin_dt = new DateTime("now", $origin_dtz );
+    $remote_dt = new DateTime("now", $remote_dtz );
+    $offset = $origin_dtz->getOffset( $origin_dt ) - $remote_dtz->getOffset( $remote_dt );
     return $offset;
 }
 }
@@ -71,7 +71,7 @@ function get_timezone_offset($remote_tz, $origin_tz = null) {
 *
 *	@return int;
 */
-if(! function_exists( 'get_gmt_offset' ) ){
+if( ! function_exists( 'get_gmt_offset' ) ){
 function get_gmt_offset( $timezone = false ){
 	
 	// If there is no timezone provided, use the system default
@@ -105,19 +105,19 @@ function get_gmt_offset( $timezone = false ){
 *	@return string GMT version of the date provided.
 */
 if( ! function_exists( 'get_gmt_from_date' ) ){
-function get_gmt_from_date( $string, $format = 'Y-m-d H:i:s' ) {
+function get_gmt_from_date( $string, $format = 'Y-m-d H:i:s' ){
 	$tz = date_default_timezone_get();
-	if ( $tz ) {
+	if( $tz ){
 		$datetime = date_create( $string, new DateTimeZone( $tz ) );
-		if ( ! $datetime ) {
+		if( ! $datetime ){
 			return gmdate( $format, 0 );
 		}
 		$datetime->setTimezone( new DateTimeZone( 'UTC' ) );
 		$string_gmt = $datetime->format( $format );
 	} else {
-		if ( ! preg_match( '#([0-9]{1,4})-([0-9]{1,2})-([0-9]{1,2}) ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})#', $string, $matches ) ) {
+		if( ! preg_match( '#([0-9]{1,4})-([0-9]{1,2})-([0-9]{1,2}) ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})#', $string, $matches ) ){
 			$datetime = strtotime( $string );
-			if ( false === $datetime ) {
+			if( false === $datetime ){
 				return gmdate( $format, 0 );
 			}
 			return gmdate( $format, $datetime );
@@ -150,17 +150,17 @@ function get_gmt_from_date( $string, $format = 'Y-m-d H:i:s' ) {
 *	@return string Formatted date relative to the timezone / GMT offset.
 */
 if( ! function_exists( 'get_date_from_gmt' ) ){
-function get_date_from_gmt( $string, $format = 'Y-m-d H:i:s' ) {
+function get_date_from_gmt( $string, $format = 'Y-m-d H:i:s' ){
 	$tz = date_default_timezone_get();
-	if ( $tz ) {
+	if( $tz ){
 		$datetime = date_create( $string, new DateTimeZone( 'UTC' ) );
-		if ( ! $datetime ) {
+		if( ! $datetime ){
 			return date( $format, 0 );
 		}
 		$datetime->setTimezone( new DateTimeZone( $tz ) );
 		$string_localtime = $datetime->format( $format );
 	} else {
-		if ( ! preg_match( '#([0-9]{1,4})-([0-9]{1,2})-([0-9]{1,2}) ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})#', $string, $matches ) ) {
+		if( ! preg_match( '#([0-9]{1,4})-([0-9]{1,2})-([0-9]{1,2}) ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})#', $string, $matches ) ){
 			return date( $format, 0 );
 		}
 		$string_time      = gmmktime( $matches[4], $matches[5], $matches[6], $matches[2], $matches[3], $matches[1] );
@@ -188,8 +188,8 @@ function get_date_from_gmt( $string, $format = 'Y-m-d H:i:s' ) {
 *	@return string Human readable time difference.
 */
 if( ! function_exists( 'human_time_diff' ) ){
-function human_time_diff( $from, $to = '' ) {
-	if ( empty( $to ) ) {
+function human_time_diff( $from, $to = '' ){
+	if( empty( $to ) ){
 		$to = time();
 	}
 	
@@ -201,46 +201,46 @@ function human_time_diff( $from, $to = '' ) {
 		$to = strtotime( $to );
 	}
 	
-	$diff = (int) abs( $to - $from );
+	$diff = ( int) abs( $to - $from );
 
-	if ( $diff < HOUR_IN_SECONDS ) {
+	if( $diff < HOUR_IN_SECONDS ){
 		$mins = round( $diff / MINUTE_IN_SECONDS );
-		if ( $mins <= 1 ) {
+		if( $mins <= 1 ){
 			$mins = 1;
 		}
 		/* translators: Time difference between two dates, in minutes (min=minute). %s: Number of minutes */
 		$since = sprintf( ngettext( '%s min', '%s mins', $mins ), $mins );
-	} elseif ( $diff < DAY_IN_SECONDS && $diff >= HOUR_IN_SECONDS ) {
+	} elseif( $diff < DAY_IN_SECONDS && $diff >= HOUR_IN_SECONDS ){
 		$hours = round( $diff / HOUR_IN_SECONDS );
-		if ( $hours <= 1 ) {
+		if( $hours <= 1 ){
 			$hours = 1;
 		}
 		/* translators: Time difference between two dates, in hours. %s: Number of hours */
 		$since = sprintf( ngettext( '%s hour', '%s hours', $hours ), $hours );
-	} elseif ( $diff < WEEK_IN_SECONDS && $diff >= DAY_IN_SECONDS ) {
+	} elseif( $diff < WEEK_IN_SECONDS && $diff >= DAY_IN_SECONDS ){
 		$days = round( $diff / DAY_IN_SECONDS );
-		if ( $days <= 1 ) {
+		if( $days <= 1 ){
 			$days = 1;
 		}
 		/* translators: Time difference between two dates, in days. %s: Number of days */
 		$since = sprintf( ngettext( '%s day', '%s days', $days ), $days );
-	} elseif ( $diff < MONTH_IN_SECONDS && $diff >= WEEK_IN_SECONDS ) {
+	} elseif( $diff < MONTH_IN_SECONDS && $diff >= WEEK_IN_SECONDS ){
 		$weeks = round( $diff / WEEK_IN_SECONDS );
-		if ( $weeks <= 1 ) {
+		if( $weeks <= 1 ){
 			$weeks = 1;
 		}
 		/* translators: Time difference between two dates, in weeks. %s: Number of weeks */
 		$since = sprintf( ngettext( '%s week', '%s weeks', $weeks ), $weeks );
-	} elseif ( $diff < YEAR_IN_SECONDS && $diff >= MONTH_IN_SECONDS ) {
+	} elseif( $diff < YEAR_IN_SECONDS && $diff >= MONTH_IN_SECONDS ){
 		$months = round( $diff / MONTH_IN_SECONDS );
-		if ( $months <= 1 ) {
+		if( $months <= 1 ){
 			$months = 1;
 		}
 		/* translators: Time difference between two dates, in months. %s: Number of months */
 		$since = sprintf( ngettext( '%s month', '%s months', $months ), $months );
-	} elseif ( $diff >= YEAR_IN_SECONDS ) {
+	} elseif( $diff >= YEAR_IN_SECONDS ){
 		$years = round( $diff / YEAR_IN_SECONDS );
-		if ( $years <= 1 ) {
+		if( $years <= 1 ){
 			$years = 1;
 		}
 		/* translators: Time difference between two dates, in years. %s: Number of years */
@@ -331,7 +331,7 @@ function date_mysql( $time = false, $date_time = 'datetime' ){
 *	@return int - timestamp of Easter (may want to use date to format)
 */
 if( ! function_exists( 'easter_date_orthodox') ){
-function easter_date_orthodox( $year = false, $date_format = false ) { 
+function easter_date_orthodox( $year = false, $date_format = false ){ 
     
     if( $year === false ){
         $year = date( 'Y' );
@@ -340,12 +340,12 @@ function easter_date_orthodox( $year = false, $date_format = false ) {
     $a = $year % 4; 
     $b = $year % 7; 
     $c = $year % 19; 
-    $d = (19 * $c + 15) % 30; 
-    $e = (2 * $a + 4 * $b - $d + 34) % 7; 
-    $month = floor(($d + $e + 114) / 31); 
-    $day = (($d + $e + 114) % 31) + 1; 
+    $d = ( 19 * $c + 15 ) % 30; 
+    $e = ( 2 * $a + 4 * $b - $d + 34 ) % 7; 
+    $month = floor(( $d + $e + 114 ) / 31 ); 
+    $day = (( $d + $e + 114 ) % 31 ) + 1; 
     
-    $de = mktime(0, 0, 0, $month, $day + 13, $year);
+    $de = mktime( 0, 0, 0, $month, $day + 13, $year );
 	
 	// If we want to format the date then do that
 	$de = date( $date_format, $de );
@@ -473,7 +473,7 @@ function is_yesterday( $timestamp ){
         $timestamp = strtotime( $timestamp );
     }
     
-    if( date('Ymd', time() - DAY_IN_SECONDS ) == date('Ymd', $timestamp) ){
+    if( date('Ymd', time() - DAY_IN_SECONDS ) == date('Ymd', $timestamp ) ){
         
         return true;
         
@@ -506,7 +506,7 @@ function is_tomorrow( $timestamp ){
         $timestamp = strtotime( $timestamp );
     }
     
-    if( date('Ymd', time() + DAY_IN_SECONDS ) == date('Ymd', $timestamp) ){
+    if( date('Ymd', time() + DAY_IN_SECONDS ) == date('Ymd', $timestamp ) ){
         
         return true;
         
@@ -539,23 +539,23 @@ function is_tomorrow( $timestamp ){
 if( ! function_exists( 'copyright' ) ){
 function copyright( $year = false, $roman = false ){
 	
-    if(intval($year) == false ){
+    if( intval( $year ) == false ){
         $year = date('Y');
     }
     
-	if(intval($year) == date('Y')){
+	if( intval( $year ) == date('Y') ){
         // Output the copy symbol and either the year or the year in Roman numerals
-        return '&copy; ' . ($roman == false ? intval($year) : arabic2roman( intval($year) ));
+        return '&copy; ' . ( $roman == false ? intval( $year ) : arabic2roman( intval( $year ) ) );
     }
     
-	if(intval($year) < date('Y')){
+	if( intval( $year ) < date('Y') ){
         // Output the copy symbol and either the year range or the year range in Roman numerals
-        return '&copy; ' . ($roman == false ? (intval($year) . ' - ' . date('Y')) : ( arabic2roman( intval($year) ) . ' - ' . arabic2roman( date('Y') )) );
+        return '&copy; ' . ( $roman == false ? ( intval( $year ) . ' - ' . date('Y') ) : ( arabic2roman( intval( $year ) ) . ' - ' . arabic2roman( date('Y') ) ) );
     }
     
-	if(intval($year) > date('Y')){
+	if( intval( $year ) > date('Y') ){
         // Output the copy symbol and the current year or the current year in Roman numerals
-        return '&copy; ' . ($roman == false ? date('Y') : arabic2roman( date('Y') ));
+        return '&copy; ' . ( $roman == false ? date('Y') : arabic2roman( date('Y') ) );
     } 
 }
 }
@@ -577,8 +577,8 @@ function copyright( $year = false, $roman = false ){
 *   @return string - the date
 */
 if( ! function_exists( 'current_time' ) ){
-function current_time( $type, $gmt = 0 ) {
-	switch ( $type ) {
+function current_time( $type, $gmt = 0 ){
+	switch ( $type ){
 		case 'mysql':
 			return ( $gmt ) ? gmdate( 'Y-m-d H:i:s' ) : gmdate( 'Y-m-d H:i:s', ( time() + ( get_gmt_offset() * HOUR_IN_SECONDS ) ) );
 		case 'timestamp':
@@ -624,7 +624,7 @@ function create_date_range( $start, $end, $format = 'Y-m-d' ){
 	$dates = array();
 	
     // Add each date to the array
-	foreach ($period as $key => $value) {
+	foreach( $period as $key => $value ){
 		$dates[] = $value->format( $format );  
 	}
 	

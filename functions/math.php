@@ -49,7 +49,7 @@
 *   @return integer
 */
 if( ! function_exists( 'absint') ){
-function absint( $number ) {
+function absint( $number ){
     return abs( intval( $number ) );
 }
 }
@@ -88,7 +88,7 @@ function mean(){
     
         // Create an array for each passed element
         $args_array = array();
-        for ($i = 0; $i < $numargs; $i++) {
+        for ( $i = 0; $i < $numargs; $i++){
             $args_array[] = $arg_list[$i];
         }
 
@@ -117,7 +117,7 @@ function mean(){
 *   @return float/int $average - the average of all elements
 */
 if( ! function_exists( 'median' ) ){
-function median() {
+function median(){
     
     // Get all the arguments
     $arg_list = func_get_args();
@@ -129,7 +129,7 @@ function median() {
     
         // Create an array for each passed element
         $array = array();
-        for ($i = 0; $i < $numargs; $i++) {
+        for ( $i = 0; $i < $numargs; $i++){
             $array[] = $arg_list[$i];
         }
         
@@ -141,15 +141,15 @@ function median() {
     }
     
       // perhaps all non numeric values should filtered out of $array here?
-      $iCount = count($array);
+      $iCount = count( $array );
       // if we're down here it must mean $array
       // has at least 1 item in the array.
-      $middle_index = floor($iCount / 2);
-      sort($array, SORT_NUMERIC);
+      $middle_index = floor( $iCount / 2 );
+      sort( $array, SORT_NUMERIC );
       $median = $array[$middle_index]; // assume an odd # of items
       // Handle the even case by averaging the middle 2 items
-      if ($iCount % 2 == 0) {
-        $median = ($median + $array[$middle_index - 1]) / 2;
+      if( $iCount % 2 == 0 ){
+        $median = ( $median + $array[$middle_index - 1]) / 2;
       }
       return $median;
 
@@ -186,7 +186,7 @@ function mode(){
     
         // Create an array for each passed element
         $array = array();
-        for ($i = 0; $i < $numargs; $i++) {
+        for ( $i = 0; $i < $numargs; $i++){
             $array[] = $arg_list[$i];
         }
 		
@@ -197,9 +197,9 @@ function mode(){
 		
 	}
 		
-	$values = array_count_values($array); 
+	$values = array_count_values( $array ); 
 		
-	$mode = array_search(max($values), $values);
+	$mode = array_search( max( $values ), $values );
 	return $mode;
 }
 }
@@ -207,7 +207,7 @@ function mode(){
 /**
 *   average
 *
-*   Get the average of a set of values in an array (alias for Mean)
+*   Get the average of a set of values in an array (alias for Mean )
 *
 *   @since 0.1
 *   @last_modified 0.1
@@ -224,7 +224,7 @@ function average(){
     $arg_list = func_get_args();
     
     // Send the function through mean
- 	return call_user_func_array('mean',$arg_list);
+ 	return call_user_func_array('mean', $arg_list );
     
 }
 }
@@ -300,9 +300,9 @@ function is_odd( $number ){
 *   @return integer | float - rounded number
 */
 if( ! function_exists( 'round_up') ){
-function round_up($number, $precision = 2){
-    $fig = (int) str_pad('1', ( $precision + 1 ), '0');
-    return (ceil($number * $fig) / $fig);
+function round_up( $number, $precision = 2 ){
+    $fig = (int ) str_pad('1', ( $precision + 1 ), '0');
+    return ( ceil( $number * $fig ) / $fig );
 }
 }
 
@@ -323,9 +323,9 @@ function round_up($number, $precision = 2){
 *   @return integer | float - rounded number
 */
 if( ! function_exists( 'round_down') ){
-function round_down($number, $precision = 2){
-    $fig = (int) str_pad('1', ( $precision + 1 ), '0');
-    return (floor($number * $fig) / $fig);
+function round_down( $number, $precision = 2 ){
+    $fig = (int ) str_pad('1', ( $precision + 1 ), '0');
+    return ( floor( $number * $fig ) / $fig );
 }
 }
 
@@ -353,7 +353,7 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
 		if( $precision > 0 ){
 			
             // Get the decimal part of the number
-			$str_arr = explode($separator, $number);
+			$str_arr = explode( $separator, $number );
 			$decimal = $str_arr[1];
 
             // Get the digit that we're wanting to check whether to change
@@ -425,7 +425,7 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
 /**
 *   sum
 *
-*   Sum of values in an array (alias of array_sum)
+*   Sum of values in an array (alias of array_sum )
 *
 *   @since 0.1
 *   @last_modified 0.1
@@ -453,7 +453,7 @@ function sum(){
     
         // Create an array for each passed element
         $args_array = array();
-        for ($i = 0; $i < $numargs; $i++) {
+        for ( $i = 0; $i < $numargs; $i++){
             $args_array[] = $arg_list[$i];
         }
 
@@ -482,12 +482,12 @@ function sum(){
 if( ! function_exists( 'arabic2roman') ){
 function arabic2roman( $integer ){ 
     
-    $table = array('M'=>1000, 'CM'=>900, 'D'=>500, 'CD'=>400, 'C'=>100, 'XC'=>90, 'L'=>50, 'XL'=>40, 'X'=>10, 'IX'=>9, 'V'=>5, 'IV'=>4, 'I'=>1); 
+    $table = array('M'=>1000, 'CM'=>900, 'D'=>500, 'CD'=>400, 'C'=>100, 'XC'=>90, 'L'=>50, 'XL'=>40, 'X'=>10, 'IX'=>9, 'V'=>5, 'IV'=>4, 'I'=>1 ); 
     $roman = ''; 
     
-    while($integer > 0){
-        foreach($table as $rom=>$arb){ 
-            if($integer >= $arb){ 
+    while( $integer > 0 ){
+        foreach( $table as $rom=>$arb ){ 
+            if( $integer >= $arb ){ 
                 $integer -= $arb; 
                 $roman .= $rom; 
                 break; 
@@ -517,16 +517,16 @@ function arabic2roman( $integer ){
 */
 if( ! function_exists( 'roman2arabic') ){
 function roman2arabic( $roman ){
-    $romans = array('M'=>1000, 'CM'=>900, 'D'=>500, 'CD'=>400, 'C'=>100, 'XC'=>90, 'L'=>50, 'XL'=>40, 'X'=>10, 'IX'=>9, 'V'=>5, 'IV'=>4, 'I'=>1); 
+    $romans = array('M'=>1000, 'CM'=>900, 'D'=>500, 'CD'=>400, 'C'=>100, 'XC'=>90, 'L'=>50, 'XL'=>40, 'X'=>10, 'IX'=>9, 'V'=>5, 'IV'=>4, 'I'=>1 ); 
 
     $integer = 0;
     
     $roman = strtoupper( $roman );
 
-    foreach ($romans as $key => $value) {
-        while (strpos($roman, $key) === 0) {
+    foreach( $romans as $key => $value ){
+        while ( strpos( $roman, $key ) === 0 ){
             $integer += $value;
-            $roman = substr($roman, strlen($key));
+            $roman = substr( $roman, strlen( $key ) );
         }
     }
     return $integer;
@@ -543,8 +543,8 @@ function roman2arabic( $roman ){
 *   @last_modified 1.1
 *
 *   @param int | float $number - value of temperature to convert
-*	@param string $from - temperature to convert from (celsius, fahrenheit or kelvin)
-*	@param string $to - temperature to convert to (celsius, fahrenheit or kelvin)
+*	@param string $from - temperature to convert from (celsius, fahrenheit or kelvin )
+*	@param string $to - temperature to convert to (celsius, fahrenheit or kelvin )
 *
 *   @return int | float - converted temperature
 */
@@ -579,7 +579,7 @@ function temperature( $number, $from, $to ){
 		
 		if( $to == 'fahrenheit' ){
 			
-			return ($number * 9/5) + 32;
+			return ( $number * 9/5 ) + 32;
 			
 		}
 		
@@ -601,14 +601,14 @@ function temperature( $number, $from, $to ){
 		
 		if( $to == 'celsius' ){
 			
-			return ($number - 32) / ( 9/5 );
+			return ( $number - 32 ) / ( 9/5 );
 			
 		}
 		
 		
 		if( $to == 'kelvin' ){
 			
-			return ($number + 459.67 ) * ( 5/9 );
+			return ( $number + 459.67 ) * ( 5/9 );
 			
 		}
 		
@@ -630,7 +630,7 @@ function temperature( $number, $from, $to ){
 		
 		if( $to == 'fahrenheit' ){
 			
-			return ($number * (9/5)) + 459.67;
+			return ( $number * ( 9/5 ) ) + 459.67;
 			
 		}
 		
@@ -661,24 +661,24 @@ function temperature( $number, $from, $to ){
 *   @param int | float $lon - first longitude
 *   @param int | float $lat1 - second latitude
 *   @param int | float $lon - second longitude
-*   @param string $unit - unit to use (K/km for Kilometers, N for Nautical Miles or M for miles)
+*   @param string $unit - unit to use (K/km for Kilometers, N for Nautical Miles or M for miles )
 *
 *   @return int | float - distance between the two points
 */
 if( ! function_exists( 'latlon_distance') ){
-function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
+function latlon_distance( $lat1, $lon1, $lat2, $lon2, $unit = 'M'){
 
 	$theta = $lon1 - $lon2;
-	$dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-	$dist = acos($dist);
-	$dist = rad2deg($dist);
+	$dist = sin( deg2rad( $lat1 ) ) * sin( deg2rad( $lat2 ) ) +  cos( deg2rad( $lat1 ) ) * cos( deg2rad( $lat2 ) ) * cos( deg2rad( $theta ) );
+	$dist = acos( $dist );
+	$dist = rad2deg( $dist );
 	$miles = $dist * 60 * 1.1515;
-	$unit = strtoupper($unit);
+	$unit = strtoupper( $unit );
 
-	if ($unit == "K" || $unit == 'km') {
-	  return ($miles * 1.609344);
-	} else if ($unit == "N") {
-	  return ($miles * 0.8684);
+	if( $unit == "K" || $unit == 'km'){
+	  return ( $miles * 1.609344 );
+	} else if( $unit == "N"){
+	  return ( $miles * 0.8684 );
 	} else {
 	  return $miles;
 	}
@@ -702,11 +702,11 @@ function latlon_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 *   @return string - ordinal number
 */
 if( ! function_exists( 'ordinal' ) ){
-function ordinal($cdnl){ 
-    $test_c = abs($cdnl) % 10; 
-    $ext = ((abs($cdnl) %100 < 21 && abs($cdnl) %100 > 4) ? 'th' 
-            : (($test_c < 4) ? ($test_c < 3) ? ($test_c < 2) ? ($test_c < 1) 
-            ? 'th' : 'st' : 'nd' : 'rd' : 'th')); 
+function ordinal( $cdnl ){ 
+    $test_c = abs( $cdnl ) % 10; 
+    $ext = (( abs( $cdnl ) %100 < 21 && abs( $cdnl ) %100 > 4 ) ? 'th' 
+            : (( $test_c < 4 ) ? ( $test_c < 3 ) ? ( $test_c < 2 ) ? ( $test_c < 1 ) 
+            ? 'th' : 'st' : 'nd' : 'rd' : 'th') ); 
     return $cdnl.$ext; 
 }
 }
@@ -816,7 +816,7 @@ function is_zero( $value ){
 /**
 *   is_positive
 *
-*   Checks whether the value is positive (greater than or equal to zero)
+*   Checks whether the value is positive (greater than or equal to zero )
 *
 *	@since	1.1
 *	@last_modified	1.1
@@ -840,7 +840,7 @@ function is_positive( $value ){
 /**
 *   is_negative
 *
-*   Checks whether the value is negative (less than zero)
+*   Checks whether the value is negative (less than zero )
 *
 *	@since	1.1
 *	@last_modified	1.1
@@ -884,7 +884,7 @@ function approximate_equal( $float_one, $float_two, $tolerance, $tolerance_type 
     
     if( $tolerance_type == 'int' ){
     
-        if ( abs( $float_one - $float_two ) <= $tolerance ) {
+        if( abs( $float_one - $float_two ) <= $tolerance ){
             return true;
         } else {
             return false;
@@ -894,7 +894,7 @@ function approximate_equal( $float_one, $float_two, $tolerance, $tolerance_type 
     
     if( $tolerance_type == 'percent' ){
         
-        if ( abs( ($float_one - $float_two) / $float_two ) <= $tolerance ) {
+        if( abs( ( $float_one - $float_two ) / $float_two ) <= $tolerance ){
             return true;
         } else {
             return false;

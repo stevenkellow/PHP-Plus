@@ -16,7 +16,7 @@ Simply add `stevenkellow/php-plus` to your composer.json file.
 
 Simply download PHP Plus and put the folder somewhere within your project.
 
-Then, just add *one* line of code into a project file (replacing PATH_TO_PHP_PLUS with the directory of the folder)
+Then, just add *one* line of code into a project file (replacing PATH_TO_PHP_PLUS with the directory of the folder )
 
 `include_once( PATH_TO_PHP_PLUS . '/classes/php-plus.php' );`
 

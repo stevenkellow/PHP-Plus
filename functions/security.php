@@ -37,7 +37,7 @@ function csrf_token( $name = 'csrf_token', $length = 32 ){
 	
 	// Generate a token
 	
-	if (empty($_SESSION[$name])) {
+	if( empty( $_SESSION[$name]) ){
 		
 		$_SESSION[$name] = rand_string( $length, false );
 	
@@ -72,15 +72,15 @@ if( ! function_exists( 'csrf_verify' ) ){
 function csrf_verify( $name = 'csrf_token' ){
 	
 	// If the token exits
-	if (!empty($_POST[$name])) {
+	if( !empty( $_POST[$name]) ){
 		
 		// Hash the token so that it's unique to this form
 		$hashed_token = hash_hmac('sha256', $name, $_SESSION[$name]);
 	
 		// Use hash_equals if we're on greater than 5.6+
-		if (version_compare(PHP_VERSION, '5.6') >= 0) {
+		if( version_compare( PHP_VERSION, '5.6') >= 0 ){
 		
-			if (hash_equals($hashed_token, $_POST[$name])) {
+			if( hash_equals( $hashed_token, $_POST[$name]) ){
 				 // Proceed to process the form data
 				 return true;
 			} else {
@@ -125,15 +125,15 @@ function csrf_verify( $name = 'csrf_token' ){
 *   @return string Converted email address.
 */
 if( ! function_exists( 'antispambot' ) ){
-function antispambot( $email_address, $hex_encoding = 0 ) {
+function antispambot( $email_address, $hex_encoding = 0 ){
 	$email_no_spam_address = '';
-	for ( $i = 0, $len = strlen( $email_address ); $i < $len; $i++ ) {
+	for ( $i = 0, $len = strlen( $email_address ); $i < $len; $i++ ){
 		$j = rand( 0, 1 + $hex_encoding );
-		if ( $j == 0 ) {
+		if( $j == 0 ){
 			$email_no_spam_address .= '&#' . ord( $email_address[ $i ] ) . ';';
-		} elseif ( $j == 1 ) {
+		} elseif( $j == 1 ){
 			$email_no_spam_address .= $email_address[ $i ];
-		} elseif ( $j == 2 ) {
+		} elseif( $j == 2 ){
 			$email_no_spam_address .= '%' . zeroise( dechex( ord( $email_address[ $i ] ) ), 2 );
 		}
 	}

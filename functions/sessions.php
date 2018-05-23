@@ -44,17 +44,17 @@ function session_starter( $name = false, $options = array() ){
 	}
 	
 	// Check if PHP session has started - credit to Meliza Ramos http://stackoverflow.com/a/18542272/7956549
-	if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+	if( version_compare( PHP_VERSION, '5.4.0') >= 0 ){
 		
 		// If no session exists start one (use session_status after PHP7)
-		if (session_status() == PHP_SESSION_NONE) {
+		if( session_status() == PHP_SESSION_NONE ){
 			session_start( $options );
 		}
 		
 	} else {
 		
 		// If no session exists start one
-		if(session_id() == '') {
+		if( session_id() == ''){
 			session_start( $options );
 		}
 		
@@ -129,7 +129,7 @@ function redirect( $url, $response = 301 ){
 	// Check the the url is valid first
 	if( validate_url( $url ) ){
 	
-		header("Location: $url", true, $response);
+		header("Location: $url", true, $response );
 		
 		return true;
 	
@@ -157,7 +157,7 @@ function redirect( $url, $response = 301 ){
 *	@return string $act_url - the current URL
 */
 if( ! function_exists( 'current_url') ){
-function current_url() {
+function current_url(){
     $act_url  = ( isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ) ? 'https' : 'http';
     $act_url .= '://' . $_SERVER['SERVER_NAME'];
     $act_url .= in_array( $_SERVER['SERVER_PORT'], array( '80', '443' ) ) ? '' : ":" . $_SERVER['SERVER_PORT'];
@@ -180,7 +180,7 @@ function current_url() {
 if( ! function_exists( 'timer_start') ){
 function timer_start(){
 	
-	return microtime(true);	
+	return microtime( true );	
 	
 }
 }
@@ -201,7 +201,7 @@ function timer_start(){
 if( ! function_exists( 'timer_end') ){
 function timer_end( $old_time ){
 	
-	$now = microtime(true);
+	$now = microtime( true );
 
 	return $now - $old_time;
 	
@@ -257,13 +257,13 @@ if( ! function_exists( 'delete_all_cookies' ) ){
 function delete_all_cookies(){
     
     // unset cookies
-    if (isset($_SERVER['HTTP_COOKIE'])) {
+    if( isset( $_SERVER['HTTP_COOKIE']) ){
         $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
-        foreach($cookies as $cookie) {
-            $parts = explode('=', $cookie);
-            $name = trim($parts[0]);
-            setcookie($name, '', time()-1000);
-            setcookie($name, '', time()-1000, '/');
+        foreach( $cookies as $cookie ){
+            $parts = explode('=', $cookie );
+            $name = trim( $parts[0]);
+            setcookie( $name, '', time()-1000 );
+            setcookie( $name, '', time()-1000, '/');
         }
     }
     
@@ -286,10 +286,10 @@ function delete_all_cookies(){
 *   @return bool - true if set, false if not
 */
 if( ! function_exists( 'utf8_headers' ) ){
-function utf8_headers($content_type = 'text/html'){
+function utf8_headers( $content_type = 'text/html'){
     
     // @codeCoverageIgnoreStart
-    if (!headers_sent()) {
+    if( !headers_sent() ){
         header('Content-type: ' . $content_type . '; charset=utf-8');
         return true;
     }
@@ -319,27 +319,27 @@ function utf8_headers($content_type = 'text/html'){
 *   @return bool - true if set, false if not
 */
 if( ! function_exists( 'force_download' ) ){
-function force_download($filename, $content = false){
+function force_download( $filename, $content = false ){
     // @codeCoverageIgnoreStart
-    if (!headers_sent()) {
+    if( !headers_sent() ){
         // Required for some browsers
-        if (ini_get('zlib.output_compression')) {
+        if( ini_get('zlib.output_compression') ){
             @ini_set('zlib.output_compression', 'Off');
         }
         header('Pragma: public');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
         // Required for certain browsers
-        header('Cache-Control: private', false);
-        header('Content-Disposition: attachment; filename="' . basename(str_replace('"', '', $filename)) . '";');
+        header('Cache-Control: private', false );
+        header('Content-Disposition: attachment; filename="' . basename( str_replace('"', '', $filename ) ) . '";');
         header('Content-Type: application/force-download');
         header('Content-Transfer-Encoding: binary');
-        if ($content) {
-            header('Content-Length: ' . strlen($content));
+        if( $content ){
+            header('Content-Length: ' . strlen( $content ) );
         }
         ob_clean();
         flush();
-        if ($content) {
+        if( $content ){
             echo $content;
         }
         return true;
@@ -370,7 +370,7 @@ if( ! function_exists( 'nocache_headers' ) ){
 function nocache_headers(){
     
     // @codeCoverageIgnoreStart
-    if (!headers_sent()) {
+    if( !headers_sent() ){
         header('Expires: Wed, 11 Jan 1984 05:00:00 GMT');
         header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
         header('Cache-Control: no-cache, must-revalidate, max-age=0');

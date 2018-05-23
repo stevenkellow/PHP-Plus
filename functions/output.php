@@ -45,7 +45,7 @@ function test_remote_file( $file_location ){
 			
 			$content = @file_get_contents( $file_location );
 
-			if ($content === false) {
+			if( $content === false ){
 				// Handle the error
 				return false;
 			} else {
@@ -54,7 +54,7 @@ function test_remote_file( $file_location ){
 				
 			}
 			
-		} catch (Exception $e) {
+		} catch ( Exception $e ){
 			// Handle exception
 			return false;
 		}
@@ -111,7 +111,7 @@ function random_color( $type = 'hex'){
     if( $type == 'hex' ){
     
         $c = '#';
-        while(strlen($c)<7){
+        while( strlen( $c )<7 ){
             $c .= dechex( mt_rand( 0, 16 ) );
         }
    
@@ -215,11 +215,11 @@ function qr_image( $data, $size = '300' ){
 *	@return bool - true if image, false if not
 */
 if( ! function_exists( 'is_image' ) ){
-function is_image($path){
-    $a = getimagesize($path);
+function is_image( $path ){
+    $a = getimagesize( $path );
     $image_type = $a[2];
      
-    if(in_array($image_type , array(IMAGETYPE_GIF , IMAGETYPE_JPEG ,IMAGETYPE_PNG , IMAGETYPE_BMP))){
+    if( in_array( $image_type , array( IMAGETYPE_GIF , IMAGETYPE_JPEG ,IMAGETYPE_PNG , IMAGETYPE_BMP ) )){
         return true;
     }
     return false;
@@ -243,16 +243,16 @@ function is_image($path){
 *
 *	@return string - data uri of the file
 */
-if(! function_exists( 'data_uri') ){
-function data_uri($file) {
+if( ! function_exists( 'data_uri') ){
+function data_uri( $file ){
     
     try{
 	
-        $contents=file_get_contents($file);
+        $contents=file_get_contents( $file );
 
         //$mime = mime_content_type( $contents );
-        $base64=base64_encode($contents);
-        return "data:';base64,$base64";
+        $base64=base64_encode( $contents );
+        return "data:';base64, $base64";
         
     } catch( Exception $e ){
         
@@ -428,7 +428,7 @@ function e( $string ){
 *   @return string|false False on failure. Number string on success.
 */
 if( ! function_exists( 'size_format' ) ){
-function size_format( $bytes, $decimals = 0 ) {
+function size_format( $bytes, $decimals = 0 ){
 	$quant = array(
 		'TB' => TB_IN_BYTES,
 		'GB' => GB_IN_BYTES,
@@ -437,12 +437,12 @@ function size_format( $bytes, $decimals = 0 ) {
 		'B'  => 1,
 	);
 
-	if ( 0 === $bytes ) {
+	if( 0 === $bytes ){
 		return number_format( 0, $decimals ) . ' B';
 	}
 
-	foreach ( $quant as $unit => $mag ) {
-		if ( doubleval( $bytes ) >= $mag ) {
+	foreach( $quant as $unit => $mag ){
+		if( doubleval( $bytes ) >= $mag ){
 			return number_format( $bytes / $mag, $decimals ) . ' ' . $unit;
 		}
 	}

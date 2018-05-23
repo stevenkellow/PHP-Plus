@@ -38,8 +38,8 @@ class PHPPlus{
     *
     *   Load the required files
     *
-    *   @param array $include - the files to include (defaults to empty, which includes all)
-    *   @param array $exclude - the files to exclude (defaults to empty, which excludes none)
+    *   @param array $include - the files to include (defaults to empty, which includes all )
+    *   @param array $exclude - the files to exclude (defaults to empty, which excludes none )
     *
     *   @return array $loaded - the files that have been loaded
     *
@@ -70,7 +70,7 @@ class PHPPlus{
         // Check if we want to exclude certain files
         if( ! empty( $exclude ) ){
             
-            $include_array = array_diff( self::$values, $exclude );
+            $include_array = array_diff( self::$files, $exclude );
 
         }
         

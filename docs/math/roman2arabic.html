@@ -8,7 +8,7 @@
 <h1><a id="roman2arabic_0"></a>roman2arabic</h1>
 <h2><a id="roman2arabic_roman__2"></a><em>roman2arabic( $roman )</em></h2>
 <h3><a id="Description_4"></a>Description</h3>
-<p>Convert Roman numerals to an Arabic numeral (integer)</p>
+<p>Convert Roman numerals to an Arabic numeral ( integer )</p>
 <h3><a id="Parameters_7"></a>Parameters</h3>
 <ul>
 <li><strong>$roman</strong> <em>[string]</em> - A string representing an integer in Roman numerals</li>
@@ -20,15 +20,15 @@
 <h3><a id="Source_code_13"></a>Source code</h3>
 <p><strong>Author:</strong> <a href="http://stackoverflow.com/a/6266158">andyb</a></p>
 <pre><code>function roman2arabic( $roman ){
-    $romans = array('M'=&gt;1000, 'CM'=&gt;900, 'D'=&gt;500, 'CD'=&gt;400, 'C'=&gt;100, 'XC'=&gt;90, 'L'=&gt;50, 'XL'=&gt;40, 'X'=&gt;10, 'IX'=&gt;9, 'V'=&gt;5, 'IV'=&gt;4, 'I'=&gt;1); 
+    $romans = array('M'=&gt;1000, 'CM'=&gt;900, 'D'=&gt;500, 'CD'=&gt;400, 'C'=&gt;100, 'XC'=&gt;90, 'L'=&gt;50, 'XL'=&gt;40, 'X'=&gt;10, 'IX'=&gt;9, 'V'=&gt;5, 'IV'=&gt;4, 'I'=&gt;1 ); 
 
     $integer = 0;
     $roman = strtoupper( $roman );
     
-    foreach ($romans as $key =&gt; $value) {
-        while (strpos($roman, $key) === 0) {
+    foreach( $romans as $key =&gt; $value ){
+        while ( strpos( $roman, $key ) === 0 ){
             $integer += $value;
-            $roman = substr($roman, strlen($key));
+            $roman = substr( $roman, strlen( $key ) );
         }
     }
     return $integer;

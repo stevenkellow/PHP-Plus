@@ -35,7 +35,7 @@
 /*
 *   array_reindex
 *
-*   Reindex arrays (alias of array_values)
+*   Reindex arrays (alias of array_values )
 *
 *   @since 0.1
 *   @last_modified 0.1
@@ -66,8 +66,8 @@ function array_reindex( $array ){
 *	@return bool - true if associative, false if not
 */
 if( ! function_exists( 'is_assoc') ){
-function is_assoc($array) {
-    return array_keys($array) !== range(0, count($array) - 1);
+function is_assoc( $array ){
+    return array_keys( $array ) !== range( 0, count( $array ) - 1 );
 }
 }
 
@@ -87,15 +87,18 @@ function is_assoc($array) {
 *	@return array $random - array that's been shuffled
 */
 if( ! function_exists( 'shuffle_assoc' ) ){
-function shuffle_assoc($list) { 
-    if (!is_array($list)) return $list; 
-
-    $keys = array_keys($list); 
+function shuffle_assoc( $list ){
     
-    shuffle($keys); 
+    if( ! is_array( $list ) ){
+        return $list;
+    }
+
+    $keys = array_keys( $list ); 
+    
+    shuffle( $keys ); 
     $random = array();
     
-    foreach ($keys as $key) { 
+    foreach( $keys as $key ){ 
         $random[$key] = $list[$key]; 
     }
     
@@ -119,14 +122,14 @@ function shuffle_assoc($list) {
 *   @return bool - true if numeric, false if not
 */
 if( ! function_exists( 'is_numeric_array' ) ){
-function is_numeric_array($array){
-    if (!is_array($array)){
+function is_numeric_array( $array ){
+    if( !is_array( $array ) ){
         return false;
     }
     
     $current = 0;
-    foreach (array_keys($array) as $key) {
-        if ($key !== $current) {
+    foreach( array_keys( $array ) as $key ){
+        if( $key !== $current ){
             return false;
         }
         $current++;
@@ -152,28 +155,33 @@ function is_numeric_array($array){
 *	@return array $random - array that's been cleaned
 */
 if( ! function_exists( 'array_remove_empty' ) ){
-function array_remove_empty($arr, $reindex = false){
+function array_remove_empty( $arr, $reindex = false ){
     
     $narr = array();
-    while(list($key, $val) = each($arr)){
-        if (is_array($val)){
-            $val = array_remove_empty($val);
+    
+    while( list( $key, $val ) = each( $arr ) ){
+        if( is_array( $val ) ){
+            
+            $val = array_remove_empty( $val );
             // does the result array contain anything?
-            if (count($val)!=0){
+            if( count( $val )!=0 ){
                 // yes :-)
                 $narr[$key] = $val;
             }
-        }
-        else {
-            if (trim($val) != ""){
+            
+        } else {
+            
+            if( trim( $val ) != "" ){
                 $narr[$key] = $val;
             }
+            
         }
     }
-    unset($arr);
+    
+    unset( $arr );
     
     if( $reindex == true ){
-        $narr = array_values($narr); // 'reindex' array
+        $narr = array_values( $narr ); // 'reindex' array
     }
     
     return $narr;
@@ -198,13 +206,13 @@ function array_remove_empty($arr, $reindex = false){
 if( ! function_exists( 'unset_key') ){
 function unset_key( $array, $key, $reindex = false ){
 
-    if( isset( $array[$key] ) {
+    if( isset( $array[$key] ) ){
         
         // Remove it
         unset( $array[$key] );
         
         if( $reindex == true ){
-            $array = array_values($array); // 'reindex' array
+            $array = array_values( $array ); // 'reindex' array
             return $array;
         }
 		
@@ -279,8 +287,8 @@ function unset_value( $array, $value, $reindex = false ){
 *
 */
 if( ! function_exists( 'sort_by_array') ){
-function sort_by_array(array $array, array $orderArray){
-    return array_merge(array_flip($orderArray), $array);
+function sort_by_array( array $array, array $orderArray ){
+    return array_merge( array_flip( $orderArray ), $array );
 }
 }
 
@@ -303,14 +311,14 @@ function sort_by_array(array $array, array $orderArray){
 if( ! function_exists( 'array_wrap') ){
 function array_wrap( $item ){
     
-    if (is_null( $item )) {
+    if( is_null( $item ) ){
         return array();
-    } elseif (is_array( $item ) {
+    } elseif( is_array( $item ) ){
         return $item;
     } elseif( is_object( $item ) ){
         return (array) $item;
     }
-    return array($item);
+    return array( $item );
 }
 }
 
@@ -332,17 +340,17 @@ function array_wrap( $item ){
 *   @return array $result - the flattened array
 */
 if( ! function_exists( 'array_flat' ) ){
-function array_flat($array, $prefix = '', $concat = '_'){
+function array_flat( $array, $prefix = '', $concat = '_'){
     
     $result = array();
 
-    foreach ($array as $key => $value){
+    foreach( $array as $key => $value ){
         
-        $new_key = $prefix . (empty($prefix) ? '' : $concat) . $key;
+        $new_key = $prefix . ( empty( $prefix ) ? '' : $concat ) . $key;
 
-        if (is_array($value)) {
+        if( is_array( $value ) ){
             
-            $result = array_merge($result, array_flat($value, $new_key));
+            $result = array_merge( $result, array_flat( $value, $new_key ) );
             
         } else {
             
@@ -396,7 +404,7 @@ function array_sort_deep( $array, $sort_key, $sort_by = 'value', $preserve_keys 
 			// If we're sorting low to high
 			if( $order == 'low_to_high' || $order == 'A to Z' || $order == 'alphabetical' ){
 			
-				uasort($array, '__low_to_high');
+				uasort( $array, '__low_to_high');
 				
 				return $array;
 			
@@ -405,7 +413,7 @@ function array_sort_deep( $array, $sort_key, $sort_by = 'value', $preserve_keys 
 			// If we're sorting high to low
 			if( $order == 'high_to_low' || $order == 'Z to A' ){
 				
-				uasort($array, '__high_to_low');
+				uasort( $array, '__high_to_low');
 				
 				return $array;
 			
@@ -420,7 +428,7 @@ function array_sort_deep( $array, $sort_key, $sort_by = 'value', $preserve_keys 
 			// If we're sorting low to high
 			if( $order == 'low_to_high' || $order == 'A to Z' || $order == 'alphabetical' ){
 			
-				usort($array, '__low_to_high');
+				usort( $array, '__low_to_high');
 				
 				return $array;
 			
@@ -429,7 +437,7 @@ function array_sort_deep( $array, $sort_key, $sort_by = 'value', $preserve_keys 
 			// If we're sorting high to low
 			if( $order == 'high_to_low' || $order == 'Z to A' ){
 				
-				usort($array, '__high_to_low');
+				usort( $array, '__high_to_low');
 				
 				return $array;
 			
@@ -444,7 +452,7 @@ function array_sort_deep( $array, $sort_key, $sort_by = 'value', $preserve_keys 
 		// If we're sorting low to high
 		if( $order == 'low_to_high' || $order == 'A to Z' || $order == 'alphabetical' ){
 			
-			uksort($array, '__low_to_high');
+			uksort( $array, '__low_to_high');
 			
 			return $array;
 		
@@ -453,7 +461,7 @@ function array_sort_deep( $array, $sort_key, $sort_by = 'value', $preserve_keys 
 		// If we're sorting high to low
 		if( $order == 'high_to_low' || $order == 'Z to A' ){
 			
-			uksort($array, '__high_to_low');
+			uksort( $array, '__high_to_low');
 			
 			return $array;
 		
@@ -529,10 +537,10 @@ function __high_to_low( $a, $b ){
 *   @return plucked array only with key data
 */
 if( ! function_exists( 'array_pluck' ) ){
-function array_pluck($array, $key) {
-    return array_map(function($v) use ($key) {
-      return is_object($v) ? $v->$key : $v[$key];
-    }, $array);
+function array_pluck( $array, $key ){
+    return array_map( function( $v ) use ( $key ){
+      return is_object( $v ) ? $v->$key : $v[$key];
+    }, $array );
 }
 }
 
@@ -647,17 +655,17 @@ function array_first( $array ){
 *   @return array $result - the resulting cartesian product
 */
 if( ! function_exists( 'array_cartesian' ) ){
-function array_cartesian($input) {
+function array_cartesian( $input ){
     // filter out empty values
-    $input = array_filter($input);
+    $input = array_filter( $input );
 
-    $result = array(array());
+    $result = array( array() );
 
-    foreach ($input as $key => $values) {
+    foreach( $input as $key => $values ){
         $append = array();
 
-        foreach($result as $product) {
-            foreach($values as $item) {
+        foreach( $result as $product ){
+            foreach( $values as $item ){
                 $product[$key] = $item;
                 $append[] = $product;
             }
@@ -674,7 +682,7 @@ function array_cartesian($input) {
 *   array_rand_weighted()
 *
 *   Utility function for getting random values with weighting.
-*   Pass in an associative array, such as array('A'=>5, 'B'=>45, 'C'=>50)
+*   Pass in an associative array, such as array('A'=>5, 'B'=>45, 'C'=>50 )
 *   An array like this means that "A" has a 5% chance of being selected, "B" 45%, and "C" 50%.
 *   The return value is the array key, A, B, or C in this case.  Note that the values assigned
     do not have to be percentages.  The values are simply relative to each other.  If one value
@@ -692,17 +700,17 @@ function array_cartesian($input) {
 *   @return string $key
 */
 if( ! function_exists( 'array_rand_weighted' ) ){
-function array_rand_weighted($weightedValues) {
+function array_rand_weighted( $weightedValues ){
     
     if( function_exists( 'random_int' ) ){
-        $rand = random_int(1, (int) array_sum($weightedValues));
+        $rand = random_int( 1, ( int ) array_sum( $weightedValues ) );
     } else {
-        $rand = mt_rand(1, (int) array_sum($weightedValues));
+        $rand = mt_rand( 1, (int ) array_sum( $weightedValues ) );
     }    
 
-    foreach ($weightedValues as $key => $value) {
+    foreach( $weightedValues as $key => $value ){
       $rand -= $value;
-      if ($rand <= 0) {
+      if( $rand <= 0 ){
         return $key;
       }
     }
@@ -738,12 +746,12 @@ function array_numeric( $array, $cast = false ){
                 
                 case 'int':
                     
-                    $new_array[$key] = (int) $element;
+                    $new_array[$key] = (int ) $element;
                     break;
                     
                 case 'float':
                     
-                    $new_array[$key] = (float) $element;
+                    $new_array[$key] = (float ) $element;
                     break;
                 
                 default:
@@ -780,9 +788,9 @@ function array_numeric( $array, $cast = false ){
 if( ! function_exists( 'in_array_quick' ) ){
 function in_array_quick( $needle, $haystack ){
     
-    $flipped_haystack = array_flip($haystack); 
+    $flipped_haystack = array_flip( $haystack ); 
 
-    if ( isset($flipped_haystack[$needle]) ) {
+    if( isset( $flipped_haystack[$needle]) ){
         
         return true;
         

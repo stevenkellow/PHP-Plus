@@ -22,11 +22,11 @@
 <h3><a id="Source_code_15"></a>Source code</h3>
 <pre><code>function unset_key( $key, $array, $reindex = false ){
 
-    if( $key !== false) {
+    if( $key !== false ){
         unset( $array[$key] );
         
         if( $reindex == true ){
-            $narr = array_values($array); // 'reindex' array
+            $narr = array_values( $array ); // 'reindex' array
             return $narr;
         }
         

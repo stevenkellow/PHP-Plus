@@ -54,7 +54,7 @@ define( 'PATH_TO_PHP_PLUS', __DIR__ . '/..' );
 
 // Minutes
 if( ! defined( 'MINUTE_IN_SECONDS') ){
-    define( 'MINUTE_IN_SECONDS', 60);
+    define( 'MINUTE_IN_SECONDS', 60 );
 }
     if( ! defined( 'MINUTE') ){
         define( 'MINUTE', 60 );
@@ -62,7 +62,7 @@ if( ! defined( 'MINUTE_IN_SECONDS') ){
 
 // Hours
 if( ! defined( 'HOUR_IN_SECONDS') ){
-    define( 'HOUR_IN_SECONDS', 60 * 60);
+    define( 'HOUR_IN_SECONDS', 60 * 60 );
 }
     if( ! defined( 'HOUR') ){
         define( 'HOUR', 60 * 60 );
@@ -70,7 +70,7 @@ if( ! defined( 'HOUR_IN_SECONDS') ){
 
 // Days
 if( ! defined( 'DAY_IN_SECONDS') ){
-    define( 'DAY_IN_SECONDS', 24 * 60 * 60);
+    define( 'DAY_IN_SECONDS', 24 * 60 * 60 );
 }
     if( ! defined( 'DAY') ){
         define( 'DAY', 24 * 60 * 60 );
@@ -78,7 +78,7 @@ if( ! defined( 'DAY_IN_SECONDS') ){
 
 // Weeks
 if( ! defined( 'WEEK_IN_SECONDS') ){
-    define( 'WEEK_IN_SECONDS', 7 * 24 * 60 * 60);
+    define( 'WEEK_IN_SECONDS', 7 * 24 * 60 * 60 );
 }
     if( ! defined( 'WEEK') ){
         define( 'WEEK', 7 * 24 * 60 * 60 );
@@ -86,7 +86,7 @@ if( ! defined( 'WEEK_IN_SECONDS') ){
 
 // Months
 if( ! defined( 'MONTH_IN_SECONDS') ){
-    define( 'MONTH_IN_SECONDS', 30 * 24 * 60 * 60);
+    define( 'MONTH_IN_SECONDS', 30 * 24 * 60 * 60 );
 }
     if( ! defined( 'MONTH') ){
         define( 'MONTH', 30 * 24 * 60 * 60 );
@@ -94,7 +94,7 @@ if( ! defined( 'MONTH_IN_SECONDS') ){
 
 // Years
 if( ! defined( 'YEAR_IN_SECONDS') ){
-    define( 'YEAR_IN_SECONDS', 365 * 30 * 24 * 60 * 60);
+    define( 'YEAR_IN_SECONDS', 365 * 30 * 24 * 60 * 60 );
 }
     if( ! defined( 'YEAR') ){
         define( 'YEAR', 365 * 30 * 24 * 60 * 60 );
@@ -138,7 +138,7 @@ if( ! defined( 'PI') ){
     define( 'PI', M_PI );
 }
 
-// Speed of Light (m/s)
+// Speed of Light (m/s )
 if( ! defined( 'C' ) ){
     define( 'C', 299792458 );
 }

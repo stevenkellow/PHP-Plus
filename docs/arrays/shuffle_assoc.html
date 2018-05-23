@@ -6,7 +6,7 @@
 <body>
 <main>
 <h1><a id="shuffle_assoc_0"></a>shuffle_assoc</h1>
-<h2><a id="shuffle_assoclist_2"></a><em>shuffle_assoc($list)</em></h2>
+<h2><a id="shuffle_assoclist_2"></a><em>shuffle_assoc( $list )</em></h2>
 <h3><a id="Description_4"></a>Description</h3>
 <p>Shuffle associative arrays whilst keeping key => value pairs</p>
 <h3><a id="Parameters_7"></a>Parameters</h3>
@@ -19,13 +19,13 @@
 </ul>
 <h3><a id="Source_code_13"></a>Source code</h3>
 <p><strong>Author:</strong> <a href="http://stackoverflow.com/q/4102777">Korcholis</a></p>
-<pre><code>function shuffle_assoc($list) { 
-  if (!is_array($list)) return $list; 
+<pre><code>function shuffle_assoc( $list ){ 
+  if( !is_array( $list ) ) return $list; 
 
-  $keys = array_keys($list); 
-  shuffle($keys); 
+  $keys = array_keys( $list ); 
+  shuffle( $keys ); 
   $random = array(); 
-  foreach ($keys as $key) { 
+  foreach( $keys as $key ){ 
     $random[$key] = $list[$key]; 
   }
   return $random; 

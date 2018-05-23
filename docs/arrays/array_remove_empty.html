@@ -6,7 +6,7 @@
 <body>
 <main>
 <h1><a id="array_remove_empty_0"></a>array_remove_empty</h1>
-<h2><a id="array_remove_emptyarr_reindex__false_2"></a><em>array_remove_empty($arr, $reindex = false)</em></h2>
+<h2><a id="array_remove_emptyarr_reindex__false_2"></a><em>array_remove_empty( $arr, $reindex = false )</em></h2>
 <h3><a id="Description_4"></a>Description</h3>
 <p>Remove null or empty elements from an array</p>
 <h3><a id="Parameters_7"></a>Parameters</h3>
@@ -20,28 +20,28 @@
 </ul>
 <h3><a id="Source_code_14"></a>Source code</h3>
 <p><strong>Author:</strong> <a href="http://www.jonasjohn.de/snippets/php/array-remove-empty.htm">Jonas John</a></p>
-<pre><code>function array_remove_empty($arr, $reindex = false){
+<pre><code>function array_remove_empty( $arr, $reindex = false ){
     
     $narr = array();
-    while(list($key, $val) = each($arr)){
-        if (is_array($val)){
-            $val = array_remove_empty($val);
+    while( list( $key, $val ) = each( $arr ) ){
+        if( is_array( $val ) ){
+            $val = array_remove_empty( $val );
             // does the result array contain anything?
-            if (count($val)!=0){
+            if( count( $val )!=0 ){
                 // yes :-)
                 $narr[$key] = $val;
             }
         }
         else {
-            if (trim($val) != &quot;&quot;){
+            if( trim( $val ) != &quot;&quot;){
                 $narr[$key] = $val;
             }
         }
     }
-    unset($arr);
+    unset( $arr );
     
     if( $reindex == true ){
-        $narr = array_values($narr); // 'reindex' array
+        $narr = array_values( $narr ); // 'reindex' array
     }
     
     return $narr;
