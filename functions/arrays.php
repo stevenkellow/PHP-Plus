@@ -286,27 +286,30 @@ function sort_by_array(array $array, array $orderArray){
 /*
 *   array_wrap
 *
-*   Wrap an object or other item in an array
+*   Wrap a variable or other item in an array if it's a single. Also converts objects to array
 *
 *   @author JBZoo
 *   @source https://github.com/JBZoo/Utils/blob/master/src/Arr.php
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @last_modified 1.1
 *
-*   @param mixed $object - object to turn into array
+*   @param mixed $item - item to turn into array
 *
-*   @return array - object as an array
+*   @return array - item as an array
 *
 */
 if( ! function_exists( 'array_wrap') ){
-function array_wrap($object){
-    if (is_null($object)) {
+function array_wrap( $item ){
+    
+    if (is_null( $item )) {
         return array();
-    } elseif (is_array($object) && !is_assoc($object)) {
-        return $object;
+    } elseif (is_array( $item ) {
+        return $item;
+    } elseif( is_object( $item ) ){
+        return (array) $item;
     }
-    return array($object);
+    return array($item);
 }
 }
 

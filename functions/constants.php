@@ -4,12 +4,43 @@
 *
 *	@package PHP Plus!
 *
+*
+*/
+
+/*  CONTENTS
+*
+*   PATH_TO_PHP_PLUS
+*
+*   MINUTE_IN_SECONDS
+*       MINUTE
+*   HOUR_IN_SECONDS
+*       HOUR
+*   DAY_IN_SECONDS
+*       DAY
+*   WEEK_IN_SECONDS
+*       WEEK
+*   MONTH_IN_SECONDS
+*       MONTH
+*   YEAR_IN_SECONDS
+*       YEAR
+*
+*   KB_IN_BYTES
+*   MB_IN_BYTES
+*   GB_IN_BYTES
+*   TB_IN_BYTES
+*
+*   PI
+*   C
+*       SPEED_OF_LIGHT
+*   MILLION
+*   BILLION
+*   TRILLION
 */
 
 /*
-*   Define this directory
+*   Define the core directory
 */
-define( 'PATH_TO_PHP_PLUS', __DIR__ );
+define( 'PATH_TO_PHP_PLUS', __DIR__ . '/..' );
 
 /**
 *   Time constants
