@@ -10,7 +10,7 @@
 *	@since	1.1
 *	@last_modified	1.1
 */
-class PHPlus{
+class PHPPlus{
     
     /**
     *   files
