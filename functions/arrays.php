@@ -198,7 +198,9 @@ function array_remove_empty($arr, $reindex = false){
 if( ! function_exists( 'unset_key') ){
 function unset_key( $array, $key, $reindex = false ){
 
-    if( $key ) {
+    if( isset( $array[$key] ) {
+        
+        // Remove it
         unset( $array[$key] );
         
         if( $reindex == true ){
@@ -207,6 +209,10 @@ function unset_key( $array, $key, $reindex = false ){
         }
 		
 		return $array;
+        
+    } else {
+        
+        return $array;
         
     }
     
@@ -235,16 +241,11 @@ if( ! function_exists( 'unset_value') ){
 function unset_value( $array, $value, $reindex = false ){
     
     $counter = 0;
+    
+    // Wrap the value as an array if needed for the diff
+    $value = array_wrap( $value );
 	
-	foreach( $array as $key => $item_value ){
-		
-		if( $item_value == $value ){
-			
-			unset( $array[$key] );
-			
-		}
-		
-	}
+	$array = array_diff( $array, $value );
     
     // If we want to reindex the array
     if( $reindex == true ){
