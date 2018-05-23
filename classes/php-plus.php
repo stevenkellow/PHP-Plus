@@ -69,16 +69,8 @@ class PHPPlus{
 
         // Check if we want to exclude certain files
         if( ! empty( $exclude ) ){
-
-            foreach( $exclude as $file ){
-				
-				$pos = array_search($file, $include_array);
-				
-				if( $pos !== false ){
-					unset($include_array[$pos]);
-				}
-
-            }
+            
+            $include_array = array_diff( self::$values, $exclude );
 
         }
         
