@@ -48,6 +48,7 @@
 *   proper_parse_str
 *   mb_strcasecmp
 *   ucnames
+*   stripslashes_deep
 */
 
 /**
@@ -1414,5 +1415,26 @@ function ucnames( $string, $delimiters = array(" ", "-", ".", "'", "O'", "Mc"), 
 		$string = join( $delimiter, $newwords );
    }//foreach
    return $string;
+}
+}
+
+/**
+*   stripslashes_deep
+*
+*   Unescape characters throughout an array
+*
+*   @param array $value - the value to change
+*
+*   @return array $value - the array with the characters unescaped
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'stripslashes_deep' ) ){
+function stripslashes_deep($value){
+    
+    $value = is_array($value) ? array_map('stripslashes_deep', $value) : stripslashes($value);
+
+    return $value;
 }
 }
