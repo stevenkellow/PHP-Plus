@@ -20,6 +20,10 @@
 *   dd
 *   e
 *	size_format
+*   selected
+*   checked
+*   disabled
+*   _checked_disabled_helper
 */
 
 /**
@@ -448,5 +452,103 @@ function size_format( $bytes, $decimals = 0 ){
 	}
 
 	return false;
+}
+}
+
+/**
+*   selected
+*
+*   Outputs 'selected' if the value matches
+*
+*   @param mixed $one - the first value to compare
+*   @param mixed $two - the second value to compare
+*   @param bool $echo - whether to echo the result
+*
+*   @return string - either 'selected' if equal, or empty string otherwise
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'selected' ) ){
+function selected( $one, $two ){
+    
+    return __checked_selected_helper( $one, $two, $echo, 'selected');
+    
+}
+}
+
+/**
+*   checked
+*
+*   Outputs 'checked' if the value matches
+*
+*   @param mixed $one - the first value to compare
+*   @param mixed $two - the second value to compare
+*   @param bool $echo - whether to echo the result
+*
+*   @return string - either 'checked' if equal, or empty string otherwise
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'checked' ) ){
+function checked( $one, $two ){
+    
+    return __checked_selected_helper( $one, $two, $echo, 'checked');
+    
+}
+}
+
+/**
+*   disabled
+*
+*   Outputs 'disabled' if the value matches
+*
+*   @param mixed $one - the first value to compare
+*   @param mixed $two - the second value to compare
+*   @param bool $echo - whether to echo the result
+*
+*   @return string - either 'disabled' if equal, or empty string otherwise
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'disabled' ) ){
+function disabled( $one, $two, $echo = true ){
+    
+    return __checked_selected_helper( $one, $two, $echo, 'disabled');
+    
+}
+}
+
+/**
+*   __checked_selected_helper
+*
+*   Outputs attribute if the value matches
+*
+*   @param mixed $helper - the first value to compare
+*   @param mixed $current - the second value to compare
+*   @param bool $echo - whether to echo the result
+*   @param string $type - the attribute to output
+*
+*   @return string - either 'disabled' if equal, or empty string otherwise
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( '__checked_selected_helper' ) ){
+function __checked_selected_helper( $helper, $current, $echo, $type ){
+    
+    if ( (string) $helper === (string) $current )
+        $echo = $type . '="' . $type . '"';
+    } else {
+        $echo = '';
+    }
+    
+    if( $echo ){
+        echo $echo;
+    }
+    return $echo;
+    
 }
 }
