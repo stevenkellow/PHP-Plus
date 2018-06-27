@@ -48,7 +48,9 @@
 *   proper_parse_str
 *   mb_strcasecmp
 *   ucnames
+*   strip_slashes
 *   stripslashes_deep
+*       strip_slashes_deep
 */
 
 /**
@@ -1419,9 +1421,34 @@ function ucnames( $string, $delimiters = array(" ", "-", ".", "'", "O'", "Mc"), 
 }
 
 /**
+*   strip_slashes
+*
+*   Strip slashes but remove more than one backslash
+*
+*   @see http://php.net/manual/en/function.stripslashes.php#114533
+*
+*   @param string $value - the value to sanitise
+*
+*   @return string - the sanitised string
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'strip_slashes' ) ){
+function strip_slashes( $value ){
+    
+    $string=implode("",explode("\\",$string));
+    return stripslashes(trim($string));
+    
+}
+}
+
+/**
 *   stripslashes_deep
 *
 *   Unescape characters throughout an array
+*
+*   @see http://php.net/manual/en/function.stripslashes.php
 *
 *   @param array $value - the value to change
 *
@@ -1433,8 +1460,28 @@ function ucnames( $string, $delimiters = array(" ", "-", ".", "'", "O'", "Mc"), 
 if( ! function_exists( 'stripslashes_deep' ) ){
 function stripslashes_deep($value){
     
-    $value = is_array($value) ? array_map('stripslashes_deep', $value) : stripslashes($value);
+    $value = is_array($value) ? array_map('strip_slashes', $value) : strip_slashes($value);
 
     return $value;
+}
+}
+
+/**
+*   strip_slashes_deep
+*
+*   Alias for stripslashes_deep
+*
+*   @param type $variable - what this is for
+*
+*   @return type $return - what comes out
+*
+*	@since	1.1
+*	@last_modified	1.1
+*/
+if( ! function_exists( 'strip_slashes_deep' ) ){
+function strip_slashes_deep( $value ){
+    
+    return stripslashes_deep( $value );
+    
 }
 }
