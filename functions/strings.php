@@ -551,7 +551,7 @@ function map_deep( $value, $callback ){
 *	@param mixed $value The array or string to be encoded.
 *	@return mixed $value The encoded value.
 */
-if( ! function_exists( 'rawurldecode_deep') ){
+if( ! function_exists( 'rawurldecode_deep' ) ){
 function rawurlencode_deep( $value ){
 	return map_deep( $value, 'rawurlencode' );
 }

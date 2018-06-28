@@ -470,7 +470,7 @@ function size_format( $bytes, $decimals = 0 ){
 *	@modified	1.1
 */
 if( ! function_exists( 'selected' ) ){
-function selected( $one, $two ){
+function selected( $one, $two, $echo = true ){
     
     return __checked_selected_helper( $one, $two, $echo, 'selected');
     
@@ -492,7 +492,7 @@ function selected( $one, $two ){
 *	@modified	1.1
 */
 if( ! function_exists( 'checked' ) ){
-function checked( $one, $two ){
+function checked( $one, $two, $echo = true ){
     
     return __checked_selected_helper( $one, $two, $echo, 'checked');
     
@@ -539,16 +539,16 @@ function disabled( $one, $two, $echo = true ){
 if( ! function_exists( '__checked_selected_helper' ) ){
 function __checked_selected_helper( $helper, $current, $echo, $type ){
     
-    if ( (string) $helper === (string) $current )
-        $echo = $type . '="' . $type . '"';
+    if ( (string) $helper === (string) $current ){
+        $output = $type . '="' . $type . '"';
     } else {
-        $echo = '';
+        $output = '';
     }
     
     if( $echo ){
-        echo $echo;
+        echo $output;
     }
-    return $echo;
+    return $output;
     
 }
 }
