@@ -42,7 +42,7 @@
 *   @source https://developer.wordpress.org/reference/functions/absint/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param integer $number - number to return absolute
 *
@@ -63,7 +63,7 @@ function absint( $number ){
 *   @source http://php.net/manual/en/function.array-sum.php
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
@@ -109,7 +109,7 @@ function mean(){
 *   @source https://codereview.stackexchange.com/a/223
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
@@ -165,7 +165,7 @@ function median(){
 *   @source https://stackoverflow.com/a/12036174/7956549
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
@@ -210,7 +210,7 @@ function mode(){
 *   Get the average of a set of values in an array (alias for Mean )
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
@@ -238,7 +238,7 @@ function average(){
 *   @source http://stackoverflow.com/a/9153969
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param integer $number - number to check
 *
@@ -265,7 +265,7 @@ function is_even( $number ){
 *   @source http://stackoverflow.com/a/9153969
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param integer $number - number to check
 *
@@ -292,7 +292,7 @@ function is_odd( $number ){
 *   @source http://php.net/manual/en/function.round.php#114573
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param integer $number - number to round
 *	@param integer $precision - number of decimal places to round to
@@ -315,7 +315,7 @@ function round_up( $number, $precision = 2 ){
 *   @source http://php.net/manual/en/function.round.php#114573
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param integer $number - number to round
 *	@param integer $precision - number of decimal places to round to
@@ -335,7 +335,7 @@ function round_down( $number, $precision = 2 ){
 *   Round to nearest even number
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param float $number - $number to round
 *   @param int $precision - optionally change the precision
@@ -428,7 +428,7 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
 *   Sum of values in an array (alias of array_sum )
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array $array - an array with elements to add up
 *   @param numbers - list of numbers to add
@@ -473,7 +473,7 @@ function sum(){
 *   @source http://stackoverflow.com/a/15023547
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param integer $integer - integer in Arabic numerals
 *
@@ -509,7 +509,7 @@ function arabic2roman( $integer ){
 *   @source http://stackoverflow.com/a/6266158
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param string $roman - integer in Roman numerals
 *
@@ -540,7 +540,7 @@ function roman2arabic( $roman ){
 *   Convert a temperature between celsius, fahrenheit and kelvin
 *
 *   @since 0.1
-*   @last_modified 1.1
+*   @modified 1.1
 *
 *   @param int | float $number - value of temperature to convert
 *	@param string $from - temperature to convert from (celsius, fahrenheit or kelvin )
@@ -655,7 +655,7 @@ function temperature( $number, $from, $to ){
 *	@source http://stackoverflow.com/a/30556851/7956549
 *
 *   @since 0.1
-*   @last_modified 1.1
+*   @modified 1.1
 *
 *   @param int | float $lat1 - first latitude
 *   @param int | float $lon - first longitude
@@ -695,7 +695,7 @@ function latlon_distance( $lat1, $lon1, $lat2, $lon2, $unit = 'M'){
 *   @source http://www.catswhocode.com/blog/10-awesome-php-functions-and-snippets
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param int $cdnl - normal / cardinal number to add
 *
@@ -717,7 +717,7 @@ function ordinal( $cdnl ){
 *	Output a number as a percentage
 *
 *	@since 1.02
-*	@last_modified 1.0.2
+*	@modified 1.0.2
 *
 *	@param float | int - a number to pass through
 *	@param int - number of decimal places to include
@@ -740,7 +740,7 @@ function percent( $number, $decimals = 2 ){
 *   Perform a calculation and make sure the value has a minimum and maximum
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param float $number - the number to evaluate
 *   @param float $min - the minimum value for the calculation
@@ -795,7 +795,7 @@ function calc( $number, $min = false, $max = false, $fail = false ){
 *   Checks whether the value is zero
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param object $value - the value to check
 *
@@ -819,7 +819,7 @@ function is_zero( $value ){
 *   Checks whether the value is positive (greater than or equal to zero )
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param object $value - the value to check
 *
@@ -843,7 +843,7 @@ function is_positive( $value ){
 *   Checks whether the value is negative (less than zero )
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param object $value - the value to check
 *
@@ -870,7 +870,7 @@ function is_negative( $value ){
 *   @see https://stackoverflow.com/a/3148991/7956549
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param float $float_one - the first float to compare
 *   @param float $float_two - the second float to compare

@@ -30,7 +30,7 @@
 *   @param array $options - options when creating the session
 *
 *   @since 0.1
-*   @last_modified 1.1
+*   @modified 1.1
 *
 */
 if( ! function_exists( 'session_starter') ){
@@ -69,7 +69,7 @@ function session_starter( $name = false, $options = array() ){
 *   Use function to manipulate PHP sessions
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $key - session key to get/set
 *	@param string $value - session value to set
@@ -116,7 +116,7 @@ function session( $key = null, $value = null ){
 *	Send the user to another location
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $url - url to send the user to
 *	@param int $response - default response code for the redirect
@@ -152,7 +152,7 @@ function redirect( $url, $response = 301 ){
 *   @source https://css-tricks.com/snippets/php/get-current-page-url/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@return string $act_url - the current URL
 */
@@ -172,7 +172,7 @@ function current_url(){
 *   Start a timer
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @returns time - time in microseconds
 *
@@ -191,7 +191,7 @@ function timer_start(){
 *   End a timer and get the difference from the time started
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param time $old_time - the time the timer started
 *
@@ -214,7 +214,7 @@ function timer_end( $old_time ){
 *   Set content type of the output
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $type - the file type
 *
@@ -251,7 +251,7 @@ function set_content_type( $type ){
 *   @see https://stackoverflow.com/a/2310591/7956549
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'delete_all_cookies' ) ){
 function delete_all_cookies(){
@@ -279,7 +279,7 @@ function delete_all_cookies(){
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param  string  $content_type The content type to send out
 *
@@ -309,7 +309,7 @@ function utf8_headers( $content_type = 'text/html'){
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $filename The name of the filename to display to browsers
 *
@@ -362,7 +362,7 @@ function force_download( $filename, $content = false ){
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @return bool - true if set, false if not
 */

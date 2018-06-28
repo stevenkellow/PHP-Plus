@@ -37,7 +37,7 @@
 *	Returns the offset from the origin timezone to the remote timezone, in seconds.
 *
 *	@since 1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *	@param $remote_tz;
 *	@param $origin_tz; If null the servers current timezone is used as the origin.
@@ -65,7 +65,7 @@ function get_timezone_offset( $remote_tz, $origin_tz = null ){
 *	Returns the offset from the origin timezone to the GMT, in seconds.
 *
 *	@since 1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *	@param $timezone;
 *
@@ -98,7 +98,7 @@ function get_gmt_offset( $timezone = false ){
 *   @see https://developer.wordpress.org/reference/functions/get_gmt_from_date/
 *
 *	@since 1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *	@param string $string The date to be converted.
 *	@param string $format The format string for the returned date (default is Y-m-d H:i:s)
@@ -143,7 +143,7 @@ function get_gmt_from_date( $string, $format = 'Y-m-d H:i:s' ){
 *   @see https://developer.wordpress.org/reference/functions/get_date_from_gmt/
 *
 *	@since 1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *	@param string $string The date to be converted.
 *	@param string $format The format string for the returned date (default is Y-m-d H:i:s)
@@ -181,7 +181,7 @@ function get_date_from_gmt( $string, $format = 'Y-m-d H:i:s' ){
 *   @see https://developer.wordpress.org/reference/functions/human_time_diff/
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *	@param int $from Unix timestamp from which the difference begins.
 *	@param int $to   Optional. Unix timestamp to end the time difference. Default becomes time() if not set.
@@ -257,7 +257,7 @@ function human_time_diff( $from, $to = '' ){
 *   Return the human readable difference between a given time and now
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *	@param int $from Unix timestamp from which the difference begins.
 *
@@ -278,7 +278,7 @@ function time_ago( $time ){
 *	Output an MySQL friendly date/time stamp
 *
 *	@since 1.0.2
-*	@last_modified 1.1
+*	@modified 1.1
 *
 *	@param string | int - $time - a time to base the output on
 *	@param string $date_time - whether to output datetime or just date
@@ -323,7 +323,7 @@ function date_mysql( $time = false, $date_time = 'datetime' ){
 *   @source http://php.net/manual/en/function.easter-date.php#83794
 *
 *   @since  1.0
-*   @last_modified  1.1
+*   @modified  1.1
 *
 *	@param int $year - year to calculate easter for (default: current year)
 *	@param string $date_format - the format to format the date in
@@ -360,7 +360,7 @@ function easter_date_orthodox( $year = false, $date_format = false ){
 *   Check if a date is in the past
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $date - the date to check
 *
@@ -393,7 +393,7 @@ function is_past( $date ){
 *   Check if a date is in the future
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $date - the date to check
 *
@@ -426,7 +426,7 @@ function is_future( $date ){
 *   Check if a timestamp is today
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string - a timestamp
 *
@@ -459,7 +459,7 @@ function is_today( $timestamp ){
 *   Check if a timestamp is yesterday
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string - a timestamp
 *
@@ -492,7 +492,7 @@ function is_yesterday( $timestamp ){
 *   Check if a timestamp is tomorrow
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string - a tomorrow
 *
@@ -529,7 +529,7 @@ function is_tomorrow( $timestamp ){
 *   @source https://css-tricks.com/snippets/php/automatic-copyright-year/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param int $year - a start year for copyright
 *   @param bool $roman - use roman numerals for year
@@ -569,7 +569,7 @@ function copyright( $year = false, $roman = false ){
 *   @see https://developer.wordpress.org/reference/functions/current_time/
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $type - either 'mysql' for MySQL format, 'timestamp' for integer, or PHP date format
 *   @param int | bool $gmt - whether to use GMT time
@@ -598,7 +598,7 @@ function current_time( $type, $gmt = 0 ){
 *   @see https://stackoverflow.com/a/4312630/7956549
 *
 *	@since	1.1
-*	@last_modified    1.1
+*	@modified    1.1
 *
 *   @param string $start - the first date to include
 *   @param string $end - the last date in the range
@@ -640,7 +640,7 @@ function create_date_range( $start, $end, $format = 'Y-m-d' ){
 *   Get a list of working days between two dates
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $start - the first date to include
 *   @param string $end - the last date in the range
@@ -683,7 +683,7 @@ function working_date_range( $start, $end, $format = 'Y-m-d', $working_days = ar
 *   Count the days between two dates
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $start - the first date to include
 *   @param string $end - the last date in the range

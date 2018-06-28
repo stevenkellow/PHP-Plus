@@ -41,7 +41,7 @@
 *   @return array $user_agent - an array of user agenet info
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'get_browser_info' ) ){
 function get_browser_info( $u_agent = false ){
@@ -201,7 +201,7 @@ function get_browser_info( $u_agent = false ){
 *   @source https://developer.wordpress.org/reference/functions/is_ssl/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@return bool true|false - true if SSL, false otherwise
 *
@@ -229,7 +229,7 @@ function is_ssl(){
 *   Alias of is_ssl
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_https' ) ){
 function is_https(){
@@ -243,7 +243,7 @@ function is_https(){
 *   Print the site's protocol
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@return string https:// | http://
 *
@@ -269,7 +269,7 @@ function protocol(){
 *	@author Emil Vikström - http://stackoverflow.com/a/3003233/7956549
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@return string IP Address
 *
@@ -306,7 +306,7 @@ function get_user_ip(){
 *	@source http://blog.koonk.com/2015/07/46-useful-php-code-snippets-that-can-help-you-with-your-php-projects/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param array $availableLanguages - languages a site can use
 *	@param string $default - the default language of the site
@@ -341,7 +341,7 @@ function get_user_lang( $availableLanguages, $default = 'en' ){
 *	@source https://stackoverflow.com/posts/5879078/edit
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@return bool - true if windows, false otherwise
 *
@@ -367,7 +367,7 @@ function is_windows(){
 *	@source https://stackoverflow.com/posts/5879078/edit
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@return bool - true if windows, false otherwise
 *
@@ -396,7 +396,7 @@ function is_linux(){
 *   @return null - if server software variable not set
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_iis' ) ){
 function is_iis(){
@@ -429,7 +429,7 @@ function is_iis(){
 *   @return null - if server software variable not set
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_apache' ) ){
 function is_apache(){
@@ -460,7 +460,7 @@ function is_apache(){
 *   @return null - if server software variable not set
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_nginx' ) ){
 function is_nginx(){
@@ -491,7 +491,7 @@ function is_nginx(){
 *   @see https://developer.wordpress.org/reference/functions/wp_is_mobile/
 *
 *   @since 1.1
-*   @last_modified  1.1
+*   @modified  1.1
 *
 *   @return bool - true if mobile, false if not
 */
@@ -524,7 +524,7 @@ function is_mobile(){
 *   @return return int - the result of the comparison
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'spaceship' ) ){
 function spaceship( $one, $two ){
@@ -570,7 +570,7 @@ function spaceship( $one, $two ){
 *   @return bool - true if successful, false if not
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_countable' ) ){
 function is_countable( $foo ){
@@ -596,7 +596,7 @@ function is_countable( $foo ){
 *   @return bool - true if successful, false if not
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_iterable' ) ){
 function is_iterable( $foo ){
@@ -619,7 +619,7 @@ function is_iterable( $foo ){
 *   @return bool true
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( '__return_true' ) ){
 function __return_true(){
@@ -638,7 +638,7 @@ function __return_true(){
 *   @return bool false
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( '__return_false' ) ){
 function __return_false(){
@@ -657,7 +657,7 @@ function __return_false(){
 *   @return int 0
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( '__return_zero' ) ){
 function __return_zero(){
@@ -676,7 +676,7 @@ function __return_zero(){
 *   @return null
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( '__return_null' ) ){
 function __return_null(){
@@ -695,7 +695,7 @@ function __return_null(){
 *   @return string ''
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( '__return_empty_string' ) ){
 function __return_empty_string(){
@@ -714,7 +714,7 @@ function __return_empty_string(){
 *   @return array
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( '__return_empty_array' ) ){
 function __return_empty_array(){

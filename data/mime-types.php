@@ -8,7 +8,7 @@
 *   @see https://gist.github.com/rodneyrehm/1372758
 *
 *	@since	0.1
-*	@last_modified	0.1
+*	@modified	0.1
 */
 $mime_types = array(
     'rmi' => 'audio/midi',

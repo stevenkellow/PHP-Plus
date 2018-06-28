@@ -38,7 +38,7 @@
 *   Reindex arrays (alias of array_values )
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array $array - array to reindex
 *
@@ -59,7 +59,7 @@ function array_reindex( $array ){
 *   @source https://github.com/JBZoo/Utils/blob/master/src/Arr.php
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array $array - array to check
 *
@@ -80,7 +80,7 @@ function is_assoc( $array ){
 *   @source http://stackoverflow.com/q/4102777
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array $list - array to shuffle
 *
@@ -115,7 +115,7 @@ function shuffle_assoc( $list ){
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param array $array - array to test
 *
@@ -147,7 +147,7 @@ function is_numeric_array( $array ){
 *   @source http://www.jonasjohn.de/snippets/php/array-remove-empty.htm
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array $arr - array to remove empties from
 *   @param bool $reindex - whether or not to reindex the array so keys don't have a missing number
@@ -194,7 +194,7 @@ function array_remove_empty( $arr, $reindex = false ){
 *   Unset an array element by key and optionally reindex
 *
 *   @since 0.1
-*   @last_modified 1.1
+*   @modified 1.1
 *
 *   @param array $array - array to delete from
 *   @param mixed $key - key to delete from array
@@ -236,7 +236,7 @@ function unset_key( $array, $key, $reindex = false ){
 *   @source http://stackoverflow.com/a/7225113
 *
 *   @since 0.1
-*   @last_modified 1.1
+*   @modified 1.1
 *
 *   @param array $array - array to delete from
 *   @param mixed $value - value to delete from array
@@ -278,7 +278,7 @@ function unset_value( $array, $value, $reindex = false ){
 *   @source https://github.com/JBZoo/Utils/blob/master/src/Arr.php
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array $array - array to sort
 *   @param array $orderArray - array to sort by
@@ -301,7 +301,7 @@ function sort_by_array( array $array, array $orderArray ){
 *   @source https://github.com/JBZoo/Utils/blob/master/src/Arr.php
 *
 *   @since 0.1
-*   @last_modified 1.1
+*   @modified 1.1
 *
 *   @param mixed $item - item to turn into array
 *
@@ -335,7 +335,7 @@ function array_wrap( $item ){
 *   @see https://stackoverflow.com/a/9546302/7956549
 *
 *	@since	0.1
-*	@last_modified	0.1
+*	@modified	0.1
 *
 *   @return array $result - the flattened array
 */
@@ -370,7 +370,7 @@ function array_flat( $array, $prefix = '', $concat = '_'){
 *   Sort an multi-dimensional array by lower values - combines usort, uasort and uksort into one function
 *
 *	@since	1.0.3
-*	@last_modified	1.0.3
+*	@modified	1.0.3
 *
 *   @param array $array - the array to sort
 *   @param string $sort_key - the key  to sort by
@@ -480,7 +480,7 @@ function array_sort_deep( $array, $sort_key, $sort_by = 'value', $preserve_keys 
 *   Compares to items when sorting arrays
 *
 *	@since	1.0.3
-*	@last_modified	1.0.3
+*	@modified	1.0.3
 *
 *	@param array $a - an array to compare
 *	@param array $b - an array to compare
@@ -501,7 +501,7 @@ function __low_to_high( $a, $b ){
 *   __high_to_low
 *
 *	@since	1.0.3
-*	@last_modified	1.0.3
+*	@modified	1.0.3
 *
 *	@param array $a - an array to compare
 *	@param array $b - an array to compare
@@ -529,7 +529,7 @@ function __high_to_low( $a, $b ){
 *   @see https://gist.github.com/ozh/82a17c2be636a2b1c58b49f271954071
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param  $array - data
 *   @param  $key - item you want to pluck from array
@@ -550,7 +550,7 @@ function array_pluck( $array, $key ){
 *   Add a key value pair to an array if it doesn't already exist
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param array $array - the array to add to
 *   @param string $key - the key to add
@@ -576,7 +576,7 @@ function array_add( $array, $key, $value ){
 *   Return only the specified keys from an array
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param array $array - the base array to get data from
 *   @param array $keys - the keys to return
@@ -608,7 +608,7 @@ function array_only( $array, $keys ){
 *   Alias of array_pop, returns the last element of the array but preserves original array structure
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param array $array - array to use
 *
@@ -626,7 +626,7 @@ function array_last( $array ){
 *   Alias of array_shift, returns the first element of the array but preserves original array structure
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param array $array - array to use
 *
@@ -648,7 +648,7 @@ function array_first( $array ){
 *   @see https://stackoverflow.com/a/15973172/7956549
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param array $array - the inital arrray, containing arrays of attributes
 *
@@ -693,7 +693,7 @@ function array_cartesian( $input ){
 *   @see https://stackoverflow.com/a/11872928/7956549
 *
 *   @since  1.1
-*   @last_modified  1.1
+*   @modified  1.1
 *
 *   @param array $weightedValues
 *
@@ -723,7 +723,7 @@ function array_rand_weighted( $weightedValues ){
 *   Makes sure an array only includes numeric values
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param array $array - the array to check
 *   @param bool | string $cast - whether to cast the element as an int or float
@@ -783,7 +783,7 @@ function array_numeric( $array, $cast = false ){
 *   @return bool - true if found, false if not
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'in_array_quick' ) ){
 function in_array_quick( $needle, $haystack ){

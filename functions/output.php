@@ -32,7 +32,7 @@
 *   Test if a remote file exists
 *
 *   @since 0.1
-*   @last_modified 1.0.3
+*   @modified 1.0.3
 *
 *   @param string	$file_location - the file to test
 *
@@ -78,7 +78,7 @@ function test_remote_file( $file_location ){
 *   Send out a print_r request in a more readable format
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param array | object $data - array you want to output
 *
@@ -103,7 +103,7 @@ function print_pre( $data ){
 *   @source http://www.jonasjohn.de/snippets/php/random-color.htm
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param string $type - type of output: rgb or hex
 *
@@ -158,7 +158,7 @@ function random_color( $type = 'hex'){
 *   @source https://developers.google.com/chart/infographics/docs/qr_codes
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param string $data - the info you want to encode
 *	@param int $size - value for height and width of image in pixels
@@ -190,7 +190,7 @@ function qr_url( $data, $size = '300' ){
 *	@return string - an image tag for the generated QR code
 *
 *   @since  0.1
-*   @last_modified  0.1
+*   @modified  0.1
 */
 if( ! function_exists( 'qr_image' ) ){
 function qr_image( $data, $size = '300' ){
@@ -212,7 +212,7 @@ function qr_image( $data, $size = '300' ){
 *   @source http://www.binarytides.com/php-check-if-file-is-an-image/
 *
 *	@since	0.1
-*	@last_modified	0.1
+*	@modified	0.1
 *
 *	@param string - path or URL of file to check
 *
@@ -240,7 +240,7 @@ function is_image( $path ){
 *   @source https://css-tricks.com/snippets/php/create-data-uris/
 *
 *	@since	0.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *	@param string - path or URL of file to encode
 *   @param string - mime type of file (Maybe need to change that)
@@ -272,7 +272,7 @@ function data_uri( $file ){
 *   Returns the mime type of a file given the extension
 *
 *	@since	1.0.2
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $ext - the file extension
 *
@@ -303,7 +303,7 @@ function mime_type( $ext ){
 *   Print a HTML table
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param array $headers - an array where each item is a header title
 *   @param array $data - an array, where each item is an array containing cells
@@ -373,7 +373,7 @@ function create_table( $headers, $data, $atts = array() ){
 *   Dump the variable and end execution of the script
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param mixed $variable - the variable to dump
 */
@@ -392,7 +392,7 @@ function dd( $variable ){
 *   Shorthand to run htmlentities over a string
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $string - string to sanitise
 *
@@ -467,7 +467,7 @@ function size_format( $bytes, $decimals = 0 ){
 *   @return string - either 'selected' if equal, or empty string otherwise
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'selected' ) ){
 function selected( $one, $two ){
@@ -489,7 +489,7 @@ function selected( $one, $two ){
 *   @return string - either 'checked' if equal, or empty string otherwise
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'checked' ) ){
 function checked( $one, $two ){
@@ -511,7 +511,7 @@ function checked( $one, $two ){
 *   @return string - either 'disabled' if equal, or empty string otherwise
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'disabled' ) ){
 function disabled( $one, $two, $echo = true ){
@@ -534,7 +534,7 @@ function disabled( $one, $two, $echo = true ){
 *   @return string - either 'disabled' if equal, or empty string otherwise
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( '__checked_selected_helper' ) ){
 function __checked_selected_helper( $helper, $current, $echo, $type ){

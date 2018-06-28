@@ -49,7 +49,7 @@ define( 'PATH_TO_PHP_PLUS', __DIR__ . '/..' );
 *   @see https://codex.wordpress.org/Easier_Expression_of_Time_Constants
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 */
 
 // Minutes
@@ -107,7 +107,7 @@ if( ! defined( 'YEAR_IN_SECONDS') ){
 *   @source https://core.trac.wordpress.org/browser/tags/4.7.3/src/wp-includes/default-constants.php#L0
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 */
 
 if( ! defined( 'KB_IN_BYTES') ){
@@ -130,7 +130,7 @@ if( ! defined( 'TB_IN_BYTES') ){
 *   Math constants
 *
 *   @since 0.1
-*   @last_modified 1.0.3
+*   @modified 1.0.3
 */
 
 // PI - as defined by PHP

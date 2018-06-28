@@ -61,7 +61,7 @@
 *	Note: for passwords please use password_hash (PHP 7 or later)
 *
 *  	@since 0.1
-*  	@last_modified 1.0.2
+*  	@modified 1.0.2
 *
 *  	@param int $length - number of characters for random string (default 36 character string)
 *	@param array | bool $symbols - false for no symbols, true for default symbols or array of custom symbols to use
@@ -127,7 +127,7 @@ function rand_string( $length = 36, $symbols = true ){
 *   Verify if an email format is valid
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $email - email to validate
 *
@@ -151,7 +151,7 @@ function validate_email( $email ){
 *   Alias of validate_email
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $email - email to validate
 *
@@ -171,7 +171,7 @@ function is_email( $email ){
 *   Verify if a url format is valid
 *
 *   @since 0.1
-*   @last_modified 1.1
+*   @modified 1.1
 *
 *	@param string $email - url to validate
 *   @param bool $ssl - whether to validate that the URL is HTTPS or not
@@ -216,7 +216,7 @@ function validate_url( $url, $ssl = false ){
 *   Alias of validate_url
 *
 *   @since 0.1
-*   @last_modified 1.1
+*   @modified 1.1
 *
 *	@param string $url - url to validate
 *   @param bool $ssl - whether to validate that the URL is HTTPS or not
@@ -240,7 +240,7 @@ function is_url( $url, $ssl = false ){
 *	@source http://webdeveloperplus.com/php/21-really-useful-handy-php-code-snippets/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $text - the text to turn into a slug
 *
@@ -263,7 +263,7 @@ function slug( $string ){
 *	@source https://developer.wordpress.org/reference/functions/trailingslashit/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $string What to add the trailing slash to.
 *	@return string String with trailing slash added.
@@ -284,7 +284,7 @@ function trailingslash( $string ){
 *	@source https://developer.wordpress.org/reference/functions/untrailingslashit/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $string What to remove the trailing slashes from.
 *	@return string String without the trailing slashes.
@@ -305,7 +305,7 @@ function untrailingslash( $string ){
 *	@source http://www.jonasjohn.de/snippets/php/hex-string.htm
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $func_string - string to turn into hex
 *	@return string $func_retVal - returned hex
@@ -330,7 +330,7 @@ function str2hex( $func_string ){
 *	@source http://www.jonasjohn.de/snippets/php/hex-string.htm
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $func_string - hex to turn into string
 *	@return string $func_retVal - returned string
@@ -355,7 +355,7 @@ function hex2str( $func_string ){
 *	@source https://developer.wordpress.org/reference/functions/mbstring_binary_safe_encoding/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param bool $reset - Whether to reset the encoding back to a previously-set encoding.
 *
@@ -393,7 +393,7 @@ function mbstring_binary_safe_encoding( $reset = false ){
 *	@source https://developer.wordpress.org/reference/functions/reset_mbstring_encoding/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 */
 if( !function_exists( 'reset_mbstring_encoding' ) ){
@@ -411,7 +411,7 @@ function reset_mbstring_encoding(){
 *	@source https://developer.wordpress.org/reference/functions/seems_utf8/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $str - string to check for UTF8 encoding
 *
@@ -450,7 +450,7 @@ function seems_utf8( $str ){
 *	@source https://developer.wordpress.org/reference/functions/utf8_uri_encode/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $utf8_string - String to check.
 *	@param int $length - max length of the string
@@ -511,7 +511,7 @@ function utf8_uri_encode( $utf8_string, $length = 0 ){
 *	@source https://developer.wordpress.org/reference/functions/map_deep/
 *
 *	@since	0.1
-*	@last_modified	0.1
+*	@modified	0.1
 *
 *	@param mixed $value The array, object, or scalar.
 *	@param callback $callback The function to map onto $value.
@@ -546,7 +546,7 @@ function map_deep( $value, $callback ){
 *	@source https://developer.wordpress.org/reference/functions/rawurlencode_deep/
 *
 *	@since	0.1
-*	@last_modified	0.1
+*	@modified	0.1
 *
 *	@param mixed $value The array or string to be encoded.
 *	@return mixed $value The encoded value.
@@ -567,7 +567,7 @@ function rawurlencode_deep( $value ){
 *	@source https://developer.wordpress.org/reference/functions/urldecode_deep/
 *
 *	@since	0.1
-*	@last_modified	0.1
+*	@modified	0.1
 *
 *	@param mixed $value The array or string to be decoded.
 *	@return mixed $value The decoded value.
@@ -589,7 +589,7 @@ function urldecode_deep( $value ){
 *	@source https://www.darklaunch.com/2009/05/23/php-xml-encode-using-domdocument-convert-array-to-xml-json-encode
 *
 *	@since	0.1
-*	@last_modified	0.1
+*	@modified	0.1
 *
 *	@param mixed $mixed - data to encode-using-domdocument-convert-array-to-xml-json-encode
 *	@param mixed $domElement -
@@ -653,7 +653,7 @@ function xml_encode( $mixed, $domElement=null, $DOMDocument=null ){
 *	@source http://stackoverflow.com/questions/6578832/how-to-convert-xml-into-array-in-php
 *
 *	@since	0.1
-*	@last_modified	0.1
+*	@modified	0.1
 *
 *	@param string $xmlstring - XML data to convert to array
 *
@@ -686,7 +686,7 @@ function xml_decode( $xmlstring ){
 *	@source https://www.owasp.org/index.php/PHP_Security_Cheat_Sheet#No_tags
 *
 *   @since 0.1
-*   @last_modified 1.0.2
+*   @modified 1.0.2
 *
 *   @param string $data - data to secure
 *	@param string $encoding - how you want to encode the data
@@ -711,7 +711,7 @@ function xssafe( $data, $encoding='UTF-8'){
 *	@source https://www.owasp.org/index.php/PHP_Security_Cheat_Sheet#No_tags
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param string $data - data to secure
 *
@@ -732,7 +732,7 @@ function xecho( $data ){
 *	@source https://developer.wordpress.org/reference/functions/zeroise/
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param int $number - number to pad
 *   @param int $length - max length of the string
@@ -751,7 +751,7 @@ function zeroise( $number, $length ){
 *   Alias of str_repeat()
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param string $string - string to repeat
 *   @param int $number - number of times to repeat the string
@@ -773,7 +773,7 @@ function rept( $string, $number ){
 *   Alias of str_repeat()
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param string $string - string to repeat
 *   @param int $number - number of times to repeat the string
@@ -794,7 +794,7 @@ function repeat_string( $string, $number ){
 *   Makes first character upper case and rest lower case for each word in a string - similar to same function in Excel
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param string $string - string to check
 *   @param array $split_chars - array of characters to use when splitting a string
@@ -856,7 +856,7 @@ function proper( $string, $split_chars = array( '-', ' ' ) ){
 *   Alias of proper
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *   @param string $string - string to check
 *   @param array $split_chars - array of characters to use when splitting a string
@@ -877,7 +877,7 @@ function sentence_case( $string, $split_chars = null ){
 *   Check that passed arguments have a string length of 1 or more
 *
 *   @since 1.1
-*   @last_modified 1.1
+*   @modified 1.1
 *
 *   @return bool - true if all arguments are strings of length greater than 1, else false
 */
@@ -910,7 +910,7 @@ function strcheck(){
 *   @see https://developer.wordpress.org/reference/functions/sanitize_key/
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $key String key
 *
@@ -934,7 +934,7 @@ function sanitize_key( $key ){
 *   @see http://php.net/manual/en/function.ctype-xdigit.php
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $string - the string to check
 *
@@ -957,7 +957,7 @@ function is_hex( $string ){
 *   @see https://stackoverflow.com/a/4312630/7956549
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $haystack - string to search in
 *   @param string $needle - string to search for
@@ -990,7 +990,7 @@ function starts_with( $haystack, $needle, $insensitive = false ){
 *   @see https://stackoverflow.com/a/4312630/7956549
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $haystack - string to search in
 *   @param string $needle - string to search for
@@ -1024,7 +1024,7 @@ function ends_with( $haystack, $needle, $insensitive = false ){
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param  string $string  The string to convert to boolean
 *   @param  bool   $default The value to return if we can't match any
@@ -1053,7 +1053,7 @@ function str_to_bool( $string, $default = false ){
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param  string $haystack - string to check
 *   @param  string $needle - string to find
@@ -1077,7 +1077,7 @@ function str_contains( $haystack, $needle, $insensitive = false ){
 *   Get information from an email address
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $email - the email address to parse
 *   @param array $delimiters - additional delimiters to use when parsing names
@@ -1128,7 +1128,7 @@ function parse_email( $email, $delimiters = array() ){
 *   Create a string of attributes that can be used for a HTML element
 *
 *	@since	1.1
-*	@last_modified 1.1
+*	@modified 1.1
 *
 *   @param array $atts - the element attributes
 *
@@ -1163,7 +1163,7 @@ function html_atts_string( $atts ){
 *   @see https://developer.wordpress.org/reference/functions/make_clickable/
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 *
 *   @param string $ret - the original string
 *   @param array $atts - any attributes to add to the final link
@@ -1271,7 +1271,7 @@ function make_clickable( $ret, $atts = array() ){
 *   @return string - the url
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'http_build_url' ) ){
 function http_build_url( $parsed_url ){
@@ -1305,7 +1305,7 @@ function http_build_url( $parsed_url ){
 *   @return array $arr - the returned array
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'proper_parse_str' ) ){
 function proper_parse_str( $str ){
@@ -1359,7 +1359,7 @@ function proper_parse_str( $str ){
 *   @return int - Returns < 0 if str1 is less than str2; > 0 if str1 is greater than str2, and 0 if they are equal.
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'mb_strcasecmp' ) ){
 function mb_strcasecmp( $str1, $str2, $encoding = null ){
@@ -1387,7 +1387,7 @@ function mb_strcasecmp( $str1, $str2, $encoding = null ){
 *   @return string $string - the fixed string
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'ucnames' ) ){
 function ucnames( $string, $delimiters = array(" ", "-", ".", "'", "O'", "Mc"), $exceptions = array("de", "da", "dos", "das", "do", "I", "II", "III", "IV", "V", "VI", "van") ){
@@ -1431,8 +1431,8 @@ function ucnames( $string, $delimiters = array(" ", "-", ".", "'", "O'", "Mc"), 
 *
 *   @return string - the sanitised string
 *
-*	@since	1.1
-*	@last_modified	1.1
+*	@since    1.1
+*	@modified 1.1
 */
 if( ! function_exists( 'strip_slashes' ) ){
 function strip_slashes( $value ){
@@ -1455,7 +1455,7 @@ function strip_slashes( $value ){
 *   @return array $value - the array with the characters unescaped
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'stripslashes_deep' ) ){
 function stripslashes_deep($value){
@@ -1476,7 +1476,7 @@ function stripslashes_deep($value){
 *   @return type $return - what comes out
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'strip_slashes_deep' ) ){
 function strip_slashes_deep( $value ){

@@ -8,7 +8,7 @@
 *	@url https://wwww.stevenkellow.com/phpplus/
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 class PHPPlus{
     
@@ -18,7 +18,7 @@ class PHPPlus{
     *   The function files available to load
     *
     *	@since	1.1
-    *	@last_modified	1.1
+    *	@modified	1.1
     */
     protected static $files = array(
         'constants', // Load first to avoid dependency issues
@@ -44,7 +44,7 @@ class PHPPlus{
     *   @return array $loaded - the files that have been loaded
     *
     *	@since	1.1
-    *	@last_modified	1.1
+    *	@modified	1.1
     */
     public static function load( $include = array(), $exclude = array() ){
 

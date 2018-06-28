@@ -22,7 +22,7 @@
 *	@source http://stackoverflow.com/a/31683058/7956549
 *
 *   @since 0.1
-*   @last_modified 1.0.2
+*   @modified 1.0.2
 *
 *	@param string $name - form name that you want to validate (so each form has unique token)
 *	@param int $length - length of the csrf_token in bytes
@@ -62,7 +62,7 @@ function csrf_token( $name = 'csrf_token', $length = 32 ){
 *	@source http://stackoverflow.com/a/31683058/7956549
 *
 *   @since 0.1
-*   @last_modified 0.1
+*   @modified 0.1
 *
 *	@param string $name - form name that you want to validate (so each form has unique token)
 *
@@ -118,7 +118,7 @@ function csrf_verify( $name = 'csrf_token' ){
 *   @see https://developer.wordpress.org/reference/functions/antispambot/
 *
 *   @since 1.1
-*   @last_modified 1.1
+*   @modified 1.1
 *
 *   @param string $email_address Email address.
 *   @param int    $hex_encoding  Optional. Set to 1 to enable hex encoding.

@@ -7,7 +7,7 @@
 *   @see    https://developer.paypal.com/docs/classic/api/country_codes/
 *
 *	@since	1.1
-*	@last_modified	1.1
+*	@modified	1.1
 */
 $countries = array(
     'AF' => 'Afghanistan',
