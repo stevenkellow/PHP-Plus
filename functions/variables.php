@@ -20,6 +20,9 @@
 *   is_apache
 *   is_nginx
 *   is_mobile
+*   is_datetime
+*   is_iterable
+*   is_countable
 *   spaceship
 *   __return_true
 *   __return_false
@@ -552,6 +555,30 @@ function spaceship( $one, $two ){
 
         }
         
+    }
+    
+}
+}
+
+/**
+*   is_datetime
+*
+*   Checks if an element is a valid datetime
+*
+*   @param mixed $date - to check if the object is a datetime object, or can be converted into one
+*
+*   @return bool - true if it can be a datetime, false otherwise
+*
+*	@since	1.1
+*	@modified	1.1
+*/
+if( ! function_exists( 'is_datetime' ) ){
+function is_datetime( $date ){
+    
+    if( strtotime( $date ) || $date instanceof DateTime ){
+        return true;
+    } else {
+        return false;
     }
     
 }
