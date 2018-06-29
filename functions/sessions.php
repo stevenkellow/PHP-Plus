@@ -152,13 +152,13 @@ function redirect( $url, $response = 301 ){
 *   @source https://css-tricks.com/snippets/php/get-current-page-url/
 *
 *   @since 0.1
-*   @modified 0.1
+*   @modified 1.1
 *
 *	@return string $act_url - the current URL
 */
 if( ! function_exists( 'current_url') ){
 function current_url(){
-    $act_url  = ( isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ) ? 'https' : 'http';
+    $act_url  = ( is_ssl() ) ? 'https' : 'http';
     $act_url .= '://' . $_SERVER['SERVER_NAME'];
     $act_url .= in_array( $_SERVER['SERVER_PORT'], array( '80', '443' ) ) ? '' : ":" . $_SERVER['SERVER_PORT'];
     $act_url .= $_SERVER['REQUEST_URI'];

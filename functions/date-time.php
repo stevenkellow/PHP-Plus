@@ -201,7 +201,7 @@ function human_time_diff( $from, $to = '' ){
 		$to = strtotime( $to );
 	}
 	
-	$diff = ( int) abs( $to - $from );
+	$diff = (int) abs( $to - $from );
 
 	if( $diff < HOUR_IN_SECONDS ){
 		$mins = round( $diff / MINUTE_IN_SECONDS );

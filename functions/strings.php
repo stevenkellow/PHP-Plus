@@ -37,6 +37,7 @@
 *   strcheck
 *   sanitize_key
 *   is_hex
+*   is_alphanum
 *   starts_with
 *   ends_with
 *   str_to_bool
@@ -919,8 +920,8 @@ function strcheck(){
 if( ! function_exists( 'sanitize_key' ) ){
 function sanitize_key( $key ){
 	
-	$key     = strtolower( $key );
-	$key     = preg_replace( '/[^a-z0-9_\-]/', '_', $key );
+	$key = strtolower( $key );
+	$key = preg_replace( '/[^a-z0-9_\-]/', '_', $key );
 
 	return $key;
 }
@@ -944,6 +945,26 @@ if( ! function_exists( 'is_hex' ) ){
 function is_hex( $string ){
     
     return ctype_xdigit( $string );
+    
+}
+}
+
+/**
+*   is_alphanum
+*
+*   Alias of ctype_alnum
+*
+*   @param $string - the string to check
+*
+*   @return bool - true if alphanumeric, false if not
+*
+*	@since	1.1
+*	@modified	1.1
+*/
+if( ! function_exists( 'is_alphanum' ) ){
+function is_alphanum( $string ){
+    
+    return ctype_alnum( $string );
     
 }
 }
