@@ -377,17 +377,27 @@ function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"'){
 *	@source http://stackoverflow.com/a/6041773/7956549
 *
 *   @since 0.1
-*   @modified 1.0.2
+*   @modified 1.1
 *
-*	@param array $data - data to check
+*	@param string $string - data to check
 *
 *	@return bool true if it's json, false if not
 *
 */
 if( ! function_exists( 'is_json') ){
 function is_json( $string ){
-    @json_decode( $string );
-    return ( json_last_error() == JSON_ERROR_NONE );
+    
+    // Check it's a string, or json decode will fail
+    if( is_string( $string ) ){
+    
+        @json_decode( $string );
+        return ( json_last_error() == JSON_ERROR_NONE );
+        
+    } else {
+        
+        return false;
+        
+    }
 }
 }
 
@@ -1128,7 +1138,7 @@ function is_serialized( $value, &$result = null ){
 *   Return unserialized value of item
 *
 *	@since	0.1
-*	@modified	0.1
+*	@modified	1.1
 *
 *   @param mixed $item - item to check
 *
@@ -1137,8 +1147,23 @@ function is_serialized( $value, &$result = null ){
 if( ! function_exists( 'maybe_unserialize' ) ){
 function maybe_unserialize( $item ){
     
+    // Check if it's serialized
     if( is_serialized( $item ) ){
-        return unserialize( $item );
+        
+        try{
+            
+            // Try unzerialising
+            $output = unserialize( $item );
+            
+        } catch( Exception $e ){
+            
+            // If there's an error it might be corrupted, so try uncorrupting then unserializing
+            $output = unserialize( serialize_fix( $item ) );
+            
+        }
+        
+        return $output;
+        
     } else {
         return $item;
     }
