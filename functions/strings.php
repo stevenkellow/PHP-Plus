@@ -1460,7 +1460,7 @@ function strip_slashes( $value ){
 if( ! function_exists( 'stripslashes_deep' ) ){
 function stripslashes_deep($value){
     
-    $value = is_array($value) ? array_map('strip_slashes', $value) : strip_slashes($value);
+    $value = is_array($value) ? array_map('stripslashes_deep', $value) : strip_slashes($value);
 
     return $value;
 }
