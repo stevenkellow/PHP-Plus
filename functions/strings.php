@@ -1304,10 +1304,70 @@ function http_build_url( $parsed_url ){
 	$pass     = isset( $parsed_url['pass']) ? ':' . $parsed_url['pass']  : ''; 
 	$pass     = ( $user || $pass ) ? "$pass@" : ''; 
 	$path     = isset( $parsed_url['path']) ? $parsed_url['path'] : ''; 
-	$query    = isset( $parsed_url['query']) ? '?' . $parsed_url['query'] : ''; 
+    
+    // Change behaviour of original to match what we might have it as
+    if( isset( $parsed_url['query'] ) ){
+        
+        $query = '?';
+        
+        if( is_string( $parsed_url['query'] ) ){
+            
+            $query .= $parsed_url['query'];
+            
+        } else {
+            
+            $query .= http_build_query( $parsed_url['query'] );
+            
+        }
+        
+    } else {
+        $query = '';
+    }
+    
 	$fragment = isset( $parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : ''; 
 	
 	return "$scheme$user$pass$host$port$path$query$fragment";
+    
+}
+}
+
+/**
+*   add_protocol
+*
+*   Add protocol to a potential URL
+*
+*   @param string $url - the url to check
+*   @param string $scheme - the scheme to add if it doesn't have one
+*   @param bool $revalidate - whether to validate the url is correct or not
+*
+*   @return string $url - the url with a protocol
+*   @return bool false - if the url cannot be validated
+*
+*	@since	1.1
+*	@modified	1.1
+*/
+if( ! function_exists( 'add_protocol' ) ){
+function add_protocol( $url, $scheme = 'http://', $revalidate = true ){
+    
+    if( parse_url($url, PHP_URL_SCHEME) === null ){
+        
+        $url =  $scheme . $url;
+        
+        if( $revalidate == false ){
+            
+            return $url;
+            
+        } else {
+            
+            return ( validate_url( $url ) ) ? $url : false;
+            
+        }
+        
+    } else {
+        
+        return $url;
+        
+    }
     
 }
 }
@@ -1362,6 +1422,34 @@ function proper_parse_str( $str ){
 
     # return result array
     return $arr;
+}
+}
+
+/**
+*   proper_parse_url
+*
+*   Parse a URL and get the query as an array
+*
+*   @param type $variable - what this is for
+*
+*   @return type $return - what comes out
+*
+*	@since	1.1
+*	@modified	1.1
+*/
+if( ! function_exists( 'proper_parse_url' ) ){
+function proper_parse_url( $url ){
+    
+    // Run a parse_url check
+    $parsed_url = parse_url( $url );
+    
+    // Check a query is set
+    if( isset( $parsed_url['query'] ) ){
+        $parsed_url['query'] = proper_parse_str( $parsed_url['query'] );
+    }
+    
+    return $parsed_url;
+    
 }
 }
 
