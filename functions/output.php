@@ -461,7 +461,7 @@ function size_format( $bytes, $decimals = 0 ){
 *   Outputs 'selected' if the value matches
 *
 *   @param mixed $one - the first value to compare
-*   @param mixed $two - the second value to compare
+*   @param mixed $two - the second value to compare - defaults to 'selected'
 *   @param bool $echo - whether to echo the result
 *
 *   @return string - either 'selected' if equal, or empty string otherwise
@@ -470,7 +470,7 @@ function size_format( $bytes, $decimals = 0 ){
 *	@modified	1.1
 */
 if( ! function_exists( 'selected' ) ){
-function selected( $one, $two, $echo = true ){
+function selected( $one, $two = 'selected', $echo = true ){
     
     return __checked_selected_helper( $one, $two, $echo, 'selected');
     
@@ -483,7 +483,7 @@ function selected( $one, $two, $echo = true ){
 *   Outputs 'checked' if the value matches
 *
 *   @param mixed $one - the first value to compare
-*   @param mixed $two - the second value to compare
+*   @param mixed $two - the second value to compare - defaults to 'checked
 *   @param bool $echo - whether to echo the result
 *
 *   @return string - either 'checked' if equal, or empty string otherwise
@@ -492,7 +492,7 @@ function selected( $one, $two, $echo = true ){
 *	@modified	1.1
 */
 if( ! function_exists( 'checked' ) ){
-function checked( $one, $two, $echo = true ){
+function checked( $one, $two = 'checked', $echo = true ){
     
     return __checked_selected_helper( $one, $two, $echo, 'checked');
     
@@ -505,7 +505,7 @@ function checked( $one, $two, $echo = true ){
 *   Outputs 'disabled' if the value matches
 *
 *   @param mixed $one - the first value to compare
-*   @param mixed $two - the second value to compare
+*   @param mixed $two - the second value to compare - defaults to disabled
 *   @param bool $echo - whether to echo the result
 *
 *   @return string - either 'disabled' if equal, or empty string otherwise
@@ -514,7 +514,7 @@ function checked( $one, $two, $echo = true ){
 *	@modified	1.1
 */
 if( ! function_exists( 'disabled' ) ){
-function disabled( $one, $two, $echo = true ){
+function disabled( $one, $two = 'disabled', $echo = true ){
     
     return __checked_selected_helper( $one, $two, $echo, 'disabled');
     
