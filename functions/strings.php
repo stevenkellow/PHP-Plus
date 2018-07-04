@@ -61,13 +61,14 @@
 *
 *	Note: for passwords please use password_hash (PHP 7 or later)
 *
-*  	@since 0.1
-*  	@modified 1.0.2
-*
 *  	@param int $length - number of characters for random string (default 36 character string)
 *	@param array | bool $symbols - false for no symbols, true for default symbols or array of custom symbols to use
 *
 *	@return string - random string made up of the specified number of characters
+*
+*  	@since 0.1
+*  	@modified 1.0.2
+*
 */
 
 if( ! function_exists( 'rand_string' ) ){
@@ -127,12 +128,13 @@ function rand_string( $length = 36, $symbols = true ){
 *
 *   Verify if an email format is valid
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $email - email to validate
 *
 *   @return true | false - true if email validates, false otherwise
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'validate_email' ) ){
 function validate_email( $email ){
@@ -151,12 +153,13 @@ function validate_email( $email ){
 *
 *   Alias of validate_email
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $email - email to validate
 *
 *   @return true | false - true if email validates, false otherwise
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'is_email' ) ){
 function is_email( $email ){
@@ -171,13 +174,14 @@ function is_email( $email ){
 *
 *   Verify if a url format is valid
 *
-*   @since 0.1
-*   @modified 1.1
-*
 *	@param string $email - url to validate
 *   @param bool $ssl - whether to validate that the URL is HTTPS or not
 *
 *   @return bool - true if url validates, false otherwise
+*
+*   @since 0.1
+*   @modified 1.1
+*
 */
 if( ! function_exists( 'validate_url' ) ){
 function validate_url( $url, $ssl = false ){
@@ -216,13 +220,14 @@ function validate_url( $url, $ssl = false ){
 *
 *   Alias of validate_url
 *
-*   @since 0.1
-*   @modified 1.1
-*
 *	@param string $url - url to validate
 *   @param bool $ssl - whether to validate that the URL is HTTPS or not
 *
 *   @return bool - true if url validates, false otherwise
+*
+*   @since 0.1
+*   @modified 1.1
+*
 */
 if( ! function_exists( 'is_email' ) ){
 function is_url( $url, $ssl = false ){
@@ -240,12 +245,13 @@ function is_url( $url, $ssl = false ){
 *	@author Web Developer Plus
 *	@source http://webdeveloperplus.com/php/21-really-useful-handy-php-code-snippets/
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $text - the text to turn into a slug
 *
 *	@return string $slug - the slug text
+*
+*   @since 0.1
+*   @modified 0.1
+*
 *
 */
 if( ! function_exists( 'slug') ){
@@ -263,11 +269,12 @@ function slug( $string ){
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/trailingslashit/
 *
+*	@param string $string What to add the trailing slash to.
+*	@return string String with trailing slash added.
+*
 *   @since 0.1
 *   @modified 0.1
 *
-*	@param string $string What to add the trailing slash to.
-*	@return string String with trailing slash added.
 *
 */
 if( ! function_exists( 'trailingslash' ) ){
@@ -284,11 +291,11 @@ function trailingslash( $string ){
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/untrailingslashit/
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $string What to remove the trailing slashes from.
 *	@return string String without the trailing slashes.
+*
+*   @since 0.1
+*   @modified 0.1
 *
 */
 if( ! function_exists( 'untrailingslash' ) ){
@@ -305,11 +312,13 @@ function untrailingslash( $string ){
 *	@author Alexander Rath
 *	@source http://www.jonasjohn.de/snippets/php/hex-string.htm
 *
+*	@param string $func_string - string to turn into hex
+*
+*	@return string $func_retVal - returned hex
+*
 *   @since 0.1
 *   @modified 0.1
 *
-*	@param string $func_string - string to turn into hex
-*	@return string $func_retVal - returned hex
 *
 */
 if( ! function_exists( 'str2hex') ){
@@ -330,11 +339,13 @@ function str2hex( $func_string ){
 *	@author Alexander Rath
 *	@source http://www.jonasjohn.de/snippets/php/hex-string.htm
 *
+*	@param string $func_string - hex to turn into string
+*
+*	@return string $func_retVal - returned string
+*
 *   @since 0.1
 *   @modified 0.1
 *
-*	@param string $func_string - hex to turn into string
-*	@return string $func_retVal - returned string
 *
 */
 if( ! function_exists( 'hex2str') ){
@@ -355,10 +366,11 @@ function hex2str( $func_string ){
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/mbstring_binary_safe_encoding/
 *
+*	@param bool $reset - Whether to reset the encoding back to a previously-set encoding.
+*
 *   @since 0.1
 *   @modified 0.1
 *
-*	@param bool $reset - Whether to reset the encoding back to a previously-set encoding.
 *
 */
 if( ! function_exists( 'mbstring_binary_safe_encoding' ) ){
@@ -411,12 +423,12 @@ function reset_mbstring_encoding(){
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/seems_utf8/
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $str - string to check for UTF8 encoding
 *
 *	@return bool True if $str fits a UTF-8 model, false otherwise.
+*
+*   @since 0.1
+*   @modified 0.1
 *
 */
 if( !function_exists( 'seems_utf8' ) ){
@@ -450,13 +462,13 @@ function seems_utf8( $str ){
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/utf8_uri_encode/
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $utf8_string - String to check.
 *	@param int $length - max length of the string
 *
 *	@return string $string - String with Unicode encoded for URI.
+*
+*   @since 0.1
+*   @modified 0.1
 *
 */
 if( ! function_exists( 'utf8_uri_encode' ) ){
@@ -511,12 +523,13 @@ function utf8_uri_encode( $utf8_string, $length = 0 ){
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/map_deep/
 *
-*	@since	0.1
-*	@modified	0.1
-*
 *	@param mixed $value The array, object, or scalar.
 *	@param callback $callback The function to map onto $value.
 *	@return mixed $value The value with the callback applied to all non-arrays and non-objects inside it.
+*
+*	@since	0.1
+*	@modified	0.1
+*
 */
 if( ! function_exists( 'map_deep') ){
 function map_deep( $value, $callback ){
@@ -546,11 +559,12 @@ function map_deep( $value, $callback ){
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/rawurlencode_deep/
 *
+*	@param mixed $value The array or string to be encoded.
+*	@return mixed $value The encoded value.
+*
 *	@since	0.1
 *	@modified	0.1
 *
-*	@param mixed $value The array or string to be encoded.
-*	@return mixed $value The encoded value.
 */
 if( ! function_exists( 'rawurldecode_deep' ) ){
 function rawurlencode_deep( $value ){
@@ -567,11 +581,12 @@ function rawurlencode_deep( $value ){
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/urldecode_deep/
 *
+*	@param mixed $value The array or string to be decoded.
+*	@return mixed $value The decoded value.
+*
 *	@since	0.1
 *	@modified	0.1
 *
-*	@param mixed $value The array or string to be decoded.
-*	@return mixed $value The decoded value.
 */
 if( ! function_exists( 'urldecode_deep') ){
 function urldecode_deep( $value ){
@@ -589,14 +604,15 @@ function urldecode_deep( $value ){
 *	@author Dark Launch
 *	@source https://www.darklaunch.com/2009/05/23/php-xml-encode-using-domdocument-convert-array-to-xml-json-encode
 *
-*	@since	0.1
-*	@modified	0.1
-*
 *	@param mixed $mixed - data to encode-using-domdocument-convert-array-to-xml-json-encode
 *	@param mixed $domElement -
 *	@param mixed $DOMDocument -
 *
 *	@return mixed XML encoded data
+*
+*	@since	0.1
+*	@modified	0.1
+*
 */
 if( ! function_exists( 'xml_encode') ){
 function xml_encode( $mixed, $domElement=null, $DOMDocument=null ){
@@ -653,12 +669,13 @@ function xml_encode( $mixed, $domElement=null, $DOMDocument=null ){
 *	@author user1398287
 *	@source http://stackoverflow.com/questions/6578832/how-to-convert-xml-into-array-in-php
 *
-*	@since	0.1
-*	@modified	0.1
-*
 *	@param string $xmlstring - XML data to convert to array
 *
 *	@return array | bool - $array if successful, false if not
+*
+*	@since	0.1
+*	@modified	0.1
+*
 */
 if( ! function_exists( 'xml_decode') ){
 function xml_decode( $xmlstring ){
@@ -686,13 +703,14 @@ function xml_decode( $xmlstring ){
 *	@author OWASP
 *	@source https://www.owasp.org/index.php/PHP_Security_Cheat_Sheet#No_tags
 *
-*   @since 0.1
-*   @modified 1.0.2
-*
 *   @param string $data - data to secure
 *	@param string $encoding - how you want to encode the data
 *
 *	@return string - XSS-safe string
+*
+*   @since 0.1
+*   @modified 1.0.2
+*
 */
 if( ! function_exists( 'xssafe') ){
 function xssafe( $data, $encoding='UTF-8'){
@@ -711,12 +729,13 @@ function xssafe( $data, $encoding='UTF-8'){
 *	@author OWASP
 *	@source https://www.owasp.org/index.php/PHP_Security_Cheat_Sheet#No_tags
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param string $data - data to secure
 *
 *	@return string - XSS-safe string
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'xecho') ){
 function xecho( $data ){
@@ -732,13 +751,14 @@ function xecho( $data ){
 *	@author WordPress
 *	@source https://developer.wordpress.org/reference/functions/zeroise/
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param int $number - number to pad
 *   @param int $length - max length of the string
 *
 *   @return string - string with leading zeros
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'zeroise') ){
 function zeroise( $number, $length ){
@@ -751,13 +771,14 @@ function zeroise( $number, $length ){
 *
 *   Alias of str_repeat()
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param string $string - string to repeat
 *   @param int $number - number of times to repeat the string
 *
 *   @return string $new_string - string repeated
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'rept') ){
 function rept( $string, $number ){
@@ -771,8 +792,6 @@ function rept( $string, $number ){
 /**
 *   repeat_string
 *
-*   Alias of str_repeat()
-*
 *   @since 0.1
 *   @modified 0.1
 *
@@ -780,6 +799,9 @@ function rept( $string, $number ){
 *   @param int $number - number of times to repeat the string
 *
 *	@return string $new_string - string repeated
+*
+*   Alias of str_repeat()
+*
 */
 if( ! function_exists( 'repeat_string') ){
 function repeat_string( $string, $number ){
@@ -794,13 +816,14 @@ function repeat_string( $string, $number ){
 *
 *   Makes first character upper case and rest lower case for each word in a string - similar to same function in Excel
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param string $string - string to check
 *   @param array $split_chars - array of characters to use when splitting a string
 *
 *   @return string $string - updaed string
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'proper' ) ){
 function proper( $string, $split_chars = array( '-', ' ' ) ){
@@ -856,13 +879,14 @@ function proper( $string, $split_chars = array( '-', ' ' ) ){
 *
 *   Alias of proper
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param string $string - string to check
 *   @param array $split_chars - array of characters to use when splitting a string
 *
 *   @return string $string - updaed string
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'sentence_case' ) ){
 function sentence_case( $string, $split_chars = null ){
@@ -877,10 +901,11 @@ function sentence_case( $string, $split_chars = null ){
 *
 *   Check that passed arguments have a string length of 1 or more
 *
+*   @return bool - true if all arguments are strings of length greater than 1, else false
+*
 *   @since 1.1
 *   @modified 1.1
 *
-*   @return bool - true if all arguments are strings of length greater than 1, else false
 */
 if( ! function_exists( 'strcheck' ) ){
 function strcheck(){
@@ -910,12 +935,13 @@ function strcheck(){
 *   @author WordPress
 *   @see https://developer.wordpress.org/reference/functions/sanitize_key/
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $key String key
 *
 *   @return string Sanitized key
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'sanitize_key' ) ){
 function sanitize_key( $key ){
@@ -934,12 +960,13 @@ function sanitize_key( $key ){
 *
 *   @see http://php.net/manual/en/function.ctype-xdigit.php
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $string - the string to check
 *
 *   @return bool - true if hexadecimal, false if not
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'is_hex' ) ){
 function is_hex( $string ){
@@ -977,14 +1004,15 @@ function is_alphanum( $string ){
 *   @author MrHus
 *   @see https://stackoverflow.com/a/4312630/7956549
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $haystack - string to search in
 *   @param string $needle - string to search for
 *   @param bool $insensitive - whether to make the comparison case insensitive
 *
 *   @return bool - true if it does, false if it doesn't
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'starts_with' ) ){
 function starts_with( $haystack, $needle, $insensitive = false ){
@@ -1010,14 +1038,15 @@ function starts_with( $haystack, $needle, $insensitive = false ){
 *   @author MrHus
 *   @see https://stackoverflow.com/a/4312630/7956549
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $haystack - string to search in
 *   @param string $needle - string to search for
 *   @param bool $insensitive - whether to make the comparison case insensitive
 *
 *   @return bool - true if it does, false if it doesn't
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'ends_with' ) ){
 function ends_with( $haystack, $needle, $insensitive = false ){
@@ -1044,13 +1073,14 @@ function ends_with( $haystack, $needle, $insensitive = false ){
 *   @author brandonwamboldt
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param  string $string  The string to convert to boolean
 *   @param  bool   $default The value to return if we can't match any
 *                          yes/no words
 *   @return boolean
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'str_to_bool' ) ){
 function str_to_bool( $string, $default = false ){
@@ -1073,13 +1103,14 @@ function str_to_bool( $string, $default = false ){
 *   @author brandonwamboldt
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param  string $haystack - string to check
 *   @param  string $needle - string to find
 *
 *   @return boolean
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'str_contains' ) ){
 function str_contains( $haystack, $needle, $insensitive = false ){
@@ -1097,13 +1128,14 @@ function str_contains( $haystack, $needle, $insensitive = false ){
 *
 *   Get information from an email address
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $email - the email address to parse
 *   @param array $delimiters - additional delimiters to use when parsing names
 *
 *   @return array $output - details of the email
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'parse_email' ) ){
 function parse_email( $email, $delimiters = array() ){
@@ -1148,12 +1180,13 @@ function parse_email( $email, $delimiters = array() ){
 *
 *   Create a string of attributes that can be used for a HTML element
 *
-*	@since	1.1
-*	@modified 1.1
-*
 *   @param array $atts - the element attributes
 *
 *   @return string $atts_string - the string of HTMl attributes
+*
+*	@since	1.1
+*	@modified 1.1
+*
 */
 if( ! function_exists( 'html_atts_string' ) ){
 function html_atts_string( $atts ){
@@ -1183,13 +1216,14 @@ function html_atts_string( $atts ){
 *   @author WordPress
 *   @see https://developer.wordpress.org/reference/functions/make_clickable/
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $ret - the original string
 *   @param array $atts - any attributes to add to the final link
 *
 *   @return string - the string with new links
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'make_clickable' ) ){
 function make_clickable( $ret, $atts = array() ){

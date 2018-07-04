@@ -36,12 +36,12 @@
 *
 *	Returns the offset from the origin timezone to the remote timezone, in seconds.
 *
-*	@since 1.1
-*	@modified	1.1
-*
 *	@param $remote_tz;
 *	@param $origin_tz; If null the servers current timezone is used as the origin.
 *	@return int;
+*
+*	@since 1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'get_timezone_offset' ) ){
 function get_timezone_offset( $remote_tz, $origin_tz = null ){
@@ -64,12 +64,12 @@ function get_timezone_offset( $remote_tz, $origin_tz = null ){
 *
 *	Returns the offset from the origin timezone to the GMT, in seconds.
 *
-*	@since 1.1
-*	@modified	1.1
-*
 *	@param $timezone;
 *
 *	@return int;
+*
+*	@since 1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'get_gmt_offset' ) ){
 function get_gmt_offset( $timezone = false ){
@@ -94,15 +94,15 @@ function get_gmt_offset( $timezone = false ){
 *	otherwise it simply subtracts the value of the 'gmt_offset' option. Return
 *	format can be overridden using the $format parameter.
 *
+*	@param string $string The date to be converted.
+*	@param string $format The format string for the returned date (default is Y-m-d H:i:s)
+*	@return string GMT version of the date provided.
+*
 *	@author WordPress
 *   @see https://developer.wordpress.org/reference/functions/get_gmt_from_date/
 *
 *	@since 1.1
 *	@modified	1.1
-*
-*	@param string $string The date to be converted.
-*	@param string $format The format string for the returned date (default is Y-m-d H:i:s)
-*	@return string GMT version of the date provided.
 */
 if( ! function_exists( 'get_gmt_from_date' ) ){
 function get_gmt_from_date( $string, $format = 'Y-m-d H:i:s' ){
@@ -139,15 +139,15 @@ function get_gmt_from_date( $string, $format = 'Y-m-d H:i:s' ){
 *	it simply adds the value of gmt_offset. Return format can be overridden
 *	using the $format parameter
 *
+*	@param string $string The date to be converted.
+*	@param string $format The format string for the returned date (default is Y-m-d H:i:s)
+*	@return string Formatted date relative to the timezone / GMT offset.
+*
 *	@author WordPress
 *   @see https://developer.wordpress.org/reference/functions/get_date_from_gmt/
 *
 *	@since 1.1
 *	@modified	1.1
-*
-*	@param string $string The date to be converted.
-*	@param string $format The format string for the returned date (default is Y-m-d H:i:s)
-*	@return string Formatted date relative to the timezone / GMT offset.
 */
 if( ! function_exists( 'get_date_from_gmt' ) ){
 function get_date_from_gmt( $string, $format = 'Y-m-d H:i:s' ){
@@ -180,12 +180,13 @@ function get_date_from_gmt( $string, $format = 'Y-m-d H:i:s' ){
 *	@author WordPress
 *   @see https://developer.wordpress.org/reference/functions/human_time_diff/
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *	@param int $from Unix timestamp from which the difference begins.
 *	@param int $to   Optional. Unix timestamp to end the time difference. Default becomes time() if not set.
 *	@return string Human readable time difference.
+*
+*	@since	1.1
+*	@modified	1.1
+
 */
 if( ! function_exists( 'human_time_diff' ) ){
 function human_time_diff( $from, $to = '' ){
@@ -256,12 +257,12 @@ function human_time_diff( $from, $to = '' ){
 *
 *   Return the human readable difference between a given time and now
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *	@param int $from Unix timestamp from which the difference begins.
 *
 *   @return string - Human readable time difference.
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'time_ago' ) ){
 function time_ago( $time ){
@@ -277,14 +278,13 @@ function time_ago( $time ){
 *
 *	Output an MySQL friendly date/time stamp
 *
-*	@since 1.0.2
-*	@modified 1.1
-*
 *	@param string | int - $time - a time to base the output on
 *	@param string $date_time - whether to output datetime or just date
 *
 *	@return string - MySQL datetime string
 *
+*	@since 1.0.2
+*	@modified 1.1
 */
 if( ! function_exists( 'date_mysql' ) ){
 function date_mysql( $time = false, $date_time = 'datetime' ){
@@ -322,13 +322,13 @@ function date_mysql( $time = false, $date_time = 'datetime' ){
 *   @author maxie
 *   @source http://php.net/manual/en/function.easter-date.php#83794
 *
-*   @since  1.0
-*   @modified  1.1
-*
 *	@param int $year - year to calculate easter for (default: current year)
 *	@param string $date_format - the format to format the date in
 *
 *	@return int - timestamp of Easter (may want to use date to format)
+*
+*   @since  1.0
+*   @modified  1.1
 */
 if( ! function_exists( 'easter_date_orthodox') ){
 function easter_date_orthodox( $year = false, $date_format = false ){ 
@@ -357,14 +357,14 @@ function easter_date_orthodox( $year = false, $date_format = false ){
 /**
 *   is_past
 *
-*   Check if a date is in the past
-*
-*	@since	1.1
-*	@modified	1.1
+*   Check if a given date/timestamp is in the past
 *
 *   @param string $date - the date to check
 *
 *   @return bool - true if in past, false if not
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_past' ) ){
 function is_past( $date ){
@@ -390,14 +390,14 @@ function is_past( $date ){
 /**
 *   is_future
 *
-*   Check if a date is in the future
-*
-*	@since	1.1
-*	@modified	1.1
+*   Check if a given date/timestamp is in the future
 *
 *   @param string $date - the date to check
 *
 *   @return bool - true if in future, false if not
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_future' ) ){
 function is_future( $date ){
@@ -423,14 +423,14 @@ function is_future( $date ){
 /**
 *   is_today
 *
-*   Check if a timestamp is today
-*
-*	@since	1.1
-*	@modified	1.1
+*   Check if a given date/timestamp is today
 *
 *   @param string - a timestamp
 *
 *   @return bool - true if today, false if not
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_today' ) ){
 function is_today( $timestamp ){
@@ -456,14 +456,14 @@ function is_today( $timestamp ){
 /**
 *   is_yesterday
 *
-*   Check if a timestamp is yesterday
-*
-*	@since	1.1
-*	@modified	1.1
+*   Check if a given date/timestamp is yesterday
 *
 *   @param string - a timestamp
 *
 *   @return bool - true if yesterday, false if not
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_yesterday' ) ){
 function is_yesterday( $timestamp ){
@@ -489,14 +489,14 @@ function is_yesterday( $timestamp ){
 /**
 *   is_tomorrow
 *
-*   Check if a timestamp is tomorrow
-*
-*	@since	1.1
-*	@modified	1.1
+*   Check if a given date/timestamp is tomorrow
 *
 *   @param string - a tomorrow
 *
 *   @return bool - true if tomorrow, false if not
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'is_tomorrow' ) ){
 function is_tomorrow( $timestamp ){
@@ -528,13 +528,14 @@ function is_tomorrow( $timestamp ){
 *   @author Chris Coyier
 *   @source https://css-tricks.com/snippets/php/automatic-copyright-year/
 *
-*   @since 0.1
-*   @modified 0.1
 *
 *	@param int $year - a start year for copyright
 *   @param bool $roman - use roman numerals for year
 *
 *	@return string - copyright notice like (c) 2017, (c) MMVII or (c) 2012 - 2017
+*
+*   @since 0.1
+*   @modified 0.1
 */
 if( ! function_exists( 'copyright' ) ){
 function copyright( $year = false, $roman = false ){
@@ -568,13 +569,13 @@ function copyright( $year = false, $roman = false ){
 *   @author WordPress
 *   @see https://developer.wordpress.org/reference/functions/current_time/
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $type - either 'mysql' for MySQL format, 'timestamp' for integer, or PHP date format
 *   @param int | bool $gmt - whether to use GMT time
 *
 *   @return string - the date
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'current_time' ) ){
 function current_time( $type, $gmt = 0 ){
@@ -597,14 +598,15 @@ function current_time( $type, $gmt = 0 ){
 *   @author ViNce
 *   @see https://stackoverflow.com/a/4312630/7956549
 *
-*	@since	1.1
-*	@modified    1.1
 *
 *   @param string $start - the first date to include
 *   @param string $end - the last date in the range
 *   @param string $format - the date format to use
 *
 *   @return array $dates - an array of dates, formatted as requested
+*
+*	@since	1.1
+*	@modified    1.1
 */
 if( ! function_exists( 'create_date_range' ) ){
 function create_date_range( $start, $end, $format = 'Y-m-d' ){
@@ -639,15 +641,15 @@ function create_date_range( $start, $end, $format = 'Y-m-d' ){
 *
 *   Get a list of working days between two dates
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $start - the first date to include
 *   @param string $end - the last date in the range
 *   @param string $format - the date format to use
 *   @param array $working_days - an array of day digits that are "working" days
 *
 *   @return array $dates - an array of dates, formatted as requested
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'working_date_range' ) ){
 function working_date_range( $start, $end, $format = 'Y-m-d', $working_days = array( 1, 2, 3, 4, 5 ) ){
@@ -682,14 +684,15 @@ function working_date_range( $start, $end, $format = 'Y-m-d', $working_days = ar
 *
 *   Count the days between two dates
 *
-*	@since	1.1
-*	@modified	1.1
 *
 *   @param string $start - the first date to include
 *   @param string $end - the last date in the range
 *   @param array $working_days - if only counting certain days, an array of day digits that are "working" days
 *
 *   @return int - the number of days
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'days_between' ) ){
 function days_between( $start, $end, $working_days = array() ){

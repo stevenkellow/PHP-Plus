@@ -68,13 +68,14 @@ function session_starter( $name = false, $options = array() ){
 *
 *   Use function to manipulate PHP sessions
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $key - session key to get/set
 *	@param string $value - session value to set
 *
 *	@return mixed boolean or mixed - returns true if set successful, value if get successful
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'session' ) ){
 function session( $key = null, $value = null ){
@@ -115,13 +116,14 @@ function session( $key = null, $value = null ){
 *
 *	Send the user to another location
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $url - url to send the user to
 *	@param int $response - default response code for the redirect
 *
 *	@return bool true | false - true if the url is valid, false otherwise
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'redirect') ){
 function redirect( $url, $response = 301 ){
@@ -151,10 +153,11 @@ function redirect( $url, $response = 301 ){
 *   @author Chris Coyier et. al.
 *   @source https://css-tricks.com/snippets/php/get-current-page-url/
 *
+*	@return string $act_url - the current URL
+*
 *   @since 0.1
 *   @modified 1.1
 *
-*	@return string $act_url - the current URL
 */
 if( ! function_exists( 'current_url') ){
 function current_url(){
@@ -171,10 +174,11 @@ function current_url(){
 *
 *   Start a timer
 *
+*   @returns time - time in microseconds
+*
 *   @since 0.1
 *   @modified 0.1
 *
-*   @returns time - time in microseconds
 *
 */
 if( ! function_exists( 'timer_start') ){
@@ -190,12 +194,13 @@ function timer_start(){
 *
 *   End a timer and get the difference from the time started
 *
+*   @param time $old_time - the time the timer started
+*
+*   @return time - time between now and the time passed into function
+*
 *   @since 0.1
 *   @modified 0.1
 *
-*   @param time $old_time - the time the timer started
-*
-*   @returns time - time between now and the time passed into function
 *
 */
 if( ! function_exists( 'timer_end') ){
@@ -213,12 +218,13 @@ function timer_end( $old_time ){
 *
 *   Set content type of the output
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $type - the file type
 *
 *   @return bool - true if set, false if not
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'set_content_type' ) ){
 function set_content_type( $type ){
@@ -278,12 +284,13 @@ function delete_all_cookies(){
 *   @author brandonwamboldt
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param  string  $content_type The content type to send out
 *
 *   @return bool - true if set, false if not
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'utf8_headers' ) ){
 function utf8_headers( $content_type = 'text/html'){
@@ -308,15 +315,16 @@ function utf8_headers( $content_type = 'text/html'){
 *   @author brandonwamboldt
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $filename The name of the filename to display to browsers
 *
 *   @param string $content  The content to output for the download.
 *   If you don't specify this, just the headers will be sent
 *
 *   @return bool - true if set, false if not
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'force_download' ) ){
 function force_download( $filename, $content = false ){
@@ -361,10 +369,11 @@ function force_download( $filename, $content = false ){
 *   @author brandonwamboldt
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
+*   @return bool - true if set, false if not
+*
 *	@since	1.1
 *	@modified	1.1
 *
-*   @return bool - true if set, false if not
 */
 if( ! function_exists( 'nocache_headers' ) ){
 function nocache_headers(){

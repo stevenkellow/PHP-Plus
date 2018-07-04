@@ -21,13 +21,14 @@
 *	@author Scott Arciszewski
 *	@source http://stackoverflow.com/a/31683058/7956549
 *
-*   @since 0.1
-*   @modified 1.0.2
-*
 *	@param string $name - form name that you want to validate (so each form has unique token)
 *	@param int $length - length of the csrf_token in bytes
 *
 *   @return hidden input tag with the value of the hashed_token
+*
+*   @since 0.1
+*   @modified 1.0.2
+*
 */
 if( ! function_exists( 'csrf_token' ) ){
 function csrf_token( $name = 'csrf_token', $length = 32 ){
@@ -61,12 +62,13 @@ function csrf_token( $name = 'csrf_token', $length = 32 ){
 *	@author Scott Arciszewski
 *	@source http://stackoverflow.com/a/31683058/7956549
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $name - form name that you want to validate (so each form has unique token)
 *
 *   @return true | false - true if csrf validates, false otherwise
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'csrf_verify' ) ){
 function csrf_verify( $name = 'csrf_token' ){
@@ -117,12 +119,13 @@ function csrf_verify( $name = 'csrf_token' ){
 *   @author WordPress
 *   @see https://developer.wordpress.org/reference/functions/antispambot/
 *
-*   @since 1.1
-*   @modified 1.1
-*
 *   @param string $email_address Email address.
 *   @param int    $hex_encoding  Optional. Set to 1 to enable hex encoding.
 *   @return string Converted email address.
+*
+*   @since 1.1
+*   @modified 1.1
+*
 */
 if( ! function_exists( 'antispambot' ) ){
 function antispambot( $email_address, $hex_encoding = 0 ){

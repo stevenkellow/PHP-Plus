@@ -18,6 +18,7 @@
 *   csv_to_json
 *   json_to_csv
 *   json_file_to_array
+*   json_get_contents
 *   array_to_json_file
 *   json_encode_utf8
 *   json_encode_pretty
@@ -51,14 +52,14 @@
 *
 *   Wrap the default PHP mail function to allow for formatted emails and multiple sending
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param string/array $to - string of email to be sent to (if 1) or array if multiple
 *   @param string       $subject - string of email's subject
 *   @param string       $message - string of email's message, can also be function to output email contents
 *
 *   @return bool - true if the mail is sent, false if not
+*
+*   @since 0.1
+*   @modified 0.1
 */
 
 if( ! function_exists( 'html_mail' ) ){
@@ -100,9 +101,6 @@ function html_mail( $to, $subject, $message, $from_email, $from_name ){
 *
 *   Simplify using REST cURL requests in PHP
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $url - url to contact about the data
 *	@param string $user_auth - user authorisation if needed
 *	@param string $rest - 'GET' | 'PUT' | 'PATCH' | 'POST' - the REST verb for the data
@@ -110,6 +108,9 @@ function html_mail( $to, $subject, $message, $from_email, $from_name ){
 *	@param string $type - 'XML' | 'JSON' - the type of data we're wanting to send
 *
 *	@return mixed $data - whatever is retrieved or a confirmation of send, or if curl isn't installed false
+*
+*   @since 0.1
+*   @modified 0.1
 */
 if( ! function_exists( 'quick_curl' ) ){
 function quick_curl( $url, $user_auth = null, $rest = 'GET', $input = null, $type = 'JSON'){
@@ -180,13 +181,12 @@ function quick_curl( $url, $user_auth = null, $rest = 'GET', $input = null, $typ
 *
 *   Output the Universal Analytics script for Google
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $tracking_code - standard Google Analytics tracking code, e.g. UA-xxxxxxxx-x
 *
 *	@return Analytics tracking code
 *
+*   @since 0.1
+*   @modified 0.1
 */
 if( ! function_exists( 'google_analytics' ) ){
 function google_analytics( $tracking_code = null ){
@@ -219,13 +219,12 @@ function google_analytics( $tracking_code = null ){
 *
 *   Output the Facebook Pixel
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $pixel_id - standard Facebook pixel ID
 *
 *	@return Facebook pixel code
 *
+*   @since 0.1
+*   @modified 0.1
 */
 if( ! function_exists( 'facebook_pixel' ) ){
 function facebook_pixel( $pixel_id ){
@@ -260,14 +259,14 @@ function facebook_pixel( $pixel_id ){
 *
 *   Turn an uploaded CSV file into an array
 *
-*   @since 0.1
-*   @modified 1.1
 *
 *	@param file $file - a CSV file uploaded
 *   @param bool $header_key - whether the first line is a header that can be used as a key
 *
 *	@return array $csv_array
 *
+*   @since 0.1
+*   @modified 1.1
 */
 if( ! function_exists( 'csv_to_array') ){
 function csv_to_array( $file, $header_key = true ){
@@ -339,14 +338,13 @@ function csv_to_array( $file, $header_key = true ){
 *	@author Richard
 *	@source http://codecall.net/2014/03/13/9-most-useful-php-code-snippets-for-developers/
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param array $data - array to turn into CSV
 *   @param file $file - place to save file to
 *
 *	@return file $contents - CSV to use
 *
+*   @since 0.1
+*   @modified 0.1
 */
 if( ! function_exists( 'array_to_csv') ){
 function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"'){
@@ -376,13 +374,12 @@ function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"'){
 *	@author Henrik P. Hessel
 *	@source http://stackoverflow.com/a/6041773/7956549
 *
-*   @since 0.1
-*   @modified 1.1
-*
 *	@param string $string - data to check
 *
 *	@return bool true if it's json, false if not
 *
+*   @since 0.1
+*   @modified 1.1
 */
 if( ! function_exists( 'is_json') ){
 function is_json( $string ){
@@ -406,14 +403,14 @@ function is_json( $string ){
 *
 *   Turn an uploaded CSV file into a json file
 *
-*   @since 0.1
-*   @modified 1.1
-*
 *	@param file $file - a CSV file uploaded
 *   @param string $location - path to create JSON file or null to return as json_encoded array
 *   @param bool $force - force the creation of the directory if it doesn't exist
 *
 *	@return mixed - either a json file, json array or false
+*
+*   @since 0.1
+*   @modified 1.1
 *
 */
 if( ! function_exists( 'csv_to_json') ){
@@ -461,13 +458,13 @@ function csv_to_json( $file, $location = null, $force = false ){
 *
 *   Turn an a JSON file into a CSV
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param array $data - json array or file to turn into CSV
 *   @param file $file - place to save file to
 *
 *	@return file $contents - CSV to create
+*
+*   @since 0.1
+*   @modified 0.1
 *
 */
 if( ! function_exists( 'json_to_csv') ){
@@ -502,12 +499,13 @@ function json_to_csv( $data, $file, $delimiter = ',', $enclosure = '"'){
 *
 *   Get data from a json file and turn it into an array
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param path $path - string of URL or path to get data from
 *
 *	@return array	- json file in array form
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'json_file_to_array') ){
 function json_file_to_array( $path ){
@@ -518,12 +516,39 @@ function json_file_to_array( $path ){
 }
 
 /**
+*   json_get_contents
+*
+*   Get JSON contents from a file
+*
+*   @param path $path - string of URL or path to get data from
+*
+*	@return array - json file in array form
+*
+*	@since  1.1
+*	@modified   1.1
+*/
+if( ! function_exists( 'json_get_contents' ) ){
+function json_get_contents( $path ){
+    
+    // Try JSON decoding it
+    $result = json_file_to_array( $path );
+    
+    if( is_array( $result ) ){
+        
+        return $result;
+        
+    } else {
+        
+        // Try something else
+        
+    }
+}
+}
+
+/**
 *   array_to_json_file
 *
 *   Create or update a json file with data from an array
-*
-*   @since 0.1
-*   @modified 1.1
 *
 *   @param array 	$array - array of data to put to file
 *   @param string	$path - path of file to create/update
@@ -531,7 +556,11 @@ function json_file_to_array( $path ){
 *   @param bool     $delete - whether to replace a file with new data (default false)
 *   @param bool     $force - force the creation of the directory if it doesn't exist
 *
-*	@reutrn bool	true if file was created, false if not
+*	@return bool	true if file was created, false if not
+*
+*   @since 0.1
+*   @modified 1.1
+*
 */
 if( ! function_exists( 'array_to_json_file') ){
 function array_to_json_file( $array, $path, $update = true, $delete = false, $force = false ){
@@ -600,12 +629,12 @@ function array_to_json_file( $array, $path, $update = true, $delete = false, $fo
 *   @author guilhenfsu
 *   @source http://php.net/manual/en/function.json-encode.php#112020
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param array $data - array to turn into JSON
 *
 *	@return string $json - JSON string
+*
+*   @since 0.1
+*   @modified 0.1
 *
 */
 if( ! function_exists( 'json_encode_utf8') ){
@@ -624,14 +653,15 @@ function json_encode_utf8( $data ){
 *
 *	Output JSON in a formatted way
 *
-*	@since 1.0.2
-*	@modified 1.1
-*
 *	@param array | object - json element
 *   @param string $file - a file to send the output to
 *   @param bool $force - force the creation of the directory if it doesn't exist
 *
 *	@return string - pretty json string or false if it isn't JSON
+*
+*	@since 1.0.2
+*	@modified 1.1
+*
 */
 if( ! function_exists( 'json_encode_pretty' ) ){
 function json_encode_pretty( $json, $file = null, $force = false ){
@@ -725,14 +755,13 @@ function maybe_json_decode( $item, $array = false ){
 *   @author Antonio Max
 *	@source https://stackoverflow.com/a/19391553
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string | file  $xml_input - string or file path in XML format
 *	@param bool       $file - whether a file or string
 *
 *	@return array
 *
+*   @since 0.1
+*   @modified 0.1
 */
 if( ! function_exists('xml_to_array') ){
 function xml_to_json( $xml_input, $file = true ){
@@ -756,14 +785,13 @@ function xml_to_json( $xml_input, $file = true ){
 *   @author Antonio Max
 *	@source https://stackoverflow.com/a/19391553
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string | file  $xml_input - string or file path in XML format
 *	@param bool       $file - whether a file or string
 *
 *	@return array
 *
+*   @since 0.1
+*   @modified 0.1
 */
 if( ! function_exists('xml_to_array') ){
 function xml_to_array( $xml_input, $file = true ){
@@ -784,9 +812,6 @@ function xml_to_array( $xml_input, $file = true ){
 *
 *	@see https://gravatar.com/site/implement/images/php/
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $email The email address
 *	@param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
 *	@param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
@@ -796,6 +821,8 @@ function xml_to_array( $xml_input, $file = true ){
 *
 *	@return String containing either just a URL or a complete image tag
 *
+*   @since 0.1
+*   @modified 0.1
 */
 if( ! function_exists( 'get_gravatar') ){
 function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ){
@@ -820,13 +847,13 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
 *   @author Dador
 *   @see https://stackoverflow.com/a/4914807/7956549
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $folder - the path to the folder you want to zip
 *   @param string $destination_path - where you want to save the zip file
 *
 *   @return string $destination_path - where to find the zip file
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'zip' ) ){
 function zip( $folder, $destination_path ){
@@ -874,14 +901,13 @@ function zip( $folder, $destination_path ){
 *
 *   @see http://php.net/manual/en/ziparchive.extractto.php
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param string $file - path to the file that you want to unzip
 *   @param string $extractPath - path to the folder where you want to extract the contents
 *
 *	@return bool - true if it works, false if it doesn't
 *
+*   @since 0.1
+*   @modified 0.1
 */
 if( ! function_exists( 'unzip') ){
 function unzip( $file, $extractPath ){
@@ -905,12 +931,12 @@ function unzip( $file, $extractPath ){
 *
 *	Return the md5 hash of an email
 *
-*	@since 1.0.2
-*	@modified 1.0.2
-*
 *	@param string $email - an email to hash
 *
 *	@return string | bool - either the md5 hash or false if it's not an email
+*
+*	@since 1.0.2
+*	@modified 1.0.2
 */
 if( ! function_exists( 'hash_email' ) ){
 function hash_email( $email ){
@@ -933,12 +959,12 @@ function hash_email( $email ){
 *
 *	Alias of hash_email
 *
-*	@since 1.0.2
-*	@modified 1.0.2
-*
 *	@param string $email - an email to hash
 *
 *	@return string | bool - either the md5 hash or false if it's not an email
+*
+*	@since 1.0.2
+*	@modified 1.0.2
 */
 if( ! function_exists( 'email_hash' ) ){
 function email_hash( $email ){
@@ -953,12 +979,12 @@ function email_hash( $email ){
 *
 *   Turns a comma separated item into an array
 *
-*	@since	0.1
-*	@modified	0.1
-*
 *   @param string $array_string - the comma separated array
 *
 *   @return array $output - the array
+*
+*	@since	0.1
+*	@modified	0.1
 */
 if( ! function_exists( 'comma_explode' ) ){
 function comma_explode( $array_string ){
@@ -995,12 +1021,12 @@ function comma_explode( $array_string ){
 *
 *   Turns an array into a comma separated string
 *
-*	@since	1.0.3
-*	@modified	1.0.3
-*
 *   @param array $array - an array
 *
 *   @return string $array - a comma delimited string
+*
+*	@since	1.0.3
+*	@modified	1.0.3
 */
 if( ! function_exists( 'comma_implode' ) ){
 function comma_implode( $array ){
@@ -1137,12 +1163,12 @@ function is_serialized( $value, &$result = null ){
 *
 *   Return unserialized value of item
 *
-*	@since	0.1
-*	@modified	1.1
-*
 *   @param mixed $item - item to check
 *
 *   @return mixed $mixed - item ( unserialized if array or object )
+*
+*	@since	0.1
+*	@modified	1.1
 */
 if( ! function_exists( 'maybe_unserialize' ) ){
 function maybe_unserialize( $item ){
@@ -1175,12 +1201,12 @@ function maybe_unserialize( $item ){
 *
 *   Return serialized value of array or object, skip others
 *
-*	@since	0.1
-*	@modified	0.1
-*
 *   @param mixed $item - item to check
 *
 *   @return mixed $tiem - item (serialized if array or object )
+*
+*	@since	0.1
+*	@modified	0.1
 */
 if( ! function_exists( 'maybe_serialize' ) ){
 function maybe_serialize( $item ){
@@ -1206,12 +1232,13 @@ function maybe_serialize( $item ){
 *   @author Theodore R. Smith of PHP Experts, Inc. <http://www.phpexperts.pro/>
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
-*	@since	1.1
-*	@modified	1.1
 *
 *   @param string $brokenSerializedData - serialized string to fix
 *
 *   @return string $fixdSerializedData - fixed serialized string
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'serialize_fix' ) ){
 function serialize_fix( $brokenSerializedData ){
@@ -1228,12 +1255,12 @@ function serialize_fix( $brokenSerializedData ){
 *
 *   Create an array from a pipe separated string
 *
-*	@since	0.1
-*	@modified	0.1
-*
 *   @param string $string - pipe separated string
 *
 *   @return array - array
+*
+*	@since	0.1
+*	@modified	0.1
 */
 if( ! function_exists( 'pipe_decode' ) ){
 function pipe_decode( $string ){
@@ -1255,12 +1282,12 @@ function pipe_decode( $string ){
 *
 *   Converts an array into a pipe separated string
 *
-*	@since	0.1
-*	@modified	0.1
-*
 *   @param array $array - an array
 *
 *   @return string - pipe separated string
+*
+*	@since	0.1
+*	@modified	0.1
 */
 if( ! function_exists( 'pipe_encode' ) ){
 function pipe_encode( $array ){
@@ -1284,12 +1311,12 @@ function pipe_encode( $array ){
 *
 *   Alias of unlink
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $file - path to the file to delete
 *
 *   @return bool - true if the file is deleted, false if not
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'delete_file' ) ){
 function delete_file( $file ){
@@ -1307,13 +1334,14 @@ function delete_file( $file ){
 *   @author brandonwamboldt
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
-*	@since	1.1
-*	@modified	1.1
 *
 *   @param string $dir - the directory to check
 *   @param string $format - whether to return the bytes as integer or formatted
 *
 *   @return integer | string - the size of the directory
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'directory_size' ) ){
 function directory_size( $dir, $format = 'int' ){
@@ -1341,12 +1369,12 @@ function directory_size( $dir, $format = 'int' ){
 *   @author Paulund
 *   @see https://paulund.co.uk/get-the-file-extension-in-php
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $file - the file path
 *
 *   @return string - the file extension
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'get_file_extension' ) ){
 function get_file_extension( $file ){
@@ -1362,13 +1390,14 @@ function get_file_extension( $file ){
 *   @author Padraic
 *   @see http://phpsecurity.readthedocs.io/en/latest/Input-Validation.html#validation-of-input-sources
 *
-*	@since	1.1
-*	@modified	1.1
 *
 *   @param string $location - the URL whose contents we want
 *   @param bool $validate_url - whether to validate the location as a url
 *
 *   @return string | bool - string of file contents if true, else false
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'file_get_contents_secure' ) ){
 function file_get_contents_secure( $location, $validate_url = true ){
@@ -1422,13 +1451,14 @@ function file_get_contents_secure( $location, $validate_url = true ){
 *   @author TrentTompkins
 *   @see http://php.net/manual/en/function.file-put-contents.php#84180
 *
-*	@since	1.1
-*	@modified	1.1
 *
 *   @param string $dir - the directory where the file should go
 *   @param string $contents - the contents of the file
 *
 *   @return bool - true if file created, false if not
+*
+*	@since	1.1
+*	@modified	1.1
 */
 if( ! function_exists( 'file_create' ) ){
 function file_create( $dir, $contents ){

@@ -203,10 +203,10 @@ function get_browser_info( $u_agent = false ){
 *	@author WordPress
 *   @source https://developer.wordpress.org/reference/functions/is_ssl/
 *
+*	@return bool true|false - true if SSL, false otherwise
+*
 *   @since 0.1
 *   @modified 0.1
-*
-*	@return bool true|false - true if SSL, false otherwise
 *
 */
 if( ! function_exists( 'is_ssl' ) ){
@@ -245,10 +245,10 @@ function is_https(){
 *
 *   Print the site's protocol
 *
+*	@return string https:// | http://
+*
 *   @since 0.1
 *   @modified 0.1
-*
-*	@return string https:// | http://
 *
 */
 if( ! function_exists( 'protocol') ){
@@ -271,10 +271,10 @@ function protocol(){
 *	@author Mohit Modan - http://blog.koonk.com/2015/07/46-useful-php-code-snippets-that-can-help-you-with-your-php-projects/
 *	@author Emil Vikström - http://stackoverflow.com/a/3003233/7956549
 *
+*	@return string IP Address
+*
 *   @since 0.1
 *   @modified 0.1
-*
-*	@return string IP Address
 *
 */
 if( ! function_exists( 'get_user_ip' ) ){
@@ -308,13 +308,13 @@ function get_user_ip(){
 *	@author Mohit Modan
 *	@source http://blog.koonk.com/2015/07/46-useful-php-code-snippets-that-can-help-you-with-your-php-projects/
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *	@param array $availableLanguages - languages a site can use
 *	@param string $default - the default language of the site
 *
 *	@return string language
+*
+*   @since 0.1
+*   @modified 0.1
 *
 */
 if( ! function_exists( 'get_user_lang') ){
@@ -343,10 +343,10 @@ function get_user_lang( $availableLanguages, $default = 'en' ){
 *	@author Sander Marechal
 *	@source https://stackoverflow.com/posts/5879078/edit
 *
+*	@return bool - true if windows, false otherwise
+*
 *   @since 0.1
 *   @modified 0.1
-*
-*	@return bool - true if windows, false otherwise
 *
 */
 if( ! function_exists('is_windows') ){
@@ -369,10 +369,10 @@ function is_windows(){
 *	@author Sander Marechal
 *	@source https://stackoverflow.com/posts/5879078/edit
 *
+*	@return bool - true if windows, false otherwise
+*
 *   @since 0.1
 *   @modified 0.1
-*
-*	@return bool - true if windows, false otherwise
 *
 */
 if( ! function_exists('is_linux') ){
@@ -493,10 +493,11 @@ function is_nginx(){
 *   @author WordPress
 *   @see https://developer.wordpress.org/reference/functions/wp_is_mobile/
 *
+*   @return bool - true if mobile, false if not
+*
 *   @since 1.1
 *   @modified  1.1
 *
-*   @return bool - true if mobile, false if not
 */
 if( ! function_exists( 'is_mobile') ){
 function is_mobile(){

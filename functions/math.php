@@ -41,12 +41,12 @@
 *   @author WordPress
 *   @source https://developer.wordpress.org/reference/functions/absint/
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param integer $number - number to return absolute
 *
 *   @return integer
+*
+*   @since 0.1
+*   @modified 0.1
 */
 if( ! function_exists( 'absint') ){
 function absint( $number ){
@@ -62,13 +62,14 @@ function absint( $number ){
 *   @author Mucello
 *   @source http://php.net/manual/en/function.array-sum.php
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
 *
 *   @return float/int $average - the average of all elements
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'mean') ){
 function mean(){
@@ -108,13 +109,14 @@ function mean(){
 *   @author Mchl
 *   @source https://codereview.stackexchange.com/a/223
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
 *
 *   @return float/int $average - the average of all elements
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'median' ) ){
 function median(){
@@ -164,13 +166,14 @@ function median(){
 *   @author White Elephant
 *   @source https://stackoverflow.com/a/12036174/7956549
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
 *
 *   @return int $average - the mode of all elements
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'mode' ) ){
 function mode(){
@@ -209,13 +212,14 @@ function mode(){
 *
 *   Get the average of a set of values in an array (alias for Mean )
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param array $array - an array with elements
 *   @param numbers - list of numbers to average
 *
 *   @return float/int $average - the average of all elements
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'average') ){
 function average(){
@@ -237,12 +241,13 @@ function average(){
 *   @author Pawel Dubiel
 *   @source http://stackoverflow.com/a/9153969
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param integer $number - number to check
 *
 *   @return bool - true if it's even, false if it's not
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'is_even' ) ){
 function is_even( $number ){
@@ -264,12 +269,13 @@ function is_even( $number ){
 *   @author Pawel Dubiel
 *   @source http://stackoverflow.com/a/9153969
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param integer $number - number to check
 *
 *   @return bool - true if it's odd, false if it's not
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'is_odd' ) ){
 function is_odd( $number ){
@@ -291,13 +297,14 @@ function is_odd( $number ){
 *   @author taking sides
 *   @source http://php.net/manual/en/function.round.php#114573
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param integer $number - number to round
 *	@param integer $precision - number of decimal places to round to
 *
 *   @return integer | float - rounded number
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'round_up') ){
 function round_up( $number, $precision = 2 ){
@@ -314,13 +321,14 @@ function round_up( $number, $precision = 2 ){
 *   @author taking sides
 *   @source http://php.net/manual/en/function.round.php#114573
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param integer $number - number to round
 *	@param integer $precision - number of decimal places to round to
 *
 *   @return integer | float - rounded number
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'round_down') ){
 function round_down( $number, $precision = 2 ){
@@ -334,14 +342,15 @@ function round_down( $number, $precision = 2 ){
 *
 *   Round to nearest even number
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param float $number - $number to round
 *   @param int $precision - optionally change the precision
 *   @param string $separator - decimal separator
 *
 *   @return integer / float - rounded number
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'round_bank') ){
 function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
@@ -427,13 +436,14 @@ function round_bank( $number, $precision = 0, $separator = DECIMAL_SEP ){
 *
 *   Sum of values in an array (alias of array_sum )
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param array $array - an array with elements to add up
 *   @param numbers - list of numbers to add
 *
 *   @return integer / float - sum of all numbers
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'sum' ) ){
 function sum(){
@@ -472,12 +482,13 @@ function sum(){
 *   @author user2095686
 *   @source http://stackoverflow.com/a/15023547
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param integer $integer - integer in Arabic numerals
 *
 *   @return string $roman - integer in Roman numerals
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'arabic2roman') ){
 function arabic2roman( $integer ){ 
@@ -508,12 +519,13 @@ function arabic2roman( $integer ){
 *   @author andyb
 *   @source http://stackoverflow.com/a/6266158
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param string $roman - integer in Roman numerals
 *
 *   @return integer $integer - integer in Arabic numerals
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'roman2arabic') ){
 function roman2arabic( $roman ){
@@ -539,14 +551,15 @@ function roman2arabic( $roman ){
 *
 *   Convert a temperature between celsius, fahrenheit and kelvin
 *
-*   @since 0.1
-*   @modified 1.1
-*
 *   @param int | float $number - value of temperature to convert
 *	@param string $from - temperature to convert from (celsius, fahrenheit or kelvin )
 *	@param string $to - temperature to convert to (celsius, fahrenheit or kelvin )
 *
 *   @return int | float - converted temperature
+*
+*   @since 0.1
+*   @modified 1.1
+*
 */
 if( ! function_exists( 'temperature') ){
 function temperature( $number, $from, $to ){
@@ -654,9 +667,6 @@ function temperature( $number, $from, $to ){
 *	@author Janith Chinthana
 *	@source http://stackoverflow.com/a/30556851/7956549
 *
-*   @since 0.1
-*   @modified 1.1
-*
 *   @param int | float $lat1 - first latitude
 *   @param int | float $lon - first longitude
 *   @param int | float $lat1 - second latitude
@@ -664,6 +674,10 @@ function temperature( $number, $from, $to ){
 *   @param string $unit - unit to use (K/km for Kilometers, N for Nautical Miles or M for miles )
 *
 *   @return int | float - distance between the two points
+*
+*   @since 0.1
+*   @modified 1.1
+*
 */
 if( ! function_exists( 'latlon_distance') ){
 function latlon_distance( $lat1, $lon1, $lat2, $lon2, $unit = 'M'){
@@ -694,12 +708,13 @@ function latlon_distance( $lat1, $lon1, $lat2, $lon2, $unit = 'M'){
 *   @author Cats who code
 *   @source http://www.catswhocode.com/blog/10-awesome-php-functions-and-snippets
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param int $cdnl - normal / cardinal number to add
 *
 *   @return string - ordinal number
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'ordinal' ) ){
 function ordinal( $cdnl ){ 
@@ -716,13 +731,14 @@ function ordinal( $cdnl ){
 *
 *	Output a number as a percentage
 *
-*	@since 1.02
-*	@modified 1.0.2
-*
 *	@param float | int - a number to pass through
 *	@param int - number of decimal places to include
 *
 *	@return string - percentage
+*
+*	@since 1.0.2
+*	@modified 1.0.2
+*
 */
 if( ! function_exists( 'percent' ) ){
 function percent( $number, $decimals = 2 ){
@@ -739,15 +755,16 @@ function percent( $number, $decimals = 2 ){
 *
 *   Perform a calculation and make sure the value has a minimum and maximum
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param float $number - the number to evaluate
 *   @param float $min - the minimum value for the calculation
 *   @param float $max - the maximum value for the calculation
 *   @param bool $fail - whether the function should fail if the number is outside the min and max
 *
 *   @return int | float $number - either the calculated number, or max, or min
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'calc' ) ){
 function calc( $number, $min = false, $max = false, $fail = false ){
@@ -794,12 +811,13 @@ function calc( $number, $min = false, $max = false, $fail = false ){
 *
 *   Checks whether the value is zero
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param object $value - the value to check
 *
 *   @return bool true if it's zero, false if it's not
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'is_zero' ) ){
 function is_zero( $value ){
@@ -818,12 +836,13 @@ function is_zero( $value ){
 *
 *   Checks whether the value is positive (greater than or equal to zero )
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param object $value - the value to check
 *
 *   @return bool true if it's positive, false if it's not
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'is_positive' ) ){
 function is_positive( $value ){
@@ -842,12 +861,13 @@ function is_positive( $value ){
 *
 *   Checks whether the value is negative (less than zero )
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param object $value - the value to check
 *
 *   @return bool true if it's negative, false if it's not
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'is_negative' ) ){
 function is_negative( $value ){
@@ -869,15 +889,16 @@ function is_negative( $value ){
 *   @author Joey
 *   @see https://stackoverflow.com/a/3148991/7956549
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param float $float_one - the first float to compare
 *   @param float $float_two - the second float to compare
 *   @param float $tolerance - the tolerance of difference
 *   @param string $tolerance_type - whether it's a percentage or integer
 *
 *   @return bool - true if equal or approximately equal, false if not
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'approximate_equal' ) ){
 function approximate_equal( $float_one, $float_two, $tolerance, $tolerance_type = 'int' ){

@@ -31,12 +31,13 @@
 *
 *   Test if a remote file exists
 *
-*   @since 0.1
-*   @modified 1.0.3
-*
 *   @param string	$file_location - the file to test
 *
 *   @return bool - true if file accessible, false if not
+*
+*   @since 0.1
+*   @modified 1.0.3
+*
 */
 if( ! function_exists( 'test_remote_file') ){
 function test_remote_file( $file_location ){
@@ -77,12 +78,11 @@ function test_remote_file( $file_location ){
 *
 *   Send out a print_r request in a more readable format
 *
+*   @param array | object $data - array you want to output
+*
 *   @since 0.1
 *   @modified 0.1
 *
-*   @param array | object $data - array you want to output
-*
-*   @return organised array
 */
 if( ! function_exists( 'print_pre' ) ){
 function print_pre( $data ){
@@ -102,12 +102,13 @@ function print_pre( $data ){
 *   @author Jonas John
 *   @source http://www.jonasjohn.de/snippets/php/random-color.htm
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param string $type - type of output: rgb or hex
 *
 *   @return string - color as hex, e.g. #ffffff , or rgb, e.g. rgb(0,0,0)
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'random_color') ){
 function random_color( $type = 'hex'){
@@ -157,13 +158,14 @@ function random_color( $type = 'hex'){
 *   @author Google
 *   @source https://developers.google.com/chart/infographics/docs/qr_codes
 *
-*   @since 0.1
-*   @modified 0.1
-*
 *   @param string $data - the info you want to encode
 *	@param int $size - value for height and width of image in pixels
 *
 *	@return string - the URL of the QR code
+*
+*   @since 0.1
+*   @modified 0.1
+*
 */
 if( ! function_exists( 'qr_url' ) ){
 function qr_url( $data, $size = '300' ){
@@ -211,12 +213,13 @@ function qr_image( $data, $size = '300' ){
 *   @author Silver Moon
 *   @source http://www.binarytides.com/php-check-if-file-is-an-image/
 *
-*	@since	0.1
-*	@modified	0.1
-*
 *	@param string - path or URL of file to check
 *
 *	@return bool - true if image, false if not
+*
+*	@since	0.1
+*	@modified	0.1
+*
 */
 if( ! function_exists( 'is_image' ) ){
 function is_image( $path ){
@@ -239,13 +242,14 @@ function is_image( $path ){
 *   @author Chris Coyier
 *   @source https://css-tricks.com/snippets/php/create-data-uris/
 *
-*	@since	0.1
-*	@modified	1.1
-*
 *	@param string - path or URL of file to encode
 *   @param string - mime type of file (Maybe need to change that)
 *
 *	@return string - data uri of the file
+*
+*	@since	0.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'data_uri') ){
 function data_uri( $file ){
@@ -271,12 +275,13 @@ function data_uri( $file ){
 *
 *   Returns the mime type of a file given the extension
 *
-*	@since	1.0.2
-*	@modified	1.1
-*
 *   @param string $ext - the file extension
 *
 *   @return string - the mime type
+*
+*	@since	1.0.2
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'mime_type' ) ){
 function mime_type( $ext ){
@@ -302,12 +307,13 @@ function mime_type( $ext ){
 *
 *   Print a HTML table
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param array $headers - an array where each item is a header title
 *   @param array $data - an array, where each item is an array containing cells
 *   @param array $atts - an array of attributes to add to the table
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'create_table' ) ){
 function create_table( $headers, $data, $atts = array() ){
@@ -372,10 +378,11 @@ function create_table( $headers, $data, $atts = array() ){
 *
 *   Dump the variable and end execution of the script
 *
+*   @param mixed $variable - the variable to dump
+*
 *	@since	1.1
 *	@modified	1.1
 *
-*   @param mixed $variable - the variable to dump
 */
 if( ! function_exists( 'dd' ) ){
 function dd( $variable ){
@@ -391,12 +398,13 @@ function dd( $variable ){
 *
 *   Shorthand to run htmlentities over a string
 *
-*	@since	1.1
-*	@modified	1.1
-*
 *   @param string $string - string to sanitise
 *
 *   @return string - sanitised string
+*
+*	@since	1.1
+*	@modified	1.1
+*
 */
 if( ! function_exists( 'e' ) ){
 function e( $string ){
@@ -425,11 +433,12 @@ function e( $string ){
 *   @author WordPress
 *   @see https://developer.wordpress.org/reference/functions/size_format/
 *
-*   @since 1.1
-*
 *   @param int|string $bytes    Number of bytes. Note max integer size for integers.
 *   @param int        $decimals Optional. Precision of number of decimal places. Default 0.
 *   @return string|false False on failure. Number string on success.
+*
+*   @since 1.1
+*   @modified 1.1
 */
 if( ! function_exists( 'size_format' ) ){
 function size_format( $bytes, $decimals = 0 ){
