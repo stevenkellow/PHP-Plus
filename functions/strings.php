@@ -67,10 +67,9 @@
 *	@return string - random string made up of the specified number of characters
 *
 *  	@since 0.1
-*  	@modified 1.0.2
+*  	@modified 1.1
 *
 */
-
 if( ! function_exists( 'rand_string' ) ){
 function rand_string( $length = 36, $symbols = true ){
 
@@ -85,10 +84,7 @@ function rand_string( $length = 36, $symbols = true ){
 		
 		$characters = array_merge( $characters, $symbols_array );
 		
-	}
-	
-	// If we're passing through an array of symbols use this
-	if( is_array( $symbols ) ){
+	} elseif( is_array( $symbols ) ){ // If we're passing through an array of symbols use this
 		
 		$characters = array_merge( $characters, $symbols );
 		
