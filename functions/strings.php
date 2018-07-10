@@ -1161,7 +1161,7 @@ function parse_email( $email, $delimiters = array() ){
         }
     }
 
-    if( $parts_name ){ // If we've found a delimiter we can use it
+    if( isset( $parts_name ) ){ // If we've found a delimiter we can use it
         $output['first_name'] = ucfirst( strtolower( $parts_name[0] ) ); // Lets tidy up the names so the first letter is a capital and rest lower case
         $output['last_name'] = ucfirst( strtolower( $parts_name[1] ) );
     }
