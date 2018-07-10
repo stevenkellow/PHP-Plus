@@ -184,7 +184,7 @@ function sha256( $data, $raw_data = false ){
 *	@modified   1.1
 */
 if( ! function_exists( 'sha384' ) ){
-function sha256( $data, $raw_data = false ){
+function sha384( $data, $raw_data = false ){
     
     return hash( 'sha384', $data, $raw_data );
     
