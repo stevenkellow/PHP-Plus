@@ -11,6 +11,10 @@
 *   csrf_token
 *   csrf_verify
 *   antispambot
+*   sha256
+*   sha384
+*   sha512
+*
 */
 
 /**
@@ -142,5 +146,68 @@ function antispambot( $email_address, $hex_encoding = 0 ){
 	}
 
 	return str_replace( '@', '&#64;', $email_no_spam_address );
+}
+}
+
+/**
+*   sha256
+*
+*   Return the sha256 hash of an input
+*
+*   @param mixed $input - the item to hash
+*   @param bool $raw_data - When set to TRUE, outputs raw binary data. FALSE outputs lowercase hexits.
+*
+*   @return string - the hashed data
+*
+*	@since  1.1
+*	@modified   1.1
+*/
+if( ! function_exists( 'sha256' ) ){
+function sha256( $data, $raw_data = false ){
+    
+    return hash( 'sha256', $data, $raw_data );
+    
+}
+}
+
+/**
+*   sha384
+*
+*   Return the sha384 hash of an input
+*
+*   @param mixed $input - the item to hash
+*   @param bool $raw_data - When set to TRUE, outputs raw binary data. FALSE outputs lowercase hexits.
+*
+*   @return string - the hashed data
+*
+*	@since  1.1
+*	@modified   1.1
+*/
+if( ! function_exists( 'sha384' ) ){
+function sha256( $data, $raw_data = false ){
+    
+    return hash( 'sha384', $data, $raw_data );
+    
+}
+}
+
+/**
+*   sha512
+*
+*   Return the sha512 hash of an input
+*
+*   @param mixed $input - the item to hash
+*   @param bool $raw_data - When set to TRUE, outputs raw binary data. FALSE outputs lowercase hexits.
+*
+*   @return string - the hashed data
+*
+*	@since  1.1
+*	@modified   1.1
+*/
+if( ! function_exists( 'sha512' ) ){
+function sha512( $data, $raw_data = false ){
+    
+    return hash( 'sha512', $data, $raw_data );
+    
 }
 }
