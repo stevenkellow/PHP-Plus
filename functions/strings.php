@@ -52,6 +52,7 @@
 *   strip_slashes
 *   stripslashes_deep
 *       strip_slashes_deep
+*   remove_utf8_bom
 */
 
 /**
@@ -1622,5 +1623,30 @@ function strip_slashes_deep( $value ){
     
     return stripslashes_deep( $value );
     
+}
+}
+
+/**
+*   remove_utf8_bom
+*
+*   Removes UTF8 bite-order marker that sometimes appears at the start of some text
+*
+*   @author jasonhao
+*   @see https://stackoverflow.com/a/15423899/7956549
+*
+*   @param string $text - text to fix
+*
+*   @return string $text - fixed text
+*
+*	@since  0.1
+*	@modified   0.1
+*/
+if( ! function_exists( 'remove_utf8_bom' ) ){
+function remove_utf8_bom( $text ){
+        
+    $bom = pack('H*','EFBBBF');
+    $text = preg_replace("/^$bom/", '', $text);
+    return $text;
+        
 }
 }
