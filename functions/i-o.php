@@ -259,7 +259,6 @@ function facebook_pixel( $pixel_id ){
 *
 *   Turn an uploaded CSV file into an array
 *
-*
 *	@param file $file - a CSV file uploaded
 *   @param bool $header_key - whether the first line is a header that can be used as a key
 *
@@ -271,8 +270,22 @@ function facebook_pixel( $pixel_id ){
 if( ! function_exists( 'csv_to_array') ){
 function csv_to_array( $file, $header_key = true ){
 	
-	// Turn the file into an array
-    $file_array = array_map( 'str_getcsv', file( $file ) );
+	// Check if a file is passed through
+    if( is_file( $file ) ){
+        
+        // Turn the file into an array
+        $file_array = array_map( 'str_getcsv', file( $file ) );
+        
+    } elseif( is_array( $file ) ){
+        
+        // Check if file has already been processed
+        $file_array = $file;
+        
+    } else {
+        
+        // Can't do anything here
+        return false;
+    }
     
     // Check that the CSV mapping worked
     if( is_array( $file_array ) ){
@@ -301,7 +314,23 @@ function csv_to_array( $file, $header_key = true ){
                 } else {
                     
                     // Go through each cell and use the key
-                    $new_row = array_combine( $headers, $row );
+					$cnt = 0;
+					$new_row = array();
+					foreach( $row as $val ){
+						
+                        // Get the header for this point
+						$key = $headers[$cnt];
+						
+                        // Check string isn't blank, or we'll return null
+						if( ! strcheck( $val ) ){
+							$val = null;
+						}
+						
+						$new_row[$key] = $val;
+						
+						$cnt++;
+						
+					}
                     
                     $return_array[] = $new_row;
                     
