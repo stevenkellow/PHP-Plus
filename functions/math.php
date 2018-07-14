@@ -689,7 +689,7 @@ function latlon_distance( $lat1, $lon1, $lat2, $lon2, $unit = 'M'){
 	$miles = $dist * 60 * 1.1515;
 	$unit = strtoupper( $unit );
 
-	if( $unit == "K" || $unit == 'km'){
+	if( $unit == "K" || $unit == 'KM'){
 	  return ( $miles * 1.609344 );
 	} else if( $unit == "N"){
 	  return ( $miles * 0.8684 );
