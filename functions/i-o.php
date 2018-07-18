@@ -265,21 +265,21 @@ function facebook_pixel( $pixel_id ){
 *	@return array $csv_array
 *
 *   @since 0.1
-*   @modified 1.1
+*   @modified 1.1.1
 */
 if( ! function_exists( 'csv_to_array') ){
 function csv_to_array( $file, $header_key = true ){
 	
 	// Check if a file is passed through
-    if( is_file( $file ) ){
-        
-        // Turn the file into an array
-        $file_array = array_map( 'str_getcsv', file( $file ) );
-        
-    } elseif( is_array( $file ) ){
+    if( is_array( $file ) ){
         
         // Check if file has already been processed
         $file_array = $file;
+        
+    } elseif( is_file( $file ) ){
+        
+        // Turn the file into an array
+        $file_array = array_map( 'str_getcsv', file( $file ) );
         
     } else {
         
@@ -304,10 +304,10 @@ function csv_to_array( $file, $header_key = true ){
                 // If it's the first row, then use this as the keys
                 if( $row_count == 1 ){
                     
-                    // Replace any spaces in the header with underscores to validate the array key
+                    // Replace any spaces in the header with underscores to validate the array key, and remove any byte-order markers introduced by csv uploads
                     foreach( $row as $header ){
 						
-						$headers[] = sanitize_key( $header );
+						$headers[] = sanitize_key( remove_utf8_bom( $header ) );
 						
 					}
                     
@@ -1540,7 +1540,7 @@ function download_file( $file, $new_file ){
 
     curl_exec( $ch ); 
     
-    if( ! curl_errno( $ch ) || curl_errno( $ch ) !== 0 ){
+    if( curl_errno( $ch ) || curl_errno( $ch ) !== 0 ){
         $success = false;
     } else {
         $success = $new_file;

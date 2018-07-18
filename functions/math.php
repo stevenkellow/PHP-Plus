@@ -31,6 +31,7 @@
 *   is_positive
 *   is_negative
 *   approximate_equal
+*   pearson
 */
 
 /**
@@ -923,5 +924,52 @@ function approximate_equal( $float_one, $float_two, $tolerance, $tolerance_type 
         
     }
     
+}
+}
+
+/**
+ * returns the pearson correlation coefficient (least squares best fit line)
+ * 
+ 
+ */
+/**
+*   pearson
+*
+*   Returns the Pearson correlation coefficient (least squares best fit line)
+*
+*   @param array $x array of all x vals
+*   @param array $y array of all y vals
+*
+*   @return float - the coefficient
+*
+*	@since	1.1
+*	@modified	1.1
+*/
+if( ! function_exists( 'pearson' ) ){
+function pearson($x, $y){
+    
+    // number of values
+    $n = count($x);
+    $keys = array_keys(array_intersect_key($x, $y));
+
+    // get all needed values as we step through the common keys
+    $x_sum = 0;
+    $y_sum = 0;
+    $x_sum_sq = 0;
+    $y_sum_sq = 0;
+    $prod_sum = 0;
+    foreach($keys as $k){
+        
+        $x_sum += $x[$k];
+        $y_sum += $y[$k];
+        $x_sum_sq += pow($x[$k], 2);
+        $y_sum_sq += pow($y[$k], 2);
+        $prod_sum += $x[$k] * $y[$k];
+    }
+
+    $numerator = $prod_sum - ($x_sum * $y_sum / $n);
+    $denominator = sqrt( ($x_sum_sq - pow($x_sum, 2) / $n) * ($y_sum_sq - pow($y_sum, 2) / $n) );
+
+    return $denominator == 0 ? 0 : $numerator / $denominator;
 }
 }

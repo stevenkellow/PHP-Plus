@@ -43,6 +43,7 @@
 *   str_to_bool
 *   str_contains
 *   parse_email
+*   extract_email
 *   html_atts_string
 *   make_clickable
 *   http_build_url
@@ -1168,6 +1169,30 @@ function parse_email( $email, $delimiters = array() ){
     }
     
     return $output;
+    
+}
+}
+
+/**
+*   extract_email
+*
+*   Extract an email address in a string with arrows
+*
+*   @param string $string - the string containing the email
+*
+*   @return string - the email
+*
+*	@since	1.1
+*	@modified	1.1
+*/
+if( ! function_exists( 'extract_email' ) ){
+function extract_email( $string ){
+    
+    // Remove anything up to and including the first arrow around an email
+    $pre = ltrim( strstr( $string, '<', 0 ), '<' );
+
+    // Remove anything after and including the closing arrow around an email
+    return rtrim( $pre, strstr( $pre, '>', 0 ) );
     
 }
 }
