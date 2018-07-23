@@ -373,7 +373,7 @@ function csv_to_array( $file, $header_key = true ){
 *	@return file $contents - CSV to use
 *
 *   @since 0.1
-*   @modified 0.1
+*   @modified 1.1.1
 */
 if( ! function_exists( 'array_to_csv') ){
 function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"'){
@@ -384,11 +384,12 @@ function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"'){
     
     $handle = fopen( $file, 'r+');
     foreach( $data as $line ){
-           fputcsv( $handle, $line, $delimiter, $enclosure );
+        fputcsv( $handle, $line, $delimiter, $enclosure );
     }
     rewind( $handle );
+    $contents = '';
     while (!feof( $handle ) ){
-           $contents .= fread( $handle, 8192 );
+        $contents .= fread( $handle, 8192 );
     }
     fclose( $handle );
     return $contents;
