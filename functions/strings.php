@@ -54,6 +54,7 @@
 *   stripslashes_deep
 *       strip_slashes_deep
 *   remove_utf8_bom
+*   add_utf8_bom
 */
 
 /**
@@ -1204,7 +1205,7 @@ function extract_email( $string ){
 *
 *   @param array $atts - the element attributes
 *
-*   @return string $atts_string - the string of HTMl attributes
+*   @return string $atts_string - the string of HTML attributes
 *
 *	@since	1.1
 *	@modified 1.1
@@ -1673,5 +1674,27 @@ function remove_utf8_bom( $text ){
     $text = preg_replace("/^$bom/", '', $text);
     return $text;
         
+}
+}
+
+/**
+*   add_utf8_bom
+*
+*   Add UTF8 byte order marker so that file is recognised as UTF-8, good for CSVs
+*
+*   @param string $text
+*
+*   @return string - fixed text
+*
+*	@since	1.1.1
+*	@modified	1.1.1
+*/
+if( ! function_exists( 'add_utf8_bom' ) ){
+function add_utf8_bom( $text ){
+    
+    $bom = pack('H*','EFBBBF');
+    
+    return $bom.$text;
+    
 }
 }

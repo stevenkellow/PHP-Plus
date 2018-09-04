@@ -32,6 +32,8 @@
 *   is_negative
 *   approximate_equal
 *   pearson
+*   is_decimal
+*   currency_format
 */
 
 /**
@@ -928,11 +930,6 @@ function approximate_equal( $float_one, $float_two, $tolerance, $tolerance_type 
 }
 
 /**
- * returns the pearson correlation coefficient (least squares best fit line)
- * 
- 
- */
-/**
 *   pearson
 *
 *   Returns the Pearson correlation coefficient (least squares best fit line)
@@ -971,5 +968,51 @@ function pearson($x, $y){
     $denominator = sqrt( ($x_sum_sq - pow($x_sum, 2) / $n) * ($y_sum_sq - pow($y_sum, 2) / $n) );
 
     return $denominator == 0 ? 0 : $numerator / $denominator;
+}
+}
+
+/**
+*   is_decimal
+*
+*   Test if a given value is a decimal
+*
+*   @author cwallenpoole
+*   @see https://stackoverflow.com/a/6772657/7956549
+*
+*   @param int|float|string $val - a number in any format
+*
+*   @return bool - true if decimal, false if not
+*
+*	@since	1.1.1
+*	@modified	1.1.1
+*/
+if( ! function_exists( 'is_decimal' ) ){
+function is_decimal( $val ){
+    return is_numeric( $val ) && floor( $val ) != $val;
+}
+}
+
+/**
+*   currency_format
+*
+*   Returns a number to 2 decimal places if decimal, ignores decimal if it doesn't exists
+*
+*   @param int|float|string $number - a number in any format
+*   @param string $symbol - a string to prepend to the format
+*
+*   @return string  - the formatted currency
+*
+*	@since	1.1.1
+*	@modified	1.1.1
+*/
+if( ! function_exists( 'currency_format' ) ){
+function currency_format( $number, $symbol = '' ){
+    
+    if( is_decimal( $number ) ){
+        return $symbol . number_format( $number, 2 );
+    } else {
+        return $symbol . number_format( $number, 0 );
+    }
+    
 }
 }

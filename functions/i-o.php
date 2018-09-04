@@ -45,6 +45,7 @@
 *   file_get_contents_secure
 *   file_create
 *   download_file
+*   files_array
 */
 
 /**
@@ -1551,5 +1552,37 @@ function download_file( $file, $new_file ){
     
     return $success;
     
+}
+}
+
+/**
+*   files_array
+*
+*   Turns multiple file uploads into a single array
+*
+*   @author Hiroshi Rana
+*   @see https://stackoverflow.com/a/15447392/7956549
+*
+*   @param object - the file that's been uploaded
+*
+*   @return array - the file that comes out
+*
+*	@since	1.1
+*	@modified	1.1
+*/
+if( ! function_exists( 'files_array' ) ){
+function reArrayFiles(&$file_post) {
+
+    $file_ary = array();
+    $file_count = count($file_post['name']);
+    $file_keys = array_keys($file_post);
+
+    for ($i=0; $i<$file_count; $i++) {
+        foreach ($file_keys as $key) {
+            $file_ary[$i][$key] = $file_post[$key][$i];
+        }
+    }
+
+    return $file_ary;
 }
 }

@@ -707,7 +707,5 @@ function days_between( $start, $end, $working_days = array() ){
         
     }
     
-    
-    
 }
 }
