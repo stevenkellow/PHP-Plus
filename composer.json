@@ -1,14 +1,13 @@
 {
     "name": "stevenkellow/php-plus",
     "description": "A collection of helpful PHP constants and functions",
-    "version": "1.1",
+    "version": "1.1.1",
     "require": {
-        "php": "^5.3.3 || ^7.0"
+        "php": "^5.3.3 || ^7.2"
     },
     "suggest": {
         "paragonie/random_compat": "Bring PHP <7 up to date",
         "ircmaxell/password-compat": "Bring PHP <5.5 up to date",
-        "ramsey/uuid": "Generates UUIDs",
         "joshcam/mysqli-database-class": "Database ORM with prepared statements",
         "phpmailer/phpmailer": "Reliable SMTP alternative to PHP mail()"
     },

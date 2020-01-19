@@ -14,7 +14,7 @@
 *   sha256
 *   sha384
 *   sha512
-*
+*   create_guid
 */
 
 /**
@@ -209,5 +209,28 @@ function sha512( $data, $raw_data = false ){
     
     return hash( 'sha512', $data, $raw_data );
     
+}
+}
+
+/**
+*   create_guid
+*
+*   Generates a UUID v4
+*
+*   @author Danny Beckett
+*   @see https://stackoverflow.com/a/55439684/7956549
+*
+*   @return string - UUID v4
+*
+*	@since  1.1.1
+*	@modified   1.1.1
+*/
+if( ! function_exists( 'create_guid' ) ){
+function create_guid(){
+    $data = PHP_MAJOR_VERSION < 7 ? openssl_random_pseudo_bytes(16) : random_bytes(16);
+    $data[6] = chr(ord($data[6]) & 0x0f | 0x40);    // Set version to 0100
+    $data[8] = chr(ord($data[8]) & 0x3f | 0x80);    // Set bits 6-7 to 10
+    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+}
 }
 }

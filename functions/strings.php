@@ -1073,17 +1073,16 @@ function ends_with( $haystack, $needle, $insensitive = false ){
 *   @see https://github.com/brandonwamboldt/utilphp/blob/master/src/utilphp/util.php
 *
 *   @param  string $string  The string to convert to boolean
-*   @param  bool   $default The value to return if we can't match any
-*                          yes/no words
+*   @param  bool   $default The value to return if we can't match any yes/no words
 *   @return boolean
 *
 *	@since	1.1
-*	@modified	1.1
+*	@modified	1.1.1
 *
 */
 if( ! function_exists( 'str_to_bool' ) ){
-function str_to_bool( $string, $default = false ){
-    $yes_words = 'affirmative|all right|aye|indubitably|most assuredly|ok|of course|okay|sure thing|y|yes+|yea|yep|sure|yeah|true|t|on|1|oui|vrai|tha';
+function str_to_bool( $string, $default = null ){
+    $yes_words = 'affirmative|all right|aye|indubitably|most assuredly|ok|of course|okay|sure thing|y|yes+|yea|yep|sure|yeah|true|t|on|1|oui|vrai|tha|si';
     $no_words = 'no*|no way|nope|nah|na|never|absolutely not|by no means|negative|never ever|false|f|off|0|non|faux|chan eil';
     if( preg_match('/^(' . $yes_words . ')$/i', $string ) ){
         return true;

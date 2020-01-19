@@ -16,7 +16,7 @@
 *   is_image
 *   data_uri
 *   mime_type
-*   create_table
+*   html_table
 *   dd
 *   e
 *	size_format
@@ -303,7 +303,7 @@ function mime_type( $ext ){
 }
 
 /**
-*   create_table
+*   html_table
 *
 *   Print a HTML table
 *
@@ -312,7 +312,7 @@ function mime_type( $ext ){
 *   @param array $atts - an array of attributes to add to the table
 *
 *	@since	1.1
-*	@modified	1.1
+*	@modified	1.1.1
 *
 */
 if( ! function_exists( 'create_table' ) ){
@@ -442,7 +442,8 @@ function e( $string ){
 */
 if( ! function_exists( 'size_format' ) ){
 function size_format( $bytes, $decimals = 0 ){
-	$quant = array(
+	
+    $quant = array(
 		'TB' => TB_IN_BYTES,
 		'GB' => GB_IN_BYTES,
 		'MB' => MB_IN_BYTES,
@@ -461,6 +462,7 @@ function size_format( $bytes, $decimals = 0 ){
 	}
 
 	return false;
+    
 }
 }
 
@@ -558,6 +560,50 @@ function __checked_selected_helper( $helper, $current, $echo, $type ){
         echo $output;
     }
     return $output;
+    
+}
+}
+
+/**
+*   remove_utf8_bom
+*
+*   Remove the UTF-8 byte-order marker which can cause issues when converting text
+*
+*   @param string $text - text to fix
+*
+*   @return string $text - the fixed text
+*
+*	@since	1.1.1
+*
+*/
+if( ! function_exists( 'remove_utf8_bom' ) ){
+function remove_utf8_bom( $text ){
+        
+    $bom = pack('H*','EFBBBF');
+    $text = preg_replace("/^$bom/", '', $text);
+    return $text;
+        
+}
+}
+
+/**
+*   add_utf8_bom
+*
+*   Add the UTF-8 byte-order marker
+*
+*   @param string $text - text to fix
+*
+*   @return string $text - the fixed text
+*
+*	@since	1.1.1
+*
+*/
+if( ! function_exists( 'add_utf8_bom' ) ){
+function add_utf8_bom( $text ){
+    
+    $bom = pack('H*','EFBBBF');
+    
+    return $bom.$text;
     
 }
 }

@@ -406,7 +406,7 @@ function is_iis(){
     
     if( isset( $_SERVER['SERVER_SOFTWARE'] ) ){
     
-        if( stripos( $_SERVER['SERVER_SOFTWARE'], 'microsoft-iss' ) ){
+        if( stripos( $_SERVER['SERVER_SOFTWARE'], 'microsoft-iis' ) ){
             return true;
         } else {
             return false;
@@ -439,7 +439,7 @@ function is_apache(){
     
     if( isset( $_SERVER['SERVER_SOFTWARE'] ) ){
         
-        if( stripos( $_SERVER['SERVER_SOFTWARE'], 'microsoft-apache' ) ){
+        if( stripos( $_SERVER['SERVER_SOFTWARE'], 'apache' ) ){
             return true;
         } else {
             return false;

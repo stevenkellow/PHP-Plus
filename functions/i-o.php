@@ -378,21 +378,25 @@ function csv_to_array( $file, $header_key = true ){
 */
 if( ! function_exists( 'array_to_csv') ){
 function array_to_csv( $data, $file = null, $delimiter = ',', $enclosure = '"'){
+	
+	ob_start();
     
     if( $file == null ){
-        $file = 'php://temp';
+        $file = 'php://output';
     }
     
     $handle = fopen( $file, 'r+');
     foreach( $data as $line ){
         fputcsv( $handle, $line, $delimiter, $enclosure );
     }
-    rewind( $handle );
-    $contents = '';
-    while (!feof( $handle ) ){
-        $contents .= fread( $handle, 8192 );
-    }
+
     fclose( $handle );
+    
+    $contents = ob_get_clean();
+    
+    // Try to fix the bom stuff
+    $contents = add_utf8_bom( $contents );
+    
     return $contents;
 }
 }

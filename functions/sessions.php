@@ -328,7 +328,7 @@ function utf8_headers( $content_type = 'text/html'){
 */
 if( ! function_exists( 'force_download' ) ){
 function force_download( $filename, $content = false ){
-    // @codeCoverageIgnoreStart
+    
     if( !headers_sent() ){
         // Required for some browsers
         if( ini_get('zlib.output_compression') ){
@@ -353,7 +353,7 @@ function force_download( $filename, $content = false ){
         return true;
     }
     return false;
-    // @codeCoverageIgnoreEnd
+    
 }
 }
 
@@ -378,7 +378,6 @@ function force_download( $filename, $content = false ){
 if( ! function_exists( 'nocache_headers' ) ){
 function nocache_headers(){
     
-    // @codeCoverageIgnoreStart
     if( !headers_sent() ){
         header('Expires: Wed, 11 Jan 1984 05:00:00 GMT');
         header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
@@ -387,6 +386,6 @@ function nocache_headers(){
         return true;
     }
     return false;
-    // @codeCoverageIgnoreEnd
+    
 }
 }
