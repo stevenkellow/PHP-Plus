@@ -1575,7 +1575,7 @@ function download_file( $file, $new_file ){
 *	@modified	1.1
 */
 if( ! function_exists( 'files_array' ) ){
-function reArrayFiles(&$file_post) {
+function files_array(&$file_post) {
 
     $file_ary = array();
     $file_count = count($file_post['name']);
