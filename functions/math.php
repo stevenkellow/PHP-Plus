@@ -34,6 +34,7 @@
 *   pearson
 *   is_decimal
 *   currency_format
+*   factorial
 */
 
 /**
@@ -1015,4 +1016,29 @@ function currency_format( $number, $symbol = '' ){
     }
     
 }
+}
+
+/**
+*   factorial
+*
+*   Returns the factorial of a number
+*
+*   @see https://www.geeksforgeeks.org/php-factorial-number/
+*
+*   @param int $number - the number to return the factorial of
+*
+*   @return int  - the factorial
+*
+*	@since	1.1.2
+*/
+if( ! function_exists( 'factorial') ){
+function factorial( $number ){
+    
+    $factorial = 1; 
+    for ($i = 1; $i <= $number; $i++){ 
+      $factorial = $factorial * $i; 
+    } 
+    return $factorial; 
+    
+} 
 }
