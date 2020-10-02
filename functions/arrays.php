@@ -30,6 +30,8 @@
 *   array_rand_weighted
 *   array_numeric
 *   in_array_quick
+*   array_orderby
+*   array_split
 */
 
 /*
@@ -149,36 +151,21 @@ function is_numeric_array( $array ){
 *   @param array $arr - array to remove empties from
 *   @param bool $reindex - whether or not to reindex the array so keys don't have a missing number
 *
-*	@return array $random - array that's been cleaned
+*	@return array $narr - array that's been cleaned
 *
 *   @since 0.1
-*   @modified 0.1
+*   @modified 1.1.2
 */
 if( ! function_exists( 'array_remove_empty' ) ){
 function array_remove_empty( $arr, $reindex = false ){
     
     $narr = array();
     
-    while( list( $key, $val ) = each( $arr ) ){
-        if( is_array( $val ) ){
-            
-            $val = array_remove_empty( $val );
-            // does the result array contain anything?
-            if( count( $val )!=0 ){
-                // yes :-)
-                $narr[$key] = $val;
-            }
-            
-        } else {
-            
-            if( trim( $val ) != "" ){
-                $narr[$key] = $val;
-            }
-            
+    foreach( $arr as $key => $val ){
+        if( ! empty( $val ) ){
+            $narr[$key] = $val;
         }
     }
-    
-    unset( $arr );
     
     if( $reindex == true ){
         $narr = array_values( $narr ); // 'reindex' array
@@ -691,20 +678,35 @@ function array_cartesian( $input ){
 *   @see https://stackoverflow.com/a/11872928/7956549
 *
 *   @param array $weightedValues
+*   @param int $factor - if the weighted values are percentage, by what factor should they be multiplied
 *
 *   @return string $key
 *
 *   @since  1.1
-*   @modified  1.1
+*   @modified  1.1.2
 */
 if( ! function_exists( 'array_rand_weighted' ) ){
-function array_rand_weighted( $weightedValues ){
+function array_rand_weighted( $weightedValues, $factor = 6 ){
+    
+    $value_sum = array_sum( $weightedValues );
+    
+    if( $value_sum <= 1 ){
+        
+        $factor_power = pow( 10, $factor );
+        
+        foreach( $weightedValues as $key => $value ){
+            $weightedValues[$key] = $value * $factor_power;
+        }
+        
+        $value_sum = $value_sum * $factor_power;
+        
+    }
     
     if( function_exists( 'random_int' ) ){
-        $rand = random_int( 1, ( int ) array_sum( $weightedValues ) );
+        $rand = random_int( 1, $value_sum );
     } else {
-        $rand = mt_rand( 1, (int ) array_sum( $weightedValues ) );
-    }    
+        $rand = mt_rand( 1, $value_sum );
+    }
 
     foreach( $weightedValues as $key => $value ){
       $rand -= $value;
@@ -744,12 +746,12 @@ function array_numeric( $array, $cast = false ){
                 
                 case 'int':
                     
-                    $new_array[$key] = (int ) $element;
+                    $new_array[$key] = intval( $element );
                     break;
                     
                 case 'float':
                     
-                    $new_array[$key] = (float ) $element;
+                    $new_array[$key] = floatval( $element );
                     break;
                 
                 default:
@@ -797,6 +799,105 @@ function in_array_quick( $needle, $haystack ){
         return false;
         
     }
+    
+}
+}
+
+/**
+*   array_orderby
+*
+*   Sort arrays by items
+*
+*   @author Jimpoz
+*   @see https://www.php.net/manual/en/function.array-multisort.php#100534
+*
+*   @param array $array - the array to sort
+*   @param string $key - the key to sort by
+*   @param string $flag - either SORT_DESC to sort descending or SORT_ASC to sort ascending
+*
+*   @return array - the sorted array
+*
+*	@since	1.1.1
+*/
+if( ! function_exists( 'array_orderby' ) ){
+function array_orderby(){
+    $args = func_get_args();
+    $data = array_shift($args);
+    foreach ($args as $n => $field) {
+        if (is_string($field)) {
+            $tmp = array();
+            foreach ($data as $key => $row)
+                $tmp[$key] = $row[$field];
+            $args[$n] = $tmp;
+            }
+    }
+    $args[] = &$data;
+    call_user_func_array('array_multisort', $args);
+    return array_pop($args);
+}
+}
+
+/**
+*   array_split
+*
+*   Split an array into the given number of sub-arrays
+*
+*   @param array $array - the array to split
+*   @param int $elements - the number of sub-arrays to create
+*   @param string $type - either 'straight' to fill sub-arrays sequentially (e.g. [1,2,3], [4,5] ) or 'interleaved' to fill one by one (e.g. [1,3,5], [2,4] )
+*
+*   @return array - the sorted array
+*
+*	@since	1.1.2
+*/
+if( ! function_exists( 'array_split' ) ){
+function array_split( $array, $elements, $type = 'straight' ){
+    
+    $return = array();
+    
+    // Create subarrays
+    for( $x = 0; $x < $elements; $x++ ){
+        $return[$x] = array();
+    }
+    
+    $x = 0;
+    if( $type == 'interleaved' ){
+        
+        // Go through the array
+        foreach( $array as $key => $value ){
+
+            // Reset pointer to first array
+            if( $x >= $elements ){
+                $x = 0;
+            }
+            $return[$x][$key] = $value;
+            $x++;
+
+        }
+    
+    } elseif( $type == 'straight' ){
+        
+        // Check max to add to a sub-array
+        $divs = round_up( count( $array ) / $elements, 0 );
+        
+        $y = 0;
+        
+        // Go through the array
+        foreach( $array as $key => $value ){
+            
+            // If array is full move to next
+            if( $x >= $divs ){
+                $y++;
+                $x = 0;
+            }
+            $return[$y][$key] = $value;
+            $x++;
+            
+        }
+        
+    }
+    
+    return $return;
     
 }
 }
