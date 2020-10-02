@@ -70,7 +70,7 @@
 *	@return string - random string made up of the specified number of characters
 *
 *  	@since 0.1
-*  	@modified 1.1
+*  	@modified 1.1.2
 *
 */
 if( ! function_exists( 'rand_string' ) ){
@@ -80,7 +80,7 @@ function rand_string( $length = 36, $symbols = true ){
 				   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 				   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' );
 				   
-	$symbols_array = array( '!', '$', '(', ')', '-', '_', '{', '}', '@', '~', '^' );
+	$symbols_array = array( '!', '$', '(', ')', '-', '_', '{', '}', '@', '~', '^', '~', '#', '?', '<', '>', '+', '%', '^', '&', '*' );
 	
 	// If we're using symbols use our default list
 	if( $symbols === true ){
@@ -255,7 +255,30 @@ function is_url( $url, $ssl = false ){
 */
 if( ! function_exists( 'slug') ){
 function slug( $string ){
-	$slug = strtolower( preg_replace('/[^A-Za-z0-9-]+/', '-', $string ) );
+    
+    // Convert accented characters to their text equivalent
+    $unwanted_array = array('Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+                            'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+                            'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+                            'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+                            'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', "'" => '', "‘" => '', "’" => '' );
+
+    $text = strtr( $text, $unwanted_array );
+	
+    // Remove apostrophes and brackets, cause we'll not use them
+    $forbidden = array( "'", '(', ')', '[', ']' );
+    foreach( $forbidden as $char ){
+        $string = str_replace( $char, '', $string );
+    }
+    
+    $slug = strtolower( preg_replace('/[^A-Za-z0-9-]+/', '-', $string ) );
+    
+    // Remove multiple dashes in the slug
+    $slug = preg_replace('/--+/', '-', $slug);
+    
+    // Trim any trailing dashes
+    $slug = trim( $slug, '-' );
+    
 	return $slug;
 }
 }
@@ -324,7 +347,7 @@ if( ! function_exists( 'str2hex') ){
 function str2hex( $func_string ){
 	$func_retVal = '';
 	$func_length = strlen( $func_string );
-	for( $func_index = 0; $func_index < $func_length; ++$func_index ) $func_retVal .= ((( $c = dechex( ord( $func_string{$func_index}) )) && strlen( $c ) & 2 ) ? $c : "0{$c}");
+	for( $func_index = 0; $func_index < $func_length; ++$func_index ) $func_retVal .= ((( $c = dechex( ord( $func_string[$func_index]) )) && strlen( $c ) & 2 ) ? $c : "0[$c]");
 
 	return strtoupper( $func_retVal );
 }
@@ -351,7 +374,7 @@ if( ! function_exists( 'hex2str') ){
 function hex2str( $func_string ){
 	$func_retVal = '';
 	$func_length = strlen( $func_string );
-	for( $func_index = 0; $func_index < $func_length; ++$func_index ) $func_retVal .= chr( hexdec( $func_string{$func_index} . $func_string{++$func_index}) );
+	for( $func_index = 0; $func_index < $func_length; ++$func_index ) $func_retVal .= chr( hexdec( $func_string[$func_index] . $func_string[++$func_index]) );
 
 	return $func_retVal;
 }
