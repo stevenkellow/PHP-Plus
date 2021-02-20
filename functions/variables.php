@@ -29,6 +29,7 @@
 *   __return_zero
 *   __return_empty_string
 *   __return_empty_array
+*   getcheck
 */
 
 /**
@@ -747,5 +748,53 @@ function __return_empty_string(){
 if( ! function_exists( '__return_empty_array' ) ){
 function __return_empty_array(){
     return array();
+}
+}
+
+/*
+*   getcheck
+*
+*   Check if a $_GET particular get value is set
+*
+*   @param string $key - key to check for
+*   @pram string $value - value to check for
+*
+*   @return bool - true if key-value exists, false otherwise
+*
+*	@since	1.1.2
+*	@modified	1.1.2
+*/
+if( ! function_exists( 'getcheck' ) ){
+function getcheck( $key, $value ){
+    
+    if( isset( $_GET[$key] ) && $_GET[$key] == $value ){
+        return true;
+    }
+    return false;
+    
+}
+}
+
+/*
+*   postcheck
+*
+*   Check if a $_POST particular value is set
+*
+*   @param string $key - key to check for
+*   @pram string $value - value to check for
+*
+*   @return bool - true if key-value exists, false otherwise
+*
+*	@since	1.1.2
+*	@modified	1.1.2
+*/
+if( ! function_exists( 'postcheck' ) ){
+function postcheck( $key, $value ){
+    
+    if( isset( $_POST[$key] ) && $_POST[$key] == $value ){
+        return true;
+    }
+    return false;
+    
 }
 }
