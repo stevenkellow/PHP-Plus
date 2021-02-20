@@ -233,3 +233,29 @@ function create_guid(){
     return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
 }
+
+
+/**
+*   is_guid
+*
+*   Check if a string is a UUID v4
+*
+*   @return bool - true if GUID, false otherwise
+*
+*	@since  1.1.3
+*/
+if( ! function_exists( 'is_guid' ) ){
+function is_guid( string $input ){
+    
+    if( preg_match('/(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}/', $input ) ){
+    
+        return true;
+    
+    } else {
+        
+        return false;
+        
+    }
+    
+}
+}
