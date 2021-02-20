@@ -111,7 +111,7 @@ function html_mail( $to, $subject, $message, $from_email, $from_name ){
 *	@return mixed $data - whatever is retrieved or a confirmation of send, or if curl isn't installed false
 *
 *   @since 0.1
-*   @modified 0.1
+*   @modified 1.1.3
 */
 if( ! function_exists( 'quick_curl' ) ){
 function quick_curl( $url, $user_auth = null, $rest = 'GET', $input = null, $type = 'JSON'){
@@ -119,52 +119,60 @@ function quick_curl( $url, $user_auth = null, $rest = 'GET', $input = null, $typ
     // Check if cURL is installed
     if( function_exists('curl_init') ){
 
-	$ch = curl_init();
-    curl_setopt( $ch, CURLOPT_URL, $url ); // The URL we're using to get/send data
-    
-	if( $user_auth ){
-		curl_setopt( $ch, CURLOPT_USERPWD, $user_auth ); // Add the authentication
-	}
-    
-    if( $rest == 'POST' ){
-        curl_setopt( $ch, CURLOPT_POST, true ); // Send a post request to the server
-    } elseif( $rest == 'PATCH' ){
-        curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'PATCH'); // Send a patch request to the server to update the listing
-    } elseif( $rest == 'PUT'){
-        curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'PUT'); // Send a put request to the server to update the listing
-    } // If POST or PATCH isn't set then we're using a GET request, which is the default
-    
-	curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 15 ); // Timeout when connecting to the server
-    curl_setopt( $ch, CURLOPT_TIMEOUT, 30 ); // Timeout when retrieving from the server
-    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true ); // We want to capture the data returned, so set this to true
-    //curl_setopt( $ch, CURLOPT_HEADER, true );  // Get the HTTP headers sent with the data
-    curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false ); // We don't want to force SSL incase a site doesn't use it
-    
-    if( $rest !== 'GET' ){
-		
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Content-Type: ' . mime_type( $type ), 'Content-Length: ' . strlen( $input ) ) ); // Tell server to expect the right application type and the content length
-        curl_setopt( $ch, CURLOPT_POSTFIELDS, $input ); // Send the actual data
-    }
+        $ch = curl_init();
+        curl_setopt( $ch, CURLOPT_URL, $url ); // The URL we're using to get/send data
 
-    // Get the response
-    $response = curl_exec( $ch );
-    
-    // Check if there's an error in the header
-    $httpcode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+        if( $user_auth ){
+            curl_setopt( $ch, CURLOPT_USERPWD, $user_auth ); // Add the authentication
+        }
 
-    // If there's any cURL errors
-    if( curl_errno( $ch ) || ( $httpcode < 200 || $httpcode >= 300 )  ){
-        $data = 'error';
-    } else {
-		// Turn response into stuff we can use
-        $data = json_decode( $response, true );
-		
+        if( $rest == 'POST' ){
+            curl_setopt( $ch, CURLOPT_POST, true ); // Send a post request to the server
+        } elseif( $rest == 'PATCH' ){
+            curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'PATCH'); // Send a patch request to the server to update the listing
+        } elseif( $rest == 'PUT'){
+            curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'PUT'); // Send a put request to the server to update the listing
+        } // If POST or PATCH isn't set then we're using a GET request, which is the default
+
+        curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 15 ); // Timeout when connecting to the server
+        curl_setopt( $ch, CURLOPT_TIMEOUT, 30 ); // Timeout when retrieving from the server
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true ); // We want to capture the data returned, so set this to true
+        //curl_setopt( $ch, CURLOPT_HEADER, true );  // Get the HTTP headers sent with the data
+        curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false ); // We don't want to force SSL incase a site doesn't use it
+
+        if( $rest !== 'GET' ){
+
+            curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Content-Type: ' . mime_type( $type ), 'Content-Length: ' . strlen( $input ) ) ); // Tell server to expect the right content type and the content length
+            curl_setopt( $ch, CURLOPT_POSTFIELDS, $input ); // Send the actual data
+        }
+
+        // Get the response
+        $response = curl_exec( $ch );
+
+        // Check if there's an error in the header
+        $httpcode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+
+        // If there's any cURL errors
+        if( curl_errno( $ch ) || ( $httpcode < 200 || $httpcode >= 300 )  ){
+            $data = 'error';
+        } else {
+            
+            // Turn response into stuff we can use
+            if( $type == 'JSON' ){
+                $data = json_decode( $response, true );
+            } elseif( $type == 'csv' ){
+                $data = csv_to_array( $response );
+            } else {
+                $data = $response;
+            }
+
+        }
+
+        // Close curl
         curl_close( $ch );
         
-    }
-
-    // Send the data back to the function calling the cURL
-    return $data;
+        // Send the data back to the function calling the cURL
+        return $data;
         
     } else {
         
@@ -266,7 +274,7 @@ function facebook_pixel( $pixel_id ){
 *	@return array $csv_array
 *
 *   @since 0.1
-*   @modified 1.1.1
+*   @modified 1.1.3
 */
 if( ! function_exists( 'csv_to_array') ){
 function csv_to_array( $file, $header_key = true ){
@@ -284,8 +292,15 @@ function csv_to_array( $file, $header_key = true ){
         
     } else {
         
-        // Can't do anything here
-        return false;
+        // Try file get contents
+        $file_array = file_get_contents( $file );
+        
+        if( $file_array == false ){
+        
+            // Can't do anything here
+            return false;
+            
+        }
     }
     
     // Check that the CSV mapping worked

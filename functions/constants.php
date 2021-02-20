@@ -94,10 +94,10 @@ if( ! defined( 'MONTH_IN_SECONDS') ){
 
 // Years
 if( ! defined( 'YEAR_IN_SECONDS') ){
-    define( 'YEAR_IN_SECONDS', 365 * 30 * 24 * 60 * 60 );
+    define( 'YEAR_IN_SECONDS', 365 * 24 * 60 * 60 );
 }
     if( ! defined( 'YEAR') ){
-        define( 'YEAR', 365 * 30 * 24 * 60 * 60 );
+        define( 'YEAR', 365 * 24 * 60 * 60 );
     }
 
 /**
