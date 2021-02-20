@@ -35,6 +35,9 @@
 *   is_decimal
 *   currency_format
 *   factorial
+*   normal_dists
+*   multi_normal_dists
+*   rebase
 */
 
 /**
@@ -1042,3 +1045,104 @@ function factorial( $number ){
     
 } 
 }
+
+/**
+*   normal_dists
+*
+*   Returns a normal distribution, using Box-Muller transform (Box, Muller 1958)
+*
+*   @see https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
+*
+*   @param float $mean - the mean of the distribution
+*   @param float $variance - the variance of the distribution
+*
+*   @return float - a value in the distribution
+*
+*	@since	1.1.3
+*/
+if( ! function_exists( 'normal_dists' ) ){
+function normal_dists( $mean, $variance ){
+    
+    $u = mt_rand()/mt_getrandmax();
+    $v = mt_rand()/mt_getrandmax();
+    $boxmuller =  sqrt(-2 * log($u)) * cos(2 * M_PI * $v);
+    
+    return $boxmuller * sqrt($variance) + $mean;
+    
+}
+}
+
+/**
+*   multi_normal_dists
+*
+*   Returns multiple normal distributions
+*
+*   @param float $mean - the mean of the distribution
+*   @param float $variance - the variance of the distribution
+*   @param int $number - how many to return
+*
+*   @return array - a set of values in the distribution
+*
+*	@since	1.1.3
+*/
+if( ! function_exists( 'multi_normal_dists' ) ){
+function multi_normal_dists( $mean, $margin, $number ){
+    
+    $dists = array();
+    
+    for( $x = 1; $x <= $number; $x++ ){
+        
+        $dists[] = better_normal_dists( $mean, $margin );
+        
+    }
+    
+    return $dists;
+    
+}
+}
+
+/**
+*   rebase
+*
+*   Round array values to reach a given sum
+*
+*   @param array $array - the values to check
+*   @param float $base - the number all items should round to
+*   @param int $round - the rounding precision
+*
+*   @return array $array - the rebased array
+*
+*	@since	1.1.3
+*/
+if( ! function_exists( 'rebase' ) ){
+function rebase( $array, $base = 1, $round = 6 ){
+    
+    $total = array_sum( $array );
+    
+    if( $total !== $base ){
+        
+        // Make sure it'll go to 1
+        $coefficient = $base / $total;
+        
+        foreach( $array as $key => $val ){
+            
+            // If we want to round
+            if( is_int( $round ) ){
+            
+                $array[$key] = round( $val * $coefficient, $round );
+                
+            } else {
+                
+                $array[$key] = $val * $coefficient;
+                
+            }
+            
+        }
+        
+    }
+    
+    return $array;
+    
+}
+}
+
