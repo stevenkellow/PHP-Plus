@@ -7,7 +7,7 @@
 *   @see    https://developer.paypal.com/docs/classic/api/country_codes/
 *
 *	@since	1.1
-*	@modified	1.1
+*	@modified	1.1.4
 */
 $countries = array(
     'AF' => 'Afghanistan',
@@ -68,7 +68,7 @@ $countries = array(
     'HR' => 'Croatia',
     'CU' => 'Cuba',
     'CY' => 'Cyprus',
-    'CZ' => 'Czech Republic',
+    'CZ' => 'Czechia',
     'DK' => 'Denmark',
     'DJ' => 'Djibouti',
     'DM' => 'Dominica',
@@ -222,7 +222,7 @@ $countries = array(
     'SD' => 'Sudan',
     'SR' => 'Suriname',
     'SJ' => 'Svalbard and Jan Mayen Islands',
-    'SZ' => 'Swaziland',
+    'SZ' => 'Eswatini',
     'SE' => 'Sweden',
     'CH' => 'Switzerland',
     'SY' => 'Syrian Arab Republic (Syria)',
@@ -236,7 +236,7 @@ $countries = array(
     'TO' => 'Tonga',
     'TT' => 'Trinidad and Tobago',
     'TN' => 'Tunisia',
-    'TR' => 'Turkey',
+    'TR' => 'Türkiye',
     'TM' => 'Turkmenistan',
     'TC' => 'Turks and Caicos Islands',
     'TV' => 'Tuvalu',

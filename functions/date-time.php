@@ -709,3 +709,42 @@ function days_between( $start, $end, $working_days = array() ){
     
 }
 }
+
+/**
+*   month_selector
+*
+*   Return the month name from the number
+*
+*
+*   @param int $month - the month number
+*
+*   @return string - the month name
+*
+*	@since	1.1.4
+*/
+if( ! function_exists( 'month_selector' ) ){
+function month_selector( $month ){
+    
+    $index = array(
+        1 => 'January',
+        2 => 'February',
+        3 => 'March',
+        4 => 'April',
+        5 => 'May',
+        6 => 'June',
+        7 => 'July',
+        8 => 'August',
+        9 => 'September',
+        10 => 'October',
+        11 => 'November',
+        12 => 'December'
+    );
+    
+    if( is_numeric( $month ) ){
+        $key = intval( $month );
+    }
+
+    return $index[$key];
+    
+}
+}

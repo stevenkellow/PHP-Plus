@@ -15,6 +15,7 @@
 *   sha384
 *   sha512
 *   create_guid
+*	is_guid
 */
 
 /**

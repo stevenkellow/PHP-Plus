@@ -24,6 +24,7 @@
 *   checked
 *   disabled
 *   _checked_disabled_helper
+*   table_row
 */
 
 /**
