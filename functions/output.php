@@ -606,4 +606,33 @@ function add_utf8_bom( $text ){
     return $bom.$text;
     
 }
+
+/**
+ * table_row
+ * 
+ * Output a table row from arguments
+ * 
+ * @param string for a table row
+ * 
+ * @since 1.1.4
+ * 
+ */
+ if( ! function_exists( 'table_row') ){
+ function table_row(){
+
+    $cols = func_get_args();
+
+    $output = '<tr>';
+
+    foreach( $cols as $col ){
+
+        $output .= '<td>' . $col . '</td>';
+
+    }
+
+    echo $output . '</tr>';
+
+ }
+ }
+
 }
