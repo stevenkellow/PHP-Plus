@@ -32,6 +32,7 @@
 *   in_array_quick
 *   array_orderby
 *   array_split
+*   array_count_values_of
 */
 
 /*
@@ -899,5 +900,31 @@ function array_split( $array, $elements, $type = 'straight' ){
     
     return $return;
     
+}
+}
+
+/**
+*   array_count_values_of
+*
+*   Count the number of a given value within an array
+*
+*   @param array $array - the array containing the values
+*   @param mixed $value - the value you want to count
+*
+*   @return int - the count of the value
+*
+*	@since	1.1.5
+*/
+if( ! function_exists( 'array_count_values_of' )){
+function array_count_values_of($array, $value) {
+    $counts = array_count_values($array);
+
+    if( isset( $counts[$value] ) ){
+
+        return $counts[$value];
+    
+    } else {
+        return 0;
+    }
 }
 }

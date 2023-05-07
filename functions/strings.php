@@ -263,7 +263,7 @@ function slug( $string ){
                             'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
                             'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', 'ş' => 's', "'" => '', "‘" => '', "’" => '' );
 
-    $text = strtr( $text, $unwanted_array );
+    $text = strtr( $string, $unwanted_array );
 	
     // Remove apostrophes and brackets, cause we'll not use them
     $forbidden = array( "'", '(', ')', '[', ']' );
